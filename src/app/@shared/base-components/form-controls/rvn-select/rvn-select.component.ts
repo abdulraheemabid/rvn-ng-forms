@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
+import { CustomFormControlValueAccessor } from 'src/app/@shared/utils/custom-form-control-value-accessor';
+
 import { RvnSelectInput } from './rvn-select.input';
 
 @Component({

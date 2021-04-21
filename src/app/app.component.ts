@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RvnInputInput } from './@shared/base-components/rvn-input/rvn-input.input';
+import { RvnInputInput } from './@shared/base-components/form-controls/rvn-input/rvn-input.input';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
-import { RvnRadioInput } from './@shared/base-components/rvn-radio/rvn-radio.input';
-import { RvnToggleInput } from './@shared/base-components/rvn-toggle/rvn-toggle.input';
-import { RvnCheckboxInput } from './@shared/base-components/rvn-checkbox/rvn-checkbox.input';
+import { RvnSelectInput } from './@shared/base-components/form-controls/rvn-select/rvn-select.input';
+import { RvnRadioInput } from './@shared/base-components/form-controls/rvn-radio/rvn-radio.input';
+import { RvnToggleInput } from './@shared/base-components/form-controls/rvn-toggle/rvn-toggle.input';
+import { RvnCheckboxInput } from './@shared/base-components/form-controls/rvn-checkbox/rvn-checkbox.input';
 
 @Component({
   selector: 'app-root',
