@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RvnInputInput } from './@shared/base-components/rvn-input/rvn-input.input';
 import { FormControl, Validators } from '@angular/forms';
+import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
+import { RvnRadioInput } from './@shared/base-components/rvn-radio/rvn-radio.input';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,8 @@ export class AppComponent implements OnInit {
 
   fc = new FormControl(null, [Validators.required]);
 
+  JSON = JSON;
+
   textFieldInput: RvnInputInput = {
     label: 'name',
     placeholder: 'full name',
@@ -40,6 +44,28 @@ export class AppComponent implements OnInit {
     styleVersion: 'v2'
   }
 
-  ngOnInit(){
+  selectInput: RvnSelectInput = {
+    label: 'type',
+    placeholder: 'type',
+    required: true,
+    requiredErrorMessage: 'type is required',
+    styleVersion: 'v2',
+    selectOptions: [{ key: "1", value: "type 1" }, { key: "2", value: "type 2" }, { key: "3", value: "type 3" }]
+  }
+
+  selectInput2: RvnSelectInput = {
+    ...this.selectInput,
+    styleVersion: 'v1'
+  }
+
+  radioInput: RvnRadioInput = {
+    label: 'gender',
+    required: true,
+    requiredErrorMessage: 'gender is required',
+    styleVersion: 'v1',
+    radioOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }, { key: "4", value: "Memale" }]
+  }
+
+  ngOnInit() {
   }
 }

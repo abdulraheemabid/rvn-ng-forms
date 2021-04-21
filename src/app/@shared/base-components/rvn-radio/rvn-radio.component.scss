@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .radio-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &.v1 {
+        .radio-btn {
+            padding: 0px 5px;
+        }
+    }
+
+    &.v2 {
+        align-items: normal;
+        .radio-group {
+            flex-direction: column;
+        }
+        .radio-btn {
+            padding: 5px 0px;
+        }
+    }
+
+    &.v3 {
+        .radio-group {
+            flex-direction: column;
+        }
+        .radio-btn {
+            padding: 5px 0px;
+        }
+    }
+}

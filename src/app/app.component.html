@@ -19,6 +19,10 @@
         <div class="demo-container">
             <rvn-input [params]="textFieldInput" [formControl]="fc"></rvn-input>
             <rvn-input [params]="textFieldInput2" [formControl]="fc"></rvn-input>
+            <rvn-select [params]="selectInput" [formControl]="fc"></rvn-select>
+            <rvn-select [params]="selectInput2" [formControl]="fc"></rvn-select>
+            <rvn-radio [params]="radioInput" [formControl]="fc"></rvn-radio>
+            value: {{JSON.stringify(fc.value)}}
         </div>
 
     </mat-sidenav-content>
