@@ -1,6 +1,6 @@
 import { Component, ElementRef, forwardRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { CustomControlValueAccessor } from '../../utils/custom-control-value-accessor';
+import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnInputInput } from './rvn-input.input';
 
 @Component({
@@ -15,7 +15,7 @@ import { RvnInputInput } from './rvn-input.input';
     }
   ]
 })
-export class RvnInputComponent extends CustomControlValueAccessor implements OnInit {
+export class RvnInputComponent extends CustomFormControlValueAccessor implements OnInit {
 
   @Input() params: RvnInputInput = null;
   

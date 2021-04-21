@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CustomControlValueAccessor } from '../../utils/custom-control-value-accessor';
+import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnRadioInput } from './rvn-radio.input';
 
 @Component({
@@ -15,7 +15,7 @@ import { RvnRadioInput } from './rvn-radio.input';
     }
   ]
 })
-export class RvnRadioComponent extends CustomControlValueAccessor implements OnInit {
+export class RvnRadioComponent extends CustomFormControlValueAccessor implements OnInit {
   
   @Input() params: RvnRadioInput = null;
 

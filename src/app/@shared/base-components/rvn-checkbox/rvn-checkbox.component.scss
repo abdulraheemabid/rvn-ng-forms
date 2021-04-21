@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    // setting these because applying mat-form-field-infix to container so that it takes same height
+    // as other material fields. But making these propeties as initial because mat-form-field-infix overides them
+    position: initial;
+    flex: initial;
+    width: initial;
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    // ::ng-deep {
+    //     .mat-checkbox-inner-container {
+    //         height: 20px;
+    //         width: 20px;
+    //     }
+    // }
+
+    &.v1 {
+        .checkbox {
+            padding: 0px 5px;
+        }
+    }
+
+    &.v2 {
+        align-items: normal;
+        .checkbox-group {
+            flex-direction: column;
+        }
+        .checkbox {
+            padding: 5px 0px;
+        }
+    }
+
+    &.v3 {
+        .checkbox-group {
+            flex-direction: column;
+        }
+        .checkbox {
+            padding: 5px 0px;
+        }
+    }
+}

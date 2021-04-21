@@ -2,7 +2,7 @@ import { Component, Injector, ViewChild } from "@angular/core";
 import { ControlValueAccessor, FormControl, FormControlDirective, NgControl } from "@angular/forms";
 
 @Component({ template: '' })
-export abstract class CustomControlValueAccessor implements ControlValueAccessor {
+export abstract class CustomFormControlValueAccessor implements ControlValueAccessor {
 
     constructor(private injector: Injector) { }
 

@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CustomControlValueAccessor } from '../../utils/custom-control-value-accessor';
+import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnToggleInput } from './rvn-toggle.input';
 
 @Component({
@@ -15,7 +15,7 @@ import { RvnToggleInput } from './rvn-toggle.input';
     }
   ]
 })
-export class RvnToggleComponent extends CustomControlValueAccessor implements OnInit {
+export class RvnToggleComponent extends CustomFormControlValueAccessor implements OnInit {
 
   @Input() params: RvnToggleInput = null;
 
