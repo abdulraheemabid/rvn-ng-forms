@@ -1,7 +1,7 @@
-<span class="container" [ngClass]="params?.styleVersion">
+<span class="container mat-form-field-infix" [ngClass]="params?.styleVersion">
 
     <ng-container *ngIf="params?.styleVersion == 'v1'">
-        <label class="label" *ngIf="params?.label">{{params?.label}}</label>
+        <span class="label" *ngIf="params?.label">{{params?.label}}</span>
         <mat-slide-toggle [formControl]="formControl" [required]="params?.required"></mat-slide-toggle>
     </ng-container>
 

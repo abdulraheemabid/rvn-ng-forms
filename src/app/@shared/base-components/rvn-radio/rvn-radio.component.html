@@ -1,8 +1,9 @@
-<span class="container" [ngClass]="params?.styleVersion">
+<span class="container mat-form-field-infix" [ngClass]="params?.styleVersion">
 
     <ng-container *ngIf="params?.styleVersion == 'v1'">
-        <label class="label">{{params?.label}}:</label>
-        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
+        <span class="label">{{params?.label}}:</span>
+        <mat-radio-group [ngClass]="{'invalid': formControl.hasError('required')}" class="radio-group"
+            [name]="params?.label" [formControl]="formControl" [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
@@ -11,8 +12,9 @@
 
 
     <ng-container *ngIf="params?.styleVersion == 'v2'">
-        <label class="label">{{params?.label}}</label>
-        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
+        <span class="label">{{params?.label}}</span>
+        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl"
+            [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
@@ -20,12 +22,13 @@
     </ng-container>
 
     <ng-container *ngIf="params?.styleVersion == 'v3'">
-        <label class="label">{{params?.label}}</label>
-        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
+        <span class="label">{{params?.label}}</span>
+        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl"
+            [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
         </mat-radio-group>
     </ng-container>
-    
+
 </span>
