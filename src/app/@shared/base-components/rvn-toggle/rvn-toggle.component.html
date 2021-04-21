@@ -1,0 +1,12 @@
+<span class="container" [ngClass]="params?.styleVersion">
+
+    <ng-container *ngIf="params?.styleVersion == 'v1'">
+        <label class="label" *ngIf="params?.label">{{params?.label}}</label>
+        <mat-slide-toggle [formControl]="formControl" [required]="params?.required"></mat-slide-toggle>
+    </ng-container>
+
+    <ng-container *ngIf="params?.styleVersion == 'v2'">
+        <mat-slide-toggle [formControl]="formControl" [required]="params?.required">{{params?.label}}</mat-slide-toggle>
+    </ng-container>
+
+</span>

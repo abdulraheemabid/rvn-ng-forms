@@ -2,7 +2,7 @@
 
     <ng-container *ngIf="params?.styleVersion == 'v1'">
         <label class="label">{{params?.label}}:</label>
-        <mat-radio-group class="radio-group" [formControl]="formControl">
+        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
@@ -12,7 +12,7 @@
 
     <ng-container *ngIf="params?.styleVersion == 'v2'">
         <label class="label">{{params?.label}}</label>
-        <mat-radio-group class="radio-group" [formControl]="formControl">
+        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
@@ -21,10 +21,11 @@
 
     <ng-container *ngIf="params?.styleVersion == 'v3'">
         <label class="label">{{params?.label}}</label>
-        <mat-radio-group class="radio-group" [formControl]="formControl">
+        <mat-radio-group class="radio-group" [name]="params?.label" [formControl]="formControl" [required]="params?.required">
             <mat-radio-button class="radio-btn" *ngFor="let option of params?.radioOptions" [value]="option">
                 {{option.value}}
             </mat-radio-button>
         </mat-radio-group>
     </ng-container>
+    
 </span>

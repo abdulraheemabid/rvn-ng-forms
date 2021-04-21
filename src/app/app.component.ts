@@ -6,6 +6,7 @@ import { RvnInputInput } from './@shared/base-components/rvn-input/rvn-input.inp
 import { FormControl, Validators } from '@angular/forms';
 import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
 import { RvnRadioInput } from './@shared/base-components/rvn-radio/rvn-radio.input';
+import { RvnToggleInput } from './@shared/base-components/rvn-toggle/rvn-toggle.input';
 
 @Component({
   selector: 'app-root',
@@ -64,6 +65,13 @@ export class AppComponent implements OnInit {
     requiredErrorMessage: 'gender is required',
     styleVersion: 'v1',
     radioOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }, { key: "4", value: "Memale" }]
+  }
+
+  toggleInput: RvnToggleInput = {
+    label: 'Are you crazy?',
+    required: true,
+    requiredErrorMessage: 'required',
+    styleVersion: 'v1',
   }
 
   ngOnInit() {
