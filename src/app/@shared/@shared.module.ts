@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button';
 import { RvnInputComponent } from './base-components/form-controls/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
@@ -13,6 +14,7 @@ import { RvnSelectComponent } from './base-components/form-controls/rvn-select/r
 import { RvnRadioComponent } from './base-components/form-controls/rvn-radio/rvn-radio.component';
 import { RvnToggleComponent } from './base-components/form-controls/rvn-toggle/rvn-toggle.component';
 import { RvnCheckboxComponent } from './base-components/form-controls/rvn-checkbox/rvn-checkbox.component';
+import { RvnButtonComponent } from './base-components/buttons/rvn-button/rvn-button.component';
 
 
 
@@ -22,7 +24,8 @@ import { RvnCheckboxComponent } from './base-components/form-controls/rvn-checkb
     RvnSelectComponent,
     RvnRadioComponent,
     RvnToggleComponent,
-    RvnCheckboxComponent
+    RvnCheckboxComponent,
+    RvnButtonComponent
   ],
   imports: [
     CommonModule,
@@ -34,13 +37,15 @@ import { RvnCheckboxComponent } from './base-components/form-controls/rvn-checkb
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   exports:[
     RvnInputComponent,
     RvnSelectComponent,
     RvnRadioComponent,
     RvnToggleComponent,
-    RvnCheckboxComponent
+    RvnCheckboxComponent,
+    RvnButtonComponent
   ],
   providers:[
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

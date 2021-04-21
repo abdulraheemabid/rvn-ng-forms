@@ -1,0 +1,17 @@
+.btn {
+    min-width: 120px;
+
+    &.mat-button-disabled {
+        cursor: not-allowed;
+    }
+
+    &.icon-text {
+        mat-icon {
+            margin-right: 5px;
+        }
+    }
+
+    &.fab{
+        min-width: initial;
+    }
+}

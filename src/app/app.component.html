@@ -10,13 +10,14 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
-            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (onClick)="drawer.toggle()"
                 *ngIf="isHandset$ | async">
                 <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>rvn-ng-forms</span>
         </mat-toolbar>
         <div class="demo-container">
+            <h1>FORMS</h1>
             <rvn-input [params]="textFieldInput" [formControl]="fc"></rvn-input>
             <rvn-input [params]="textFieldInput2" [formControl]="fc"></rvn-input>
             <rvn-select [params]="selectInput" [formControl]="fc"></rvn-select>
@@ -24,6 +25,64 @@
             <rvn-radio [params]="radioInput" [formControl]="fc"></rvn-radio>
             <rvn-toggle [params]="toggleInput" [formControl]="fc"></rvn-toggle>
             <rvn-checkbox [params]="checkboxInput" [formGroup]="checkboxFG"></rvn-checkbox>
+
+            <h1>BUTTONS</h1>
+            <h2>Primary</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'accent'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Secondary</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', type: 'secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'accent', type: 'secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn', type: 'secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn', type: 'secondary'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Tertiary</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', type: 'tertiary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'accent', type: 'tertiary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn', type: 'tertiary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn', type: 'tertiary'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Icon</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'icon'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'icon'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'icon'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Icon-Text-Parimary</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', type: 'icon-text-primary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'accent', type: 'icon-text-primary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-primary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-primary'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Icon-Text-Secondary</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', type: 'icon-text-secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'accent', type: 'icon-text-secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-secondary'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-secondary'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>FAB</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'fab'}" [disabled]="true"></rvn-button>
+            </div>
+            <h2>Mini-FAB</h2>
+            <div style="display: flex; justify-content: space-between;">
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'mini-fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'mini-fab'}"></rvn-button>
+                <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'mini-fab'}" [disabled]="true"></rvn-button>
+            </div>
         </div>
 
     </mat-sidenav-content>

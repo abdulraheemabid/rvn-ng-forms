@@ -83,6 +83,10 @@ export class AppComponent implements OnInit {
 
   checkboxFG = new FormGroup({});
 
+  onClick(){
+    alert('clicked');
+  }
+
   ngOnInit() {
       
   }
