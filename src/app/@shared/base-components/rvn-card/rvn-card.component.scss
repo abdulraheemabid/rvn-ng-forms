@@ -8,6 +8,21 @@
     mat-card {
         padding: $space-l;
 
+       
+
+        mat-card-header{
+            ::ng-deep {
+                .mat-card-header-text {
+                    margin: 0;
+                }
+            }
+
+            .header-icon{
+                margin-right: $space-m;
+            }
+        }
+        
+
         mat-card-content {
             margin-top: $space-l;
 

@@ -2,7 +2,7 @@
     <mat-card class="example-card">
         
         <mat-card-header>
-            <mat-icon mat-card-avatar *ngIf="params?.headerIcon">{{params?.headerIcon}}</mat-icon>
+            <mat-icon mat-card-avatar class="header-icon" *ngIf="params?.headerIcon">{{params?.headerIcon}}</mat-icon>
             <mat-card-title *ngIf="params?.title">{{params?.title}}</mat-card-title>
             <mat-card-subtitle *ngIf="params?.subtitle">{{params?.subtitle}}</mat-card-subtitle>
             <div class="header-action" *ngIf="params?.headerAction">
