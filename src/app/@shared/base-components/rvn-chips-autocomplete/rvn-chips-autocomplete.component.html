@@ -1,0 +1,24 @@
+<div class="container" [ngClass]="params?.styleVersion">
+    <span *ngIf="params?.styleVersion == 'v2'">{{params?.label}}:</span>
+
+    <mat-form-field class="form-field">
+        <mat-label *ngIf="params?.styleVersion == 'v1' && params?.label" class="label">{{params?.label}}</mat-label>
+
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let option of selectedOptions" [selectable]="false" [removable]="true"
+                (removed)="remove(option)">
+                {{option.value}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [placeholder]="params?.placeholder" #inputElement [formControl]="formControl"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList" [required]="params?.required">
+        </mat-chip-list>
+        <mat-hint *ngIf="params?.hint">{{params?.hint}}</mat-hint>
+        <mat-error *ngIf="formControl?.hasError('required')">{{params?.requiredErrorMessage}}</mat-error>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option.value}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>

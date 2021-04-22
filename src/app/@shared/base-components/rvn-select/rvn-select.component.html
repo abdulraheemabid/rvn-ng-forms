@@ -1,7 +1,8 @@
 <span class="container" [ngClass]="params?.styleVersion">
 
     <span *ngIf="params?.styleVersion == 'v2'">{{params?.label}}:</span>
-    <mat-form-field>
+
+    <mat-form-field class="form-field">
         <mat-label class="label">
             <span *ngIf="params?.styleVersion == 'v1' && params?.label"> {{params?.label}}</span>
             <span *ngIf="params?.styleVersion == 'v2' && params?.placeholder">{{params?.placeholder}}</span>

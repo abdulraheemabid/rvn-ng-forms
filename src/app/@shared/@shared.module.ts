@@ -7,14 +7,19 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { RvnInputComponent } from './base-components/form-controls/rvn-input/rvn-input.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { RvnSelectComponent } from './base-components/form-controls/rvn-select/rvn-select.component';
-import { RvnRadioComponent } from './base-components/form-controls/rvn-radio/rvn-radio.component';
-import { RvnToggleComponent } from './base-components/form-controls/rvn-toggle/rvn-toggle.component';
-import { RvnCheckboxComponent } from './base-components/form-controls/rvn-checkbox/rvn-checkbox.component';
-import { RvnButtonComponent } from './base-components/buttons/rvn-button/rvn-button.component';
+import { RvnSelectComponent } from './base-components/rvn-select/rvn-select.component';
+import { RvnRadioComponent } from './base-components/rvn-radio/rvn-radio.component';
+import { RvnToggleComponent } from './base-components/rvn-toggle/rvn-toggle.component';
+import { RvnCheckboxComponent } from './base-components/rvn-checkbox/rvn-checkbox.component';
+import { RvnButtonComponent } from './base-components/rvn-button/rvn-button.component';
+import { RvnDividerComponent } from './base-components/rvn-divider/rvn-divider.component';
+import { RvnChipsAutocompleteComponent } from './base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.component';
 
 
 
@@ -25,7 +30,9 @@ import { RvnButtonComponent } from './base-components/buttons/rvn-button/rvn-but
     RvnRadioComponent,
     RvnToggleComponent,
     RvnCheckboxComponent,
-    RvnButtonComponent
+    RvnButtonComponent,
+    RvnDividerComponent,
+    RvnChipsAutocompleteComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +42,9 @@ import { RvnButtonComponent } from './base-components/buttons/rvn-button/rvn-but
     MatRadioModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    MatDividerModule,
+    MatAutocompleteModule,
+    MatChipsModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -45,7 +55,9 @@ import { RvnButtonComponent } from './base-components/buttons/rvn-button/rvn-but
     RvnRadioComponent,
     RvnToggleComponent,
     RvnCheckboxComponent,
-    RvnButtonComponent
+    RvnButtonComponent,
+    RvnDividerComponent,
+    RvnChipsAutocompleteComponent
   ],
   providers:[
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

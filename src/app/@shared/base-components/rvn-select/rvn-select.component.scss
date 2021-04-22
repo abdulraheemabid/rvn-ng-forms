@@ -1,0 +1,18 @@
+.container {
+    &.v1 {
+      .form-field {
+        width: 100%;
+      }
+    }
+  
+    &.v2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      .form-field {
+        width: 80%;
+      }
+    }
+  }
+  

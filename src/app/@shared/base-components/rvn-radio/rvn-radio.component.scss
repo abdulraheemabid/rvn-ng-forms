@@ -17,6 +17,9 @@
     }
 
     &.v1 {
+        .radio-group {
+            width: 80%;
+        }
         .radio-btn {
             padding: 0px 5px;
         }
