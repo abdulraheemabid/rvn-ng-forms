@@ -16,19 +16,9 @@
     z-index: 1;
 }
 
-.demo-container {
+.app-container {
     padding: 50px;
     display: grid;
     grid-template-columns: 100%;
     justify-content: center;
-
-    .sub-container {
-        padding: 40px;
-        max-width: 600px;
-        margin: auto;
-
-        .form-field-container{
-            max-width: 300px;
-        }
-    }
 }
