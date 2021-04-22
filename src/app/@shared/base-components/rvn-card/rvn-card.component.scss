@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.container {
+    .header-action {
+        margin-left: auto;
+    }
+
+    mat-card {
+        padding: $space-l;
+
+        mat-card-content {
+            margin-top: $space-l;
+
+            .footer {
+                margin-top: $space-xl;
+            }
+        }
+    }
+}

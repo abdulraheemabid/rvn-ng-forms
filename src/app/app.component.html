@@ -163,7 +163,26 @@
             <rvn-divider></rvn-divider>
 
             <div class="sub-container">
-                
+                <h1>CARD</h1>
+                <ng-template #headerAction>
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}"></rvn-button>
+                </ng-template>
+                <ng-template #content>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum.</p>
+                </ng-template>
+                <ng-template #footer>
+                    <rvn-button style="margin-right: 10px;" [params]="{'label': 'Button'}"></rvn-button>
+                    <rvn-button [params]="{'label': 'Button', type: 'secondary'}"></rvn-button>
+                </ng-template>
+                <rvn-card
+                    [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle', 'headerAction': headerAction, 'content': content, 'footer': footer}">
+                </rvn-card>
             </div>
         </div>
 

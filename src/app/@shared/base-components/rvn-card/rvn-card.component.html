@@ -1,0 +1,21 @@
+<div class="container">
+    <mat-card class="example-card">
+        
+        <mat-card-header>
+            <mat-icon mat-card-avatar *ngIf="params?.headerIcon">{{params?.headerIcon}}</mat-icon>
+            <mat-card-title *ngIf="params?.title">{{params?.title}}</mat-card-title>
+            <mat-card-subtitle *ngIf="params?.subtitle">{{params?.subtitle}}</mat-card-subtitle>
+            <div class="header-action" *ngIf="params?.headerAction">
+                <ng-container *ngTemplateOutlet="params?.headerAction"></ng-container>
+            </div>
+        </mat-card-header>
+
+        <mat-card-content *ngIf="params?.content">
+            <ng-container *ngTemplateOutlet="params?.content"></ng-container>
+            <div *ngIf="params?.footer" class="footer">
+                <ng-container *ngTemplateOutlet="params?.footer"></ng-container>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>

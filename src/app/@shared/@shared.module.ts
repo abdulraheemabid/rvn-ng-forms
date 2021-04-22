@@ -12,6 +12,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
@@ -23,6 +24,7 @@ import { RvnButtonComponent } from './base-components/rvn-button/rvn-button.comp
 import { RvnDividerComponent } from './base-components/rvn-divider/rvn-divider.component';
 import { RvnChipsAutocompleteComponent } from './base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.component';
 import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-datepicker.component';
+import { RvnCardComponent } from './base-components/rvn-card/rvn-card.component';
 
 
 
@@ -36,7 +38,8 @@ import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-dat
     RvnButtonComponent,
     RvnDividerComponent,
     RvnChipsAutocompleteComponent,
-    RvnDatepickerComponent
+    RvnDatepickerComponent,
+    RvnCardComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +54,7 @@ import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-dat
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -64,7 +68,8 @@ import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-dat
     RvnButtonComponent,
     RvnDividerComponent,
     RvnChipsAutocompleteComponent,
-    RvnDatepickerComponent
+    RvnDatepickerComponent,
+    RvnCardComponent
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
