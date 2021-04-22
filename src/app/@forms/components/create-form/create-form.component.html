@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class="heading">Create New Form</h1>
+    <div class="definition">
+        <rvn-card [params]="{'content': definition}">
+            <ng-template #definition>
+                <form-definition></form-definition>
+            </ng-template>
+        </rvn-card>
+    </div>
+    <div class="preview">
+        <rvn-card [params]="{'content': preview}">
+            <ng-template #preview>
+                form preview comp
+            </ng-template>
+        </rvn-card>
+    </div>
+</div>

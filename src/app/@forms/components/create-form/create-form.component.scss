@@ -1,0 +1,21 @@
+@import "../../../@shared/styles/variables";
+
+.container {
+    display: grid;
+    gap: $space-xl;
+    grid-template: 
+    "heading ."
+    "definition preview";
+
+    .heading{
+        grid-area: heading;
+    }
+
+    .definition{
+        grid-area: definition;
+    }
+
+    .preview{
+        grid-area: preview;
+    }
+}

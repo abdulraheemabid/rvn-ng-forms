@@ -1,29 +1,29 @@
 @import "../../styles/variables";
 
 .container {
+    height: 100%;
+
     .header-action {
         margin-left: auto;
     }
 
-    mat-card {
+    .card {
+        height: 100%;
         padding: $space-l;
 
-       
-
-        mat-card-header{
+        .header {
             ::ng-deep {
                 .mat-card-header-text {
                     margin: 0;
                 }
             }
 
-            .header-icon{
+            .header-icon {
                 margin-right: $space-m;
             }
         }
-        
 
-        mat-card-content {
+        .content {
             margin-top: $space-l;
 
             .footer {
