@@ -1,20 +1,35 @@
 <div class="container">
     <mat-card class="card">
-        
+
         <mat-card-header class="header">
-            <mat-icon mat-card-avatar class="header-icon" *ngIf="params?.headerIcon">{{params?.headerIcon}}</mat-icon>
-            <mat-card-title *ngIf="params?.title">{{params?.title}}</mat-card-title>
-            <mat-card-subtitle *ngIf="params?.subtitle">{{params?.subtitle}}</mat-card-subtitle>
-            <div class="header-action" *ngIf="params?.headerAction">
-                <ng-container *ngTemplateOutlet="params?.headerAction"></ng-container>
+            <mat-icon mat-card-avatar class="header-icon" *ngIf="params?.headerIcon">
+                {{params?.headerIcon}}
+            </mat-icon>
+
+            <mat-card-title *ngIf="params?.title" #title>
+                {{params?.title}}
+            </mat-card-title>
+
+            <mat-card-subtitle *ngIf="params?.subtitle">
+                {{params?.subtitle}}
+            </mat-card-subtitle>
+
+            <div class="header-action">
+                <ng-content select="[header-action]"></ng-content>
             </div>
+
         </mat-card-header>
 
-        <mat-card-content class="content" *ngIf="params?.content">
-            <ng-container *ngTemplateOutlet="params?.content"></ng-container>
-            <div *ngIf="params?.footer" class="footer">
-                <ng-container *ngTemplateOutlet="params?.footer"></ng-container>
+        <rvn-divider *ngIf="showHeaderDivider"></rvn-divider>
+
+        <mat-card-content class="content">
+
+            <ng-content select="[content]"></ng-content>
+
+            <div class="footer">
+                <ng-content select="[footer]"></ng-content>
             </div>
+
         </mat-card-content>
 
     </mat-card>

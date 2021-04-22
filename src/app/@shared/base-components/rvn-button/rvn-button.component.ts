@@ -13,6 +13,7 @@ export class RvnButtonComponent implements OnInit {
   @Output() onClick = new EventEmitter();
 
   ngOnInit(): void {
+    if (!this.params) this.params = {};
     if (!this.params?.color) this.params.color = "primary";
     if (!this.params?.type) this.params.type = "primary";
     if (!this.disabled) this.disabled = false;

@@ -2,59 +2,55 @@
 
     <!-- FORMS -->
 
-    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'FORMS', 'content': formsContent}">
-        <ng-template #formsContent>
-            <div class="sub-container">
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'FORMS'}">
 
-                <div class="form-field-container">
-                    <rvn-input [params]="textFieldInput" [formControl]="fc"></rvn-input>
-                </div>
-                <div class="form-field-container">
-                    <rvn-input [params]="textFieldInput2" [formControl]="fc"></rvn-input>
-                </div>
-                <div class="form-field-container">
-                    <rvn-select [params]="selectInput2" [formControl]="fc"></rvn-select>
-                </div>
-                <div class="form-field-container">
-                    <rvn-select [params]="selectInput" [formControl]="fc"></rvn-select>
-                </div>
-                <div class="form-field-container">
-                    <rvn-chips-autocomplete [params]="chipInput" [formControl]="chipsFC"></rvn-chips-autocomplete>
-                </div>
-                <div class="form-field-container">
-                    <rvn-chips-autocomplete [params]="chipInput2" [formControl]="chipsFC"></rvn-chips-autocomplete>
-                </div>
-                <div class="">
-                    <rvn-radio [params]="radioInput" [formControl]="fc"></rvn-radio>
-                </div>
-                <div class="">
-                    <rvn-checkbox [params]="checkboxInput" [formGroup]="checkboxFG"></rvn-checkbox>
-                </div>
-                <div class="form-field-container">
-                    <rvn-toggle [params]="toggleInput" [formControl]="fc"></rvn-toggle>
-                </div>
-                <div class="form-field-container">
-                    <rvn-datepicker [params]="dateInput" [formControl]="dateFC"></rvn-datepicker>
-                </div>
+        <div class="sub-container" content>
+            <div class="form-field-container">
+                <rvn-input [params]="textFieldInput" [formControl]="fc"></rvn-input>
             </div>
-        </ng-template>
+            <div class="form-field-container">
+                <rvn-input [params]="textFieldInput2" [formControl]="fc"></rvn-input>
+            </div>
+            <div class="form-field-container">
+                <rvn-select [params]="selectInput2" [formControl]="fc"></rvn-select>
+            </div>
+            <div class="form-field-container">
+                <rvn-select [params]="selectInput" [formControl]="fc"></rvn-select>
+            </div>
+            <div class="form-field-container">
+                <rvn-chips-autocomplete [params]="chipInput" [formControl]="chipsFC"></rvn-chips-autocomplete>
+            </div>
+            <div class="form-field-container">
+                <rvn-chips-autocomplete [params]="chipInput2" [formControl]="chipsFC"></rvn-chips-autocomplete>
+            </div>
+            <div class="">
+                <rvn-radio [params]="radioInput" [formControl]="fc"></rvn-radio>
+            </div>
+            <div class="">
+                <rvn-checkbox [params]="checkboxInput" [formGroup]="checkboxFG"></rvn-checkbox>
+            </div>
+            <div class="form-field-container">
+                <rvn-toggle [params]="toggleInput" [formControl]="fc"></rvn-toggle>
+            </div>
+            <div class="form-field-container">
+                <rvn-datepicker [params]="dateInput" [formControl]="dateFC"></rvn-datepicker>
+            </div>
+        </div>
+
     </rvn-card>
 
 
     <!-- BUTTONS -->
 
-    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'BUTTONS', 'content': buttonContent}">
-        <ng-template #buttonContent>
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'BUTTONS'}">
+        <div content>
             <div class="sub-container">
                 <h2>Primary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button'}"></rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'accent'}">
-                    </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn'}">
-                    </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn'}" [disabled]="true">
-                    </rvn-button>
+                    <rvn-button (onClick)="onClick()">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'accent'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn'}" [disabled]="true">Disabled</rvn-button>
                 </div>
             </div>
 
@@ -63,15 +59,15 @@
             <div class="sub-container">
                 <h2>Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', type: 'secondary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{type: 'secondary'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'secondary'}">
+                        Button
                     </rvn-button>
-                    <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button', color: 'accent', type: 'secondary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn', type: 'secondary'}">
+                        Button
                     </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn', type: 'secondary'}">
-                    </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn', type: 'secondary'}"
-                        [disabled]="true">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn', type: 'secondary'}" [disabled]="true">
+                        Disabled
                     </rvn-button>
                 </div>
             </div>
@@ -81,14 +77,17 @@
             <div class="sub-container">
                 <h2>Tertiary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', type: 'tertiary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{type: 'tertiary'}">
+                        Button
                     </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'accent', type: 'tertiary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'tertiary'}">
+                        Button
                     </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Button', color: 'warn', type: 'tertiary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn', type: 'tertiary'}">
+                        Button
                     </rvn-button>
-                    <rvn-button (onClick)="onClick()" [params]="{'label': 'Disabled', color: 'warn', type: 'tertiary'}"
-                        [disabled]="true">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'warn', type: 'tertiary'}" [disabled]="true">
+                        Disabled
                     </rvn-button>
                 </div>
             </div>
@@ -115,18 +114,21 @@
             <div class="sub-container">
                 <h2>Icon-Text-Parimary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', type: 'icon-text-primary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon-text-primary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'accent', type: 'icon-text-primary'}">
+                        [params]="{'icon': 'home', color: 'accent', type: 'icon-text-primary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-primary'}">
+                        [params]="{'icon': 'home', color: 'warn', type: 'icon-text-primary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-primary'}"
-                        [disabled]="true"></rvn-button>
+                        [params]="{'icon': 'home', color: 'warn', type: 'icon-text-primary'}" [disabled]="true">
+                        Disabled
+                    </rvn-button>
                 </div>
             </div>
 
@@ -135,18 +137,21 @@
             <div class="sub-container">
                 <h2>Icon-Text-Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', type: 'icon-text-secondary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon-text-secondary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'accent', type: 'icon-text-secondary'}">
+                        [params]="{'icon': 'home', color: 'accent', type: 'icon-text-secondary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-secondary'}">
+                        [params]="{'icon': 'home', color: 'warn', type: 'icon-text-secondary'}">
+                        Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
-                        [params]="{'label': 'Button','icon': 'home', color: 'warn', type: 'icon-text-secondary'}"
-                        [disabled]="true"></rvn-button>
+                        [params]="{'icon': 'home', color: 'warn', type: 'icon-text-secondary'}" [disabled]="true">
+                        Disalbed
+                    </rvn-button>
                 </div>
             </div>
 
@@ -183,22 +188,22 @@
                 </div>
             </div>
 
-        </ng-template>
+        </div>
     </rvn-card>
 
 
     <!-- CARD -->
 
-    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'CARD', 'content': cardContent}">
-        <ng-template #cardContent>
-            <div class="sub-container">
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'CARD'}">
+       
+            <div class="sub-container" content>
                 <rvn-card
-                    [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle', 'headerAction': headerAction, 'content': content, 'footer': footer}">
-                    <ng-template #headerAction>
-                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}">
-                        </rvn-button>
-                    </ng-template>
-                    <ng-template #content>
+                    [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
+
+                    <rvn-button header-action (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}">
+                    </rvn-button>
+
+                    <div content>
                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
                             hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
                             printertook agalleyof type and scrambled it to make a type specimen book. It has
@@ -206,13 +211,13 @@
                             remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
                             Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
                             publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
-                    </ng-template>
-                    <ng-template #footer>
-                        <rvn-button style="margin-right: 10px;" [params]="{'label': 'Button'}"></rvn-button>
-                        <rvn-button [params]="{'label': 'Button', type: 'secondary'}"></rvn-button>
-                    </ng-template>
+                    </div>
+                    <div footer>
+                        <rvn-button style="margin-right: 10px;">Button</rvn-button>
+                        <rvn-button [params]="{ type: 'secondary'}">Button</rvn-button>
+                    </div>
                 </rvn-card>
             </div>
-        </ng-template>
+
     </rvn-card>
 </div>

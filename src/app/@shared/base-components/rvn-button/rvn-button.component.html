@@ -1,18 +1,22 @@
 <ng-container [ngSwitch]="params.type">
 
+
     <ng-container *ngSwitchCase="'primary'">
-        <button (click)="click($event)" mat-raised-button class="btn" [color]="params.color"
-            [disabled]="disabled">{{params?.label}}</button>
+        <button (click)="click($event)" mat-raised-button class="btn" [color]="params.color" [disabled]="disabled">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'secondary'">
-        <button (click)="click($event)" mat-stroked-button class="btn" [color]="params.color"
-            [disabled]="disabled">{{params?.label}}</button>
+        <button (click)="click($event)" mat-stroked-button class="btn" [color]="params.color" [disabled]="disabled">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'tertiary'">
-        <button (click)="click($event)" mat-button class="btn" [color]="params.color"
-            [disabled]="disabled">{{params?.label}}</button>
+        <button (click)="click($event)" mat-button class="btn" [color]="params.color" [disabled]="disabled">
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+        </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon'">
@@ -25,7 +29,9 @@
         <button (click)="click($event)" mat-raised-button class="btn icon-text" [color]="params.color"
             [disabled]="disabled">
             <mat-icon>{{params?.icon}}</mat-icon>
-            <span>{{params?.label}}</span>
+            <span>
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+            </span>
         </button>
     </ng-container>
 
@@ -33,7 +39,9 @@
         <button (click)="click($event)" mat-stroked-button class="btn icon-text" [color]="params.color"
             [disabled]="disabled">
             <mat-icon>{{params?.icon}}</mat-icon>
-            <span>{{params?.label}}</span>
+            <span>
+                <ng-container *ngTemplateOutlet="content"></ng-container>
+            </span>
         </button>
     </ng-container>
 
@@ -50,3 +58,7 @@
     </ng-container>
 
 </ng-container>
+
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>

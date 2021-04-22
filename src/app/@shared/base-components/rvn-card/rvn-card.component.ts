@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { RvnCardInput } from './rvn-card.input';
 
 @Component({
@@ -6,11 +6,14 @@ import { RvnCardInput } from './rvn-card.input';
   templateUrl: './rvn-card.component.html',
   styleUrls: ['./rvn-card.component.scss']
 })
-export class RvnCardComponent implements OnInit {
+export class RvnCardComponent implements AfterViewInit {
 
   @Input() params: RvnCardInput;
+  @ViewChild("title") title;
+  showHeaderDivider: boolean = false;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    setTimeout(() => this.showHeaderDivider = this.title != null);
   }
 
 }
