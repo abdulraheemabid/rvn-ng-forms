@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .container {
     display: flex;
     align-items: center;
@@ -18,10 +20,10 @@
 
     &.v1 {
         .radio-group {
-            width: 80%;
+            width: $form-field-width;
         }
         .radio-btn {
-            padding: 0px 5px;
+            padding: 0px $space-xs;
         }
     }
 
@@ -31,7 +33,7 @@
             flex-direction: column;
         }
         .radio-btn {
-            padding: 5px 0px;
+            padding: $space-xs 0px;
         }
     }
 
@@ -40,7 +42,7 @@
             flex-direction: column;
         }
         .radio-btn {
-            padding: 5px 0px;
+            padding: $space-xs 0px;
         }
     }
 }

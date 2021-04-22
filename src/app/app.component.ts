@@ -9,6 +9,7 @@ import { RvnRadioInput } from './@shared/base-components/rvn-radio/rvn-radio.inp
 import { RvnToggleInput } from './@shared/base-components/rvn-toggle/rvn-toggle.input';
 import { RvnCheckboxInput } from './@shared/base-components/rvn-checkbox/rvn-checkbox.input';
 import { RvnChipsAutocompleteInput } from './@shared/base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.input';
+import { RvnDatepickerInput } from './@shared/base-components/rvn-datepicker/rvn-datepicker.input';
 
 @Component({
   selector: 'app-root',
@@ -103,6 +104,16 @@ export class AppComponent implements OnInit {
   chipsFC = new FormControl(null, [Validators.required]);
 
   checkboxFG = new FormGroup({});
+
+  dateInput: RvnDatepickerInput = {
+    label: 'Date',
+    placeholder: 'Select a date',
+    required: true,
+    requiredErrorMessage: 'date is required',
+    styleVersion: 'v2',
+  }
+
+  dateFC = new FormControl(null, [Validators.required]);
 
   onClick(){
     alert('clicked');
