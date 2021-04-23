@@ -1,0 +1,13 @@
+<span class="container">
+    <rvn-input class="name"
+        [params]="{label: 'Name', placeholder: 'Minimum 3 characters', styleVersion: 'v2', required: true}"
+        [formControl]="getCtrlByName('name')"></rvn-input>
+
+
+
+    <rvn-select class="type" [params]="fieldTypeCompParams" [formControl]="getCtrlByName('type')">
+    </rvn-select>
+
+    <!-- <rvn-select class="display-as" [params]="fieldTypeCompParams" [(ngModel)]="field.type"
+    [formControl]="formNameCtrl"></rvn-select> -->
+</span>

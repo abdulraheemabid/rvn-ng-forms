@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
+import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
+import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
 import { RvnFormService } from 'src/app/@shared/forms/form.service';
-import { IForm, UIControlNameEnum } from 'src/app/@shared/forms/interfaces';
 
 @Component({
   selector: 'form-definition',
@@ -11,24 +11,22 @@ import { IForm, UIControlNameEnum } from 'src/app/@shared/forms/interfaces';
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(
-    private sharedFormService: RvnFormService,
-    private fb: FormBuilder) { }
-
+  constructor(private fb: FormBuilder) { }
 
   initDone: boolean = false;
   formCtrl: FormGroup;
 
-  // UI controls params
-  fieldTypeCompParams: RvnSelectInput = { label: 'Type', placeholder: 'Select', required: true, selectOptions: null, 'styleVersion': 'v2' };
-  displayAsCompParams: RvnSelectInput = { label: 'Dsiplay as', placeholder: 'Select', required: true, selectOptions: null, 'styleVersion': 'v2' };
-  fieldTypeUIControlMappings: Map<string, UIControlNameEnum[]>;
+  //UI control params
+  formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true, styleVersion: "v2" };
+  fieldAddCompParam: RvnButtonInput = { type: 'icon-text-secondary', icon: 'add' };
+  deleteFieldCompParam: RvnButtonInput = { type: 'icon', icon: 'delete' };
+
 
   get fieldFormGroupTemplate() {
     return { name: ['', Validators.required], type: ['', Validators.required] }
   };
 
-  get fieldCrtls(): FormArray {
+  get fieldGroups(): FormArray {
     return this.formCtrl.get('fields') as FormArray;
   };
 
@@ -39,7 +37,6 @@ export class FormDefinitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormCtrl();
-    this.initUIControls();
     this.initDone = true;
   }
 
@@ -50,36 +47,17 @@ export class FormDefinitionComponent implements OnInit {
         this.fb.group(this.fieldFormGroupTemplate)
       ])
     });
-
-    this.onFieldTypeChange(this.formCtrl.get('fields').get('0').get('type') as FormControl);
-
-    this.fieldTypeUIControlMappings = this.sharedFormService.getFieldTypeControlOptions();
-  }
-
-  initUIControls() {
-    this.fieldTypeCompParams.selectOptions = this.sharedFormService.getFieldTypes();
   }
 
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
-    this.fieldCrtls.push(fg);
-    this.onFieldTypeChange(fg.get('type') as FormControl);
+    this.fieldGroups.push(fg);
   }
 
   deleteField(index: number) {
-    this.fieldCrtls.removeAt(index);
+    if (this.fieldGroups.length > 1)
+      this.fieldGroups.removeAt(index);
   }
-
-  getFieldCtrl(index: number, name: string): FormControl {
-    return this.fieldCrtls.get(index.toString()).get(name) as FormControl;
-  }
-
-  onFieldTypeChange(fieldTypeCtrl: FormControl) {
-    fieldTypeCtrl.valueChanges.subscribe(val => {
-      console.log(val);
-    })
-  }
-
 }
 
 

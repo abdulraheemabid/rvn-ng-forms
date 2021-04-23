@@ -5,13 +5,15 @@ import { FormsRoutingModule } from './forms-routing.module';
 import { SharedModule } from '../@shared/shared.module';
 import { FormDefinitionComponent } from './components/form-definition/form-definition.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FieldDefinitionComponent } from './field-definition/field-definition.component';
 
 
 
 @NgModule({
   declarations: [
     FormScreenComponent,
-    FormDefinitionComponent
+    FormDefinitionComponent,
+    FieldDefinitionComponent
   ],
   imports: [
     CommonModule,
