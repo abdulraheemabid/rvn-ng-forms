@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'base-definition-renderer',
@@ -8,4 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class BaseDefinitionRendererComponent {
   @Input() fieldFG: FormGroup;
+  @Input() selectedType: string;
+
+  constructor(public fb: FormBuilder){}
 }

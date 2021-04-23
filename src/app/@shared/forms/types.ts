@@ -27,7 +27,7 @@ export interface IFieldTypeMeta {
     typeDisplayName: string;
     definitionRenderer: any;
     valueRenderer: {
-        UIControl: UIControlNameEnum,
+        UIControl: UIControlEnum,
         renderer: any
     }[];
 }
@@ -40,6 +40,17 @@ export enum FieldTypeEnum {
     BOOL = "Boolean",
     MULTISELECT = "Multi select",
     SINGLESELECT = "Single select"
+}
+
+export enum UIControlEnum {
+    SELECT = "SELECT",
+    INPUT = "INPUT",
+    NUMBERINPUT = "NUMBERINPUT",
+    CHECKBOX = "CHECKBOX",
+    RADIO = "RADIO",
+    DATEPICKER = "DATEPICKER",
+    CHIPSINPUT = "CHIPSINPUT",
+    TOGGLE = "TOGGLE"
 }
 
 export enum UIControlNameEnum {

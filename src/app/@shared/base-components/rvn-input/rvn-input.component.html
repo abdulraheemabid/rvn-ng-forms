@@ -1,9 +1,9 @@
 <span class="container" [ngClass]="params?.styleVersion">
 
-    <span *ngIf="params?.styleVersion == 'v2'">{{params?.label}}:</span>
+    <span *ngIf="params?.styleVersion == 'v1'">{{params?.label}}:</span>
 
     <mat-form-field class="form-field">
-        <mat-label *ngIf="params?.styleVersion == 'v1' && params?.label" class="label">{{params?.label}}</mat-label>
+        <mat-label *ngIf="params?.styleVersion == 'v2' && params?.label" class="label">{{params?.label}}</mat-label>
         <input matInput [formControl]="formControl" [placeholder]="params?.placeholder" [type]="params?.type"
             [required]="params?.required">
         <mat-hint *ngIf="params?.hint">{{params?.hint}}</mat-hint>

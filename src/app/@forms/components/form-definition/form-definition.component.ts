@@ -17,13 +17,13 @@ export class FormDefinitionComponent implements OnInit {
   formCtrl: FormGroup;
 
   //UI control params
-  formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true, styleVersion: "v2" };
+  formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
   fieldAddCompParam: RvnButtonInput = { type: 'icon-text-secondary', icon: 'add' };
   deleteFieldCompParam: RvnButtonInput = { type: 'icon', icon: 'delete' };
 
 
   get fieldFormGroupTemplate() {
-    return { name: ['', Validators.required], type: ['', Validators.required] }
+    return { name: ['', Validators.required], type: ['', Validators.required], required: [false] }
   };
 
   get fieldGroups(): FormArray {
@@ -47,6 +47,8 @@ export class FormDefinitionComponent implements OnInit {
         this.fb.group(this.fieldFormGroupTemplate)
       ])
     });
+
+    //this.formCtrl.valueChanges.subscribe(val => console.log(val));
   }
 
   addField() {

@@ -34,6 +34,8 @@ import { IntDefinitionRendererComponent } from './forms/type-renderers/int-defin
 import { MultiselectDefinitionRendererComponent } from './forms/type-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
 import { SingleselectDefinitionRendererComponent } from './forms/type-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
 import { StringDefinitionRendererComponent } from './forms/type-renderers/string-definition-renderer/string-definition-renderer.component';
+import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
+
 
 
 
@@ -58,6 +60,7 @@ import { StringDefinitionRendererComponent } from './forms/type-renderers/string
     MultiselectDefinitionRendererComponent,
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
+    ChooseUiControlComponent,
   ],
   imports: [
     CommonModule,

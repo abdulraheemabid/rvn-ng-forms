@@ -5,61 +5,61 @@ import { IntDefinitionRendererComponent } from "./type-renderers/int-definition-
 import { MultiselectDefinitionRendererComponent } from "./type-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component";
 import { SingleselectDefinitionRendererComponent } from "./type-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component";
 import { StringDefinitionRendererComponent } from "./type-renderers/string-definition-renderer/string-definition-renderer.component";
-import { IFieldTypeMeta, UIControlNameEnum } from "./types";
+import { IFieldTypeMeta, UIControlEnum } from "./types";
 
 export const fieldTypeMetaData = new Map<string, IFieldTypeMeta>([
     ["FLOAT", {
         typeDisplayName: "Floating number",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.NUMBERINPUT, renderer: "" }
+            { UIControl: UIControlEnum.NUMBERINPUT, renderer: "" }
         ],
         definitionRenderer: FloatDefinitionRendererComponent
     }],
     ["INT", {
         typeDisplayName: "Integer",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.NUMBERINPUT, renderer: "" }
+            { UIControl: UIControlEnum.NUMBERINPUT, renderer: "" }
         ],
         definitionRenderer: IntDefinitionRendererComponent
     }],
     ["STRING", {
         typeDisplayName: "Text",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.INPUT, renderer: "" }
+            { UIControl: UIControlEnum.INPUT, renderer: "" }
         ],
         definitionRenderer: StringDefinitionRendererComponent
     }],
     ["DATE", {
         typeDisplayName: "Date",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.INPUT, renderer: "" },
-            { UIControl: UIControlNameEnum.DATEPICKER, renderer: "" },
-            { UIControl: UIControlNameEnum.SELECT, renderer: "" }
+            { UIControl: UIControlEnum.INPUT, renderer: "" },
+            { UIControl: UIControlEnum.DATEPICKER, renderer: "" },
+            { UIControl: UIControlEnum.SELECT, renderer: "" }
         ],
         definitionRenderer: DateDefinitionRendererComponent
     }],
     ["BOOL", {
         typeDisplayName: "Boolean",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.TOGGLE, renderer: "" },
-            { UIControl: UIControlNameEnum.RADIO, renderer: "" },
-            { UIControl: UIControlNameEnum.SELECT, renderer: "" }
+            { UIControl: UIControlEnum.TOGGLE, renderer: "" },
+            { UIControl: UIControlEnum.RADIO, renderer: "" },
+            { UIControl: UIControlEnum.SELECT, renderer: "" }
         ],
         definitionRenderer: BoolDefinitionRendererComponent
     }],
     ["MULTISELECT", {
         typeDisplayName: "Multi select",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.CHECKBOX, renderer: "" },
-            { UIControl: UIControlNameEnum.CHIPSINPUT, renderer: "" }
+            { UIControl: UIControlEnum.CHECKBOX, renderer: "" },
+            { UIControl: UIControlEnum.CHIPSINPUT, renderer: "" }
         ],
         definitionRenderer: MultiselectDefinitionRendererComponent
     }],
     ["SINGLESELECT", {
         typeDisplayName: "Single select",
         valueRenderer: [
-            { UIControl: UIControlNameEnum.SELECT, renderer: "" },
-            { UIControl: UIControlNameEnum.RADIO, renderer: "" }
+            { UIControl: UIControlEnum.SELECT, renderer: "" },
+            { UIControl: UIControlEnum.RADIO, renderer: "" }
         ],
         definitionRenderer: SingleselectDefinitionRendererComponent
     }],
