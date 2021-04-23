@@ -2,19 +2,21 @@
 
 
     <ng-container *ngSwitchCase="'primary'">
-        <button (click)="click($event)" mat-raised-button class="btn" [color]="params.color" [disabled]="disabled">
+        <button (click)="click($event)" mat-raised-button class="btn text-btn" [color]="params.color"
+            [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'secondary'">
-        <button (click)="click($event)" mat-stroked-button class="btn" [color]="params.color" [disabled]="disabled">
+        <button (click)="click($event)" mat-stroked-button class="btn  text-btn" [color]="params.color"
+            [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'tertiary'">
-        <button (click)="click($event)" mat-button class="btn" [color]="params.color" [disabled]="disabled">
+        <button (click)="click($event)" mat-button class="btn  text-btn" [color]="params.color" [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
@@ -26,7 +28,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon-text-primary'">
-        <button (click)="click($event)" mat-raised-button class="btn icon-text" [color]="params.color"
+        <button (click)="click($event)" mat-raised-button class="btn icon-text text-btn" [color]="params.color"
             [disabled]="disabled">
             <mat-icon>{{params?.icon}}</mat-icon>
             <span>
@@ -36,7 +38,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon-text-secondary'">
-        <button (click)="click($event)" mat-stroked-button class="btn icon-text" [color]="params.color"
+        <button (click)="click($event)" mat-stroked-button class="btn icon-text text-btn" [color]="params.color"
             [disabled]="disabled">
             <mat-icon>{{params?.icon}}</mat-icon>
             <span>

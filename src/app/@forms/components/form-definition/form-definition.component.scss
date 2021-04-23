@@ -1,0 +1,40 @@
+@import "../../../@shared/styles/variables";
+
+.container {
+    h2,
+    h3 {
+        margin: 0;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $space-m;
+    }
+
+    display: grid;
+    gap: $space-xxl;
+    grid-template:
+        "att"
+        "fields";
+
+    .attributes {
+        grid-area: att;
+
+        .form-name {
+            margin-top: $space-l;
+        }
+    }
+
+    .fields {
+        grid-area: fields;
+        display: grid;
+        gap: $space-l;
+
+        .divider {
+            display: block;
+            margin-top: $space-l;
+        }
+    }
+}

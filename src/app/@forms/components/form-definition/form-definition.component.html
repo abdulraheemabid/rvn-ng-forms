@@ -1,9 +1,59 @@
-<div class="container">
-    <h2 class="heading">Attributes</h2>
-    <rvn-divider></rvn-divider>
-    <div class="fields-heading">
-        <h2 class="heading">Attributes</h2>
-        <rvn-button [params]="{}">Button</rvn-button>
+<div class="container" *ngIf="initDone">
+
+    <div class="attributes">
+        <div class="heading">
+            <h2>Attributes</h2>
+            <rvn-divider></rvn-divider>
+        </div>
+        <div class="form-name">
+            <rvn-input
+                [params]="{label: 'Name', placeholder: 'Minimum 3 characters', required: true, styleVersion: 'v2'}"
+                [formControl]="formNameCtrl"></rvn-input>
+        </div>
     </div>
-    
+
+
+    <div class="fields">
+
+        <div class="heading">
+            <div class="flex">
+                <h2>Fields</h2>
+                <rvn-button (click)="addField()" class="add-field-btn"
+                    [params]="{type:'icon-text-secondary', icon: 'add'}">
+                    Add
+                </rvn-button>
+            </div>
+
+            <rvn-divider></rvn-divider>
+        </div>
+
+
+
+        <div class="field" *ngFor="let field of fieldCrtls.controls; let i = index; let last = last">
+
+            <div class="heading flex">
+                <h3>Field {{i+1}}</h3>
+                <rvn-button (click)="deleteField(i)" [params]="{type: 'icon', icon: 'delete'}"></rvn-button>
+            </div>
+
+
+            <rvn-input class="name"
+                [params]="{label: 'Name', placeholder: 'Minimum 3 characters', styleVersion: 'v2', required: true}"
+                [formControl]="getFieldCtrl(i, 'name')"></rvn-input>
+
+
+
+            <rvn-select class="type" [params]="fieldTypeCompParams" [formControl]="getFieldCtrl(i, 'type')">
+            </rvn-select>
+
+            <!-- <rvn-select class="display-as" [params]="fieldTypeCompParams" [(ngModel)]="field.type"
+                [formControl]="formNameCtrl"></rvn-select> -->
+
+
+            <rvn-divider class="divider" *ngIf="!last"></rvn-divider>
+
+        </div>
+    </div>
+
+
 </div>

@@ -24,11 +24,22 @@ export interface IRecord {
 }
 
 export enum FieldTypeEnum {
-    FLOAT = "float",
-    INT = "int",
-    STRING = "string",
-    DATE = "date",
-    BOOL = "bool",
-    MULTISELECT = "multiselect",
-    SINGLESELECT = "singleselect"
+    FLOAT = "Floating number",
+    INT = "Integer",
+    STRING = "Text",
+    DATE = "Date",
+    BOOL = "Boolean",
+    MULTISELECT = "Multi select",
+    SINGLESELECT = "Single select"
+}
+
+export enum UIControlNameEnum{
+    SELECT = "Dropdown",
+    INPUT = "Text field",
+    NUMBERINPUT = "Number field",
+    CHECKBOX = "Chekbox",
+    RADIO = "Radio",
+    DATEPICKER = "Date picker",
+    CHIPSINPUT = "Chips",
+    TOGGLE = "Swtich"
 }
