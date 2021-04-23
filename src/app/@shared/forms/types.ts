@@ -23,6 +23,15 @@ export interface IRecord {
     attributes?: JSON;
 }
 
+export interface IFieldTypeMeta {
+    typeDisplayName: string;
+    definitionRenderer: any;
+    valueRenderer: {
+        UIControl: UIControlNameEnum,
+        renderer: any
+    }[];
+}
+
 export enum FieldTypeEnum {
     FLOAT = "Floating number",
     INT = "Integer",
@@ -33,7 +42,7 @@ export enum FieldTypeEnum {
     SINGLESELECT = "Single select"
 }
 
-export enum UIControlNameEnum{
+export enum UIControlNameEnum {
     SELECT = "Dropdown",
     INPUT = "Text field",
     NUMBERINPUT = "Number field",

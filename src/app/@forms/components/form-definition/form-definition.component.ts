@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { RvnFormService } from 'src/app/@shared/forms/form.service';
+import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 
 @Component({
   selector: 'form-definition',
