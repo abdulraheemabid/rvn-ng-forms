@@ -51,12 +51,15 @@ export class RvnChipsInputComponent extends CustomFormControlValueAccessor imple
   }
 
   syncFormControl() {
+    this.formControl.markAsTouched();
+    this.formControl.markAsDirty();
     let array = [];
     let key = 0;
     this.selectedOptions.forEach(value => {
       array.push({ key, value });
       key++;
     });
+    if (array.length == 0) array = null;
     this.formControl.setValue(array);
   }
 
