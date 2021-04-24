@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnDividerInput } from './rvn-divider.input';
 
 @Component({
@@ -12,11 +13,11 @@ export class RvnDividerComponent implements OnInit {
   customWidthProvided: boolean = false;
 
   ngOnInit(): void {
-    if (!this.params) this.params = {};
-    if (!this.params?.inset) this.params.inset = false;
-    if (!this.params?.vertical) this.params.vertical = false;
-    if (this.params?.width) this.customWidthProvided = true;
-    if (!this.params?.width) this.params.width = "100%";
+    if (isNullOrUndefined(this.params)) this.params = {};
+    if (isNullOrUndefined(this.params?.inset)) this.params.inset = false;
+    if (isNullOrUndefined(this.params?.vertical)) this.params.vertical = false;
+    if (!isNullOrUndefined(this.params?.width)) this.customWidthProvided = true;
+    if (isNullOrUndefined(this.params?.width)) this.params.width = "100%";
 
 
   }

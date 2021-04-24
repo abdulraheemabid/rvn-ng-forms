@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnButtonInput } from './rvn-button.input';
 
 @Component({
@@ -13,10 +14,10 @@ export class RvnButtonComponent implements OnInit {
   @Output() onClick = new EventEmitter();
 
   ngOnInit(): void {
-    if (!this.params) this.params = {};
-    if (!this.params?.color) this.params.color = "primary";
-    if (!this.params?.type) this.params.type = "primary";
-    if (!this.disabled) this.disabled = false;
+    if (isNullOrUndefined(this.params)) this.params = {};
+    if (isNullOrUndefined(this.params?.color)) this.params.color = "primary";
+    if (isNullOrUndefined(this.params?.type)) this.params.type = "primary";
+    if (isNullOrUndefined(this.disabled)) this.disabled = false;
   }
 
   click(event: Event) {

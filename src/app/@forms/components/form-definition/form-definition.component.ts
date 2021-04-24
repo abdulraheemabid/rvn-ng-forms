@@ -13,13 +13,15 @@ export class FormDefinitionComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  panelOpenState = false;
+
   initDone: boolean = false;
   formCtrl: FormGroup;
 
   //UI control params
   formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
   fieldAddCompParam: RvnButtonInput = { type: 'icon-text-secondary', icon: 'add' };
-  deleteFieldCompParam: RvnButtonInput = { type: 'icon', icon: 'delete' };
+  deleteFieldCompParam: RvnButtonInput = { type: 'secondary' };
 
 
   get fieldFormGroupTemplate() {
@@ -33,6 +35,7 @@ export class FormDefinitionComponent implements OnInit {
   get formNameCtrl(): FormControl {
     return this.formCtrl.get('formName') as FormControl;
   }
+
 
 
   ngOnInit(): void {
@@ -59,6 +62,12 @@ export class FormDefinitionComponent implements OnInit {
   deleteField(index: number) {
     if (this.fieldGroups.length > 1)
       this.fieldGroups.removeAt(index);
+  }
+
+  drop(event) {
+    let control = this.fieldGroups.controls.splice(event.previousIndex, 1)[0];
+    this.fieldGroups.controls.splice(event.currentIndex, 0, control);
+    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 }
 

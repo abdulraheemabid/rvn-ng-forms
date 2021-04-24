@@ -5,6 +5,7 @@ import { RvnChipsInputInput } from './rvn-chips-input.input';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 
 @Component({
   selector: 'rvn-chips-input',
@@ -26,9 +27,9 @@ export class RvnChipsInputComponent extends CustomFormControlValueAccessor imple
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   ngOnInit(): void {
-    if (!this.params.required) this.params.required = false;
-    if (!this.params.requiredErrorMessage) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (!this.params.styleVersion) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.params.required)) this.params.required = false;
+    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
+    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
   }
 
   add(event: MatChipInputEvent): void {

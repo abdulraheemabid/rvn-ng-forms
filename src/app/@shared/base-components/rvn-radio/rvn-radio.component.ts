@@ -1,6 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CustomFormControlValueAccessor } from 'src/app/@shared/utils/custom-form-control-value-accessor';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnRadioInput } from './rvn-radio.input';
 
 @Component({
@@ -20,8 +21,8 @@ export class RvnRadioComponent extends CustomFormControlValueAccessor implements
   @Input() params: RvnRadioInput = null;
 
   ngOnInit() {
-    if (!this.params.required) this.params.required = false;
-    if (!this.params.requiredErrorMessage) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (!this.params.styleVersion) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.params.required)) this.params.required = false;
+    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
+    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
   }
 }

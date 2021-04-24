@@ -34,9 +34,15 @@ import { IntDefinitionRendererComponent } from './forms/type-renderers/int-defin
 import { MultiselectDefinitionRendererComponent } from './forms/type-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
 import { SingleselectDefinitionRendererComponent } from './forms/type-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
 import { StringDefinitionRendererComponent } from './forms/type-renderers/string-definition-renderer/string-definition-renderer.component';
+
 import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
 import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
+
 import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-chips-input.component';
+import { RvnAccordionComponent } from './base-components/rvn-accordion/rvn-accordion.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { RvnAccordionPanelComponent } from './base-components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
+import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component';
 
 
 
@@ -63,8 +69,13 @@ import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-ch
     MultiselectDefinitionRendererComponent,
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
+
     ChooseUiControlComponent,
     ArrayValuesComponent,
+
+    RvnAccordionComponent,
+    RvnAccordionPanelComponent,
+    RvnIconComponent
   ],
   imports: [
     CommonModule,
@@ -83,6 +94,8 @@ import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-ch
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatExpansionModule,
+    MatExpansionModule
   ],
   exports: [
     RvnInputComponent,
@@ -105,6 +118,10 @@ import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-ch
     MultiselectDefinitionRendererComponent,
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
+
+    RvnAccordionComponent,
+    RvnAccordionPanelComponent,
+    RvnIconComponent
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

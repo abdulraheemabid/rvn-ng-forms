@@ -24,8 +24,8 @@
         display: grid;
         gap: $space-l;
 
-        .heading{
-            h2{
+        .heading {
+            h2 {
                 margin-bottom: $space-m;
             }
         }
@@ -40,5 +40,37 @@
             display: block;
             margin-top: $space-l;
         }
+
+        .title {
+            display: grid;
+            gap: $space-xl;
+            grid: 1fr / repeat(3, max-content);
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field:last-child {
+            border: none;
+        }
+    }
+
+    mat-panel-title {
+        align-items: center;
+    }
+
+    .bold {
+        font-weight: bold;
+        margin-left: $space-xs;
+    }
+
+    .cdk-drag-animating {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    .accordion.cdk-drop-list-dragging .field:not(.cdk-drag-placeholder) {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
     }
 }

@@ -6,6 +6,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnChipsAutocompleteInput } from './rvn-chips-autocomplete.input';
 import { KeyValue } from '@angular/common';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 
 @Component({
   selector: 'rvn-chips-autocomplete',
@@ -29,9 +30,9 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
   @ViewChild('inputElement') inputElement: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    if (!this.params.required) this.params.required = false;
-    if (!this.params.requiredErrorMessage) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (!this.params.styleVersion) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.params.required)) this.params.required = false;
+    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
+    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
 
     this.allOptions = [...this.params.autoCompleteOption];
 

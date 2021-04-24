@@ -6,6 +6,7 @@ import { SharedModule } from '../@shared/shared.module';
 import { FormDefinitionComponent } from './components/form-definition/form-definition.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldDefinitionComponent } from './components/field-definition/field-definition.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FieldDefinitionComponent } from './components/field-definition/field-de
     CommonModule,
     FormsRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ]
 })
 export class FormsModule { }
