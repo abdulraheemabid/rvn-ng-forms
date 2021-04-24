@@ -23,7 +23,7 @@ export class FormDefinitionComponent implements OnInit {
 
 
   get fieldFormGroupTemplate() {
-    return { name: ['', Validators.required], type: ['', Validators.required], required: [false] }
+    return { name: ['', [Validators.required, Validators.minLength(3)]], type: ['', Validators.required], required: [false] }
   };
 
   get fieldGroups(): FormArray {
@@ -42,18 +42,18 @@ export class FormDefinitionComponent implements OnInit {
 
   initFormCtrl() {
     this.formCtrl = this.fb.group({
-      formName: ['', Validators.required],
+      formName: ['', [Validators.required, Validators.minLength(3)]],
       fields: this.fb.array([
         this.fb.group(this.fieldFormGroupTemplate)
       ])
     });
 
-    //this.formCtrl.valueChanges.subscribe(val => console.log(val));
+    this.formCtrl.valueChanges.subscribe(val => console.log(val));
   }
 
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
-    this.fieldGroups.push(fg);
+    this.fieldGroups.insert(0, fg);
   }
 
   deleteField(index: number) {

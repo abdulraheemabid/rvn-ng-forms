@@ -35,6 +35,8 @@ import { MultiselectDefinitionRendererComponent } from './forms/type-renderers/m
 import { SingleselectDefinitionRendererComponent } from './forms/type-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
 import { StringDefinitionRendererComponent } from './forms/type-renderers/string-definition-renderer/string-definition-renderer.component';
 import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
+import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
+import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-chips-input.component';
 
 
 
@@ -49,6 +51,7 @@ import { ChooseUiControlComponent } from './forms/components/choose-ui-control/c
     RvnButtonComponent,
     RvnDividerComponent,
     RvnChipsAutocompleteComponent,
+    RvnChipsInputComponent,
     RvnDatepickerComponent,
     RvnCardComponent,
 
@@ -61,6 +64,7 @@ import { ChooseUiControlComponent } from './forms/components/choose-ui-control/c
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
     ChooseUiControlComponent,
+    ArrayValuesComponent,
   ],
   imports: [
     CommonModule,
@@ -89,6 +93,7 @@ import { ChooseUiControlComponent } from './forms/components/choose-ui-control/c
     RvnButtonComponent,
     RvnDividerComponent,
     RvnChipsAutocompleteComponent,
+    RvnChipsInputComponent,
     RvnDatepickerComponent,
     RvnCardComponent,
 

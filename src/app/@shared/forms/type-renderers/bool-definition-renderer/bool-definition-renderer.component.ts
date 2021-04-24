@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { BaseDefinitionRendererComponent } from '../base-definition-renderer/base-definition-renderer.component';
 
 @Component({
@@ -8,9 +9,10 @@ import { BaseDefinitionRendererComponent } from '../base-definition-renderer/bas
 })
 export class BoolDefinitionRendererComponent extends BaseDefinitionRendererComponent implements OnInit {
 
-  @Input() name: string;
+  displayAsFC: FormControl;
 
   ngOnInit(): void {
+    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required]);
   }
 
 }

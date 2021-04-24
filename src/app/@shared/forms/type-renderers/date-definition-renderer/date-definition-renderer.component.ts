@@ -11,14 +11,8 @@ export class DateDefinitionRendererComponent extends BaseDefinitionRendererCompo
 
   displayAsFC: FormControl;
   
-
   ngOnInit(): void {
-    let fc = this.fieldFG.get("displayAs") as FormControl;
-    if (!fc) {
-      this.fieldFG.addControl("displayAs", this.fb.control('', [Validators.required]));
-      fc = this.fieldFG.get("displayAs") as FormControl;
-    }
-    this.displayAsFC = fc;
+    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required]);
   }
 
 }

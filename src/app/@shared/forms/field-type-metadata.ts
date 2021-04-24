@@ -33,8 +33,7 @@ export const fieldTypeMetaData = new Map<string, IFieldTypeMeta>([
         typeDisplayName: "Date",
         valueRenderer: [
             { UIControl: UIControlEnum.INPUT, renderer: "" },
-            { UIControl: UIControlEnum.DATEPICKER, renderer: "" },
-            { UIControl: UIControlEnum.SELECT, renderer: "" }
+            { UIControl: UIControlEnum.DATEPICKER, renderer: "" }
         ],
         definitionRenderer: DateDefinitionRendererComponent
     }],

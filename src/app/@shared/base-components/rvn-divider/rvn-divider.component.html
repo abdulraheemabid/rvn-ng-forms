@@ -1,1 +1,1 @@
-<mat-divider [vertical]="params?.vertical" [inset]="params?.inset"></mat-divider>
+<mat-divider [ngClass]="{'custom-width': customWidthProvided}" [ngStyle]="{width: params?.width}" [vertical]="params?.vertical" [inset]="params?.inset"></mat-divider>

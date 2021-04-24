@@ -73,7 +73,7 @@ export class DemoComponent implements OnInit {
 
   chipInput: RvnChipsAutocompleteInput = {
     label: 'chips',
-    placeholder: 'chippi chip',
+    placeholder: 'chips autocomplete',
     required: true,
     requiredErrorMessage: 'chips is required',
     styleVersion: 'v1',
@@ -82,7 +82,16 @@ export class DemoComponent implements OnInit {
 
   chipInput2: RvnChipsAutocompleteInput = {
     label: 'chips',
-    placeholder: 'chippi chip',
+    placeholder: 'chips autocomplete',
+    required: true,
+    requiredErrorMessage: 'chips is required',
+    styleVersion: 'v2',
+    autoCompleteOption: [{ key: "1", value: "type 1" }, { key: "2", value: "type 2" }, { key: "3", value: "type 3" }]
+  }
+
+  chipInput3: RvnChipsAutocompleteInput = {
+    label: 'chips',
+    placeholder: 'chips input',
     required: true,
     requiredErrorMessage: 'chips is required',
     styleVersion: 'v2',

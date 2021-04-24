@@ -17,13 +17,15 @@
             <rvn-divider></rvn-divider>
         </div>
 
-        <div class="field" *ngFor="let field of fieldGroups.controls; let i = index; let last = last; let first = first">
+        <div class="field"
+            *ngFor="let field of fieldGroups.controls; let i = index; let last = last; let first = first">
             <div class="heading flex">
                 <h3>Field {{i+1}}</h3>
-                <rvn-button (click)="deleteField(i)" [params]="deleteFieldCompParam" [disabled]="first && last"></rvn-button>
+                <rvn-button (click)="deleteField(i)" [params]="deleteFieldCompParam" [disabled]="first && last">
+                </rvn-button>
             </div>
             <field-definition [fieldFG]="field"></field-definition>
-            <rvn-divider class="divider" *ngIf="!last"></rvn-divider>
+            <rvn-divider class="divider" [params]="{inset: true}" *ngIf="!last"></rvn-divider>
         </div>
     </div>
 

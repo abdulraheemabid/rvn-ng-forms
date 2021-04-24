@@ -21,9 +21,13 @@
 
     .attributes {
         grid-area: att;
+        display: grid;
+        gap: $space-l;
 
-        .form-name {
-            margin-top: $space-l;
+        .heading{
+            h2{
+                margin-bottom: $space-m;
+            }
         }
     }
 
