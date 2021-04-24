@@ -8,19 +8,18 @@
     width: 200px;
 }
 
-.sidenav .mat-toolbar {
+.sidenav {
     background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
 .app-container {
-    padding: $space-xxl;
-    display: grid;
-    grid-template-columns: 100%;
-    justify-content: center;
+    height: 90vh;
+    padding: 5vh;
+    .outlet {
+        display: grid;
+        grid-template-columns: 100%;
+        justify-content: center;
+        height: 100%;
+        grid-template-rows: 0fr 1fr;
+    }
 }
