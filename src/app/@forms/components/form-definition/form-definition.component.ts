@@ -19,7 +19,7 @@ export class FormDefinitionComponent implements OnInit {
 
   //UI control params
   formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
-  fieldAddCompParam: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: "accent" };
+  fieldAddCompParam: RvnButtonInput = { type: 'mini-fab', icon: 'add', color: "accent" };
   collapseCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_less', color: "accent" };
   expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
   deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };

@@ -3,14 +3,22 @@
 .container {
     display: grid;
     gap: $space-xl;
-    grid-template: 
-    "definition preview";
+    grid-template: auto 1fr / 1fr 1fr;
+    grid-template-areas:
+        "definition button"
+        "definition preview";
 
-    .definition{
+    .definition {
         grid-area: definition;
     }
 
-    .preview{
+    .button {
+        grid-area: button;
+        padding-bottom: $space-xs;
+        margin-left: auto;
+    }
+
+    .preview {
         grid-area: preview;
     }
 }
