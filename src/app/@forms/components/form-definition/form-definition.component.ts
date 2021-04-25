@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
+import { markNestedFormGroupDirty } from 'src/app/@shared/utils/reactive-form.util';
 
 @Component({
   selector: 'form-definition',
@@ -10,12 +12,16 @@ import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-inp
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private el: ElementRef,) { }
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 
+  @Input() markFGAsDirtySubject$: Subject<any>;
+  @Output() formDefinitionUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+
   initDone: boolean = false;
-  formCtrl: FormGroup;
+  formGrp: FormGroup;
+  validated = false;
 
   //UI control params
   formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
@@ -26,58 +32,98 @@ export class FormDefinitionComponent implements OnInit {
 
 
   get fieldFormGroupTemplate() {
-    return { name: ['', [Validators.required, Validators.minLength(3)]], type: ['', Validators.required], required: [false], _expanded: [true] }
+    return {
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      type: ['', Validators.required],
+      required: [false],
+      attributes: this.fb.group({
+        _expanded: [true],
+        position: [null],
+        displayAs: [null]
+      })
+    };
   };
 
   get fieldGroups(): FormArray {
-    return this.formCtrl.get('fields') as FormArray;
+    return this.formGrp.get('fields') as FormArray;
   };
 
   get formNameCtrl(): FormControl {
-    return this.formCtrl.get('formName') as FormControl;
-  }
-
-  collapseAllFields() {
-    this.fieldGroups.controls.forEach(c => c.get("_expanded").setValue(false));
-  }
-
-  expandAllFields() {
-    this.fieldGroups.controls.forEach(c => c.get("_expanded").setValue(true));
+    return this.formGrp.get('name') as FormControl;
   }
 
   ngOnInit(): void {
+    console.log(this.el.nativeElement.closest('topBar'));
     this.initFormCtrl();
     this.initDone = true;
+    this.handleMarkingAsDirty();
   }
 
   initFormCtrl() {
-    this.formCtrl = this.fb.group({
-      formName: ['', [Validators.required, Validators.minLength(3)]],
-      fields: this.fb.array([
-        this.fb.group(this.fieldFormGroupTemplate)
-      ])
+    this.formGrp = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      fields: this.fb.array([])
     });
 
-    this.formCtrl.valueChanges.subscribe(val => console.log(val));
+    this.addField();
+
+    this.formDefinitionUpdate.emit(this.formGrp);
+
+    this.formGrp.valueChanges.subscribe(val => {
+      this.formDefinitionUpdate.emit(this.formGrp);
+    });
+  }
+
+  handleMarkingAsDirty() {
+    if (this.markFGAsDirtySubject$)
+      this.markFGAsDirtySubject$.subscribe(_ => {
+
+        // Mark all as dirty
+        markNestedFormGroupDirty(this.formGrp);
+
+        // expand all INVALID fields
+        this.fieldGroups.controls
+          .filter(c => c.status === "INVALID")
+          .forEach(c => c.get("attributes").get("_expanded").setValue(true));
+
+          this.validated = true;
+      });
   }
 
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
     this.fieldGroups.push(fg);
+    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length);
     this.scrollToBottomOfFieldsList();
   }
 
   deleteField(index: number) {
     if (this.fieldGroups.length > 1)
       this.fieldGroups.removeAt(index);
+    this.scrollToBottomOfFieldsList();
   }
 
   changePositionOfField(event) {
     let control = this.fieldGroups.controls.splice(event.previousIndex, 1)[0];
     this.fieldGroups.controls.splice(event.currentIndex, 0, control);
+    this.updatePositionAttributeOfAllFields();
   }
 
   scrollToBottomOfFieldsList(): void {
     setTimeout(() => this.accordion.nativeElement.lastElementChild.scrollIntoView({ behavior: "smooth", block: "end" }));
+  }
+
+  updatePositionAttributeOfAllFields() {
+    this.fieldGroups.controls.forEach(c => c.get("attributes").get("position").setValue(this.fieldGroups.controls.indexOf(c)));
+  }
+
+  collapseAllFields() {
+    // this.formGrp.markAllAsTouched();
+
+    this.fieldGroups.controls.forEach(c => c.get("attributes").get("_expanded").setValue(false, { emitEvent: false }));
+  }
+
+  expandAllFields() {
+    this.fieldGroups.controls.forEach(c => c.get("attributes").get("_expanded").setValue(true, { emitEvent: false }));
   }
 }

@@ -53,70 +53,74 @@ body {
 // Colors
 
 .primary-color {
-    color: $light-primary !important;;
+    color: $light-primary !important;
 }
 
 .accent-color {
-    color: $light-accent !important;;
+    color: $light-accent !important;
 }
 
 .warn-color {
-    color: $light-warn !important;;
+    color: $light-warn !important;
 }
 
 .white-color {
-    color: $light-white !important;;
+    color: $light-white !important;
 }
 
 .grey-color {
-    color: $light-grey !important;;
+    color: $light-grey !important;
 }
 
 .primary-bg {
-    background-color: $light-primary !important;;
+    background-color: $light-primary !important;
 }
 
 .accent-bg {
-    background-color: $light-accent !important;;
+    background-color: $light-accent !important;
 }
 
 .warn-bg {
-    background-color: $light-warn !important;;
+    background-color: $light-warn !important;
 }
 
 .white-bg {
-    background-color: $light-white !important;;
+    background-color: $light-white !important;
 }
 
 .grey-bg {
-    background-color: $light-grey !important;;
+    background-color: $light-grey !important;
+}
+
+.background-bg{
+    background-color: $light-background !important;
 }
 
 // Dark theme specific
 
 .app-dark-theme {
     .primary-color {
-        color: $dark-primary !important;;
+        color: $dark-primary !important;
     }
 
     .accent-color {
-        color: $dark-accent !important;;
+        color: $dark-accent !important;
     }
 
     .warn-color {
-        color: $dark-warn !important;;
+        color: $dark-warn !important;
     }
 
     .white-color {
-        color: $dark-white !important;;
+        color: $dark-white !important;
     }
 
     .grey-color {
-        color: $dark-grey !important;;
+        color: $dark-grey !important;
     }
 
     .primary-bg {
-        background-color: $dark-primary !important;; 
+        background-color: $dark-primary !important; 
     }
 
     .accent-bg {
@@ -124,14 +128,18 @@ body {
     }
 
     .warn-bg {
-        background-color: $dark-warn !important;;
+        background-color: $dark-warn !important;
     }
 
     .white-bg {
-        background-color: $dark-white !important;;
+        background-color: $dark-white !important;
     }
 
     .grey-bg {
-        background-color: $dark-grey !important;;
+        background-color: $dark-grey !important;
+    }
+
+    .background-bg{
+        background-color: $dark-background !important;
     }
 }

@@ -12,7 +12,7 @@ export class DateDefinitionRendererComponent extends BaseDefinitionRendererCompo
   displayAsFC: FormControl;
   
   ngOnInit(): void {
-    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required]);
+    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
   }
 
 }

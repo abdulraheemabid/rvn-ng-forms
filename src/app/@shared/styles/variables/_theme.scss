@@ -52,3 +52,6 @@ $dark-grey: mat-color(mat-palette($mat-grey));
 
 $light-white: $light-primary-text;
 $dark-white: $light-primary-text;
+
+$light-background:  map-get($mat-light-theme-background, background);
+$dark-background: map-get($mat-dark-theme-background, background);

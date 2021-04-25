@@ -1,6 +1,5 @@
-@import '../../../@shared/styles/variables/spacing';
-@import '../../../@shared/styles/variables/theme';
-
+@import "../../../@shared/styles/variables/spacing";
+@import "../../../@shared/styles/variables/theme";
 
 .container {
     h2,
@@ -16,7 +15,7 @@
     }
 
     display: grid;
-    gap: $space-xxl;
+    //gap: $space-xxl;
     grid-template:
         "att"
         "fields";
@@ -36,10 +35,19 @@
     .fields {
         grid-area: fields;
         display: grid;
-        gap: $space-l;
+        //gap: $space-l;
+        
 
         .total {
             vertical-align: middle;
+        }
+
+        .heading {
+            position: sticky;
+            //TODO: fix hardcoding. (top 0 + toolBar height)
+            top: 64px;
+            z-index: 2;
+            padding: $space-xxl 0;
         }
 
         .divider {
@@ -56,7 +64,7 @@
         .title {
             display: grid;
             gap: $space-xl;
-            grid: 1fr / repeat(3, max-content);
+            grid: 1fr / repeat(4, max-content);
         }
 
         .accordion {

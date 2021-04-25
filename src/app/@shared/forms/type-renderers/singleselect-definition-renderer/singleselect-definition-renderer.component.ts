@@ -13,7 +13,7 @@ export class SingleselectDefinitionRendererComponent extends BaseDefinitionRende
   arrayValues: FormControl;
 
   ngOnInit(): void {
-    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required]);
+    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
     this.arrayValues = this.createFormControlIfNotExists("arrayValues", "", [Validators.required]);
   }
 
