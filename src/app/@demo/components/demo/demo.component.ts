@@ -7,6 +7,7 @@ import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-inp
 import { RvnRadioInput } from 'src/app/@shared/base-components/rvn-radio/rvn-radio.input';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'demo',
@@ -15,10 +16,14 @@ import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-t
 })
 export class DemoComponent implements OnInit {
 
-  ngOnInit(){}
+  constructor(private appService: AppService) { }
+
+  ngOnInit() {
+    this.appService.setToolBarHeading("Demo");
+  }
 
   fc = new FormControl(null, [Validators.required]);
-  
+
   textFieldInput: RvnInputInput = {
     label: 'name',
     placeholder: 'full name',
@@ -112,7 +117,7 @@ export class DemoComponent implements OnInit {
 
   dateFC = new FormControl(null, [Validators.required]);
 
-  onClick(){
+  onClick() {
     alert('clicked');
   }
 

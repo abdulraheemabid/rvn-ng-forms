@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RvnInputInput } from './@shared/base-components/rvn-input/rvn-input.input';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
-import { RvnRadioInput } from './@shared/base-components/rvn-radio/rvn-radio.input';
-import { RvnToggleInput } from './@shared/base-components/rvn-toggle/rvn-toggle.input';
-import { RvnCheckboxInput } from './@shared/base-components/rvn-checkbox/rvn-checkbox.input';
-import { RvnChipsAutocompleteInput } from './@shared/base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.input';
-import { RvnDatepickerInput } from './@shared/base-components/rvn-datepicker/rvn-datepicker.input';
+import { FormControl } from '@angular/forms';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +12,11 @@ import { RvnDatepickerInput } from './@shared/base-components/rvn-datepicker/rvn
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private overlayContainer: OverlayContainer, private appService: AppService) { }
+
+  @HostBinding('class') className = '';
+  darkClassName = 'app-dark-theme';
+  toolBarHeading: string = "";
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -25,8 +24,20 @@ export class AppComponent implements OnInit {
       shareReplay()
     );
 
-    
+  isDarkModeFC = new FormControl(false);
+
   ngOnInit() {
-      
+
+    this.isDarkModeFC.valueChanges.subscribe((darkMode) => {
+      this.className = darkMode ? this.darkClassName : '';
+      if (darkMode) {
+        this.overlayContainer.getContainerElement().classList.add(this.darkClassName);
+      } else {
+        this.overlayContainer.getContainerElement().classList.remove(this.darkClassName);
+      }
+    });
+
+    this.appService.toolBarHeading.subscribe(value => this.toolBarHeading = value);
+
   }
 }

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 
 @Component({
   selector: 'form-definition',
@@ -13,19 +12,21 @@ export class FormDefinitionComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  panelOpenState = false;
+  @ViewChild("accordion", { read: ElementRef }) accordion;
 
   initDone: boolean = false;
   formCtrl: FormGroup;
 
   //UI control params
   formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
-  fieldAddCompParam: RvnButtonInput = { type: 'icon-text-secondary', icon: 'add' };
-  deleteFieldCompParam: RvnButtonInput = { type: 'secondary' };
+  fieldAddCompParam: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: "accent" };
+  collapseCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_less', color: "accent" };
+  expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
+  deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };
 
 
   get fieldFormGroupTemplate() {
-    return { name: ['', [Validators.required, Validators.minLength(3)]], type: ['', Validators.required], required: [false] }
+    return { name: ['', [Validators.required, Validators.minLength(3)]], type: ['', Validators.required], required: [false], _expanded: [true] }
   };
 
   get fieldGroups(): FormArray {
@@ -36,7 +37,13 @@ export class FormDefinitionComponent implements OnInit {
     return this.formCtrl.get('formName') as FormControl;
   }
 
+  collapseAllFields() {
+    this.fieldGroups.controls.forEach(c => c.get("_expanded").setValue(false));
+  }
 
+  expandAllFields() {
+    this.fieldGroups.controls.forEach(c => c.get("_expanded").setValue(true));
+  }
 
   ngOnInit(): void {
     this.initFormCtrl();
@@ -56,7 +63,8 @@ export class FormDefinitionComponent implements OnInit {
 
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
-    this.fieldGroups.insert(0, fg);
+    this.fieldGroups.push(fg);
+    this.scrollToBottomOfFieldsList();
   }
 
   deleteField(index: number) {
@@ -64,15 +72,12 @@ export class FormDefinitionComponent implements OnInit {
       this.fieldGroups.removeAt(index);
   }
 
-  drop(event) {
+  changePositionOfField(event) {
     let control = this.fieldGroups.controls.splice(event.previousIndex, 1)[0];
     this.fieldGroups.controls.splice(event.currentIndex, 0, control);
-    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  }
+
+  scrollToBottomOfFieldsList(): void {
+    setTimeout(() => this.accordion.nativeElement.lastElementChild.scrollIntoView({ behavior: "smooth", block: "end" }));
   }
 }
-
-
- // let a = this.formCtrl.get("fields").get("0") as FormGroup;
-    // console.log("1", a.get("test"));
-    // a.addControl('test', this.fb.control(''));
-    // console.log("2", a.get("test"));

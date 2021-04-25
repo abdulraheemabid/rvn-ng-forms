@@ -1,0 +1,137 @@
+@import "./variables/spacing";
+@import "./variables/width";
+@import "./variables/theme";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Typography
+
+.text-bold {
+    @extend .mat-body-2;
+}
+
+.text-caption {
+    @extend .mat-small;
+}
+
+.text-display-1 {
+    @extend .mat-display-1;
+}
+
+.text-display-2 {
+    @extend .mat-display-2;
+}
+
+.text-display-3 {
+    @extend .mat-display-3;
+}
+
+.text-display-4 {
+    @extend .mat-display-4;
+}
+
+.text-body{
+    @extend .mat-body;
+}
+
+.text-body2{
+    @extend .mat-body-2;
+}
+
+// Colors
+
+.primary-color {
+    color: $light-primary !important;;
+}
+
+.accent-color {
+    color: $light-accent !important;;
+}
+
+.warn-color {
+    color: $light-warn !important;;
+}
+
+.white-color {
+    color: $light-white !important;;
+}
+
+.grey-color {
+    color: $light-grey !important;;
+}
+
+.primary-bg {
+    background-color: $light-primary !important;;
+}
+
+.accent-bg {
+    background-color: $light-accent !important;;
+}
+
+.warn-bg {
+    background-color: $light-warn !important;;
+}
+
+.white-bg {
+    background-color: $light-white !important;;
+}
+
+.grey-bg {
+    background-color: $light-grey !important;;
+}
+
+// Dark theme specific
+
+.app-dark-theme {
+    .primary-color {
+        color: $dark-primary !important;;
+    }
+
+    .accent-color {
+        color: $dark-accent !important;;
+    }
+
+    .warn-color {
+        color: $dark-warn !important;;
+    }
+
+    .white-color {
+        color: $dark-white !important;;
+    }
+
+    .grey-color {
+        color: $dark-grey !important;;
+    }
+
+    .primary-bg {
+        background-color: $dark-primary !important;; 
+    }
+
+    .accent-bg {
+        background-color: $dark-accent !important;
+    }
+
+    .warn-bg {
+        background-color: $dark-warn !important;;
+    }
+
+    .white-bg {
+        background-color: $dark-white !important;;
+    }
+
+    .grey-bg {
+        background-color: $dark-grey !important;;
+    }
+}

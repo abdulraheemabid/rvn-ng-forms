@@ -1,4 +1,6 @@
-@import "../../../@shared/styles/variables";
+@import '../../../@shared/styles/variables/spacing';
+@import '../../../@shared/styles/variables/theme';
+
 
 .container {
     h2,
@@ -36,15 +38,31 @@
         display: grid;
         gap: $space-l;
 
+        .total {
+            vertical-align: middle;
+        }
+
         .divider {
             display: block;
             margin-top: $space-l;
+        }
+
+        .btns {
+            * {
+                margin-left: $space-s;
+            }
         }
 
         .title {
             display: grid;
             gap: $space-xl;
             grid: 1fr / repeat(3, max-content);
+        }
+
+        .accordion {
+            // for scroll
+            // height: 40vh;
+            overflow-y: auto;
         }
 
         .field {
@@ -61,8 +79,7 @@
         align-items: center;
     }
 
-    .bold {
-        font-weight: bold;
+    .text-bold {
         margin-left: $space-xs;
     }
 

@@ -50,7 +50,7 @@
             <div class="sub-container">
                 <h2>Primary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'accent'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'warn'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'warn'}" [disabled]="true">Disabled</rvn-button>
@@ -62,7 +62,7 @@
             <div class="sub-container">
                 <h2>Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{type: 'secondary'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary', type: 'secondary'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'secondary'}">
                         Button
                     </rvn-button>
@@ -80,7 +80,7 @@
             <div class="sub-container">
                 <h2>Tertiary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{type: 'tertiary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary',type: 'tertiary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'tertiary'}">
@@ -100,7 +100,7 @@
             <div class="sub-container">
                 <h2>Icon</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'icon'}">
                     </rvn-button>
@@ -117,7 +117,7 @@
             <div class="sub-container">
                 <h2>Icon-Text-Parimary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon-text-primary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -140,7 +140,7 @@
             <div class="sub-container">
                 <h2>Icon-Text-Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'icon-text-secondary'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -163,7 +163,7 @@
             <div class="sub-container">
                 <h2>FAB</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'fab'}"></rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'fab'}"></rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'fab'}">
@@ -179,7 +179,7 @@
             <div class="sub-container">
                 <h2>Mini-FAB</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}">
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'mini-fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'mini-fab'}">
                     </rvn-button>

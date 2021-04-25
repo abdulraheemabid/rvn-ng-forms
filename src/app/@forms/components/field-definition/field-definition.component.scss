@@ -1,7 +1,7 @@
-@import '../../../@shared/styles/variables';
+@import '../../../@shared/styles/variables/spacing';
 
 .container{
     display: grid;
-    //padding-top: $space-m;
+    padding-top: $space-m;
     gap: $space-s;
 }

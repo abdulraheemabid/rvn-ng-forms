@@ -15,8 +15,8 @@ export class RvnButtonComponent implements OnInit {
 
   ngOnInit(): void {
     if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params?.color)) this.params.color = "primary";
     if (isNullOrUndefined(this.params?.type)) this.params.type = "primary";
+    if (isNullOrUndefined(this.params?.btnClass)) this.params.btnClass = "";
     if (isNullOrUndefined(this.disabled)) this.disabled = false;
   }
 
