@@ -18,7 +18,9 @@ export class FormScreenComponent implements OnInit {
   markFormDefinitionFGAsDirty$ = new Subject();
 
   get formDefinition(): IForm {
-    return this.formDefinitionFG.getRawValue();
+    let raw = this.formDefinitionFG.getRawValue();
+    raw.fields.forEach(f => f.type = f.type.key);
+    return raw;
   }
 
   ngOnInit(): void {

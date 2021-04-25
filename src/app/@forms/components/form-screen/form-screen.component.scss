@@ -16,9 +16,22 @@
         grid-area: button;
         padding-bottom: $space-xs;
         margin-left: auto;
+
+        position: sticky;
+        //TODO: fix hardcoding.
+        top: 111px;
     }
 
     .preview {
         grid-area: preview;
+        ::ng-deep {
+            .container {
+                * {
+                    position: sticky;
+                    //TODO: fix hardcoding. 
+                    top: 195px;
+                }
+            }
+        }
     }
 }

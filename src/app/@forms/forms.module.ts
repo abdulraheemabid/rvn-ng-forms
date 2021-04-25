@@ -7,13 +7,15 @@ import { FormDefinitionComponent } from './components/form-definition/form-defin
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldDefinitionComponent } from './components/field-definition/field-definition.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormRendererComponent } from './components/form-renderer/form-renderer.component';
 
 
 @NgModule({
   declarations: [
     FormScreenComponent,
     FormDefinitionComponent,
-    FieldDefinitionComponent
+    FieldDefinitionComponent,
+    FormRendererComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,7 @@
 .topBar {
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     padding: 0 5vh;
     display: grid;
     grid-template: 1fr / auto 1fr minmax(min-content, 120px);
