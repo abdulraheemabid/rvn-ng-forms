@@ -26,14 +26,14 @@ import { RvnChipsAutocompleteComponent } from './base-components/rvn-chips-autoc
 import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-datepicker.component';
 import { RvnCardComponent } from './base-components/rvn-card/rvn-card.component';
 
-import { BaseDefinitionRendererComponent } from './forms/type-renderers/base-definition-renderer/base-definition-renderer.component';
-import { BoolDefinitionRendererComponent } from './forms/type-renderers/bool-definition-renderer/bool-definition-renderer.component';
-import { DateDefinitionRendererComponent } from './forms/type-renderers/date-definition-renderer/date-definition-renderer.component';
-import { FloatDefinitionRendererComponent } from './forms/type-renderers/float-definition-renderer/float-definition-renderer.component';
-import { IntDefinitionRendererComponent } from './forms/type-renderers/int-definition-renderer/int-definition-renderer.component';
-import { MultiselectDefinitionRendererComponent } from './forms/type-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
-import { SingleselectDefinitionRendererComponent } from './forms/type-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
-import { StringDefinitionRendererComponent } from './forms/type-renderers/string-definition-renderer/string-definition-renderer.component';
+import { BaseDefinitionRendererComponent } from './forms/type-definition-renderers/base-definition-renderer/base-definition-renderer.component';
+import { BoolDefinitionRendererComponent } from './forms/type-definition-renderers/bool-definition-renderer/bool-definition-renderer.component';
+import { DateDefinitionRendererComponent } from './forms/type-definition-renderers/date-definition-renderer/date-definition-renderer.component';
+import { FloatDefinitionRendererComponent } from './forms/type-definition-renderers/float-definition-renderer/float-definition-renderer.component';
+import { IntDefinitionRendererComponent } from './forms/type-definition-renderers/int-definition-renderer/int-definition-renderer.component';
+import { MultiselectDefinitionRendererComponent } from './forms/type-definition-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
+import { SingleselectDefinitionRendererComponent } from './forms/type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
+import { StringDefinitionRendererComponent } from './forms/type-definition-renderers/string-definition-renderer/string-definition-renderer.component';
 
 import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
 import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
