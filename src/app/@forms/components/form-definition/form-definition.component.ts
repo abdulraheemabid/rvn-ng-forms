@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { markNestedFormGroupDirty } from 'src/app/@shared/utils/reactive-form.util';
+import { ReactiveFormUtilityService } from 'src/app/@shared/services/dynamic-component/reactive-form-utility.service';
 
 @Component({
   selector: 'form-definition',
@@ -12,7 +12,7 @@ import { markNestedFormGroupDirty } from 'src/app/@shared/utils/reactive-form.ut
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private el: ElementRef,) { }
+  constructor(private fb: FormBuilder, private privateformUitilityService: ReactiveFormUtilityService) { }
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 
@@ -53,7 +53,6 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.el.nativeElement.closest('topBar'));
     this.initFormCtrl();
     this.initDone = true;
     this.handleMarkingAsDirty();
@@ -79,14 +78,14 @@ export class FormDefinitionComponent implements OnInit {
       this.markFGAsDirtySubject$.subscribe(_ => {
 
         // Mark all as dirty
-        markNestedFormGroupDirty(this.formGrp);
+        this.privateformUitilityService.markNestedFormGroupDirty(this.formGrp);
 
         // expand all INVALID fields
         this.fieldGroups.controls
           .filter(c => c.status === "INVALID")
           .forEach(c => c.get("attributes").get("_expanded").setValue(true));
 
-          this.validated = true;
+        this.validated = true;
       });
   }
 
