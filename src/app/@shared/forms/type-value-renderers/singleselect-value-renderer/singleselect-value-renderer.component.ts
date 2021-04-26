@@ -9,12 +9,8 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class SingleselectValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  displayAsFC: FormControl;
-  arrayValues: FormControl;
 
   ngOnInit(): void {
-    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
-    this.arrayValues = this.createFormControlIfNotExists("arrayValues", "", [Validators.required]);
   }
 
 }

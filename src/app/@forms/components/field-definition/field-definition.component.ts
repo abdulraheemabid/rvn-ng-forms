@@ -5,6 +5,7 @@ import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-inp
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
+import { TypeMetaService } from 'src/app/@shared/forms/services/type-meta.service';
 
 @Component({
   selector: 'field-definition',
@@ -13,7 +14,7 @@ import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 })
 export class FieldDefinitionComponent implements OnInit {
 
-  constructor(private sharedFormService: RvnFormService,
+  constructor(private typeMetaService: TypeMetaService,
     private componentFactoryResolver: ComponentFactoryResolver) { }
 
   //fieldFG should contain type, name and required formControls already
@@ -35,7 +36,7 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   initUICompParams() {
-    this.fieldTypeCompParams.selectOptions = this.sharedFormService.getFieldTypes();
+    this.fieldTypeCompParams.selectOptions = this.typeMetaService.getFieldTypes();
   }
 
   onFieldTypeChange(fieldTypeCtrl: FormControl) {
@@ -45,7 +46,7 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   loadTypeRenderer(type: KeyValue<string, string>) {
-    const componentToRender = this.sharedFormService.getFieldTypeMetaData(type)?.definitionRenderer;
+    const componentToRender = this.typeMetaService.getFieldTypeMetaData(type)?.definitionRenderer;
     if (componentToRender) {
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentToRender);
       this.rendererAnchorPoint.clear();

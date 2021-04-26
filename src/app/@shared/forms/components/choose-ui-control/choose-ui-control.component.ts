@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnFormService } from '../../services/form.service';
+import { TypeMetaService } from '../../services/type-meta.service';
 import { UIControlNameEnum, UIControlEnum } from '../../types';
 
 @Component({
@@ -12,7 +13,7 @@ import { UIControlNameEnum, UIControlEnum } from '../../types';
 })
 export class ChooseUiControlComponent implements OnInit {
 
-  constructor(private sharedFormService: RvnFormService) { }
+  constructor(private typeMetaService: TypeMetaService) { }
 
   @Input() selectedFieldType: string;
   @Input() uiFormControl: FormControl;
@@ -21,7 +22,7 @@ export class ChooseUiControlComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.selectedFieldType) {
-      const supportedControls: UIControlEnum[] = this.sharedFormService.getFieldTypeMetaData(this.selectedFieldType)?.valueRenderer.map(i => i.UIControl);
+      const supportedControls: UIControlEnum[] = this.typeMetaService.getFieldTypeMetaData(this.selectedFieldType)?.valueRenderers.map(i => i.UIControl);
 
       let selectOptions: KeyValue<string, string>[] = [];
       for (let key of supportedControls) {

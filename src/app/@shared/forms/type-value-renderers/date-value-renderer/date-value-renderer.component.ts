@@ -9,10 +9,8 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class DateValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  displayAsFC: FormControl;
   
   ngOnInit(): void {
-    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
   }
 
 }

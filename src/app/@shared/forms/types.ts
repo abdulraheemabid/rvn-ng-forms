@@ -26,7 +26,7 @@ export interface IRecord {
 export interface IFieldTypeMeta {
     typeDisplayName: string;
     definitionRenderer: any;
-    valueRenderer: {
+    valueRenderers: {
         UIControl: UIControlEnum,
         renderer: any
     }[];
@@ -45,7 +45,6 @@ export enum FieldTypeEnum {
 export enum UIControlEnum {
     SELECT = "SELECT",
     INPUT = "INPUT",
-    NUMBERINPUT = "NUMBERINPUT",
     CHECKBOX = "CHECKBOX",
     RADIO = "RADIO",
     DATEPICKER = "DATEPICKER",

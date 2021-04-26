@@ -9,10 +9,8 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class BoolValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  displayAsFC: FormControl;
 
   ngOnInit(): void {
-    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
   }
 
 }
