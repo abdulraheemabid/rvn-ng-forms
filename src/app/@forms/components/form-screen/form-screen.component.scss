@@ -1,0 +1,37 @@
+@import "../../../@shared/styles/variables/spacing";
+
+.container {
+    display: grid;
+    gap: $space-xl;
+    grid-template: auto 1fr / 1fr 1fr;
+    grid-template-areas:
+        "definition button"
+        "definition preview";
+
+    .definition {
+        grid-area: definition;
+    }
+
+    .button {
+        grid-area: button;
+        padding-bottom: $space-xs;
+        margin-left: auto;
+
+        position: sticky;
+        //TODO: fix hardcoding.
+        top: 111px;
+    }
+
+    .preview {
+        grid-area: preview;
+        ::ng-deep {
+            .container {
+                * {
+                    position: sticky;
+                    //TODO: fix hardcoding. 
+                    top: 195px;
+                }
+            }
+        }
+    }
+}

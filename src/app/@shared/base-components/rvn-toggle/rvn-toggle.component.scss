@@ -1,0 +1,13 @@
+.container {
+    // setting these because applying mat-form-field-infix to container so that it takes same height
+    // as other material fields. But making these propeties as initial because mat-form-field-infix overides them
+    position: initial;
+    flex: initial;
+    width: initial;
+
+    &.v1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

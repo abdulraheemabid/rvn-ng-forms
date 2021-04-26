@@ -1,0 +1,11 @@
+<span class="container mat-form-field-infix" [ngClass]="params?.styleVersion" [formGroup]="formGroup">
+
+    <span class="label">{{params?.label}}:</span>
+    <span class="checkbox-group" formArrayName="checkboxArray">
+        <mat-checkbox class="checkbox" *ngFor="let option of params?.checkboxOptions; let i = index"
+            [formControlName]="i" [value]="option.key">
+            {{option.value}}
+        </mat-checkbox>
+    </span>
+
+</span>

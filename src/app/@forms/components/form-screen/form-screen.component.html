@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="definition">
+        <form-definition content [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
+            (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
+    </div>
+    <div class="button">
+        <rvn-button (onClick)="saveForm()" [params]="{ type:'icon-text-primary', icon: 'save', color: 'primary'}">Save
+            Form</rvn-button>
+    </div>
+    <div class="preview">
+        <rvn-card>
+            <form-renderer content [formDefinition]="formDefinition"></form-renderer>
+        </rvn-card>
+    </div>
+</div>
