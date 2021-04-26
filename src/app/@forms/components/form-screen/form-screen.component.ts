@@ -14,14 +14,9 @@ export class FormScreenComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   formDefinitionFG: FormGroup;
+  formDefinition: IForm;
 
   markFormDefinitionFGAsDirty$ = new Subject();
-
-  get formDefinition(): IForm {
-    let raw = this.formDefinitionFG.getRawValue();
-    raw.fields.forEach(f => f.type = f.type.key);
-    return raw;
-  }
 
   ngOnInit(): void {
     this.appService.setToolBarHeading("Create New Form");
@@ -29,6 +24,14 @@ export class FormScreenComponent implements OnInit {
 
   onFormDeifitionUpdate(form: FormGroup) {
     this.formDefinitionFG = form;
+    if (this.formDefinitionFG.status === "VALID")
+      this.formDefinition = this.getTransformedValueFromFG(form)
+  }
+
+  getTransformedValueFromFG(formGroup: FormGroup) {
+    let raw = formGroup.getRawValue();
+    raw.fields.forEach(f => f.type = f.type.key);
+    return raw;
   }
 
   saveForm() {

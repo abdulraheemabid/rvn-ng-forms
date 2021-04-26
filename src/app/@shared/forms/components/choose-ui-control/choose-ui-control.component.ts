@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnFormService } from '../../services/form.service';
 import { TypeMetaService } from '../../services/type-meta.service';
@@ -32,8 +32,7 @@ export class ChooseUiControlComponent implements OnInit {
         });
       }
 
-      this.selectCompParams.selectOptions = selectOptions;
+      this.selectCompParams.selectOptions = selectOptions;   
     }
   }
-
 }

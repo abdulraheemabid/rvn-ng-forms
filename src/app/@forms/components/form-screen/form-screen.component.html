@@ -8,8 +8,8 @@
             Form</rvn-button>
     </div>
     <div class="preview">
-        <rvn-card>
-            <form-renderer content [formDefinition]="formDefinition"></form-renderer>
+        <rvn-card [params]="{title: 'Form Preview'}">
+            <form-renderer content *ngIf="formDefinition" [formDefinition]="formDefinition"></form-renderer>
         </rvn-card>
     </div>
 </div>

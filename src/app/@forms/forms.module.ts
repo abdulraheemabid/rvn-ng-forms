@@ -22,7 +22,7 @@ import { FormRendererComponent } from './components/form-renderer/form-renderer.
     FormsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
   ]
 })
 export class FormsModule { }

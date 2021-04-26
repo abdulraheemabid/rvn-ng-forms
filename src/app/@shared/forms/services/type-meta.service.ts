@@ -26,10 +26,10 @@ export class TypeMetaService {
     return result;
   }
 
-  getFieldTypeMetaData(field: string | KeyValue<string, string>): IFieldTypeMeta {
-    if (typeof field !== "string") field = field.key;
-    field = field.toUpperCase();
-    return this.fieldTypeMeta.get(field);
+  getFieldTypeMetaData(fieldType: string | KeyValue<string, string>): IFieldTypeMeta {
+    if (typeof fieldType !== "string") fieldType = fieldType.key;
+    fieldType = fieldType.toUpperCase();
+    return this.fieldTypeMeta.get(fieldType);
   }
 }
 

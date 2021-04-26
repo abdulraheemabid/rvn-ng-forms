@@ -35,6 +35,15 @@ import { MultiselectDefinitionRendererComponent } from './forms/type-definition-
 import { SingleselectDefinitionRendererComponent } from './forms/type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
 import { StringDefinitionRendererComponent } from './forms/type-definition-renderers/string-definition-renderer/string-definition-renderer.component';
 
+import { BaseValueRendererComponent } from './forms/type-value-renderers/base-value-renderer/base-value-renderer.component';
+import { BoolValueRendererComponent } from './forms/type-value-renderers/bool-value-renderer/bool-value-renderer.component';
+import { DateValueRendererComponent } from './forms/type-value-renderers/date-value-renderer/date-value-renderer.component';
+import { FloatValueRendererComponent } from './forms/type-value-renderers/float-value-renderer/float-value-renderer.component';
+import { IntValueRendererComponent } from './forms/type-value-renderers/int-value-renderer/int-value-renderer.component';
+import { MultiselectValueRendererComponent } from './forms/type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component';
+import { SingleselectValueRendererComponent } from './forms/type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component';
+import { StringValueRendererComponent } from './forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
+
 import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
 import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
 
@@ -69,6 +78,15 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     MultiselectDefinitionRendererComponent,
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
+
+    FloatValueRendererComponent,
+    IntValueRendererComponent,
+    StringValueRendererComponent,
+    DateValueRendererComponent,
+    BoolValueRendererComponent,
+    MultiselectValueRendererComponent,
+    SingleselectValueRendererComponent,
+    BaseValueRendererComponent,
 
     ChooseUiControlComponent,
     ArrayValuesComponent,
@@ -118,6 +136,15 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     MultiselectDefinitionRendererComponent,
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
+
+    FloatValueRendererComponent,
+    IntValueRendererComponent,
+    StringValueRendererComponent,
+    DateValueRendererComponent,
+    BoolValueRendererComponent,
+    MultiselectValueRendererComponent,
+    SingleselectValueRendererComponent,
+    BaseValueRendererComponent,
 
     RvnAccordionComponent,
     RvnAccordionPanelComponent,

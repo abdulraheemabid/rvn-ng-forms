@@ -30,7 +30,6 @@ export class FormDefinitionComponent implements OnInit {
   expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
   deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };
 
-
   get fieldFormGroupTemplate() {
     return {
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -38,8 +37,7 @@ export class FormDefinitionComponent implements OnInit {
       required: [false],
       attributes: this.fb.group({
         _expanded: [true],
-        position: [null],
-        displayAs: [null]
+        position: [null]
       })
     };
   };
@@ -54,8 +52,8 @@ export class FormDefinitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormCtrl();
-    this.initDone = true;
     this.handleMarkingAsDirty();
+    this.initDone = true;
   }
 
   initFormCtrl() {
@@ -92,7 +90,7 @@ export class FormDefinitionComponent implements OnInit {
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
     this.fieldGroups.push(fg);
-    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length);
+    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length-1);
     this.scrollToBottomOfFieldsList();
   }
 

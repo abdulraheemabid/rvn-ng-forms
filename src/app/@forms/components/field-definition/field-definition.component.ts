@@ -45,7 +45,7 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   loadTypeRenderer(type: KeyValue<string, string>) {
-    this.formService.injectTypeRenderer(type, this.rendererAnchorPoint, this.fieldFG).subscribe();
+    this.formService.injectTypeDefinitionRenderer(type, this.rendererAnchorPoint, this.fieldFG).subscribe();
   }
 
 }

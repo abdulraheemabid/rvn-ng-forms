@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +44,29 @@ export class ReactiveFormUtilityService {
     formControl.markAsDirty();
 
   }
+
+  hasRequiredField(abstractControl: AbstractControl): boolean {
+    if (!abstractControl) {
+      return false;
+    }
+
+    if (abstractControl.validator) {
+      const validator = abstractControl.validator({} as AbstractControl);
+      if (validator && validator.required) {
+        return true;
+      }
+    }
+
+    if (abstractControl['controls']) {
+      for (const controlName in abstractControl['controls']) {
+        if (abstractControl['controls'][controlName]) {
+          if (this.hasRequiredField(abstractControl['controls'][controlName])) {
+            return true;
+          }
+        }
+      }
+    }
+
+    return false;
+  };
 }
