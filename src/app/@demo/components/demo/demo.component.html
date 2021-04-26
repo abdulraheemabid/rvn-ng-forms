@@ -4,7 +4,7 @@
 
     <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'FORMS'}">
 
-        <div class="sub-container" content>
+        <div class="sub-container grid" content>
             <div class="form-field-container">
                 <rvn-input [params]="textFieldInput" [formControl]="fc"></rvn-input>
             </div>
@@ -23,11 +23,11 @@
             <div class="form-field-container">
                 <rvn-chips-autocomplete [params]="chipInput2" [formControl]="chipsFC"></rvn-chips-autocomplete>
             </div>
-            <div class="form-field-container">
-                <rvn-chips-input [params]="chipInput3" [formControl]="chipsFC"></rvn-chips-input>
-            </div>
             <div class="">
                 <rvn-radio [params]="radioInput" [formControl]="fc"></rvn-radio>
+            </div>
+            <div class="form-field-container">
+                <rvn-chips-input [params]="chipInput3" [formControl]="chipsFC"></rvn-chips-input>
             </div>
             <div class="">
                 <rvn-checkbox [params]="checkboxInput" [formGroup]="checkboxFG"></rvn-checkbox>
@@ -37,6 +37,9 @@
             </div>
             <div class="form-field-container">
                 <rvn-datepicker [params]="dateInput" [formControl]="dateFC"></rvn-datepicker>
+            </div>
+            <div class="form-field-container">
+                <rvn-datepicker [params]="dateInput2" [formControl]="dateFC"></rvn-datepicker>
             </div>
         </div>
 
@@ -203,7 +206,7 @@
                 <rvn-card
                     [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
 
-                    <rvn-button headerAction (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab'}">
+                    <rvn-button headerAction (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
                     </rvn-button>
 
                     <div content>
@@ -216,8 +219,8 @@
                             publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
                     </div>
                     <div footer>
-                        <rvn-button style="margin-right: 10px;">Button</rvn-button>
-                        <rvn-button [params]="{ type: 'secondary'}">Button</rvn-button>
+                        <rvn-button style="margin-right: 10px;" [params]="{color: 'primary'}">Button</rvn-button>
+                        <rvn-button [params]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
                     </div>
                 </rvn-card>
             </div>

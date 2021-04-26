@@ -60,7 +60,7 @@ export class DemoComponent implements OnInit {
     required: true,
     requiredErrorMessage: 'gender is required',
     styleVersion: 'v1',
-    radioOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }, { key: "4", value: "Memale" }]
+    radioOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }]
   }
 
   toggleInput: RvnToggleInput = {
@@ -71,9 +71,9 @@ export class DemoComponent implements OnInit {
   }
 
   checkboxInput: RvnCheckboxInput = {
-    label: 'preference',
+    label: 'gender',
     styleVersion: 'v1',
-    checkboxOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }, { key: "4", value: "Memale" }]
+    checkboxOptions: [{ key: "1", value: "Male" }, { key: "2", value: "Female" }, { key: "3", value: "Fale" }]
   }
 
   chipInput: RvnChipsAutocompleteInput = {
@@ -113,6 +113,14 @@ export class DemoComponent implements OnInit {
     required: true,
     requiredErrorMessage: 'date is required',
     styleVersion: 'v2',
+  }
+
+  dateInput2: RvnDatepickerInput = {
+    label: 'Date',
+    placeholder: 'Select a date',
+    required: true,
+    requiredErrorMessage: 'date is required',
+    styleVersion: 'v1',
   }
 
   dateFC = new FormControl(null, [Validators.required]);
