@@ -1,0 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
+
+@Component({
+  selector: 'date-value-renderer',
+  templateUrl: './date-value-renderer.component.html',
+  styleUrls: ['./date-value-renderer.component.scss']
+})
+export class DateValueRendererComponent extends BaseValueRendererComponent implements OnInit {
+
+  displayAsFC: FormControl;
+  
+  ngOnInit(): void {
+    this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
+  }
+
+}
