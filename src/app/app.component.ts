@@ -26,12 +26,15 @@ export class AppComponent implements OnInit {
       shareReplay()
     );
 
-  isDarkModeFC = new FormControl(false);
+  isDarkModeFC: FormControl = new FormControl(false);
   fieldAppearanceOption = [{ key: "legacy", value: "Field apperance: legacy" }, { key: "standard", value: "Field apperance: standard" }, { key: "fill", value: "Field apperance: fill" }, { key: "outline", value: "Field apperance: outline" }];
   fieldAppearanceParams: RvnSelectInput;
   fieldAppearanceFC = new FormControl("");
 
   ngOnInit() {
+
+    this.setDefaultTheme("dark");
+
     this.fieldAppearanceParams = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
 
     this.styleService.getFormFieldStyle$.subscribe(val => {
@@ -51,5 +54,19 @@ export class AppComponent implements OnInit {
 
     this.appService.toolBarHeading.subscribe(value => this.toolBarHeading = value);
 
+  }
+
+  setDefaultTheme(theme: 'light' | 'dark') {
+    if (theme === 'dark') {
+      this.className = "app-dark-theme";
+      this.overlayContainer.getContainerElement().classList.add(this.darkClassName);
+      this.isDarkModeFC.setValue(true);
+    }
+
+    if (theme === 'light') {
+      this.className = "";
+      this.overlayContainer.getContainerElement().classList.remove(this.darkClassName);
+      this.isDarkModeFC.setValue(false);
+    }
   }
 }
