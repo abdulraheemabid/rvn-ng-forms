@@ -2,13 +2,13 @@
 @import '../../styles/variables/width';
 
 .container {
-    &.v1 {
+    &.v2 {
       .form-field {
         width: 100%;
       }
     }
   
-    &.v2 {
+    &.v1 {
       display: flex;
       align-items: center;
       justify-content: space-between;

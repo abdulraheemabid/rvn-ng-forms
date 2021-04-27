@@ -26,7 +26,7 @@
         grid-area: preview;
         ::ng-deep {
             .container {
-                :first-child {
+                .card {
                     position: sticky;
                     //TODO: fix hardcoding.
                     top: 195px;

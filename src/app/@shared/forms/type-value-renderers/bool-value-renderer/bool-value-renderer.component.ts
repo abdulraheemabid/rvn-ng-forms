@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { RvnRadioInput } from 'src/app/@shared/base-components/rvn-radio/rvn-radio.input';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
+import { UIControlEnum } from '../../types';
 import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
 
 @Component({
@@ -12,21 +13,33 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class BoolValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  //toggleParam: RvnToggleInput;
-  // radioParam: RvnRadioInput;
-  // selectParam: RvnSelectInput;
-  // fc: FormControl;
+  fc: FormControl;
+  params: any;
 
   ngOnInit(): void {
 
-    // this.params = {
-    //   label: this.fieldDefinition.name,
-    //   placeholder: "Enter number",
-    //   required: this.fieldDefinition.required,
-    //   type: 'number'
-    // }
+    this.params = {
+      label: this.fieldDefinition.name,
+      placeholder: "Enter number",
+      required: this.fieldDefinition.required
+    }
 
-    // this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
+    switch (this.UIControl) {
+      case UIControlEnum.RADIO:
+        this.params.radioOptions = [
+          { key: true, value: "Yes" },
+          { key: false, value: "No" },
+        ]
+        break;
+      case UIControlEnum.SELECT:
+        this.params.selectOptions = [
+          { key: true, value: "Yes" },
+          { key: false, value: "No" },
+        ]
+        break;
+    }
+
+    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
 
   }
 }

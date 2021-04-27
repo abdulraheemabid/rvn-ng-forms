@@ -19,7 +19,7 @@ export class RvnFormService {
 
     const componentToRender = this.typeMetaService.getFieldTypeMetaData(type)?.definitionRenderer;
 
-    if (!componentToRender) return new Observable<boolean>(sub => sub.error());
+    if (!componentToRender) return new Observable<boolean>(sub => sub.error("cant find componentToRender"));
 
     const inputs: KeyValue<string, any>[] = [{ key: "fieldFG", value: fieldFormGroup }, { key: "selectedType", value: type.key }]
 
@@ -35,7 +35,7 @@ export class RvnFormService {
 
     if (typeMeta.valueRenderers.length === 1) rendererConfig = typeMeta.valueRenderers[0];
     else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.valueRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
-    else return new Observable<boolean>(sub => sub.error());
+    else return new Observable<boolean>(sub => sub.error("field.attributes?.displayAs?.key not set"));
 
     componentToRender = rendererConfig.renderer;
 
