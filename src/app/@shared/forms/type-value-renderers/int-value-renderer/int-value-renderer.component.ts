@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
 import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
 
 @Component({
@@ -8,7 +10,18 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class IntValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  ngOnInit(): void {
-  }
+  params: RvnInputInput;
+  fc: FormControl;
 
+  ngOnInit(): void {
+
+    this.params = {
+      label: this.fieldDefinition.name,
+      placeholder: "Enter number",
+      required: this.fieldDefinition.required,
+      type: 'number'
+    }
+
+    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
+  }
 }

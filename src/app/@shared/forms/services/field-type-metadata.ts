@@ -1,3 +1,10 @@
+import { RvnCheckboxComponent } from "../../base-components/rvn-checkbox/rvn-checkbox.component";
+import { RvnChipsAutocompleteComponent } from "../../base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.component";
+import { RvnDatepickerComponent } from "../../base-components/rvn-datepicker/rvn-datepicker.component";
+import { RvnInputComponent } from "../../base-components/rvn-input/rvn-input.component";
+import { RvnRadioComponent } from "../../base-components/rvn-radio/rvn-radio.component";
+import { RvnSelectComponent } from "../../base-components/rvn-select/rvn-select.component";
+import { RvnToggleComponent } from "../../base-components/rvn-toggle/rvn-toggle.component";
 import { BoolDefinitionRendererComponent } from "../type-definition-renderers/bool-definition-renderer/bool-definition-renderer.component";
 import { DateDefinitionRendererComponent } from "../type-definition-renderers/date-definition-renderer/date-definition-renderer.component";
 import { FloatDefinitionRendererComponent } from "../type-definition-renderers/float-definition-renderer/float-definition-renderer.component";
@@ -14,7 +21,7 @@ import { SingleselectValueRendererComponent } from "../type-value-renderers/sing
 import { StringValueRendererComponent } from "../type-value-renderers/string-value-renderer/string-value-renderer.component";
 import { IFieldTypeMeta, UIControlEnum } from "../types";
 
-export const fieldTypeMetaData = new Map<string, IFieldTypeMeta>([
+export const fieldTypeMetaDataMap = new Map<string, IFieldTypeMeta>([
     ["FLOAT", {
         typeDisplayName: "Floating number",
         valueRenderers: [
@@ -69,4 +76,4 @@ export const fieldTypeMetaData = new Map<string, IFieldTypeMeta>([
         ],
         definitionRenderer: SingleselectDefinitionRendererComponent
     }],
-])
+]);

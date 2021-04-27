@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { IFieldTypeMeta } from '../types';
-import { fieldTypeMetaData } from './field-type-metadata';
+import { fieldTypeMetaDataMap } from './field-type-metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class TypeMetaService {
 
   constructor() { }
 
-  fieldTypeMeta = fieldTypeMetaData;
+  fieldTypeMeta = fieldTypeMetaDataMap;
 
   getFieldTypes(): KeyValue<string, string>[] {
     let result = [];
@@ -32,6 +32,3 @@ export class TypeMetaService {
     return this.fieldTypeMeta.get(fieldType);
   }
 }
-
-
-

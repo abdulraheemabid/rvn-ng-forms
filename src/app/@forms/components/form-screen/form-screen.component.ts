@@ -24,13 +24,17 @@ export class FormScreenComponent implements OnInit {
 
   onFormDeifitionUpdate(form: FormGroup) {
     this.formDefinitionFG = form;
-    if (this.formDefinitionFG.status === "VALID")
-      this.formDefinition = this.getTransformedValueFromFG(form)
+    //TODO: if (this.formDefinitionFG.status === "VALID")
+    this.formDefinition = this.getTransformedValueFromFG(form)
   }
 
   getTransformedValueFromFG(formGroup: FormGroup) {
     let raw = formGroup.getRawValue();
     raw.fields.forEach(f => f.type = f.type.key);
+
+    //TODO: doing this just for preview. on actual rendering, we will already have id
+    raw.fields.forEach(f => f.id = f.attributes.position);
+
     return raw;
   }
 

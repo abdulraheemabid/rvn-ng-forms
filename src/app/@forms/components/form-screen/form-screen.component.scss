@@ -26,9 +26,9 @@
         grid-area: preview;
         ::ng-deep {
             .container {
-                * {
+                :first-child {
                     position: sticky;
-                    //TODO: fix hardcoding. 
+                    //TODO: fix hardcoding.
                     top: 195px;
                 }
             }

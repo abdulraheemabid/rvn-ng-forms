@@ -1,10 +1,10 @@
 import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicComponentService } from '../../services/dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../utils/funtions.util';
-import { IFormField } from '../types';
+import { IForm, IFormField } from '../types';
 import { TypeMetaService } from './type-meta.service';
 
 
@@ -13,7 +13,7 @@ import { TypeMetaService } from './type-meta.service';
 })
 export class RvnFormService {
 
-  constructor(private typeMetaService: TypeMetaService, private dynamicComponentService: DynamicComponentService) { }
+  constructor(private typeMetaService: TypeMetaService, private dynamicComponentService: DynamicComponentService, private fb: FormBuilder) { }
 
   injectTypeDefinitionRenderer(type: KeyValue<string, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<boolean> {
 
@@ -27,20 +27,31 @@ export class RvnFormService {
 
   }
 
-  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef): Observable<boolean> {
+  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef, recordFG: FormGroup): Observable<boolean> {
 
     let typeMeta = this.typeMetaService.getFieldTypeMetaData(field.type);
+    let rendererConfig;
     let componentToRender;
 
-    if (typeMeta.valueRenderers.length === 1) {
-      componentToRender = typeMeta.valueRenderers[0].renderer
-    } else {
-      if (!isNullOrUndefined(field.attributes?.displayAs?.key))
-        componentToRender = typeMeta.valueRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0].renderer;
-    }
+    if (typeMeta.valueRenderers.length === 1) rendererConfig = typeMeta.valueRenderers[0];
+    else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.valueRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
+    else return new Observable<boolean>(sub => sub.error());
 
-    return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, []);
+    componentToRender = rendererConfig.renderer;
 
+    const input = [{ key: "UIControl", value: rendererConfig.UIControl }, { key: "recordFG", value: recordFG }, , { key: "fieldDefinition", value: field }];
+
+    return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, input);
+
+  }
+
+  generateRecordFormGroup(formDefinition: IForm) {
+    let recordFg = this.fb.group({});
+    formDefinition.fields.forEach(f => {
+      const validators = f.required ? [Validators.required] : [];
+      recordFg.addControl(f.id.toString(), this.fb.control(null, validators));
+    });
+    return recordFg;
   }
 
 }
