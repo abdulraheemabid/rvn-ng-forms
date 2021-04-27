@@ -19,9 +19,12 @@ export class FormRendererComponent implements OnChanges {
 
   recordFG: FormGroup;
   submitBtnType: any = "primary";
+  submitBtnColor: any = "primary";
 
   ngOnInit() {
-    if (this.mode === "preview") this.submitBtnType = "secondary";
+    if (this.mode === "preview") {
+      this.submitBtnColor = "accent";
+    };
   }
 
   ngOnChanges(changes: SimpleChanges): void {
