@@ -14,10 +14,14 @@ export class FormRendererComponent implements OnChanges {
   constructor(private formService: RvnFormService) { }
 
   @Input() formDefinition: IForm;
+  @Input() mode: "preview" | "add" | "edit" = "preview";
   @ViewChildren("fieldAnchorPoint", { read: ViewContainerRef }) fieldAnchorPoints: QueryList<ViewContainerRef>;
+
   recordFG: FormGroup;
+  submitBtnType: any = "primary";
 
   ngOnInit() {
+    if (this.mode === "preview") this.submitBtnType = "secondary";
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,9 +36,12 @@ export class FormRendererComponent implements OnChanges {
 
       const ref = this.fieldAnchorPoints.get(field.attributes.position);
       this.formService.injectTypeValueRenderer(field, ref, this.recordFG)
-      .subscribe(() => {},err => {});
+        .subscribe(() => { }, err => { });
 
     }
+  }
+
+  submit() {
 
   }
 

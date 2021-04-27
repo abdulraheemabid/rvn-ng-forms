@@ -1,0 +1,23 @@
+@import "../../../@shared/styles/variables/spacing";
+
+.container {
+    display: grid;
+    gap: $space-s;
+    grid-template-areas:
+        "heading submit"
+        "form form";
+
+    .heading {
+        grid-area: heading;
+    }
+
+    .submit {
+        grid-area: submit;
+        margin-left: auto;
+    }
+
+    .form {
+        grid-area: form;
+        grid-row: auto;
+    }
+}

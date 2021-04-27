@@ -15,7 +15,7 @@
     .radio-group {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: flex-start;
         flex-wrap: wrap;
     }
 
@@ -24,7 +24,7 @@
             width: $form-field-width;
         }
         .radio-btn {
-            padding: 0px $space-s;
+            padding-right: $space-s;
         }
     }
 

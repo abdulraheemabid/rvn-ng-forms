@@ -1,5 +1,5 @@
-<div class="container">
-    <h1 class="form-heading">
+<div class="container" [ngClass]="mode">
+    <h1 class="heading">
         <ng-container *ngIf="formDefinition.name !== null || formDefinition.name !== ''">
             {{formDefinition.name}}
         </ng-container>
@@ -8,9 +8,9 @@
         </span>
     </h1>
 
+    <rvn-button class="submit" (onClick)="submit()" [params]="{type: submitBtnType, color: 'primary'}">Submit</rvn-button>
 
-
-    <div *ngFor="let field of formDefinition.fields">
+    <div class="form" *ngFor="let field of formDefinition.fields">
         <ng-template #fieldAnchorPoint></ng-template>
     </div>
 
