@@ -304,7 +304,8 @@
             <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [params]="{color: 'primary'}">1 sec duration</rvn-button>
             <rvn-button (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})" [params]="{color: 'primary'}">Left Bottom</rvn-button>
             <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})" [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ''})" [params]="{color: 'primary'}">Message</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})" [params]="{color: 'primary'}">Custom BG</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'white-color', 'text-bold']})" [params]="{color: 'primary'}">Error</rvn-button>
         </div>
 
     </rvn-card>
