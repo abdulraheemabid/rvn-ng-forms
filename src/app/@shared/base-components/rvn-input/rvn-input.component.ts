@@ -2,7 +2,7 @@ import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { of } from 'rxjs';
 import { CustomFormControlValueAccessor } from 'src/app/@shared/utils/custom-form-control-value-accessor';
-import { RvnStyleService } from '../../services/style.service';
+import { RvnStyleService } from '../../services/style/style.service';
 import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnInputInput } from './rvn-input.input';
 

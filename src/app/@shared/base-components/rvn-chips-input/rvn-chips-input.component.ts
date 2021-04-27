@@ -6,7 +6,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { isNullOrUndefined } from '../../utils/funtions.util';
-import { RvnStyleService } from '../../services/style.service';
+import { RvnStyleService } from '../../services/style/style.service';
 import { of } from 'rxjs';
 
 @Component({

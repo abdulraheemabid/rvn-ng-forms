@@ -1,5 +1,5 @@
 import { KeyValue } from "@angular/common";
-import { FormFieldAppearance } from "../../services/style.service";
+import { FormFieldAppearance } from "../../services/style/style.service";
 
 export interface RvnSelectInput {
     label: string;

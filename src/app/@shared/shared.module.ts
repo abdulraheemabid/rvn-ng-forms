@@ -14,6 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -97,7 +98,7 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
     RvnIconComponent,
-    RvnMenuComponent
+    RvnMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -117,7 +118,8 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     ReactiveFormsModule,
     MatButtonModule,
     MatExpansionModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSnackBarModule
   ],
   exports: [
     RvnInputComponent,
@@ -156,7 +158,7 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     RvnMenuComponent
   ],
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   ]
 })
 export class SharedModule { }

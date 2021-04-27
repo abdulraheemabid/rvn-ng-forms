@@ -293,4 +293,19 @@
         </div>
 
     </rvn-card>
+
+    <!-- SNACKBAR -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'SNACKBARS'}">
+
+        <div class="sub-container" content>
+            <rvn-button (click)="openSnackBar({message: 'hello'})" [params]="{color: 'primary'}">Message</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})" [params]="{color: 'primary'}">Message & action</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [params]="{color: 'primary'}">1 sec duration</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})" [params]="{color: 'primary'}">Left Bottom</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})" [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ''})" [params]="{color: 'primary'}">Message</rvn-button>
+        </div>
+
+    </rvn-card>
 </div>

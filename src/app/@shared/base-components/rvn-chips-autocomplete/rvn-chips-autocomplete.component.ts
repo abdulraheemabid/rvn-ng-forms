@@ -7,7 +7,7 @@ import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-
 import { RvnChipsAutocompleteInput } from './rvn-chips-autocomplete.input';
 import { KeyValue } from '@angular/common';
 import { isNullOrUndefined } from '../../utils/funtions.util';
-import { RvnStyleService } from '../../services/style.service';
+import { RvnStyleService } from '../../services/style/style.service';
 
 @Component({
   selector: 'rvn-chips-autocomplete',

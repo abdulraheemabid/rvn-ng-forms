@@ -1,7 +1,7 @@
 import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { of } from 'rxjs';
-import { RvnStyleService } from '../../services/style.service';
+import { RvnStyleService } from '../../services/style/style.service';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnDatepickerInput } from './rvn-datepicker.input';
