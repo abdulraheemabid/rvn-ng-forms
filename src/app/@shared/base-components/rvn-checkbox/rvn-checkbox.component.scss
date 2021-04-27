@@ -15,13 +15,13 @@
     .checkbox-group {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         flex-wrap: wrap;
     }
 
     &.v1 {
         .checkbox {
-            padding: 0px $space-xs;
+            padding: 0px $space-s;
         }
         .checkbox-group {
             width: $form-field-width;
@@ -34,7 +34,7 @@
             flex-direction: column;
         }
         .checkbox {
-            padding: $space-xs 0px;
+            padding: $space-s 0px;
         }
     }
 
@@ -43,7 +43,7 @@
             flex-direction: column;
         }
         .checkbox {
-            padding: $space-xs 0px;
+            padding: $space-s 0px;
         }
     }
 }
