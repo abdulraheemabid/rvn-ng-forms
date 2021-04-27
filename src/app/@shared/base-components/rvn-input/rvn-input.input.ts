@@ -1,3 +1,5 @@
+import { FormFieldAppearance } from "../../services/style.service";
+
 export interface RvnInputInput {
     label: string;
     placeholder?: string;
@@ -5,5 +7,6 @@ export interface RvnInputInput {
     required?: boolean,
     hint?: string,
     requiredErrorMessage?: string,
-    styleVersion?: "v1" | "v2"
+    styleVersion?: "v1" | "v2",
+    appearance?: FormFieldAppearance;
 }

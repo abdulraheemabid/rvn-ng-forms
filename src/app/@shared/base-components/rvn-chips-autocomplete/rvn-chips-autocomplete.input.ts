@@ -1,4 +1,5 @@
 import { KeyValue } from "@angular/common";
+import { FormFieldAppearance } from "../../services/style.service";
 
 export interface RvnChipsAutocompleteInput {
     label: string;
@@ -8,4 +9,5 @@ export interface RvnChipsAutocompleteInput {
     requiredErrorMessage?: string,
     styleVersion?: "v1" | "v2",
     autoCompleteOption: KeyValue<any, any>[];
+    appearance?: FormFieldAppearance;
 }

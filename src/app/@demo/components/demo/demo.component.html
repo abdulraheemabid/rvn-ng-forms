@@ -65,7 +65,8 @@
             <div class="sub-container">
                 <h2>Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary', type: 'secondary'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary', type: 'secondary'}">Button
+                    </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'secondary'}">
                         Button
                     </rvn-button>
@@ -120,7 +121,8 @@
             <div class="sub-container">
                 <h2>Icon-Text-Parimary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
+                    <rvn-button (onClick)="onClick()"
+                        [params]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -143,7 +145,8 @@
             <div class="sub-container">
                 <h2>Icon-Text-Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
+                    <rvn-button (onClick)="onClick()"
+                        [params]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -166,7 +169,8 @@
             <div class="sub-container">
                 <h2>FAB</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'fab'}"></rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'fab'}">
+                    </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'fab'}">
@@ -201,29 +205,92 @@
     <!-- CARD -->
 
     <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'CARD'}">
-       
-            <div class="sub-container" content>
-                <rvn-card
-                    [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
 
-                    <rvn-button headerAction (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
-                    </rvn-button>
+        <div class="sub-container" content>
+            <rvn-card
+                [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
 
+                <rvn-button headerAction (onClick)="onClick()"
+                    [params]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
+                </rvn-button>
+
+                <div content>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
+                        hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
+                        printertook agalleyof type and scrambled it to make a type specimen book. It has
+                        survived not only fivecenturies,but also the leap into electronic typesetting,
+                        remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
+                        publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
+                </div>
+                <div footer>
+                    <rvn-button style="margin-right: 10px;" [params]="{color: 'primary'}">Button</rvn-button>
+                    <rvn-button [params]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
+                </div>
+            </rvn-card>
+        </div>
+
+    </rvn-card>
+
+    <!-- MENU -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'MENU'}">
+
+        <div class="sub-container" style="display: flex; justify-content: space-evenly;" content>
+            <rvn-menu style="margin-bottom: 100px;">
+                <rvn-button button>Button</rvn-button>
+                <div content>
+                    <ol>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ol>
+                </div>
+            </rvn-menu>
+
+            <rvn-menu style="margin-bottom: 100px;">
+                <rvn-button button [params]="{type: 'icon', icon: 'more_vert'}">Button</rvn-button>
+                <div content>
+                    ANY CUSTOM CONTENT
+                    <br />
+                    YOU LIKE
+                </div>
+            </rvn-menu>
+
+            <rvn-menu style="margin-bottom: 100px;">
+                <div button
+                    style="height:50px;width:50px;background-color:#bbb;border-radius:50%;display:flex;cursor:pointer;justify-content:center;align-items:center;">
+                    M
+                </div>
+                <div content style="display: flex; flex-direction: column;">
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 1</rvn-button>
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 2</rvn-button>
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 3</rvn-button>
+                </div>
+            </rvn-menu>
+        </div>
+
+    </rvn-card>
+
+    <!-- ACCORDION -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'ACCORDION'}">
+
+        <div class="sub-container" content>
+            <rvn-accordion>
+                <rvn-accordion-panel [params]="{hasActionContent: true, expanded: true}">
+                    <span title>My Title</span>
                     <div content>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
-                            hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
-                            printertook agalleyof type and scrambled it to make a type specimen book. It has
-                            survived not only fivecenturies,but also the leap into electronic typesetting,
-                            remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
-                            publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
                     </div>
-                    <div footer>
-                        <rvn-button style="margin-right: 10px;" [params]="{color: 'primary'}">Button</rvn-button>
-                        <rvn-button [params]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
-                    </div>
-                </rvn-card>
-            </div>
+                    <rvn-button actionContent [params]="{type: 'tertiary', color: 'primary'}">Action Button</rvn-button>
+                </rvn-accordion-panel>
+            </rvn-accordion>
+        </div>
 
     </rvn-card>
 </div>

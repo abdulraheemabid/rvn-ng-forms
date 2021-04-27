@@ -13,6 +13,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
@@ -52,6 +54,7 @@ import { RvnAccordionComponent } from './base-components/rvn-accordion/rvn-accor
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RvnAccordionPanelComponent } from './base-components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
 import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component';
+import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component';
 
 
 
@@ -93,7 +96,8 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
 
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
-    RvnIconComponent
+    RvnIconComponent,
+    RvnMenuComponent
   ],
   imports: [
     CommonModule,
@@ -113,7 +117,7 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     ReactiveFormsModule,
     MatButtonModule,
     MatExpansionModule,
-    MatExpansionModule
+    MatMenuModule
   ],
   exports: [
     RvnInputComponent,
@@ -148,7 +152,8 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
 
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
-    RvnIconComponent
+    RvnIconComponent,
+    RvnMenuComponent
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }

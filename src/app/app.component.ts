@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppService } from './app.service';
+import { RvnStyleService } from './@shared/services/style.service';
+import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private breakpointObserver: BreakpointObserver, private overlayContainer: OverlayContainer, private appService: AppService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private overlayContainer: OverlayContainer, private appService: AppService, private styleService: RvnStyleService) { }
 
   @HostBinding('class') className = '';
   darkClassName = 'app-dark-theme';
@@ -25,8 +27,18 @@ export class AppComponent implements OnInit {
     );
 
   isDarkModeFC = new FormControl(false);
+  fieldAppearanceOption = [{ key: "legacy", value: "Field apperance: legacy" }, { key: "standard", value: "Field apperance: standard" }, { key: "fill", value: "Field apperance: fill" }, { key: "outline", value: "Field apperance: outline" }];
+  fieldAppearanceParams: RvnSelectInput;
+  fieldAppearanceFC = new FormControl("");
 
   ngOnInit() {
+    this.fieldAppearanceParams = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
+
+    this.styleService.getFormFieldStyle$.subscribe(val => {
+      if (this.fieldAppearanceFC.value === "" || val !== this.fieldAppearanceFC?.value?.key)
+        this.fieldAppearanceFC.setValue(this.fieldAppearanceOption.find(o => o.key === val));
+    });
+    this.fieldAppearanceFC.valueChanges.subscribe(val => this.styleService.setFormFieldStyle(val.key));
 
     this.isDarkModeFC.valueChanges.subscribe((darkMode) => {
       this.className = darkMode ? this.darkClassName : '';

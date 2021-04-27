@@ -1,7 +1,7 @@
 <div class="container" [ngClass]="params?.styleVersion">
     <span *ngIf="params?.styleVersion == 'v1'">{{params?.label}}:</span>
 
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" [appearance]="formFieldAppearance | async">
         <mat-label *ngIf="params?.styleVersion == 'v2' && params?.label" class="label">{{params?.label}}</mat-label>
 
         <mat-chip-list #chipList>

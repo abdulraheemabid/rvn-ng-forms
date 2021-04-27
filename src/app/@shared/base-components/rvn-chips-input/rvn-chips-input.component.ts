@@ -1,11 +1,13 @@
 import { KeyValue } from '@angular/common';
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RvnChipsInputInput } from './rvn-chips-input.input';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { isNullOrUndefined } from '../../utils/funtions.util';
+import { RvnStyleService } from '../../services/style.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'rvn-chips-input',
@@ -21,15 +23,23 @@ import { isNullOrUndefined } from '../../utils/funtions.util';
 })
 export class RvnChipsInputComponent extends CustomFormControlValueAccessor implements OnInit {
 
+  constructor(private _injector: Injector, private styleService: RvnStyleService) {
+    super(_injector);
+  }
+
   @Input() params: RvnChipsInputInput;
   selectedOptions: Set<string> = new Set();
+
+  formFieldAppearance: any;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   ngOnInit(): void {
+    if (isNullOrUndefined(this.params)) this.params = { label: null };
     if (isNullOrUndefined(this.params.required)) this.params.required = false;
     if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
     if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
+    this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
   }
 
   add(event: MatChipInputEvent): void {

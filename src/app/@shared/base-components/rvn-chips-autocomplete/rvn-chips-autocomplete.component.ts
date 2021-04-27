@@ -1,12 +1,13 @@
-import { Component, ElementRef, forwardRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnChipsAutocompleteInput } from './rvn-chips-autocomplete.input';
 import { KeyValue } from '@angular/common';
 import { isNullOrUndefined } from '../../utils/funtions.util';
+import { RvnStyleService } from '../../services/style.service';
 
 @Component({
   selector: 'rvn-chips-autocomplete',
@@ -26,13 +27,21 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
   filteredOptions: Observable<KeyValue<any, any>[]>;
   selectedOptions: Set<KeyValue<any, any>> = new Set();
   allOptions: KeyValue<any, any>[];
+  formFieldAppearance: any;
+
+  constructor(private _injector: Injector, private styleService: RvnStyleService) {
+    super(_injector);
+  }
 
   @ViewChild('inputElement') inputElement: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
+    if (isNullOrUndefined(this.params)) this.params = { label: null, autoCompleteOption: null };
     if (isNullOrUndefined(this.params.required)) this.params.required = false;
     if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
     if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
+
+    this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
 
     this.allOptions = [...this.params.autoCompleteOption];
 

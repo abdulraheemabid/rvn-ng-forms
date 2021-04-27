@@ -1,8 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
 
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
         <mat-toolbar>
             <h1> Project Raven</h1>
@@ -19,14 +18,28 @@
 
 
     <mat-sidenav-content>
-        <mat-toolbar class="topBar" color="primary">
-            <rvn-button class="toggle-btn" (onClick)="drawer.toggle()" [params]="{'icon': 'menu', type: 'icon'}">
-            </rvn-button>
+        <mat-toolbar class="top-bar" color="primary">
+            <span class="top-bar-content">
+                <span class="page-heading">
+                    <rvn-button class="toggle-btn" (onClick)="drawer.toggle()"
+                        [params]="{'icon': 'menu', type: 'icon'}">
+                    </rvn-button>
 
-            <h1>{{toolBarHeading}}</h1>
+                    <h1>{{toolBarHeading}}</h1>
+                </span>
 
-            <span class="action text-body">
-                <rvn-toggle [params]="{label: 'Dark Mode'}" [formControl]="isDarkModeFC"></rvn-toggle>
+                <rvn-menu>
+                    <rvn-button button [params]="{type: 'icon', icon:'settings'}"></rvn-button>
+                    <ng-container content>
+                        <div class="menu-items foreground-color">
+                            <rvn-toggle (click)="$event.stopPropagation()" [params]="{label: 'Dark Mode'}"
+                                [formControl]="isDarkModeFC" class="dark-toggle">
+                            </rvn-toggle>
+                            <rvn-select (click)="$event.stopPropagation()" [params]="fieldAppearanceParams"
+                                [formControl]="fieldAppearanceFC"></rvn-select>
+                        </div>
+                    </ng-container>
+                </rvn-menu>
             </span>
         </mat-toolbar>
 

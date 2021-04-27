@@ -1,4 +1,5 @@
 import { KeyValue } from "@angular/common";
+import { FormFieldAppearance } from "../../services/style.service";
 
 export interface RvnSelectInput {
     label: string;
@@ -7,5 +8,6 @@ export interface RvnSelectInput {
     hint?: string;
     requiredErrorMessage?: string;
     selectOptions: KeyValue<any, any>[];
-    styleVersion?: "v1" | "v2"
+    styleVersion?: "v1" | "v2";
+    appearance?: FormFieldAppearance;
 }

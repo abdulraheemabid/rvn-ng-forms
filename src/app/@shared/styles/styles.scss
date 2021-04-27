@@ -42,11 +42,11 @@ body {
     @extend .mat-display-4;
 }
 
-.text-body{
+.text-body {
     @extend .mat-body;
 }
 
-.text-body2{
+.text-body2 {
     @extend .mat-body-2;
 }
 
@@ -72,6 +72,10 @@ body {
     color: $light-grey !important;
 }
 
+.foreground-color {
+    color: $light-foreground !important;
+}
+
 .primary-bg {
     background-color: $light-primary !important;
 }
@@ -92,7 +96,7 @@ body {
     background-color: $light-grey !important;
 }
 
-.background-bg{
+.background-bg {
     background-color: $light-background !important;
 }
 
@@ -119,8 +123,12 @@ body {
         color: $dark-grey !important;
     }
 
+    .foreground-color {
+        color: $dark-foreground !important;
+    }
+
     .primary-bg {
-        background-color: $dark-primary !important; 
+        background-color: $dark-primary !important;
     }
 
     .accent-bg {
@@ -139,7 +147,7 @@ body {
         background-color: $dark-grey !important;
     }
 
-    .background-bg{
+    .background-bg {
         background-color: $dark-background !important;
     }
 }

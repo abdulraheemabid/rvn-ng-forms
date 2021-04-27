@@ -3,7 +3,7 @@
 
 .container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 
     // setting these because applying mat-form-field-infix to container so that it takes same height
