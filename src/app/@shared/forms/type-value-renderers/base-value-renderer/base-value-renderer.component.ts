@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { DynamicComponentService } from 'src/app/@shared/services/dynamic-component/dynamic-component.service';
 import { IFormField, UIControlEnum } from '../../types';
 
@@ -14,7 +14,7 @@ export class BaseValueRendererComponent {
     public fb: FormBuilder) { }
 
   @ViewChild('ctrlAnchorPoint', { read: ViewContainerRef, static: true }) ctrlAnchorPoint: ViewContainerRef;
-  @Input() recordFG: FormGroup;
+  @Input() valueFC: FormControl;
   @Input() UIControl: UIControlEnum;
   @Input() fieldDefinition: IFormField;
   UIControlEnum = UIControlEnum;

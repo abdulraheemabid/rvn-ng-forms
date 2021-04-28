@@ -10,7 +10,6 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class DateValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  fc: FormControl;
   params: any;
 
   ngOnInit(): void {
@@ -28,9 +27,6 @@ export class DateValueRendererComponent extends BaseValueRendererComponent imple
         this.params.placeholder = "Pick a date"
         break;
     }
-
-    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
-
 
   }
 }

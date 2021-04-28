@@ -10,8 +10,6 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class SingleselectValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-
-  fc: FormControl;
   params: any;
 
   ngOnInit(): void {
@@ -30,9 +28,6 @@ export class SingleselectValueRendererComponent extends BaseValueRendererCompone
         this.params.radioOptions = this.fieldDefinition.arrayValues;
         break;
     }
-
-    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
-
 
   }
 

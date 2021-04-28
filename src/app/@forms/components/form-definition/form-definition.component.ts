@@ -67,6 +67,7 @@ export class FormDefinitionComponent implements OnInit {
 
   initNewFormGroup() {
     this.formGrp = this.fb.group({
+      attributes: [{}],
       name: ['', [Validators.required, Validators.minLength(3)]],
       fields: this.fb.array([])
     });
@@ -86,7 +87,6 @@ export class FormDefinitionComponent implements OnInit {
 
     this.formGrp.valueChanges.subscribe(val => {
       this.formDefinitionUpdate.emit(this.formGrp);
-      console.log(this.formGrp);
     });
   }
 
@@ -119,15 +119,8 @@ export class FormDefinitionComponent implements OnInit {
       });
 
       if (typeof fieldDef.arrayValues !== "undefined") fieldGrp.addControl("arrayValues", this.fb.control(fieldDef.arrayValues));
-      if (typeof fieldDef.attributes !== "undefined") fieldGrp.addControl("attributes", this.fb.group({}));
-      if (typeof fieldDef?.attributes?.position !== "undefined") {
-        let attr = fieldGrp.get("attributes") as FormGroup;
-        attr.addControl("position", this.fb.control(fieldDef.attributes.position));
-      };
-      if (typeof fieldDef?.attributes?.displayAs !== "undefined") {
-        let attr = fieldGrp.get("attributes") as FormGroup;
-        attr.addControl("displayAs", this.fb.control(fieldDef.attributes.displayAs));
-      };
+      if (typeof fieldDef?.attributes?.position !== "undefined") fieldGrp.get("attributes").get("position").setValue(fieldDef.attributes.position);
+      if (typeof fieldDef?.attributes?.displayAs !== "undefined") (fieldGrp.get("attributes") as FormGroup).addControl("displayAs", this.fb.control(fieldDef.attributes.displayAs));
 
       fields.push(fieldGrp);
     });

@@ -36,6 +36,7 @@ export class FormScreenComponent implements OnInit {
           this.appService.setToolBarHeading("Create New Form");
         else {
           this.appService.setToolBarHeading("Edit Form");
+          //TODO: temp, get this from api
           this.formDefinition = {
             "formId": 1,
             "name": "Form name", "fields": [
@@ -56,10 +57,9 @@ export class FormScreenComponent implements OnInit {
 
   getTransformedValueFromFG(formGroup: FormGroup) {
     let raw = formGroup.getRawValue();
-    raw.fields.forEach(f => f.type = f.type.key);
 
     //TODO: doing this just for preview. on actual rendering, we will already have id
-    raw.fields.forEach(f => f.id = f.id ? f.id : f.attributes.position);
+    //raw.fields.forEach(f => f.id = f.id ? f.id : f.attributes.position);
 
     return raw;
   }

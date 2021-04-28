@@ -10,7 +10,6 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class MultiselectValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  fc: FormControl;
   fg: FormGroup;
   params: any;
 
@@ -29,7 +28,7 @@ export class MultiselectValueRendererComponent extends BaseValueRendererComponen
         //checkbox needs formGroup instead of FC  
         this.fg = this.fb.group({});
         this.fg.valueChanges.subscribe(v => {
-          this.fc.setValue(this.fg.get("checkboxArray").value);
+          this.valueFC.setValue(this.fg.get("checkboxArray").value);
         })
 
         break;
@@ -38,9 +37,6 @@ export class MultiselectValueRendererComponent extends BaseValueRendererComponen
         this.params.autoCompleteOption = this.fieldDefinition.arrayValues;
         break;
     }
-
-    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
-
 
   }
 

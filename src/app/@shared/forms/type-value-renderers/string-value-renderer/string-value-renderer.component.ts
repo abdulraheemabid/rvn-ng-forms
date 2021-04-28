@@ -11,7 +11,6 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 export class StringValueRendererComponent extends BaseValueRendererComponent {
 
   params: RvnInputInput;
-  fc: FormControl;
 
   ngOnInit(): void {
     super.ngOnInit();
@@ -22,8 +21,6 @@ export class StringValueRendererComponent extends BaseValueRendererComponent {
       required:  this.fieldDefinition.required,
       type: 'text'
     }
-
-    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
   }
 
 }

@@ -13,7 +13,6 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class BoolValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  fc: FormControl;
   params: any;
 
   ngOnInit(): void {
@@ -38,8 +37,6 @@ export class BoolValueRendererComponent extends BaseValueRendererComponent imple
         ]
         break;
     }
-
-    this.fc = this.recordFG.get(this.fieldDefinition.id.toString()) as FormControl;
 
   }
 }

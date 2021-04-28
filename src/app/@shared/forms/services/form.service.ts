@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicComponentService } from '../../services/dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../utils/funtions.util';
@@ -27,7 +27,7 @@ export class RvnFormService {
 
   }
 
-  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef, recordFG: FormGroup): Observable<boolean> {
+  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef, valueFC: FormControl): Observable<boolean> {
 
     let typeMeta = this.typeMetaService.getFieldTypeMetaData(field.type);
     let rendererConfig;
@@ -39,17 +39,17 @@ export class RvnFormService {
 
     componentToRender = rendererConfig.renderer;
 
-    const input = [{ key: "UIControl", value: rendererConfig.UIControl }, { key: "recordFG", value: recordFG }, , { key: "fieldDefinition", value: field }];
+    const input = [{ key: "UIControl", value: rendererConfig.UIControl }, { key: "valueFC", value: valueFC }, , { key: "fieldDefinition", value: field }];
 
     return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, input);
 
   }
 
-  generateRecordFormGroup(formDefinition: IForm) {
+  generateRecordFormGroup(formDefinition: IForm, keyForFieldControlId: string = "id") {
     let recordFg = this.fb.group({});
     formDefinition.fields.forEach(f => {
       const validators = f.required ? [Validators.required] : [];
-      recordFg.addControl(f.id.toString(), this.fb.control(null, validators));
+      recordFg.addControl(f[keyForFieldControlId].toString(), this.fb.control(null, validators));
     });
     return recordFg;
   }

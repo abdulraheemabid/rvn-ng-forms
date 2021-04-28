@@ -2,11 +2,11 @@
     <ng-container [ngSwitch]="UIControl">
 
         <ng-container *ngSwitchCase="UIControlEnum.INPUT">
-            <rvn-input [params]="params" [formControl]="fc"></rvn-input>
+            <rvn-input [params]="params" [formControl]="valueFC"></rvn-input>
         </ng-container>
 
         <ng-container *ngSwitchCase="UIControlEnum.DATEPICKER">
-            <rvn-datepicker [params]="params" [formControl]="fc"></rvn-datepicker>
+            <rvn-datepicker [params]="params" [formControl]="valueFC"></rvn-datepicker>
         </ng-container>
         
     </ng-container>

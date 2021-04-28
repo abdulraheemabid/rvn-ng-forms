@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, QueryList, SimpleChanges, ViewChildren, ViewContainerRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren, ViewContainerRef } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 import { IForm, IFormField } from 'src/app/@shared/forms/types';
 import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
@@ -18,20 +18,23 @@ export class FormRendererComponent implements OnChanges {
   @Input() formDefinition: IForm;
   @Input() mode: "preview" | "add" | "edit" = "preview";
   @ViewChildren("fieldAnchorPoint", { read: ViewContainerRef }) fieldAnchorPoints: QueryList<ViewContainerRef>;
-
   recordFG: FormGroup;
   submitBtnType: any = "primary";
   submitBtnColor: any = "primary";
+  // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
+  keyToUseForFieldControl: "name" | "id" = "id";
 
-  ngOnInit() {
-    if (this.mode === "preview") {
-      this.submitBtnColor = "accent";
-    };
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.mode === "preview") {
+      this.submitBtnColor = "accent";
+      this.keyToUseForFieldControl = "name";
+    };
+
+
     this.formDefinition.fields = this.formDefinition.fields.sort((a, b) => a.attributes.position - b.attributes.position);
-    this.recordFG = this.formService.generateRecordFormGroup(this.formDefinition);
+
+    this.recordFG = this.formService.generateRecordFormGroup(this.formDefinition, this.keyToUseForFieldControl);
     // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
     setTimeout(() => this.formDefinition.fields.forEach(f => this.renderFormValueUI(f)));
   }
@@ -40,7 +43,8 @@ export class FormRendererComponent implements OnChanges {
     if (!isNullOrUndefined(field?.type) && !isNullOrUndefined(field.attributes?.position)) {
 
       const ref = this.fieldAnchorPoints.get(field.attributes.position);
-      this.formService.injectTypeValueRenderer(field, ref, this.recordFG)
+      const fc = field[this.keyToUseForFieldControl.toString()];
+      this.formService.injectTypeValueRenderer(field, ref, this.recordFG.get(fc) as FormControl)
         .subscribe(() => { }, err => { });
 
     }
@@ -48,7 +52,7 @@ export class FormRendererComponent implements OnChanges {
 
   submit() {
     this.utilityService.markNestedFormGroupDirty(this.recordFG);
-    
+
     if (this.recordFG.status !== "VALID") {
       this.snackBarService.showErrorAlert("All entered values are not valid. Please recheck");
     }
