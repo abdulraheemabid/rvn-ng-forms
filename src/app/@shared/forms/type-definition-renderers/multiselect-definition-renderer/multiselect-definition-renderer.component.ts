@@ -14,7 +14,7 @@ export class MultiselectDefinitionRendererComponent extends BaseDefinitionRender
 
   ngOnInit(): void {
     this.displayAsFC = this.createFormControlIfNotExists("displayAs", "", [Validators.required], true);
-    this.arrayValues = this.createFormControlIfNotExists("arrayValues", "");
+    this.arrayValues = this.createFormControlIfNotExists("arrayValues", []);
   }
 
 }

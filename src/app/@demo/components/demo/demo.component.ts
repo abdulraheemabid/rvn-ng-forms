@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { RvnCheckboxInput } from 'src/app/@shared/base-components/rvn-checkbox/rvn-checkbox.input';
 import { RvnChipsAutocompleteInput } from 'src/app/@shared/base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.input';
@@ -7,6 +7,7 @@ import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-inp
 import { RvnRadioInput } from 'src/app/@shared/base-components/rvn-radio/rvn-radio.input';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
+import { SnackBarHorizontalPosition, RvnSnackBarService, SnackBarVerticalPosition, SnackBarInput } from 'src/app/@shared/services/snack-bar/snack-bar.service';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -16,7 +17,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class DemoComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private snackBarService: RvnSnackBarService) { }
 
   ngOnInit() {
     this.appService.setToolBarHeading("Demo");
@@ -30,6 +31,7 @@ export class DemoComponent implements OnInit {
     type: 'text',
     required: true,
     requiredErrorMessage: 'name is required',
+    suffixIcon: 'search'
   }
 
   textFieldInput2: RvnInputInput = {
@@ -125,8 +127,15 @@ export class DemoComponent implements OnInit {
 
   dateFC = new FormControl(null, [Validators.required]);
 
-  onClick() {
-    alert('clicked');
+  openSnackBar(input: SnackBarInput) {
+    return this.snackBarService.showSnackBar(input);
+  }
+
+  onClick(listItem = null) {
+    if (listItem)
+      alert(JSON.stringify(listItem));
+    else
+      alert('clicked');
   }
 
 }

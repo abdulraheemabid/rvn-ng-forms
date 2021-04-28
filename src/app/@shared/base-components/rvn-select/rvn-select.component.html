@@ -2,7 +2,7 @@
 
     <span *ngIf="params?.styleVersion == 'v1'">{{params?.label}}:</span>
 
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" [appearance]="formFieldAppearance | async">
         <mat-label class="label">
             <span *ngIf="params?.styleVersion == 'v2' && params?.label"> {{params?.label}}</span>
             <span *ngIf="params?.styleVersion == 'v1' && params?.placeholder">{{params?.placeholder}}</span>

@@ -1,0 +1,34 @@
+<div class="container">
+    <rvn-button class="button" (click)="createForm()" [params]="newFormButtonParams">Create new form</rvn-button>
+
+    <rvn-input class="search" [params]="searchFormParams" [formControl]="searchFC"></rvn-input>
+
+    <rvn-card class="list" [params]="cardParams">
+        <rvn-list content [params]="listParams">
+            <ng-template #actions let-listItem="listItem">
+                <rvn-button (click)="editForm(listItem)"
+                    [params]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit form'}">
+                </rvn-button>
+                <rvn-button (click)="viewRecords(listItem)"
+                    [params]="{'icon': 'view_list', color: 'accent', type: 'icon', tooltipMessage: 'View Records'}">
+                </rvn-button>
+                <rvn-button [disabled]="true"
+                    [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon', tooltipMessage: 'Analyze Records'}">
+                </rvn-button>
+                <rvn-button (click)="deleteForm(listItem)"
+                    [params]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">
+                </rvn-button>
+            </ng-template>
+        </rvn-list>
+
+        <div content class="list no-records color-warn" *ngIf="filteredForms.length == 0">
+            <span>
+                No forms found
+                <span *ngIf="searchFC.value !== ''"> matching the search criteria !</span>
+                <span *ngIf="searchFC.value === ''"> !</span>
+            </span>
+
+        </div>
+    </rvn-card>
+
+</div>

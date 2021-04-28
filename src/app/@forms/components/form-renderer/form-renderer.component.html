@@ -1,3 +1,18 @@
-<div class="container">
-    {{JSON.stringify(formDefinition, null, 2)}}
+<div class="container" [ngClass]="mode">
+    <h1 class="heading">
+        <ng-container *ngIf="formDefinition.name !== null || formDefinition.name !== ''">
+            {{formDefinition.name}}
+        </ng-container>
+        <span *ngIf="formDefinition.name == null || formDefinition.name == ''" class="color-warn">
+            Form name not set
+        </span>
+    </h1>
+
+    <rvn-button class="submit" (onClick)="submit()" [params]="{type: submitBtnType, color: submitBtnColor}">Submit</rvn-button>
+
+    <div class="form" *ngFor="let field of formDefinition.fields">
+        <ng-template #fieldAnchorPoint></ng-template>
+    </div>
+
+
 </div>

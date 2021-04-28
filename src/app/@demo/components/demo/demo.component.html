@@ -65,7 +65,8 @@
             <div class="sub-container">
                 <h2>Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary', type: 'secondary'}">Button</rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{color: 'primary', type: 'secondary'}">Button
+                    </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{color: 'accent', type: 'secondary'}">
                         Button
                     </rvn-button>
@@ -120,7 +121,8 @@
             <div class="sub-container">
                 <h2>Icon-Text-Parimary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
+                    <rvn-button (onClick)="onClick()"
+                        [params]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -143,7 +145,8 @@
             <div class="sub-container">
                 <h2>Icon-Text-Secondary</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
+                    <rvn-button (onClick)="onClick()"
+                        [params]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
                         Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()"
@@ -166,7 +169,8 @@
             <div class="sub-container">
                 <h2>FAB</h2>
                 <div style="display: flex; justify-content: space-between;">
-                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'fab'}"></rvn-button>
+                    <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'primary', type: 'fab'}">
+                    </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'accent', type: 'fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [params]="{'icon': 'home', color: 'warn', type: 'fab'}">
@@ -201,29 +205,168 @@
     <!-- CARD -->
 
     <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'CARD'}">
-       
-            <div class="sub-container" content>
-                <rvn-card
-                    [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
 
-                    <rvn-button headerAction (onClick)="onClick()" [params]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
-                    </rvn-button>
+        <div class="sub-container" content>
+            <rvn-card
+                [params]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
 
+                <rvn-button headerAction (onClick)="onClick()"
+                    [params]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
+                </rvn-button>
+
+                <div content>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
+                        hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
+                        printertook agalleyof type and scrambled it to make a type specimen book. It has
+                        survived not only fivecenturies,but also the leap into electronic typesetting,
+                        remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
+                        publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
+                </div>
+                <div footer>
+                    <rvn-button style="margin-right: 10px;" [params]="{color: 'primary'}">Button</rvn-button>
+                    <rvn-button [params]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
+                </div>
+            </rvn-card>
+        </div>
+
+    </rvn-card>
+
+    <!-- MENU -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'MENU'}">
+
+        <div class="sub-container" style="display: flex; justify-content: space-evenly;" content>
+            <rvn-menu style="margin-bottom: 100px;">
+                <rvn-button button>Button</rvn-button>
+                <div content>
+                    <ol>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ol>
+                </div>
+            </rvn-menu>
+
+            <rvn-menu style="margin-bottom: 100px;">
+                <rvn-button button [params]="{type: 'icon', icon: 'more_vert'}">Button</rvn-button>
+                <div content>
+                    ANY CUSTOM CONTENT
+                    <br />
+                    YOU LIKE
+                </div>
+            </rvn-menu>
+
+            <rvn-menu style="margin-bottom: 100px;">
+                <div button
+                    style="height:50px;width:50px;background-color:#bbb;border-radius:50%;display:flex;cursor:pointer;justify-content:center;align-items:center;">
+                    M
+                </div>
+                <div content style="display: flex; flex-direction: column;">
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 1</rvn-button>
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 2</rvn-button>
+                    <rvn-button [params]="{'type': 'tertiary'}">Menu 3</rvn-button>
+                </div>
+            </rvn-menu>
+        </div>
+
+    </rvn-card>
+
+    <!-- ACCORDION -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'ACCORDION'}">
+
+        <div class="sub-container" content>
+            <rvn-accordion>
+                <rvn-accordion-panel [params]="{hasActionContent: true, expanded: true}">
+                    <span title>My Title</span>
                     <div content>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
-                            hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
-                            printertook agalleyof type and scrambled it to make a type specimen book. It has
-                            survived not only fivecenturies,but also the leap into electronic typesetting,
-                            remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
-                            Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
-                            publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
                     </div>
-                    <div footer>
-                        <rvn-button style="margin-right: 10px;" [params]="{color: 'primary'}">Button</rvn-button>
-                        <rvn-button [params]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
+                    <rvn-button actionContent [params]="{type: 'tertiary', color: 'primary'}">Action Button</rvn-button>
+                </rvn-accordion-panel>
+            </rvn-accordion>
+        </div>
+
+    </rvn-card>
+
+    <!-- SNACKBAR -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'SNACKBARS'}">
+
+        <div class="sub-container snacks" style="" content>
+            <rvn-button (click)="openSnackBar({message: 'hello'})" [params]="{color: 'primary'}">Message</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})"
+                [params]="{color: 'primary'}">Message & action</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [params]="{color: 'primary'}">1 sec
+                duration</rvn-button>
+            <rvn-button
+                (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})"
+                [params]="{color: 'primary'}">Left Bottom</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})"
+                [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})"
+                [params]="{color: 'primary'}">Custom BG</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'color-white', 'text-bold']})"
+                [params]="{color: 'primary'}">Error</rvn-button>
+        </div>
+
+    </rvn-card>
+
+    <!-- LIST -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'LIST'}">
+
+        <div content>
+
+            <div>
+                <rvn-list
+                    [params]="{list: [{a: 'Products', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions}">
+                </rvn-list>
+
+                <ng-template #actions let-listItem="listItem">
+                    <div>
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        </rvn-button>
                     </div>
-                </rvn-card>
+                </ng-template>
             </div>
+
+            <div style="margin-top: 50px;">
+                <h3>Dense</h3>
+                <rvn-list
+                    [params]="{list: [{a: 'item 1', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions, dense: true}">
+                </rvn-list>
+
+                <ng-template #actions let-listItem="listItem">
+                    <div>
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        </rvn-button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
 
     </rvn-card>
 </div>

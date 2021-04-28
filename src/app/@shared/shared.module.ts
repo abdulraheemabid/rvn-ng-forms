@@ -13,6 +13,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
@@ -35,6 +39,15 @@ import { MultiselectDefinitionRendererComponent } from './forms/type-definition-
 import { SingleselectDefinitionRendererComponent } from './forms/type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
 import { StringDefinitionRendererComponent } from './forms/type-definition-renderers/string-definition-renderer/string-definition-renderer.component';
 
+import { BaseValueRendererComponent } from './forms/type-value-renderers/base-value-renderer/base-value-renderer.component';
+import { BoolValueRendererComponent } from './forms/type-value-renderers/bool-value-renderer/bool-value-renderer.component';
+import { DateValueRendererComponent } from './forms/type-value-renderers/date-value-renderer/date-value-renderer.component';
+import { FloatValueRendererComponent } from './forms/type-value-renderers/float-value-renderer/float-value-renderer.component';
+import { IntValueRendererComponent } from './forms/type-value-renderers/int-value-renderer/int-value-renderer.component';
+import { MultiselectValueRendererComponent } from './forms/type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component';
+import { SingleselectValueRendererComponent } from './forms/type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component';
+import { StringValueRendererComponent } from './forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
+
 import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
 import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
 
@@ -43,6 +56,9 @@ import { RvnAccordionComponent } from './base-components/rvn-accordion/rvn-accor
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RvnAccordionPanelComponent } from './base-components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
 import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component';
+import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component';
+import { MatListModule } from '@angular/material/list';
+import { RvnListComponent } from './base-components/rvn-list/rvn-list.component';
 
 
 
@@ -70,12 +86,24 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
 
+    FloatValueRendererComponent,
+    IntValueRendererComponent,
+    StringValueRendererComponent,
+    DateValueRendererComponent,
+    BoolValueRendererComponent,
+    MultiselectValueRendererComponent,
+    SingleselectValueRendererComponent,
+    BaseValueRendererComponent,
+
     ChooseUiControlComponent,
     ArrayValuesComponent,
 
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
-    RvnIconComponent
+    RvnIconComponent,
+    RvnMenuComponent,
+    RvnListComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -95,7 +123,10 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     ReactiveFormsModule,
     MatButtonModule,
     MatExpansionModule,
-    MatExpansionModule
+    MatMenuModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatTooltipModule
   ],
   exports: [
     RvnInputComponent,
@@ -119,12 +150,23 @@ import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component'
     SingleselectDefinitionRendererComponent,
     BaseDefinitionRendererComponent,
 
+    FloatValueRendererComponent,
+    IntValueRendererComponent,
+    StringValueRendererComponent,
+    DateValueRendererComponent,
+    BoolValueRendererComponent,
+    MultiselectValueRendererComponent,
+    SingleselectValueRendererComponent,
+    BaseValueRendererComponent,
+
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
-    RvnIconComponent
+    RvnIconComponent,
+    RvnMenuComponent,
+    RvnListComponent,
   ],
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   ]
 })
 export class SharedModule { }

@@ -3,7 +3,7 @@
 
 .container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 
     // setting these because applying mat-form-field-infix to container so that it takes same height
@@ -15,7 +15,7 @@
     .radio-group {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
     }
 
@@ -24,7 +24,7 @@
             width: $form-field-width;
         }
         .radio-btn {
-            padding: 0px $space-xs;
+            padding-right: $space-s;
         }
     }
 
@@ -34,7 +34,7 @@
             flex-direction: column;
         }
         .radio-btn {
-            padding: $space-xs 0px;
+            padding: $space-s 0px;
         }
     }
 
@@ -43,7 +43,7 @@
             flex-direction: column;
         }
         .radio-btn {
-            padding: $space-xs 0px;
+            padding: $space-s 0px;
         }
     }
 }

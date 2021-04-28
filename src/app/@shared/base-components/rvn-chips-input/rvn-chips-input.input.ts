@@ -1,4 +1,4 @@
-import { KeyValue } from "@angular/common";
+import { FormFieldAppearance } from "../../services/style/style.service";
 
 export interface RvnChipsInputInput {
     label: string;
@@ -6,5 +6,6 @@ export interface RvnChipsInputInput {
     required?: boolean,
     hint?: string,
     requiredErrorMessage?: string,
-    styleVersion?: "v1" | "v2"
+    styleVersion?: "v1" | "v2",
+    appearance?: FormFieldAppearance;
 }

@@ -3,7 +3,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { markNestedFormGroupDirty } from 'src/app/@shared/utils/reactive-form.util';
+import { IForm } from 'src/app/@shared/forms/types';
+import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
+import { CreateOrEdit } from 'src/app/@shared/utils/types';
 
 @Component({
   selector: 'form-definition',
@@ -12,10 +14,11 @@ import { markNestedFormGroupDirty } from 'src/app/@shared/utils/reactive-form.ut
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private el: ElementRef,) { }
+  constructor(private fb: FormBuilder, private privateformUitilityService: ReactiveFormUtilityService) { }
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 
+  @Input() form: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
   @Output() formDefinitionUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
@@ -30,7 +33,6 @@ export class FormDefinitionComponent implements OnInit {
   expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
   deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };
 
-
   get fieldFormGroupTemplate() {
     return {
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -38,8 +40,7 @@ export class FormDefinitionComponent implements OnInit {
       required: [false],
       attributes: this.fb.group({
         _expanded: [true],
-        position: [null],
-        displayAs: [null]
+        position: [null]
       })
     };
   };
@@ -53,10 +54,9 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.el.nativeElement.closest('topBar'));
     this.initFormCtrl();
-    this.initDone = true;
     this.handleMarkingAsDirty();
+    this.initDone = true;
   }
 
   initFormCtrl() {
@@ -79,21 +79,21 @@ export class FormDefinitionComponent implements OnInit {
       this.markFGAsDirtySubject$.subscribe(_ => {
 
         // Mark all as dirty
-        markNestedFormGroupDirty(this.formGrp);
+        this.privateformUitilityService.markNestedFormGroupDirty(this.formGrp);
 
         // expand all INVALID fields
         this.fieldGroups.controls
           .filter(c => c.status === "INVALID")
           .forEach(c => c.get("attributes").get("_expanded").setValue(true));
 
-          this.validated = true;
+        this.validated = true;
       });
   }
 
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
     this.fieldGroups.push(fg);
-    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length);
+    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length - 1);
     this.scrollToBottomOfFieldsList();
   }
 

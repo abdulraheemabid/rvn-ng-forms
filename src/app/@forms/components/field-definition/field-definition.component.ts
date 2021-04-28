@@ -1,10 +1,11 @@
 import { KeyValue } from '@angular/common';
-import { Component, ComponentFactoryResolver, ComponentRef, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
+import { TypeMetaService } from 'src/app/@shared/forms/services/type-meta.service';
 
 @Component({
   selector: 'field-definition',
@@ -13,12 +14,11 @@ import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 })
 export class FieldDefinitionComponent implements OnInit {
 
-  constructor(private sharedFormService: RvnFormService,
-    private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private formService: RvnFormService, private typeMetaService: TypeMetaService) { }
 
   //fieldFG should contain type, name and required formControls already
   @Input() fieldFG: any;
-  @ViewChild("rendererAnchorPoint", { read: ViewContainerRef }) rendererAnchorPoint: any;
+  @ViewChild("rendererAnchorPoint", { read: ViewContainerRef }) rendererAnchorPoint: ViewContainerRef;
   fieldNameCompParams: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
   fieldTypeCompParams: RvnSelectInput = { label: 'Type', placeholder: 'Select', required: true, selectOptions: null };
   fieldRequiredCompParams: RvnToggleInput = { label: "Required", required: false };
@@ -35,7 +35,7 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   initUICompParams() {
-    this.fieldTypeCompParams.selectOptions = this.sharedFormService.getFieldTypes();
+    this.fieldTypeCompParams.selectOptions = this.typeMetaService.getFieldTypes();
   }
 
   onFieldTypeChange(fieldTypeCtrl: FormControl) {
@@ -45,14 +45,7 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   loadTypeRenderer(type: KeyValue<string, string>) {
-    const componentToRender = this.sharedFormService.getFieldTypeMetaData(type)?.definitionRenderer;
-    if (componentToRender) {
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentToRender);
-      this.rendererAnchorPoint.clear();
-      const componentRef = this.rendererAnchorPoint.createComponent(componentFactory);
-      componentRef.instance.fieldFG = this.fieldFG;
-      componentRef.instance.selectedType = type.key;
-    }
+    this.formService.injectTypeDefinitionRenderer(type, this.rendererAnchorPoint, this.fieldFG).subscribe();
   }
 
 }

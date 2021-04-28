@@ -42,34 +42,38 @@ body {
     @extend .mat-display-4;
 }
 
-.text-body{
+.text-body {
     @extend .mat-body;
 }
 
-.text-body2{
+.text-body2 {
     @extend .mat-body-2;
 }
 
 // Colors
 
-.primary-color {
+.color-primary {
     color: $light-primary !important;
 }
 
-.accent-color {
+.color-accent {
     color: $light-accent !important;
 }
 
-.warn-color {
+.color-warn {
     color: $light-warn !important;
 }
 
-.white-color {
+.color-white {
     color: $light-white !important;
 }
 
-.grey-color {
+.color-grey {
     color: $light-grey !important;
+}
+
+.color-foreground {
+    color: $light-foreground !important;
 }
 
 .primary-bg {
@@ -92,35 +96,39 @@ body {
     background-color: $light-grey !important;
 }
 
-.background-bg{
+.background-bg {
     background-color: $light-background !important;
 }
 
 // Dark theme specific
 
 .app-dark-theme {
-    .primary-color {
+    .color-primary {
         color: $dark-primary !important;
     }
 
-    .accent-color {
+    .color-accent {
         color: $dark-accent !important;
     }
 
-    .warn-color {
+    .color-warn {
         color: $dark-warn !important;
     }
 
-    .white-color {
+    .color-white {
         color: $dark-white !important;
     }
 
-    .grey-color {
+    .color-grey {
         color: $dark-grey !important;
     }
 
+    .color-foreground {
+        color: $dark-foreground !important;
+    }
+
     .primary-bg {
-        background-color: $dark-primary !important; 
+        background-color: $dark-primary !important;
     }
 
     .accent-bg {
@@ -139,7 +147,7 @@ body {
         background-color: $dark-grey !important;
     }
 
-    .background-bg{
+    .background-bg {
         background-color: $dark-background !important;
     }
 }

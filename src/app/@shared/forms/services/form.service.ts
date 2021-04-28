@@ -1,33 +1,57 @@
 import { KeyValue } from '@angular/common';
-import { Injectable } from '@angular/core';
-import { fieldTypeMetaData } from '../field-type-metadata';
-import { IFieldTypeMeta } from '../types';
+import { Injectable, ViewContainerRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { DynamicComponentService } from '../../services/dynamic-component/dynamic-component.service';
+import { isNullOrUndefined } from '../../utils/funtions.util';
+import { IForm, IFormField } from '../types';
+import { TypeMetaService } from './type-meta.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RvnFormService {
 
-  constructor() { }
+  constructor(private typeMetaService: TypeMetaService, private dynamicComponentService: DynamicComponentService, private fb: FormBuilder) { }
 
-  getFieldTypes(): KeyValue<string, string>[] {
-    let result = [];
+  injectTypeDefinitionRenderer(type: KeyValue<string, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<boolean> {
 
-    fieldTypeMetaData.forEach((value: IFieldTypeMeta, key: string) => {
-      result.push(
-        {
-          key,
-          value: value.typeDisplayName
-        })
-    });
+    const componentToRender = this.typeMetaService.getFieldTypeMetaData(type)?.definitionRenderer;
 
-    return result;
+    if (!componentToRender) return new Observable<boolean>(sub => sub.error("cant find componentToRender"));
+
+    const inputs: KeyValue<string, any>[] = [{ key: "fieldFG", value: fieldFormGroup }, { key: "selectedType", value: type.key }]
+
+    return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, inputs);
+
   }
 
-  getFieldTypeMetaData(field: string | KeyValue<string, string>): IFieldTypeMeta {
-    if (typeof field !== "string") field = field.key;
-    field = field.toUpperCase();
-    return fieldTypeMetaData.get(field);
+  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef, recordFG: FormGroup): Observable<boolean> {
+
+    let typeMeta = this.typeMetaService.getFieldTypeMetaData(field.type);
+    let rendererConfig;
+    let componentToRender;
+
+    if (typeMeta.valueRenderers.length === 1) rendererConfig = typeMeta.valueRenderers[0];
+    else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.valueRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
+    else return new Observable<boolean>(sub => sub.error("field.attributes?.displayAs?.key not set"));
+
+    componentToRender = rendererConfig.renderer;
+
+    const input = [{ key: "UIControl", value: rendererConfig.UIControl }, { key: "recordFG", value: recordFG }, , { key: "fieldDefinition", value: field }];
+
+    return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, input);
+
+  }
+
+  generateRecordFormGroup(formDefinition: IForm) {
+    let recordFg = this.fb.group({});
+    formDefinition.fields.forEach(f => {
+      const validators = f.required ? [Validators.required] : [];
+      recordFg.addControl(f.id.toString(), this.fb.control(null, validators));
+    });
+    return recordFg;
   }
 
 }

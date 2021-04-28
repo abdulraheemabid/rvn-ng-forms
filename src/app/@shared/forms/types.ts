@@ -1,8 +1,10 @@
+import { KeyValue } from "@angular/common";
+
 export interface IForm {
     formId?: number;
     name: string;
     fields: IFormField[];
-    attributes?: JSON;
+    attributes?: any;
 }
 
 export interface IFormField {
@@ -12,7 +14,10 @@ export interface IFormField {
     required: boolean;
     validationRegex?: string;
     arrayValues?: string[];
-    attributes?: JSON;
+    attributes?: {
+        position: number;
+        displayAs: KeyValue<string, string>;
+    };
     markDeleted?: boolean;
 }
 
@@ -20,13 +25,13 @@ export interface IRecord {
     formId: number;
     id?: number;
     entry: any;
-    attributes?: JSON;
+    attributes?: any;
 }
 
 export interface IFieldTypeMeta {
     typeDisplayName: string;
     definitionRenderer: any;
-    valueRenderer: {
+    valueRenderers: {
         UIControl: UIControlEnum,
         renderer: any
     }[];
@@ -45,7 +50,6 @@ export enum FieldTypeEnum {
 export enum UIControlEnum {
     SELECT = "SELECT",
     INPUT = "INPUT",
-    NUMBERINPUT = "NUMBERINPUT",
     CHECKBOX = "CHECKBOX",
     RADIO = "RADIO",
     DATEPICKER = "DATEPICKER",

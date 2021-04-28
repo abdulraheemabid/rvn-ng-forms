@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FieldDefinitionComponent } from './components/field-definition/field-definition.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormRendererComponent } from './components/form-renderer/form-renderer.component';
+import { FormListScreenComponent } from './components/form-list-screen/form-list-screen.component';
 
 
 @NgModule({
@@ -15,14 +16,15 @@ import { FormRendererComponent } from './components/form-renderer/form-renderer.
     FormScreenComponent,
     FormDefinitionComponent,
     FieldDefinitionComponent,
-    FormRendererComponent
+    FormRendererComponent,
+    FormListScreenComponent
   ],
   imports: [
     CommonModule,
     FormsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
   ]
 })
 export class FormsModule { }

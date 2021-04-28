@@ -1,7 +1,7 @@
 @import "~@angular/material/theming";
 
 // Define the default theme (same as the example above).
-$app-light-primary-palette: mat-palette($mat-deep-purple);
+$app-light-primary-palette: mat-palette($mat-indigo);
 $app-light-accent-palette: mat-palette($mat-amber, A200, A100, A400);
 $app-light-warn-palette: mat-palette($mat-red, A200, A100, A400);
 $app-light-theme: mat-light-theme(
@@ -15,8 +15,8 @@ $app-light-theme: mat-light-theme(
 );
 
 // Define an alternate dark theme.
-$app-dark-primary-palette: mat-palette($mat-purple);
-$app-dark-accent-palette: mat-palette($mat-green, A200, A100, A400);
+$app-dark-primary-palette: mat-palette($mat-indigo);
+$app-dark-accent-palette: mat-palette($mat-amber, A200, A100, A400);
 $app-dark-warn-palette: mat-palette($mat-red, A200, A100, A400);
 $app-dark-theme: mat-dark-theme(
   (
@@ -55,3 +55,6 @@ $dark-white: $light-primary-text;
 
 $light-background:  map-get($mat-light-theme-background, background);
 $dark-background: map-get($mat-dark-theme-background, background);
+
+$light-foreground:  map-get($mat-light-theme-foreground, text);
+$dark-foreground: map-get($mat-dark-theme-foreground, text);
