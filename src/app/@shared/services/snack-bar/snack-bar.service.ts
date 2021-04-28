@@ -24,7 +24,7 @@ export class RvnSnackBarService {
   }
 
   showErrorAlert(message: string) {
-    this.showSnackBar({ message, panelClass: ['warn-bg', 'white-color', 'text-bold'] });
+    this.showSnackBar({ message, panelClass: ['warn-bg', 'color-white', 'text-bold'] });
   }
 
 

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="mode">
     <div class="definition">
         <form-definition content [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>

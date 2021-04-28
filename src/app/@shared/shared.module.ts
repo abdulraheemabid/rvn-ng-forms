@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -102,6 +103,7 @@ import { RvnListComponent } from './base-components/rvn-list/rvn-list.component'
     RvnIconComponent,
     RvnMenuComponent,
     RvnListComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -123,7 +125,8 @@ import { RvnListComponent } from './base-components/rvn-list/rvn-list.component'
     MatExpansionModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   exports: [
     RvnInputComponent,
@@ -160,7 +163,7 @@ import { RvnListComponent } from './base-components/rvn-list/rvn-list.component'
     RvnAccordionPanelComponent,
     RvnIconComponent,
     RvnMenuComponent,
-    RvnListComponent
+    RvnListComponent,
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

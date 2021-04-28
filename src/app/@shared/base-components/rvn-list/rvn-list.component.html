@@ -9,21 +9,19 @@
 </div>
 
 <ng-template #content>
-    <mat-list-item *ngFor="let item of params.list">
+    <mat-list-item *ngFor="let listItem of params.list">
 
         <mat-icon matListIcon *ngIf="params.icon">{{params.icon}}</mat-icon>
 
-        <span matLine class="text-bold"> {{item[params.lineOneKey]}} </span>
+        <span matLine class="text-bold"> {{listItem[params.lineOneKey]}} </span>
 
         <span matLine class="text-caption" *ngIf="params.lineTwoKey">
-            {{item[params.lineTwoKey]}}
+            {{listItem[params.lineTwoKey]}}
         </span>
 
         <span *ngIf="params.actionTemplateRef">
-            <ng-container *ngTemplateOutlet="params.actionTemplateRef"></ng-container>
+            <ng-container *ngTemplateOutlet="params.actionTemplateRef; context: {listItem: listItem}"></ng-container>
         </span>
-
-        <span>action</span>
 
         <rvn-divider></rvn-divider>
 

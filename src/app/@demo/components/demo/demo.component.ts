@@ -31,6 +31,7 @@ export class DemoComponent implements OnInit {
     type: 'text',
     required: true,
     requiredErrorMessage: 'name is required',
+    suffixIcon: 'search'
   }
 
   textFieldInput2: RvnInputInput = {
@@ -130,8 +131,11 @@ export class DemoComponent implements OnInit {
     return this.snackBarService.showSnackBar(input);
   }
 
-  onClick() {
-    alert('clicked');
+  onClick(listItem = null) {
+    if (listItem)
+      alert(JSON.stringify(listItem));
+    else
+      alert('clicked');
   }
 
 }

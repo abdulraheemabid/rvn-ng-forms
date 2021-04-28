@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -6,11 +7,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class AppService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   toolBarHeading = new BehaviorSubject<string>("");
 
   setToolBarHeading(val: string) {
     setTimeout(() => this.toolBarHeading.next(val));
+  }
+
+  navigate(path: string, params?: any) {
+    this.router.navigateByUrl(path, params);
   }
 }

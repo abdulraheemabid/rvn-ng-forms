@@ -3,7 +3,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
+import { IForm } from 'src/app/@shared/forms/types';
 import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
+import { CreateOrEdit } from 'src/app/@shared/utils/types';
 
 @Component({
   selector: 'form-definition',
@@ -16,6 +18,7 @@ export class FormDefinitionComponent implements OnInit {
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 
+  @Input() form: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
   @Output() formDefinitionUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
@@ -90,7 +93,7 @@ export class FormDefinitionComponent implements OnInit {
   addField() {
     let fg = this.fb.group(this.fieldFormGroupTemplate);
     this.fieldGroups.push(fg);
-    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length-1);
+    fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length - 1);
     this.scrollToBottomOfFieldsList();
   }
 

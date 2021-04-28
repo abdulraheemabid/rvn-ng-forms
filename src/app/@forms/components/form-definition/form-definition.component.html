@@ -13,7 +13,7 @@
                         Form Name:
                         <span class="text-bold">
                             <span *ngIf="formNameCtrl?.value">{{formNameCtrl.value}}</span>
-                            <span *ngIf="!formNameCtrl?.value" class="warn-color">Not Specified</span>
+                            <span *ngIf="!formNameCtrl?.value" class="color-warn">Not Specified</span>
                         </span>
                     </span>
                 </span>
@@ -52,7 +52,7 @@
                 [params]="{hasActionContent: true, expanded: field.get('attributes')?.get('_expanded').value}"
                 *ngFor="let field of fieldGroups.controls; let i = index; let last = last; let first = first">
 
-                <span title class="title" [ngClass]="{'warn-color': validated && field.status === 'INVALID' && field.dirty}">
+                <span title class="title" [ngClass]="{'color-warn': validated && field.status === 'INVALID' && field.dirty}">
                     <span>
                         Field Position:
                         <span class="text-bold">{{i+1}}</span>

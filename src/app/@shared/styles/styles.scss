@@ -52,27 +52,27 @@ body {
 
 // Colors
 
-.primary-color {
+.color-primary {
     color: $light-primary !important;
 }
 
-.accent-color {
+.color-accent {
     color: $light-accent !important;
 }
 
-.warn-color {
+.color-warn {
     color: $light-warn !important;
 }
 
-.white-color {
+.color-white {
     color: $light-white !important;
 }
 
-.grey-color {
+.color-grey {
     color: $light-grey !important;
 }
 
-.foreground-color {
+.color-foreground {
     color: $light-foreground !important;
 }
 
@@ -103,27 +103,27 @@ body {
 // Dark theme specific
 
 .app-dark-theme {
-    .primary-color {
+    .color-primary {
         color: $dark-primary !important;
     }
 
-    .accent-color {
+    .color-accent {
         color: $dark-accent !important;
     }
 
-    .warn-color {
+    .color-warn {
         color: $dark-warn !important;
     }
 
-    .white-color {
+    .color-white {
         color: $dark-white !important;
     }
 
-    .grey-color {
+    .color-grey {
         color: $dark-grey !important;
     }
 
-    .foreground-color {
+    .color-foreground {
         color: $dark-foreground !important;
     }
 

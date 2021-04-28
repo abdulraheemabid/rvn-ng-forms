@@ -9,4 +9,5 @@ export interface RvnInputInput {
     requiredErrorMessage?: string,
     styleVersion?: "v1" | "v2",
     appearance?: FormFieldAppearance;
+    suffixIcon?: string;
 }

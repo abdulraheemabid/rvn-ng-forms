@@ -311,7 +311,7 @@
                 [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
             <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})"
                 [params]="{color: 'primary'}">Custom BG</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'white-color', 'text-bold']})"
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'color-white', 'text-bold']})"
                 [params]="{color: 'primary'}">Error</rvn-button>
         </div>
 
@@ -328,17 +328,17 @@
                     [params]="{list: [{a: 'Products', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions}">
                 </rvn-list>
 
-                <ng-template #actions>
+                <ng-template #actions let-listItem="listItem">
                     <div>
-                        <rvn-button (onClick)="onClick()"
+                        <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()"
+                        <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
                         </rvn-button>
                     </div>
                 </ng-template>
@@ -350,17 +350,17 @@
                     [params]="{list: [{a: 'item 1', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions, dense: true}">
                 </rvn-list>
 
-                <ng-template #actions>
+                <ng-template #actions let-listItem="listItem">
                     <div>
-                        <rvn-button (onClick)="onClick()"
+                        <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()"
+                        <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
                         </rvn-button>
                     </div>
                 </ng-template>
