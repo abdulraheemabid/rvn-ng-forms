@@ -2,6 +2,8 @@ import { Component, Input, OnChanges, QueryList, SimpleChanges, ViewChildren, Vi
 import { FormGroup } from '@angular/forms';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 import { IForm, IFormField } from 'src/app/@shared/forms/types';
+import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
+import { RvnSnackBarService } from 'src/app/@shared/services/snack-bar/snack-bar.service';
 import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 
 @Component({
@@ -11,7 +13,7 @@ import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 })
 export class FormRendererComponent implements OnChanges {
 
-  constructor(private formService: RvnFormService) { }
+  constructor(private formService: RvnFormService, private snackBarService: RvnSnackBarService, private utilityService: ReactiveFormUtilityService) { }
 
   @Input() formDefinition: IForm;
   @Input() mode: "preview" | "add" | "edit" = "preview";
@@ -45,6 +47,19 @@ export class FormRendererComponent implements OnChanges {
   }
 
   submit() {
+    this.utilityService.markNestedFormGroupDirty(this.recordFG);
+    
+    if (this.recordFG.status !== "VALID") {
+      this.snackBarService.showErrorAlert("All entered values are not valid. Please recheck");
+    }
+
+    if (this.recordFG.status === "VALID") {
+
+      if (this.mode === "preview") {
+        this.snackBarService.showSuccessAlert("Form is valid. This record will be posted to server");
+      }
+
+    }
 
   }
 

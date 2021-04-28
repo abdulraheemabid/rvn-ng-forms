@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { IForm } from 'src/app/@shared/forms/types';
+import { RvnSnackBarService } from 'src/app/@shared/services/snack-bar/snack-bar.service';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class FormScreenComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private snackBarService: RvnSnackBarService) { }
 
   formDefinitionFG: FormGroup;
   formDefinition: IForm;
@@ -24,8 +25,8 @@ export class FormScreenComponent implements OnInit {
 
   onFormDeifitionUpdate(form: FormGroup) {
     this.formDefinitionFG = form;
-    //TODO: if (this.formDefinitionFG.status === "VALID")
-    this.formDefinition = this.getTransformedValueFromFG(form)
+    if (this.formDefinitionFG.status === "VALID")
+      this.formDefinition = this.getTransformedValueFromFG(form)
   }
 
   getTransformedValueFromFG(formGroup: FormGroup) {
@@ -46,6 +47,8 @@ export class FormScreenComponent implements OnInit {
     if (this.formDefinitionFG.status === "VALID") {
       // Save form
       console.log("Saved YAYYYY!!");
+    } else {
+      this.snackBarService.showErrorAlert("Form is not valid. Please recheck");
     }
   }
 

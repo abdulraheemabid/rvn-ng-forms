@@ -127,7 +127,7 @@ export class DemoComponent implements OnInit {
   dateFC = new FormControl(null, [Validators.required]);
 
   openSnackBar(input: SnackBarInput) {
-    return this.snackBarService.openSnackBar(input);
+    return this.snackBarService.showSnackBar(input);
   }
 
   onClick() {

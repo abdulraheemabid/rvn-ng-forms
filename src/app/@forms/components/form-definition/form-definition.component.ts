@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { ReactiveFormUtilityService } from 'src/app/@shared/services/dynamic-component/reactive-form-utility.service';
+import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
 
 @Component({
   selector: 'form-definition',

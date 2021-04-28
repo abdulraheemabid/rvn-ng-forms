@@ -9,7 +9,7 @@ export class RvnSnackBarService {
 
   constructor(private _snackBar: MatSnackBar) { }
 
-  openSnackBar(input: SnackBarInput) {
+  showSnackBar(input: SnackBarInput) {
 
     if (isNullOrUndefined(input)) input = { message: "Alert" };
     if (isNullOrUndefined(input.horizontalPosition)) input.horizontalPosition = "right";
@@ -18,6 +18,16 @@ export class RvnSnackBarService {
 
     return this._snackBar.open(input.message, input.actionMessage, input);
   }
+
+  showSuccessAlert(message: string) {
+    this.showSnackBar({ message });
+  }
+
+  showErrorAlert(message: string) {
+    this.showSnackBar({ message, panelClass: ['warn-bg', 'white-color', 'text-bold'] });
+  }
+
+
 }
 
 export interface SnackBarInput {
