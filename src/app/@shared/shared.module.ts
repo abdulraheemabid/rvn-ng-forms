@@ -14,7 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +56,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { RvnAccordionPanelComponent } from './base-components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
 import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component';
 import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component';
+import { MatListModule } from '@angular/material/list';
+import { RvnListComponent } from './base-components/rvn-list/rvn-list.component';
 
 
 
@@ -99,6 +101,7 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     RvnAccordionPanelComponent,
     RvnIconComponent,
     RvnMenuComponent,
+    RvnListComponent,
   ],
   imports: [
     CommonModule,
@@ -119,7 +122,8 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     MatButtonModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule
   ],
   exports: [
     RvnInputComponent,
@@ -155,7 +159,8 @@ import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component'
     RvnAccordionComponent,
     RvnAccordionPanelComponent,
     RvnIconComponent,
-    RvnMenuComponent
+    RvnMenuComponent,
+    RvnListComponent
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

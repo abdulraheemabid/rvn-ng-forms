@@ -1,0 +1,31 @@
+<div class="container">
+    <mat-list *ngIf="params.dense" dense class="dense">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </mat-list>
+
+    <mat-list *ngIf="!params.dense">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </mat-list>
+</div>
+
+<ng-template #content>
+    <mat-list-item *ngFor="let item of params.list">
+
+        <mat-icon matListIcon *ngIf="params.icon">{{params.icon}}</mat-icon>
+
+        <span matLine class="text-bold"> {{item[params.lineOneKey]}} </span>
+
+        <span matLine class="text-caption" *ngIf="params.lineTwoKey">
+            {{item[params.lineTwoKey]}}
+        </span>
+
+        <span *ngIf="params.actionTemplateRef">
+            <ng-container *ngTemplateOutlet="params.actionTemplateRef"></ng-container>
+        </span>
+
+        <span>action</span>
+
+        <rvn-divider></rvn-divider>
+
+    </mat-list-item>
+</ng-template>

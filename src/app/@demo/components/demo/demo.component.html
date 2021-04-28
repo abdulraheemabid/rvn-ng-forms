@@ -300,13 +300,73 @@
 
         <div class="sub-container snacks" style="" content>
             <rvn-button (click)="openSnackBar({message: 'hello'})" [params]="{color: 'primary'}">Message</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})" [params]="{color: 'primary'}">Message & action</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [params]="{color: 'primary'}">1 sec duration</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})" [params]="{color: 'primary'}">Left Bottom</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})" [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})" [params]="{color: 'primary'}">Custom BG</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'white-color', 'text-bold']})" [params]="{color: 'primary'}">Error</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})"
+                [params]="{color: 'primary'}">Message & action</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [params]="{color: 'primary'}">1 sec
+                duration</rvn-button>
+            <rvn-button
+                (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})"
+                [params]="{color: 'primary'}">Left Bottom</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})"
+                [params]="{color: 'primary'}">Manual Dismiss</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})"
+                [params]="{color: 'primary'}">Custom BG</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'white-color', 'text-bold']})"
+                [params]="{color: 'primary'}">Error</rvn-button>
         </div>
+
+    </rvn-card>
+
+    <!-- LIST -->
+
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'LIST'}">
+
+        <div content>
+
+            <div>
+                <rvn-list
+                    [params]="{list: [{a: 'Products', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions}">
+                </rvn-list>
+
+                <ng-template #actions>
+                    <div>
+                        <rvn-button (onClick)="onClick()"
+                            [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()"
+                            [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        </rvn-button>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div style="margin-top: 50px;">
+                <h3>Dense</h3>
+                <rvn-list
+                    [params]="{list: [{a: 'item 1', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions, dense: true}">
+                </rvn-list>
+
+                <ng-template #actions>
+                    <div>
+                        <rvn-button (onClick)="onClick()"
+                            [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()"
+                            [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick()" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        </rvn-button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
 
     </rvn-card>
 </div>
