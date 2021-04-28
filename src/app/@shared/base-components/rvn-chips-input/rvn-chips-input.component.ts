@@ -39,6 +39,7 @@ export class RvnChipsInputComponent extends CustomFormControlValueAccessor imple
     if (isNullOrUndefined(this.params.required)) this.params.required = false;
     if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
     if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
+    if (!isNullOrUndefined(this.formControl.value)) this.selectedOptions = new Set(this.formControl.value.map(v => v.value));
     this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
   }
 

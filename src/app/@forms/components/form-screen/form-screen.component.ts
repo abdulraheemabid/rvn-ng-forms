@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -23,6 +23,7 @@ export class FormScreenComponent implements OnInit {
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;
 
+
   ngOnInit(): void {
 
     this.route.url.pipe(
@@ -33,8 +34,17 @@ export class FormScreenComponent implements OnInit {
       .subscribe(_ => {
         if (this.mode === "create")
           this.appService.setToolBarHeading("Create New Form");
-        else
-        this.appService.setToolBarHeading("Edit Form");
+        else {
+          this.appService.setToolBarHeading("Edit Form");
+          this.formDefinition = {
+            "formId": 1,
+            "name": "Form name", "fields": [
+              { "name": "field 1", "type": "STRING", "required": true, "attributes": { "_expanded": true, "position": 0 }, "id": 0 },
+              { "name": "field 2", "type": "BOOL", "required": false, "attributes": { "_expanded": true, "position": 1, "displayAs": { "key": "RADIO", "value": "Radio" } }, "id": 1 },
+              { "name": "Field 3", "type": "MULTISELECT", "required": false, "attributes": { "_expanded": true, "position": 2, "displayAs": { "key": "CHECKBOX", "value": "Chekbox" } }, "arrayValues": [{ "key": 0, "value": "a" }, { "key": 1, "value": "b" }, { "key": 2, "value": "c" }], "id": 2 }
+            ]
+          } as any;
+        }
       });
   }
 
@@ -49,14 +59,12 @@ export class FormScreenComponent implements OnInit {
     raw.fields.forEach(f => f.type = f.type.key);
 
     //TODO: doing this just for preview. on actual rendering, we will already have id
-    raw.fields.forEach(f => f.id = f.attributes.position);
+    raw.fields.forEach(f => f.id = f.id ? f.id : f.attributes.position);
 
     return raw;
   }
 
   saveForm() {
-    console.log(this.formDefinition);
-
     this.markFormDefinitionFGAsDirty$.next();
 
     if (this.formDefinitionFG.status === "VALID") {

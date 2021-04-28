@@ -2,6 +2,7 @@ import { KeyValue } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
+import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 import { RvnFormService } from '../../services/form.service';
 import { TypeMetaService } from '../../services/type-meta.service';
 import { UIControlNameEnum, UIControlEnum } from '../../types';
@@ -32,7 +33,11 @@ export class ChooseUiControlComponent implements OnInit {
         });
       }
 
-      this.selectCompParams.selectOptions = selectOptions;   
+      this.selectCompParams.selectOptions = selectOptions;
+
+      if (!isNullOrUndefined(this.uiFormControl.value) && this.uiFormControl.value !== "")
+        this.uiFormControl.setValue(selectOptions.find(o => o.key === this.uiFormControl.value.key), {emitEvent: false});
+
     }
   }
 }

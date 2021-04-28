@@ -6,6 +6,8 @@ import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-s
 import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 import { TypeMetaService } from 'src/app/@shared/forms/services/type-meta.service';
+import { FieldTypeEnum } from 'src/app/@shared/forms/types';
+import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 
 @Component({
   selector: 'field-definition',
@@ -27,7 +29,21 @@ export class FieldDefinitionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initUICompParams();
-    this.onFieldTypeChange(this.fieldFG.get('type') as FormControl);
+
+    let fieldTypeFC = this.fieldFG.get('type') as FormControl;
+    let fieldTypeValue = fieldTypeFC.value;
+
+    this.onFieldTypeChange(fieldTypeFC);
+
+    if (!isNullOrUndefined(fieldTypeValue) && fieldTypeValue !== "") {
+      setTimeout(() => {
+        if (typeof fieldTypeValue === "string") {
+          const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue);
+          fieldTypeFC.setValue(fielTypKeyValue, { emitEvent: false });
+          this.loadTypeRenderer(fielTypKeyValue);
+        }
+      })
+    }
   }
 
   getCtrlByName(name: string): FormControl {

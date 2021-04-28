@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 
 @Component({
   selector: 'base-definition-renderer',
@@ -15,9 +16,16 @@ export class BaseDefinitionRendererComponent {
   createFormControlIfNotExists(controlName: string, defaultValue: any, validatorOptions?: any[], insideAttributes: boolean = false): FormControl {
 
     let fg = insideAttributes ? this.fieldFG.get("attributes") as FormGroup : this.fieldFG;
-    fg.addControl(controlName, this.fb.control(defaultValue, validatorOptions));
+
+    const valueToSet = isNullOrUndefined(fg.get(controlName)) ? defaultValue : fg.get(controlName).value;
+
+    if (isNullOrUndefined(fg.get(controlName)))
+      fg.addControl(controlName, this.fb.control(defaultValue, validatorOptions));
+
     let fc = fg.get(controlName) as FormControl;
-    fc.setValue(defaultValue, { emitEvent: false });
+
+    fc.setValue(valueToSet, { emitEvent: false });
+
     fc.markAsPristine();
 
     return fc;
