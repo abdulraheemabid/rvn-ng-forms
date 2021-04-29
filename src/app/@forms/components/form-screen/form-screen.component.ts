@@ -19,7 +19,6 @@ export class FormScreenComponent implements OnInit {
 
   formDefinitionFG: FormGroup;
   formDefinition: IForm;
-
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;
 
@@ -29,8 +28,7 @@ export class FormScreenComponent implements OnInit {
     this.route.url.pipe(
       map(value => {
         this.mode = value[value.length - 1].path === "edit" ? "edit" : "create";
-      }),
-    )
+      }))
       .subscribe(_ => {
         if (this.mode === "create")
           this.appService.setToolBarHeading("Create New Form");
@@ -56,12 +54,7 @@ export class FormScreenComponent implements OnInit {
   }
 
   getTransformedValueFromFG(formGroup: FormGroup) {
-    let raw = formGroup.getRawValue();
-
-    //TODO: doing this just for preview. on actual rendering, we will already have id
-    //raw.fields.forEach(f => f.id = f.id ? f.id : f.attributes.position);
-
-    return raw;
+    return formGroup.getRawValue();
   }
 
   saveForm() {
