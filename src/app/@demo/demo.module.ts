@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
 import { DemoComponent } from './components/demo/demo.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoRoutingModule } from './demo-routing.module';
-import { RvnCoreModule } from '../@shared/rvn-core/core.module';
 
 
 
@@ -13,7 +12,8 @@ import { RvnCoreModule } from '../@shared/rvn-core/core.module';
   ],
   imports: [
     DemoRoutingModule,
-    RvnCoreModule
+    RvnComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class DemoModule { }

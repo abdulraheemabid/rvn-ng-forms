@@ -11,7 +11,11 @@ import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { NotificationInterceptor } from './interceptors/notification/notification.interceptor';
 import { SpinnerInterceptor } from './interceptors/spinner/spinner.interceptor';
 import { RequestTransformerInterceptor } from './interceptors/request-transformer/request-transformer.interceptor';
-import { RvnCoreModule } from './@shared/rvn-core/core.module';
+import { RvnServicesModule } from './@shared/rvn-services/services.module';
+import { environment } from 'src/environments/environment';
+import { RvnComponentsModule } from './@shared/rvn-core/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -21,9 +25,14 @@ import { RvnCoreModule } from './@shared/rvn-core/core.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
+    MatListModule,
     MatSidenavModule,
-    RvnCoreModule,
+    RvnComponentsModule,
+    RvnServicesModule.forRoot({
+      restBaseUrl: environment.restBaseUrl
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
