@@ -1,4 +1,3 @@
-import { KeyValue } from '@angular/common';
 import { Component, forwardRef, Injector, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RvnChipsInputInput } from './rvn-chips-input.input';

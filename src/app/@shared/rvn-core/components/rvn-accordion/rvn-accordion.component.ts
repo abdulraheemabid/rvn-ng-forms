@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import { Component, Input, OnInit } from '@angular/core';
 import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnAccordionInput } from './rvn-accordion.input';
 

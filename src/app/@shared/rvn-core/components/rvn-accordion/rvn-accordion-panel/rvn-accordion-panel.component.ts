@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatExpansionPanel } from '@angular/material/expansion';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { RvnAccordionPanelInput } from './rvn-accordion-panel.input';
 
@@ -7,7 +6,6 @@ import { RvnAccordionPanelInput } from './rvn-accordion-panel.input';
   selector: 'rvn-accordion-panel',
   templateUrl: './rvn-accordion-panel.component.html',
   styleUrls: ['./rvn-accordion-panel.component.scss'],
-  viewProviders: [MatExpansionPanel]
 })
 export class RvnAccordionPanelComponent implements OnInit {
 

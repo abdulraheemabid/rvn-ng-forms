@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { IForm } from '../../rvn-forms/types';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,13 @@ export class FormApiService {
 
   getForm(){}
 
-  getForms(){}
+  getForms(id: number){}
   
-  createForm(){}
+  createForm(form: IForm){}
 
-  editForm(){}
+  editForm(form: IForm){}
 
-  deleteForm(){}
+  deleteForm(id: number){}
 
   
 }
