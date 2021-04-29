@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DynamicComponentService } from '../../services/dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../utils/funtions.util';
@@ -52,6 +52,39 @@ export class RvnFormService {
       recordFg.addControl(f[keyForFieldControlId].toString(), this.fb.control(null, validators));
     });
     return recordFg;
+  }
+
+  generateDefinitionFormGroup(form: IForm) {
+    let fg = this.fb.group({
+      formId: [form.formId],
+      attributes: [form.attributes],
+      name: [form.name, [Validators.required, Validators.minLength(3)]],
+      fields: this.fb.array([])
+    });
+
+    let fields = fg.get("fields") as FormArray;
+
+    form.fields.forEach(fieldDef => {
+      let fieldGrp = this.fb.group({
+        id: [fieldDef.id],
+        name: [fieldDef.name, [Validators.required, Validators.minLength(3)]],
+        type: [fieldDef.type, Validators.required],
+        required: [fieldDef.required],
+        attributes: this.fb.group({
+          _expanded: [true],
+          position: [null]
+        })
+      });
+
+      if (typeof fieldDef.arrayValues !== "undefined") fieldGrp.addControl("arrayValues", this.fb.control(fieldDef.arrayValues));
+      if (typeof fieldDef?.attributes?.position !== "undefined") fieldGrp.get("attributes").get("position").setValue(fieldDef.attributes.position);
+      if (typeof fieldDef?.attributes?.displayAs !== "undefined") (fieldGrp.get("attributes") as FormGroup).addControl("displayAs", this.fb.control(fieldDef.attributes.displayAs));
+
+      fields.push(fieldGrp);
+    });
+
+    return fg;
+
   }
 
 }
