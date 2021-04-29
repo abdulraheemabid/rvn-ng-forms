@@ -16,11 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 
     ]
 })
-export class ServicesModule {
+export class RvnServicesModule {
 
-    public static forRoot(environment: Environment): ModuleWithProviders<ServicesModule> {
+    public static forRoot(environment: Environment): ModuleWithProviders<RvnServicesModule> {
         return {
-            ngModule: ServicesModule,
+            ngModule: RvnServicesModule,
             providers: [
                 {
                     provide: 'environment',
