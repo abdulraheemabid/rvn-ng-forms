@@ -17,48 +17,48 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { RvnInputComponent } from './base-components/rvn-input/rvn-input.component';
+import { RvnInputComponent } from './rvn-core/components/rvn-input/rvn-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { RvnSelectComponent } from './base-components/rvn-select/rvn-select.component';
-import { RvnRadioComponent } from './base-components/rvn-radio/rvn-radio.component';
-import { RvnToggleComponent } from './base-components/rvn-toggle/rvn-toggle.component';
-import { RvnCheckboxComponent } from './base-components/rvn-checkbox/rvn-checkbox.component';
-import { RvnButtonComponent } from './base-components/rvn-button/rvn-button.component';
-import { RvnDividerComponent } from './base-components/rvn-divider/rvn-divider.component';
-import { RvnChipsAutocompleteComponent } from './base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.component';
-import { RvnDatepickerComponent } from './base-components/rvn-datepicker/rvn-datepicker.component';
-import { RvnCardComponent } from './base-components/rvn-card/rvn-card.component';
+import { RvnSelectComponent } from './rvn-core/components/rvn-select/rvn-select.component';
+import { RvnRadioComponent } from './rvn-core/components/rvn-radio/rvn-radio.component';
+import { RvnToggleComponent } from './rvn-core/components/rvn-toggle/rvn-toggle.component';
+import { RvnCheckboxComponent } from './rvn-core/components/rvn-checkbox/rvn-checkbox.component';
+import { RvnButtonComponent } from './rvn-core/components/rvn-button/rvn-button.component';
+import { RvnDividerComponent } from './rvn-core/components/rvn-divider/rvn-divider.component';
+import { RvnChipsAutocompleteComponent } from './rvn-core/components/rvn-chips-autocomplete/rvn-chips-autocomplete.component';
+import { RvnDatepickerComponent } from './rvn-core/components/rvn-datepicker/rvn-datepicker.component';
+import { RvnCardComponent } from './rvn-core/components/rvn-card/rvn-card.component';
 
-import { BaseDefinitionRendererComponent } from './forms/type-definition-renderers/base-definition-renderer/base-definition-renderer.component';
-import { BoolDefinitionRendererComponent } from './forms/type-definition-renderers/bool-definition-renderer/bool-definition-renderer.component';
-import { DateDefinitionRendererComponent } from './forms/type-definition-renderers/date-definition-renderer/date-definition-renderer.component';
-import { FloatDefinitionRendererComponent } from './forms/type-definition-renderers/float-definition-renderer/float-definition-renderer.component';
-import { IntDefinitionRendererComponent } from './forms/type-definition-renderers/int-definition-renderer/int-definition-renderer.component';
-import { MultiselectDefinitionRendererComponent } from './forms/type-definition-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
-import { SingleselectDefinitionRendererComponent } from './forms/type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
-import { StringDefinitionRendererComponent } from './forms/type-definition-renderers/string-definition-renderer/string-definition-renderer.component';
+import { BaseDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/base-definition-renderer/base-definition-renderer.component';
+import { BoolDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/bool-definition-renderer/bool-definition-renderer.component';
+import { DateDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/date-definition-renderer/date-definition-renderer.component';
+import { FloatDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/float-definition-renderer/float-definition-renderer.component';
+import { IntDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/int-definition-renderer/int-definition-renderer.component';
+import { MultiselectDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component';
+import { SingleselectDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component';
+import { StringDefinitionRendererComponent } from './rvn-forms/type-definition-renderers/string-definition-renderer/string-definition-renderer.component';
 
-import { BaseValueRendererComponent } from './forms/type-value-renderers/base-value-renderer/base-value-renderer.component';
-import { BoolValueRendererComponent } from './forms/type-value-renderers/bool-value-renderer/bool-value-renderer.component';
-import { DateValueRendererComponent } from './forms/type-value-renderers/date-value-renderer/date-value-renderer.component';
-import { FloatValueRendererComponent } from './forms/type-value-renderers/float-value-renderer/float-value-renderer.component';
-import { IntValueRendererComponent } from './forms/type-value-renderers/int-value-renderer/int-value-renderer.component';
-import { MultiselectValueRendererComponent } from './forms/type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component';
-import { SingleselectValueRendererComponent } from './forms/type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component';
-import { StringValueRendererComponent } from './forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
+import { BaseValueRendererComponent } from './rvn-forms/type-value-renderers/base-value-renderer/base-value-renderer.component';
+import { BoolValueRendererComponent } from './rvn-forms/type-value-renderers/bool-value-renderer/bool-value-renderer.component';
+import { DateValueRendererComponent } from './rvn-forms/type-value-renderers/date-value-renderer/date-value-renderer.component';
+import { FloatValueRendererComponent } from './rvn-forms/type-value-renderers/float-value-renderer/float-value-renderer.component';
+import { IntValueRendererComponent } from './rvn-forms/type-value-renderers/int-value-renderer/int-value-renderer.component';
+import { MultiselectValueRendererComponent } from './rvn-forms/type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component';
+import { SingleselectValueRendererComponent } from './rvn-forms/type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component';
+import { StringValueRendererComponent } from './rvn-forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
 
-import { ChooseUiControlComponent } from './forms/components/choose-ui-control/choose-ui-control.component';
-import { ArrayValuesComponent } from './forms/components/array-values/array-values.component';
+import { ChooseUiControlComponent } from './rvn-forms/components/choose-ui-control/choose-ui-control.component';
+import { ArrayValuesComponent } from './rvn-forms/components/array-values/array-values.component';
 
-import { RvnChipsInputComponent } from './base-components/rvn-chips-input/rvn-chips-input.component';
-import { RvnAccordionComponent } from './base-components/rvn-accordion/rvn-accordion.component';
+import { RvnChipsInputComponent } from './rvn-core/components/rvn-chips-input/rvn-chips-input.component';
+import { RvnAccordionComponent } from './rvn-core/components/rvn-accordion/rvn-accordion.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { RvnAccordionPanelComponent } from './base-components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
-import { RvnIconComponent } from './base-components/rvn-icon/rvn-icon.component';
-import { RvnMenuComponent } from './base-components/rvn-menu/rvn-menu.component';
+import { RvnAccordionPanelComponent } from './rvn-core/components/rvn-accordion/rvn-accordion-panel/rvn-accordion-panel.component';
+import { RvnIconComponent } from './rvn-core/components/rvn-icon/rvn-icon.component';
+import { RvnMenuComponent } from './rvn-core/components/rvn-menu/rvn-menu.component';
 import { MatListModule } from '@angular/material/list';
-import { RvnListComponent } from './base-components/rvn-list/rvn-list.component';
+import { RvnListComponent } from './rvn-core/components/rvn-list/rvn-list.component';
 
 
 

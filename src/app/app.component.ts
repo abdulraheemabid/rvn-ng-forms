@@ -5,8 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppService } from './app.service';
-import { RvnStyleService } from './@shared/services/style/style.service';
-import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
+import { RvnStyleService } from './@shared/rvn-core/services/style/style.service';
+import { RvnSelectInput } from './@shared/rvn-core/components/rvn-select/rvn-select.input';
 
 @Component({
   selector: 'app-root',

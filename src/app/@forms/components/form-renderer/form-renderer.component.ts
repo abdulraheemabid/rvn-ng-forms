@@ -1,10 +1,11 @@
-import { Component, Input, OnChanges, QueryList, SimpleChanges, ViewChildren, ViewContainerRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
-import { IForm, IFormField } from 'src/app/@shared/forms/types';
-import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
-import { RvnSnackBarService } from 'src/app/@shared/services/snack-bar/snack-bar.service';
-import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
+import { Component, OnChanges, Input, ViewChildren, ViewContainerRef, QueryList, SimpleChanges } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
+import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
+import { IForm, IFormField } from "src/app/@shared/rvn-forms/types";
+import { FormService } from "src/app/@shared/rvn-services/form/form.service";
+import { ReactiveFormUtilityService } from "src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service";
+
 
 @Component({
   selector: 'form-renderer',
@@ -13,7 +14,7 @@ import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 })
 export class FormRendererComponent implements OnChanges {
 
-  constructor(private formService: RvnFormService, private snackBarService: RvnSnackBarService, private utilityService: ReactiveFormUtilityService) { }
+  constructor(private formService: FormService, private snackBarService: RvnSnackBarService, private utilityService: ReactiveFormUtilityService) { }
 
   @Input() formDefinition: IForm;
   @Input() mode: "preview" | "add" | "edit" = "preview";

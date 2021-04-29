@@ -1,13 +1,13 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
-import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
-import { FieldTypeEnum, IForm } from 'src/app/@shared/forms/types';
-import { ReactiveFormUtilityService } from 'src/app/@shared/services/reactive-form-utility/reactive-form-utility.service';
-import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
-import { CreateOrEdit } from 'src/app/@shared/utils/types';
+import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
+import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
+import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { FieldTypeEnum, IForm } from 'src/app/@shared/rvn-forms/types';
+import { ReactiveFormUtilityService } from 'src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 
 @Component({
   selector: 'form-definition',
@@ -16,7 +16,7 @@ import { CreateOrEdit } from 'src/app/@shared/utils/types';
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private privateformUitilityService: ReactiveFormUtilityService, private formService: RvnFormService) { }
+  constructor(private fb: FormBuilder, private privateformUitilityService: ReactiveFormUtilityService, private formService: FormService) { }
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 

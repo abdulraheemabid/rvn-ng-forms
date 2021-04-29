@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { RvnCheckboxInput } from 'src/app/@shared/base-components/rvn-checkbox/rvn-checkbox.input';
-import { RvnChipsAutocompleteInput } from 'src/app/@shared/base-components/rvn-chips-autocomplete/rvn-chips-autocomplete.input';
-import { RvnDatepickerInput } from 'src/app/@shared/base-components/rvn-datepicker/rvn-datepicker.input';
-import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { RvnRadioInput } from 'src/app/@shared/base-components/rvn-radio/rvn-radio.input';
-import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
-import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
-import { SnackBarHorizontalPosition, RvnSnackBarService, SnackBarVerticalPosition, SnackBarInput } from 'src/app/@shared/services/snack-bar/snack-bar.service';
-import { AppService } from 'src/app/app.service';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { RvnCheckboxInput } from "src/app/@shared/rvn-core/components/rvn-checkbox/rvn-checkbox.input";
+import { RvnChipsAutocompleteInput } from "src/app/@shared/rvn-core/components/rvn-chips-autocomplete/rvn-chips-autocomplete.input";
+import { RvnDatepickerInput } from "src/app/@shared/rvn-core/components/rvn-datepicker/rvn-datepicker.input";
+import { RvnInputInput } from "src/app/@shared/rvn-core/components/rvn-input/rvn-input.input";
+import { RvnRadioInput } from "src/app/@shared/rvn-core/components/rvn-radio/rvn-radio.input";
+import { RvnSelectInput } from "src/app/@shared/rvn-core/components/rvn-select/rvn-select.input";
+import { RvnToggleInput } from "src/app/@shared/rvn-core/components/rvn-toggle/rvn-toggle.input";
+import { RvnSnackBarService, SnackBarInput } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
+import { AppService } from "src/app/app.service";
+
 
 @Component({
   selector: 'demo',

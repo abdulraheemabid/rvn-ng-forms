@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RvnButtonInput } from 'src/app/@shared/base-components/rvn-button/rvn-button.input';
-import { RvnCardInput } from 'src/app/@shared/base-components/rvn-card/rvn-card.input';
-import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { IForm } from 'src/app/@shared/forms/types';
+import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
+import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
+import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
+import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';
 
 @Component({

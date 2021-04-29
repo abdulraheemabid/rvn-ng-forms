@@ -1,13 +1,12 @@
 import { KeyValue } from '@angular/common';
-import { Component, ComponentFactoryResolver, ComponentRef, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RvnInputInput } from 'src/app/@shared/base-components/rvn-input/rvn-input.input';
-import { RvnSelectInput } from 'src/app/@shared/base-components/rvn-select/rvn-select.input';
-import { RvnToggleInput } from 'src/app/@shared/base-components/rvn-toggle/rvn-toggle.input';
-import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
-import { TypeMetaService } from 'src/app/@shared/forms/services/type-meta.service';
-import { FieldTypeEnum } from 'src/app/@shared/forms/types';
-import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
+import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
+import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
+import { RvnToggleInput } from 'src/app/@shared/rvn-core/components/rvn-toggle/rvn-toggle.input';
+import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 
 @Component({
   selector: 'field-definition',
@@ -16,7 +15,7 @@ import { isNullOrUndefined } from 'src/app/@shared/utils/funtions.util';
 })
 export class FieldDefinitionComponent implements OnInit {
 
-  constructor(private formService: RvnFormService, private typeMetaService: TypeMetaService) { }
+  constructor(private formService: FormService, private typeMetaService: TypeMetaService) { }
 
   //fieldFG should contain type, name and required formControls already
   @Input() fieldFG: any;

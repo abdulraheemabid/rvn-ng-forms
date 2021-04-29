@@ -3,10 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IForm } from 'src/app/@shared/forms/types';
-import { RvnSnackBarService } from 'src/app/@shared/services/snack-bar/snack-bar.service';
-import { CreateOrEdit } from 'src/app/@shared/utils/types';
+import { IForm } from 'src/app/@shared/rvn-forms/types';
+import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
+import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
 
 @Component({
   selector: 'form-screen',
