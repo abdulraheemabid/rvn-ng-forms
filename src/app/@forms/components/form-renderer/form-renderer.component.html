@@ -8,11 +8,10 @@
         </span>
     </h1>
 
-    <rvn-button class="submit" (onClick)="submit()" [params]="{type: submitBtnType, color: submitBtnColor}">Submit</rvn-button>
+    <rvn-button class="submit" (onClick)="submit()" [params]="{type: submitBtnType, color: submitBtnColor}">Submit
+    </rvn-button>
 
     <div class="form" *ngFor="let field of formDefinition.fields">
         <ng-template #fieldAnchorPoint></ng-template>
     </div>
-
-
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, QueryList, SimpleChanges, ViewChildren, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnChanges, QueryList, SimpleChanges, ViewChildren, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RvnFormService } from 'src/app/@shared/forms/services/form.service';
 import { IForm, IFormField } from 'src/app/@shared/forms/types';
@@ -24,29 +24,40 @@ export class FormRendererComponent implements OnChanges {
   // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
   keyToUseForFieldControl: "name" | "id" = "id";
 
-
   ngOnChanges(changes: SimpleChanges): void {
+    
+    this.setPramsAccordingToMode();
+    this.sortFieldsByPosition();
+    this.generateRecordFormGroup();
+
+    // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
+    setTimeout(() => { this.renderControlForEachField()});
+  }
+
+  setPramsAccordingToMode() {
     if (this.mode === "preview") {
       this.submitBtnColor = "accent";
       this.keyToUseForFieldControl = "name";
     };
-
-
-    this.formDefinition.fields = this.formDefinition.fields.sort((a, b) => a.attributes.position - b.attributes.position);
-
-    this.recordFG = this.formService.generateRecordFormGroup(this.formDefinition, this.keyToUseForFieldControl);
-    // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
-    setTimeout(() => this.formDefinition.fields.forEach(f => this.renderFormValueUI(f)));
   }
 
-  renderFormValueUI(field: IFormField) {
+  sortFieldsByPosition() {
+    this.formDefinition.fields = this.formDefinition.fields.sort((a, b) => a.attributes.position - b.attributes.position);
+  }
+
+  generateRecordFormGroup() {
+    this.recordFG = this.formService.generateRecordFormGroup(this.formDefinition, this.keyToUseForFieldControl);
+  }
+
+  renderControlForEachField() {
+    this.formDefinition.fields.forEach(f => this.renderUIControl(f))
+  }
+
+  renderUIControl(field: IFormField) {
     if (!isNullOrUndefined(field?.type) && !isNullOrUndefined(field.attributes?.position)) {
-
       const ref = this.fieldAnchorPoints.get(field.attributes.position);
-      const fc = field[this.keyToUseForFieldControl.toString()];
-      this.formService.injectTypeValueRenderer(field, ref, this.recordFG.get(fc) as FormControl)
-        .subscribe(() => { }, err => { });
-
+      const fcName = field[this.keyToUseForFieldControl.toString()].toString();
+      this.formService.injectTypeValueRenderer(field, ref, this.recordFG.get(fcName) as FormControl).subscribe(() => { }, err => { });
     }
   }
 

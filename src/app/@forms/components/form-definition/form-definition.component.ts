@@ -161,6 +161,7 @@ export class FormDefinitionComponent implements OnInit {
   deleteField(index: number) {
     if (this.fieldGroups.length > 1)
       this.fieldGroups.removeAt(index);
+    this.updatePositionAttributeOfAllFields();
     this.scrollToBottomOfFieldsList();
   }
 

@@ -73,7 +73,8 @@
                 </span>
 
 
-                <field-definition content [fieldFG]="field"></field-definition>
+                <!-- mouse down event to prevent drag&drop panel when trying to select text in input -->
+                <field-definition (mousedown)="$event.stopPropagation()" content [fieldFG]="field"></field-definition>
 
                 <rvn-button actionContent (click)="deleteField(i)" [params]="deleteFieldCompParam"
                     [disabled]="first && last">
