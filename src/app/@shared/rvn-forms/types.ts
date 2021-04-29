@@ -1,7 +1,7 @@
 import { KeyValue } from "@angular/common";
 
 export interface IForm {
-    formId?: number;
+    id?: number;
     name: string;
     fields: IFormField[];
     attributes?: any;
@@ -35,6 +35,10 @@ export interface IFieldTypeMeta {
         UIControl: UIControlEnum,
         renderer: any
     }[];
+}
+
+export interface IId{
+    id: number
 }
 
 export enum FieldTypeEnum {

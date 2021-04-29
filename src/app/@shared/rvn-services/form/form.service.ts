@@ -2,10 +2,10 @@ import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DynamicComponentService } from 'src/app/@shared/rvn-services/dynamic-component/dynamic-component.service';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { IFormField, IForm } from '../../rvn-forms/types';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
+import { DynamicComponentService } from '../dynamic-component/dynamic-component.service';
+import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 
 
 @Injectable({
@@ -56,7 +56,7 @@ export class FormService {
 
   generateDefinitionFormGroup(form: IForm) {
     let fg = this.fb.group({
-      formId: [form.formId],
+      id: [form.id],
       attributes: [form.attributes],
       name: [form.name, [Validators.required, Validators.minLength(3)]],
       fields: this.fb.array([])

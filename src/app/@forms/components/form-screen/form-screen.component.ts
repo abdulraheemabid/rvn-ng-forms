@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
 import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
+import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
 
 @Component({
   selector: 'form-screen',
@@ -15,36 +16,33 @@ import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-
 })
 export class FormScreenComponent implements OnInit {
 
-  constructor(private appService: AppService, private snackBarService: RvnSnackBarService, private route: ActivatedRoute) { }
+  constructor(private formApiService: FormApiService, private appService: AppService, private snackBarService: RvnSnackBarService, private route: ActivatedRoute) { }
 
   formDefinitionFG: FormGroup;
   formDefinition: IForm;
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;
+  initDone: boolean = false;
 
 
   ngOnInit(): void {
 
-    this.route.url.pipe(
-      map(value => {
-        this.mode = value[value.length - 1].path === "edit" ? "edit" : "create";
-      }))
-      .subscribe(_ => {
-        if (this.mode === "create")
-          this.appService.setToolBarHeading("Create New Form");
-        else {
-          this.appService.setToolBarHeading("Edit Form");
-          //TODO: temp, get this from api
-          this.formDefinition = {
-            "formId": 1,
-            "name": "Form name", "fields": [
-              { "name": "field 1", "type": "STRING", "required": true, "attributes": { "_expanded": true, "position": 0 }, "id": 0 },
-              { "name": "field 2", "type": "BOOL", "required": false, "attributes": { "_expanded": true, "position": 1, "displayAs": { "key": "RADIO", "value": "Radio" } }, "id": 1 },
-              { "name": "Field 3", "type": "MULTISELECT", "required": false, "attributes": { "_expanded": true, "position": 2, "displayAs": { "key": "CHECKBOX", "value": "Chekbox" } }, "arrayValues": [{ "key": 0, "value": "a" }, { "key": 1, "value": "b" }, { "key": 2, "value": "c" }], "id": 2 }
-            ]
-          } as any;
-        }
+    const route = this.route.snapshot;
+    this.mode = route.url[route.url.length - 1].path === "edit" ? "edit" : "create";
+
+    if (this.mode === "create") {
+      this.appService.setToolBarHeading("Create New Form");
+      this.initDone = true;
+    } else {
+      this.appService.setToolBarHeading("Edit Form");
+      const formId = route.params["id"];
+
+      this.formApiService.getForm(formId).subscribe(value => {
+        this.formDefinition = value;
+        this.initDone = true;
       });
+    }
+
   }
 
   onFormDeifitionUpdate(form: FormGroup) {
@@ -61,8 +59,7 @@ export class FormScreenComponent implements OnInit {
     this.markFormDefinitionFGAsDirty$.next();
 
     if (this.formDefinitionFG.status === "VALID") {
-      // Save form
-      console.log("Saved YAYYYY!!");
+      this.formApiService.createForm(this.formDefinition).subscribe();
     } else {
       this.snackBarService.showErrorAlert("Form is not valid. Please recheck");
     }

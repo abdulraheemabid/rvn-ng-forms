@@ -10,7 +10,7 @@ export class DynamicComponentService {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
-  injectComponent(viewContainerRef: ViewContainerRef, component: any, inputs: KeyValue<string, any>[], clearContainer: boolean = true) {
+  public injectComponent(viewContainerRef: ViewContainerRef, component: any, inputs: KeyValue<string, any>[], clearContainer: boolean = true) {
 
     return new Observable<boolean>(
       sub => {

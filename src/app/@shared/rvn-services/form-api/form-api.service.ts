@@ -1,22 +1,47 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IForm } from '../../rvn-forms/types';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { FieldTypeEnum, IForm, IId } from '../../rvn-forms/types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormApiService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getForm(){}
+  baseUrl: string = environment.restBaseUrl;
 
-  getForms(id: number){}
-  
-  createForm(form: IForm){}
+  getForm(id: number) {
+    return this.httpClient.get<IForm>(`${this.baseUrl}/${id}`);
+  }
 
-  editForm(form: IForm){}
+  getForms() {
+    return this.httpClient.get<IForm[]>(this.baseUrl);
+  }
 
-  deleteForm(id: number){}
+  createForm(form: IForm) {
+    form = this.transformFieldsTypeToString(form);
+    return this.httpClient.post<IId>(this.baseUrl, form);
+  }
 
-  
+  editForm(form: IForm) {
+    return this.httpClient.patch<IId>(`${this.baseUrl}/${form.id}`, form);
+  }
+
+  deleteForm(id: number) {
+    return this.httpClient.delete<IId>(`${this.baseUrl}/${id}`);
+  }
+
+
+  private transformFieldsTypeToString(form: IForm) {
+    form.fields.forEach(f => {
+      f.type = f.type.key.toLowerCase() as any;
+    });
+    return form;
+  }
+
+
 }

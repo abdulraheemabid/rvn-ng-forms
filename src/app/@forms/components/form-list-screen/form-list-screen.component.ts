@@ -4,6 +4,8 @@ import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/r
 import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
+import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
+import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -13,11 +15,11 @@ import { AppService } from 'src/app/app.service';
 })
 export class FormListScreenComponent implements OnInit {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private formApiService: FormApiService) { }
 
   @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
 
-  forms: IForm[] = [{ name: "Products", formId: 1, fields: [], _summary: "ID: 1, Fields: 5" } as IForm, { name: "Stock", formId: 1, fields: [], _summary: "ID: 1, Fields: 5" }, { name: "Employees", formId: 1, fields: [], _summary: "ID: 1, Fields: 5" }, { name: "Branches", formId: 1, fields: [], _summary: "ID: 1, Fields: 5" }, { name: "Todos", formId: 1, fields: [], _summary: "ID: 1, Fields: 5" }] as IForm[];
+  forms: IForm[] = [];
   filteredForms: IForm[] = [];
   listParams = { list: [], lineOneKey: 'name', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: null, dense: true }
   newFormButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
@@ -28,9 +30,16 @@ export class FormListScreenComponent implements OnInit {
   ngOnInit(): void {
     this.appService.setToolBarHeading("Forms");
 
-    this.filteredForms = [...this.forms];
-    this.listParams.list = this.filteredForms;
-    this.listParams.actionTemplateRef = this.actionsTemplate;
+    this.formApiService.getForms().subscribe(data => {
+      console.log(data);
+      this.forms = data;
+      this.filteredForms = [...this.forms];
+      this.listParams.list = this.filteredForms;
+      this.listParams.actionTemplateRef = this.actionsTemplate;
+      this.cardParams.title = `Total: ${this.forms.length}`;
+    });
+
+
     this.cardParams.title = `Total: ${this.forms.length}`;
     this.searchFC.valueChanges.subscribe(v => this.filterFormBySeach(v));
   }
@@ -45,11 +54,11 @@ export class FormListScreenComponent implements OnInit {
   }
 
   viewRecords(form: IForm) {
-    this.appService.navigate(`forms/${form.formId}/records`);
+    this.appService.navigate(`forms/${form.id}/records`);
   }
 
   editForm(form: IForm) {
-    this.appService.navigate(`forms/${form.formId}/edit`);
+    this.appService.navigate(`forms/${form.id}/edit`);
   }
 
   deleteForm(form: IForm) {

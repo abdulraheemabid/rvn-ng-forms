@@ -26,7 +26,9 @@ import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
     RvnComponentsModule,
     FormsRoutingModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RvnTypeDefinitionRenderersModule,
+    RvnTypeValueRenderersModule
   ]
 })
 export class FormsModule { }
