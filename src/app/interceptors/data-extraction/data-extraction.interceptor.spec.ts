@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TransformerInterceptor } from './transformer.interceptor';
+import { DataExtractionInterceptor } from './data-extraction.interceptor';
 
 describe('TransformerInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      TransformerInterceptor
+      DataExtractionInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: TransformerInterceptor = TestBed.inject(TransformerInterceptor);
+    const interceptor: DataExtractionInterceptor = TestBed.inject(DataExtractionInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });

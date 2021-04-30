@@ -11,7 +11,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { IApiResponseWrapper } from 'src/app/@shared/rvn-core/utils/types';
 
 @Injectable()
-export class TransformerInterceptor implements HttpInterceptor {
+export class DataExtractionInterceptor implements HttpInterceptor {
 
   constructor() { }
 
