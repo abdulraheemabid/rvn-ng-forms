@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
 import { RvnToggleInput } from 'src/app/@shared/rvn-core/components/rvn-toggle/rvn-toggle.input';
@@ -8,6 +8,7 @@ import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { FieldType } from 'src/app/@shared/rvn-forms/types';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'field-definition',
@@ -53,9 +54,21 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   onFieldTypeChange(fieldTypeCtrl: FormControl) {
-    fieldTypeCtrl.valueChanges.subscribe((val: KeyValue<FieldType, string>) => {
-      this.loadTypeRenderer(val);
-    })
+    fieldTypeCtrl.valueChanges
+      .pipe(
+        map(v => {
+          if (this.fieldFG.get("attributes").get("displayAs") !== null)
+            (this.fieldFG.get("attributes") as FormGroup).removeControl("displayAs");
+
+          if (this.fieldFG.get("arrayValues") !== null)
+            this.fieldFG.removeControl("arrayValues");
+
+          return v;
+        })
+      )
+      .subscribe((val: KeyValue<FieldType, string>) => {
+        this.loadTypeRenderer(val);
+      })
   }
 
   loadTypeRenderer(type: KeyValue<FieldType, string>) {
