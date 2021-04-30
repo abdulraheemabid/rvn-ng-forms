@@ -20,6 +20,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [],
@@ -45,7 +46,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatSnackBarModule,
         MatListModule,
         MatTooltipModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
     ],
     exports: [
         MatInputModule,
@@ -68,7 +70,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatSnackBarModule,
         MatListModule,
         MatTooltipModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule
     ],
     providers: [
         { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

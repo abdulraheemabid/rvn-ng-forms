@@ -17,6 +17,7 @@ import { RvnRadioComponent } from "./components/rvn-radio/rvn-radio.component";
 import { RvnSelectComponent } from "./components/rvn-select/rvn-select.component";
 import { RvnSpinnerComponent } from "./components/rvn-spinner/rvn-spinner.component";
 import { RvnToggleComponent } from "./components/rvn-toggle/rvn-toggle.component";
+import { RvnConfirmDialogComponent} from './components/rvn-confirm-dialog/rvn-confirm-dialog.component';
 import { MaterialModule } from "./material.module";
 
 
@@ -38,7 +39,8 @@ import { MaterialModule } from "./material.module";
         RvnIconComponent,
         RvnListComponent,
         RvnMenuComponent,
-        RvnSpinnerComponent
+        RvnSpinnerComponent,
+        RvnConfirmDialogComponent
     ],
     imports: [
         CommonModule,
@@ -61,7 +63,8 @@ import { MaterialModule } from "./material.module";
         RvnIconComponent,
         RvnListComponent,
         RvnMenuComponent,
-        RvnSpinnerComponent
+        RvnSpinnerComponent,
+        RvnConfirmDialogComponent
     ],
     providers: [
 

@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { of, Subject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
@@ -44,11 +43,16 @@ export class FormScreenComponent implements OnInit {
       this.appService.setToolBarHeading("Edit Form");
       const formId = route.params["id"];
 
-      this.formApiService.getForm(formId).subscribe(value => {
-        this.orignalFormName = value.name;
-        this.formDefinition = value;
-        this.initDone = true;
-      });
+      this.formApiService.getForm(formId).subscribe(
+        value => {
+          this.orignalFormName = value.name;
+          this.formDefinition = value;
+          this.initDone = true;
+        },
+        err => {
+          this.navigateToFormsList();
+        }
+      );
     }
 
   }
@@ -91,7 +95,7 @@ export class FormScreenComponent implements OnInit {
   }
 
   navigateToFormsList() {
-    this.appService.navigate("");
+    this.appService.navigate("forms");
   }
 
 }
