@@ -7,6 +7,7 @@ import { RvnToggleInput } from 'src/app/@shared/rvn-core/components/rvn-toggle/r
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { FieldType } from 'src/app/@shared/rvn-forms/types';
 
 @Component({
   selector: 'field-definition',
@@ -36,7 +37,7 @@ export class FieldDefinitionComponent implements OnInit {
 
     if (!isNullOrUndefined(fieldTypeValue) && fieldTypeValue !== "") {
       setTimeout(() => {
-        const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue.key.toUpperCase());
+        const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue.key);
         fieldTypeFC.setValue(fielTypKeyValue, { emitEvent: false });
         this.loadTypeRenderer(fielTypKeyValue);
       })
@@ -52,12 +53,12 @@ export class FieldDefinitionComponent implements OnInit {
   }
 
   onFieldTypeChange(fieldTypeCtrl: FormControl) {
-    fieldTypeCtrl.valueChanges.subscribe((val: KeyValue<string, string>) => {
+    fieldTypeCtrl.valueChanges.subscribe((val: KeyValue<FieldType, string>) => {
       this.loadTypeRenderer(val);
     })
   }
 
-  loadTypeRenderer(type: KeyValue<string, string>) {
+  loadTypeRenderer(type: KeyValue<FieldType, string>) {
     this.formService.injectTypeDefinitionRenderer(type, this.rendererAnchorPoint, this.fieldFG).subscribe();
   }
 

@@ -2,7 +2,7 @@ import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IFormField, IForm } from '../../rvn-forms/types';
+import { IFormField, IForm, FieldType } from '../../rvn-forms/types';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
 import { DynamicComponentService } from '../dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
@@ -15,7 +15,7 @@ export class FormService {
 
   constructor(private typeMetaService: TypeMetaService, private dynamicComponentService: DynamicComponentService, private fb: FormBuilder) { }
 
-  injectTypeDefinitionRenderer(type: KeyValue<string, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<boolean> {
+  injectTypeDefinitionRenderer(type: KeyValue<FieldType, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<boolean> {
 
     const componentToRender = this.typeMetaService.getFieldTypeMetaData(type)?.definitionRenderer;
 

@@ -12,31 +12,31 @@ import { IntValueRendererComponent } from "../type-value-renderers/int-value-ren
 import { MultiselectValueRendererComponent } from "../type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component";
 import { SingleselectValueRendererComponent } from "../type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component";
 import { StringValueRendererComponent } from "../type-value-renderers/string-value-renderer/string-value-renderer.component";
-import { IFieldTypeMeta, UIControlEnum } from "../types";
+import { FieldType, IFieldTypeMeta, UIControlEnum } from "../types";
 
-export const fieldTypeMetaDataMap = new Map<string, IFieldTypeMeta>([
-    ["FLOAT", {
+export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
+    ["float", {
         typeDisplayName: "Floating number",
         valueRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: FloatValueRendererComponent }
         ],
         definitionRenderer: FloatDefinitionRendererComponent
     }],
-    ["INT", {
+    ["int", {
         typeDisplayName: "Integer",
         valueRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: IntValueRendererComponent }
         ],
         definitionRenderer: IntDefinitionRendererComponent
     }],
-    ["STRING", {
+    ["string", {
         typeDisplayName: "Text",
         valueRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: StringValueRendererComponent }
         ],
         definitionRenderer: StringDefinitionRendererComponent
     }],
-    ["DATE", {
+    ["date", {
         typeDisplayName: "Date",
         valueRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: DateValueRendererComponent },
@@ -44,7 +44,7 @@ export const fieldTypeMetaDataMap = new Map<string, IFieldTypeMeta>([
         ],
         definitionRenderer: DateDefinitionRendererComponent
     }],
-    ["BOOL", {
+    ["bool", {
         typeDisplayName: "Boolean",
         valueRenderers: [
             { UIControl: UIControlEnum.TOGGLE, renderer: BoolValueRendererComponent },
@@ -53,7 +53,7 @@ export const fieldTypeMetaDataMap = new Map<string, IFieldTypeMeta>([
         ],
         definitionRenderer: BoolDefinitionRendererComponent
     }],
-    ["MULTISELECT", {
+    ["multiselect", {
         typeDisplayName: "Multi select",
         valueRenderers: [
             { UIControl: UIControlEnum.CHECKBOX, renderer: MultiselectValueRendererComponent },
@@ -61,7 +61,7 @@ export const fieldTypeMetaDataMap = new Map<string, IFieldTypeMeta>([
         ],
         definitionRenderer: MultiselectDefinitionRendererComponent
     }],
-    ["SINGLESELECT", {
+    ["singleselect", {
         typeDisplayName: "Single select",
         valueRenderers: [
             { UIControl: UIControlEnum.SELECT, renderer: SingleselectValueRendererComponent },

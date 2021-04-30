@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { IFieldTypeMeta } from '../types';
+import { FieldType, IFieldTypeMeta } from '../types';
 import { fieldTypeMetaDataMap } from './field-type-metadata';
 
 @Injectable({
@@ -26,9 +26,8 @@ export class TypeMetaService {
     return result;
   }
 
-  getFieldTypeMetaData(fieldType: string | KeyValue<string, string>): IFieldTypeMeta {
+  getFieldTypeMetaData(fieldType: FieldType | KeyValue<FieldType, string>): IFieldTypeMeta {
     if (typeof fieldType !== "string") fieldType = fieldType.key;
-    fieldType = fieldType.toUpperCase();
     return this.fieldTypeMeta.get(fieldType);
   }
 }

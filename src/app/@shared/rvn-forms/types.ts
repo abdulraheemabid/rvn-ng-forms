@@ -10,7 +10,7 @@ export interface IForm {
 export interface IFormField {
     id?: number;
     name: string;
-    type: KeyValue<string, string>;
+    type: KeyValue<FieldType, string>;
     required: boolean;
     validationRegex?: string;
     arrayValues?: KeyValue<string, string>[];
@@ -41,15 +41,7 @@ export interface IId {
     id: number
 }
 
-export enum FieldTypeEnum {
-    FLOAT = "Floating number",
-    INT = "Integer",
-    STRING = "Text",
-    DATE = "Date",
-    BOOL = "Boolean",
-    MULTISELECT = "Multi select",
-    SINGLESELECT = "Single select"
-}
+export type FieldType = "float" | "int" | "string" | "date" | "bool" | "multiselect" | "singleselect";
 
 export enum UIControlEnum {
     SELECT = "SELECT",

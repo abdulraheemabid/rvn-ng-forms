@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
-import { UIControlNameEnum, UIControlEnum } from '../../types';
+import { UIControlNameEnum, UIControlEnum, FieldType } from '../../types';
 
 @Component({
   selector: 'choose-ui-control',
@@ -15,7 +15,7 @@ export class ChooseUiControlComponent implements OnInit {
 
   constructor(private typeMetaService: TypeMetaService) { }
 
-  @Input() selectedFieldType: string;
+  @Input() selectedFieldType: FieldType;
   @Input() uiFormControl: FormControl;
 
   selectCompParams: RvnSelectInput = { label: 'Display as', placeholder: 'Select', required: true, selectOptions: null };

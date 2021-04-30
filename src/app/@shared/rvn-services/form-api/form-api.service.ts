@@ -1,18 +1,18 @@
-import { F } from '@angular/cdk/keycodes';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { FieldTypeEnum, IForm, IId } from '../../rvn-forms/types';
-import { FormDTO, FormFieldDTO } from './form-api.dto';
+import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
+import { IForm, IId } from '../../rvn-forms/types';
+import { FormDTO } from './form-api.dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private typeService: TypeMetaService) { }
 
   baseUrl: string = environment.restBaseUrl;
 
@@ -49,7 +49,7 @@ export class FormApiService {
       fields: form.fields.map(f => {
         return {
           ...f,
-          type: f.type.key.toLowerCase(),
+          type: f.type.key,
           arrayValues: f.arrayValues.map(v => v.value)
         }
       })
@@ -62,12 +62,12 @@ export class FormApiService {
       name: form.name,
       attributes: form.attributes,
       fields: form.fields.map(f => {
-        const typeKey = (f.type as any).toUpperCase();
+        const typeDisplayValue = this.typeService.getFieldTypes().find(ft => ft.key === f.type).value;
         return {
           ...f,
           attributes: f.attributes as any,
           arrayValues: f.arrayValues.map(v => { return { "key": v, "value": v } as any }),
-          type: { key: typeKey, value: FieldTypeEnum[typeKey] }
+          type: { key: f.type, value: typeDisplayValue }
         }
       })
     }

@@ -1,5 +1,4 @@
-import { FieldTypeEnum } from "../../rvn-forms/types";
-
+import { FieldType } from "../../rvn-forms/types";
 
 //DTOs
 export interface FormDTO {
@@ -19,7 +18,7 @@ export interface FormFieldDTO {
     //need for update case
     id?: number;
     name: string;
-    type: string;
+    type: FieldType;
     required: boolean;
     validationRegex?: string;
     arrayValues?: string[];
