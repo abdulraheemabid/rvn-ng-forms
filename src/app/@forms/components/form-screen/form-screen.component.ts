@@ -17,7 +17,11 @@ import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/r
 })
 export class FormScreenComponent implements OnInit {
 
-  constructor(private formApiService: FormApiService, private appService: AppService, private snackBarService: RvnSnackBarService, private route: ActivatedRoute) { }
+  constructor(
+    private formApiService: FormApiService,
+    private appService: AppService,
+    private snackBarService: RvnSnackBarService,
+    private route: ActivatedRoute) { }
 
   formDefinitionFG: FormGroup;
   formDefinition: IForm;
@@ -65,20 +69,29 @@ export class FormScreenComponent implements OnInit {
     if (this.formDefinitionFG.status === "VALID") {
 
       if (this.mode === "create")
-        this.formApiService.createForm(this.formDefinition).subscribe();
+        this.formApiService.createForm(this.formDefinition).subscribe(
+          _ => this.navigateToFormsList()
+        );
+
       else {
-        
+
         //name field should only be added if its changed
         if (this.formDefinition.name === this.orignalFormName)
           delete this.formDefinition.name;
 
-        this.formApiService.updateForm(this.formDefinition).subscribe();
+        this.formApiService.updateForm(this.formDefinition).subscribe(
+          _ => this.navigateToFormsList()
+        );
       }
 
 
     } else {
       this.snackBarService.showErrorAlert("Form is not valid. Please recheck");
     }
+  }
+
+  navigateToFormsList() {
+    this.appService.navigate("");
   }
 
 }

@@ -1,3 +1,5 @@
+<rvn-spinner *ngIf="showLoader | async" [params]="{fullHeight: true}"></rvn-spinner>
+
 <mat-sidenav-container class="sidenav-container">
 
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"

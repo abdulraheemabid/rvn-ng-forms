@@ -50,6 +50,18 @@ body {
     @extend .mat-body-2;
 }
 
+.snack-bar {
+    &.top {
+        //TODO: remove hardcoding. height of topbar + 10px
+        margin-top: 75px;
+    }
+
+    &.center {
+        display: flex !important;
+        justify-content: center;
+    }
+}
+
 // Colors
 
 .color-primary {

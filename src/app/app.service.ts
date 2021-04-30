@@ -9,6 +9,8 @@ export class AppService {
 
   constructor(private router: Router) { }
 
+  showLoader: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   toolBarHeading = new BehaviorSubject<string>("");
 
   setToolBarHeading(val: string) {

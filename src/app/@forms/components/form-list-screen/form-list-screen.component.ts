@@ -31,7 +31,6 @@ export class FormListScreenComponent implements OnInit {
     this.appService.setToolBarHeading("Forms");
 
     this.formApiService.getForms().subscribe(data => {
-      console.log(data);
       this.forms = data;
       this.filteredForms = [...this.forms];
       this.listParams.list = this.filteredForms;
