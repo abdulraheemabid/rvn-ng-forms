@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { FieldType } from '../../types';
 
 @Component({
   selector: 'base-definition-renderer',
@@ -9,7 +10,7 @@ import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util'
 })
 export class BaseDefinitionRendererComponent {
   @Input() fieldFG: FormGroup;
-  @Input() selectedType: string;
+  @Input() selectedType: FieldType;
 
   constructor(public fb: FormBuilder) { }
 

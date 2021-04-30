@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
@@ -7,6 +7,7 @@ import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { ReactiveFormUtilityService } from 'src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 
 @Component({
   selector: 'form-definition',
@@ -21,6 +22,7 @@ export class FormDefinitionComponent implements OnInit {
 
   @Input() form: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
+  @Input() mode: CreateOrEdit;
   @Output() formDefinitionUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   initDone: boolean = false;
@@ -33,6 +35,7 @@ export class FormDefinitionComponent implements OnInit {
   collapseCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_less', color: "accent" };
   expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
   deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };
+  undoDeleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "accent" };
 
   get fieldFormGroupTemplate() {
     return {
@@ -114,11 +117,18 @@ export class FormDefinitionComponent implements OnInit {
     this.scrollToBottomOfFieldsList();
   }
 
-  deleteField(index: number) {
-    if (this.fieldGroups.length > 1)
-      this.fieldGroups.removeAt(index);
+  deleteField(index: number, fieldGroup: AbstractControl) {
+    if (this.fieldGroups.length > 1) {
+      if (!fieldGroup.get("markDeleted")) this.fieldGroups.removeAt(index);
+      else fieldGroup.get("markDeleted").setValue(true);
+
+      this.updatePositionAttributeOfAllFields();
+    }
+  }
+
+  undoDelete(fieldGroup: AbstractControl) {
+    fieldGroup.get("markDeleted").setValue(false);
     this.updatePositionAttributeOfAllFields();
-    this.scrollToBottomOfFieldsList();
   }
 
   changePositionOfField(event) {
@@ -132,7 +142,15 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   updatePositionAttributeOfAllFields() {
-    this.fieldGroups.controls.forEach(c => c.get("attributes").get("position").setValue(this.fieldGroups.controls.indexOf(c)));
+    let numberOfDeletedFields = 0;
+    this.fieldGroups.controls.forEach(c => {
+      if (c.get("markDeleted") !== null && c.get("markDeleted").value === true) {
+        numberOfDeletedFields++;
+        c.get("attributes").get("position").setValue(null);
+      }
+      else
+        c.get("attributes").get("position").setValue(this.fieldGroups.controls.indexOf(c) - numberOfDeletedFields)
+    });
   }
 
   collapseAllFields() {

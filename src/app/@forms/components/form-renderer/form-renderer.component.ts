@@ -26,13 +26,13 @@ export class FormRendererComponent implements OnChanges {
   keyToUseForFieldControl: "name" | "id" = "id";
 
   ngOnChanges(changes: SimpleChanges): void {
-    
+
     this.setPramsAccordingToMode();
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
 
     // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
-    setTimeout(() => { this.renderControlForEachField()});
+    setTimeout(() => { this.renderControlForEachField() });
   }
 
   setPramsAccordingToMode() {
@@ -51,7 +51,9 @@ export class FormRendererComponent implements OnChanges {
   }
 
   renderControlForEachField() {
-    this.formDefinition.fields.forEach(f => this.renderUIControl(f))
+    this.formDefinition.fields.forEach(f => {
+      if (f.markDeleted !== true) this.renderUIControl(f)
+    })
   }
 
   renderUIControl(field: IFormField) {

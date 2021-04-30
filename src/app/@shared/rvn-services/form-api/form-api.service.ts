@@ -32,8 +32,9 @@ export class FormApiService {
     return this.httpClient.post<IId>(this.baseUrl, dto);
   }
 
-  editForm(form: IForm) {
-    return this.httpClient.patch<IId>(`${this.baseUrl}/${form.id}`, form);
+  updateForm(form: IForm) {
+    const dto = this.transformToDTO(form);
+    return this.httpClient.patch<IId>(`${this.baseUrl}/${form.id}`, dto);
   }
 
   deleteForm(id: number) {
@@ -50,7 +51,7 @@ export class FormApiService {
         return {
           ...f,
           type: f.type.key,
-          arrayValues: f.arrayValues.map(v => v.value)
+          arrayValues: f.arrayValues?.map(v => v.value)
         }
       })
     };
@@ -66,7 +67,7 @@ export class FormApiService {
         return {
           ...f,
           attributes: f.attributes as any,
-          arrayValues: f.arrayValues.map(v => { return { "key": v, "value": v } as any }),
+          arrayValues: f.arrayValues?.map(v => { return { "key": v, "value": v } as any }),
           type: { key: f.type, value: typeDisplayValue }
         }
       })

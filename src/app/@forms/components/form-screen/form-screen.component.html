@@ -1,10 +1,10 @@
 <div class="container" *ngIf="mode && initDone">
     <div class="definition">
-        <form-definition content [form]="formDefinition" [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
+        <form-definition content [mode]="mode" [form]="formDefinition" [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
     <div class="button">
-        <rvn-button (onClick)="saveForm()" [params]="{ type:'icon-text-primary', icon: 'save', color: 'primary'}">
+        <rvn-button (onClick)="saveForm()" [params]="submitButtonParams">
             Save Form
         </rvn-button>
     </div>

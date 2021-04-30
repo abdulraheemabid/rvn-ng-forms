@@ -8,6 +8,7 @@ import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
 import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
+import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 
 @Component({
   selector: 'form-screen',
@@ -23,6 +24,8 @@ export class FormScreenComponent implements OnInit {
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;
   initDone: boolean = false;
+  submitButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'save', color: 'primary' };
+  orignalFormName: string;
 
 
   ngOnInit(): void {
@@ -38,6 +41,7 @@ export class FormScreenComponent implements OnInit {
       const formId = route.params["id"];
 
       this.formApiService.getForm(formId).subscribe(value => {
+        this.orignalFormName = value.name;
         this.formDefinition = value;
         this.initDone = true;
       });
@@ -59,7 +63,19 @@ export class FormScreenComponent implements OnInit {
     this.markFormDefinitionFGAsDirty$.next();
 
     if (this.formDefinitionFG.status === "VALID") {
-      this.formApiService.createForm(this.formDefinition).subscribe();
+
+      if (this.mode === "create")
+        this.formApiService.createForm(this.formDefinition).subscribe();
+      else {
+        
+        //name field should only be added if its changed
+        if (this.formDefinition.name === this.orignalFormName)
+          delete this.formDefinition.name;
+
+        this.formApiService.updateForm(this.formDefinition).subscribe();
+      }
+
+
     } else {
       this.snackBarService.showErrorAlert("Form is not valid. Please recheck");
     }

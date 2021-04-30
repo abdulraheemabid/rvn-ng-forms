@@ -52,7 +52,12 @@
                 [params]="{hasActionContent: true, expanded: field.get('attributes')?.get('_expanded').value}"
                 *ngFor="let field of fieldGroups.controls; let i = index; let last = last; let first = first">
 
-                <span title class="title" [ngClass]="{'color-warn': validated && field.status === 'INVALID' && field.dirty}">
+                <span title class="title"
+                    [ngClass]="{'color-warn': validated && field.status === 'INVALID' && field.dirty}">
+                    <span class="color-warn text-bold" *ngIf="field.get('markDeleted')?.value == true">
+                        Marked to be deleted
+                    </span>
+
                     <span>
                         Field Position:
                         <span class="text-bold">{{i+1}}</span>
@@ -68,17 +73,23 @@
                         <span class="text-bold">{{field.get('type')?.value?.value}}</span>
                     </span>
 
-                    <span *ngIf="validated && field.status === 'INVALID' && field.dirty" class="text-bold">INVALID</span>
-                    
+                    <span *ngIf="validated && field.status === 'INVALID' && field.dirty"
+                        class="text-bold">INVALID</span>
+
                 </span>
 
 
                 <!-- mouse down event to prevent drag&drop panel when trying to select text in input -->
                 <field-definition (mousedown)="$event.stopPropagation()" content [fieldFG]="field"></field-definition>
 
-                <rvn-button actionContent (click)="deleteField(i)" [params]="deleteFieldCompParam"
-                    [disabled]="first && last">
+                <rvn-button actionContent
+                    *ngIf="field.get('markDeleted') == null || field.get('markDeleted')?.value == false"
+                    (click)="deleteField(i, field)" [params]="deleteFieldCompParam" [disabled]="first && last">
                     Delete</rvn-button>
+
+                <rvn-button actionContent *ngIf="field.get('markDeleted')?.value == true"
+                    (click)="undoDelete(field)" [params]="undoDeleteFieldCompParam">
+                    Undo Delete</rvn-button>
 
             </rvn-accordion-panel>
 
