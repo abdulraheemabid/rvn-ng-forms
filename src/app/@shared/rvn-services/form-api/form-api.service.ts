@@ -42,23 +42,23 @@ export class FormApiService {
   }
 
   getRecord(formId: number, recordId: number): Observable<IRecord> {
-    return of(null);
+    return this.httpClient.get<IRecord>(`${this.baseUrl}/${formId}/record/${recordId}`);
   }
 
   getRecords(formId: number): Observable<IRecord[]> {
     return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
   }
 
-  createRecord(record: IRecord): Observable<IId> {
-    return of(null);
+  createRecord(formId: number, record: IRecord): Observable<IId> {
+    return this.httpClient.post<IId>(`${this.baseUrl}/${formId}/record`, record);
   }
 
-  updateRecord(record: IRecord): Observable<IId> {
-    return of(null);
+  updateRecord(formId: number, record: IRecord): Observable<IId> {
+    return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record`, record);
   }
 
-  deleteRecord(recordId: number): Observable<IId> {
-    return of(null);
+  deleteRecord(formId: number, recordId: number): Observable<IId> {
+    return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}`);
   }
 
 

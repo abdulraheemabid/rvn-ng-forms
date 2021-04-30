@@ -12,6 +12,7 @@ import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-ren
 import { ReactiveFormsModule } from '@angular/forms';
 import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
 import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
+import { RecordScreenComponent } from './components/record-screen/record-screen.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RecordListScreenComponent } from './components/record-list-screen/recor
     FieldDefinitionComponent,
     FormRendererComponent,
     FormListScreenComponent,
-    RecordListScreenComponent
+    RecordListScreenComponent,
+    RecordScreenComponent
   ],
   imports: [
     CommonModule,

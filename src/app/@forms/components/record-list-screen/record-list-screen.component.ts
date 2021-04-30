@@ -89,7 +89,7 @@ export class RecordListScreenComponent implements OnInit {
       yesButtonParams: { type: 'tertiary', color: 'warn' }
     }).pipe(
       switchMap((confirmed: boolean) => {
-        return confirmed ? this.formApiService.deleteRecord(record.id) : of(null);
+        return confirmed ? this.formApiService.deleteRecord(this.formId, record.id) : of(null);
       }))
       .subscribe(val => {
         if (val) this.ngOnInit()

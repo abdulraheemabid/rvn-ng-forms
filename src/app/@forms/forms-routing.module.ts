@@ -4,10 +4,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormScreenComponent } from './components/form-screen/form-screen.component';
 import { FormListScreenComponent } from './components/form-list-screen/form-list-screen.component';
 import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
+import { RecordScreenComponent } from './components/record-screen/record-screen.component';
 
 
 
 const routes: Routes = [
+  {
+    path: ':id/records/:recordId/edit',
+    component: RecordScreenComponent
+  },
+  {
+    path: ':id/records/create',
+    component: RecordScreenComponent
+  },
   {
     path: ':id/records',
     component: RecordListScreenComponent
