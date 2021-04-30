@@ -10,13 +10,13 @@ export interface IForm {
 export interface IFormField {
     id?: number;
     name: string;
-    type: KeyValue<string, UIControlNameEnum>;
+    type: KeyValue<string, string>;
     required: boolean;
     validationRegex?: string;
-    arrayValues?: string[];
+    arrayValues?: KeyValue<string, string>[];
     attributes?: {
         position: number;
-        displayAs: KeyValue<string, string>;
+        displayAs: KeyValue<string, UIControlEnum>;
     };
     markDeleted?: boolean;
 }
@@ -37,7 +37,7 @@ export interface IFieldTypeMeta {
     }[];
 }
 
-export interface IId{
+export interface IId {
     id: number
 }
 

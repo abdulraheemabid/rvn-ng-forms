@@ -36,11 +36,9 @@ export class FieldDefinitionComponent implements OnInit {
 
     if (!isNullOrUndefined(fieldTypeValue) && fieldTypeValue !== "") {
       setTimeout(() => {
-        if (typeof fieldTypeValue === "string") {
-          const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue.toUpperCase());
-          fieldTypeFC.setValue(fielTypKeyValue, { emitEvent: false });
-          this.loadTypeRenderer(fielTypKeyValue);
-        }
+        const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue.key.toUpperCase());
+        fieldTypeFC.setValue(fielTypKeyValue, { emitEvent: false });
+        this.loadTypeRenderer(fielTypKeyValue);
       })
     }
   }

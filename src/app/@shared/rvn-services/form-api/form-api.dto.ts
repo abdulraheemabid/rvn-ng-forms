@@ -3,29 +3,27 @@ import { FieldTypeEnum } from "../../rvn-forms/types";
 
 //DTOs
 export interface FormDTO {
+    id?: number;
     name: string;
     fields: FormFieldDTO[];
-    attributes?: JSON;
-    request: any
+    attributes?: string[];
 }
 
 export interface FormUpdateDTO {
-    formId: number;
     name?: string;
     fields?: FormFieldDTO[];
-    attributes?: JSON;
-    request: any
+    attributes?: {};
 }
 
 export interface FormFieldDTO {
     //need for update case
     id?: number;
     name: string;
-    type: FieldTypeEnum;
+    type: string;
     required: boolean;
     validationRegex?: string;
     arrayValues?: string[];
-    attributes?: JSON;
+    attributes?: {};
     //need for update case
     markDeleted?: boolean;
 }
@@ -38,7 +36,6 @@ export interface RecordDTO {
     formId: number;
     entry: any;
     attributes?: JSON;
-    request: any;
 }
 
 export interface RecordUpdateDTO {
@@ -46,7 +43,6 @@ export interface RecordUpdateDTO {
     id: number;
     entry: any;
     attributes?: JSON;
-    request: any;
 }
 
 export interface RecordIdDTO {
