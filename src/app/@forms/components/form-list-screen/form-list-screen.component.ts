@@ -68,7 +68,7 @@ export class FormListScreenComponent implements OnInit {
   deleteForm(form: IForm) {
     this.dialogService.openConfirmDialog({
       title: 'Confirm',
-      message: `Form ${form.name} will be deleted permanently. Are you sure?`,
+      message: `Form "${form.name}" will be deleted permanently. Are you sure?`,
       noButtonMessage: "Cancel",
       yesButtonMessage: "Delete",
       yesButtonParams: { type: 'tertiary', color: 'warn' }
