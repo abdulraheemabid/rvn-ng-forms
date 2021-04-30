@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
-import { IForm, IId } from '../../rvn-forms/types';
+import { IForm, IId, IRecord } from '../../rvn-forms/types';
 import { FormDTO } from './form-api.dto';
 
 @Injectable({
@@ -39,6 +39,26 @@ export class FormApiService {
 
   deleteForm(id: number) {
     return this.httpClient.delete<IId>(`${this.baseUrl}/${id}`);
+  }
+
+  getRecord(formId: number, recordId: number): Observable<IRecord> {
+    return of(null);
+  }
+
+  getRecords(formId: number): Observable<IRecord[]> {
+    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
+  }
+
+  createRecord(record: IRecord): Observable<IId> {
+    return of(null);
+  }
+
+  updateRecord(record: IRecord): Observable<IId> {
+    return of(null);
+  }
+
+  deleteRecord(recordId: number): Observable<IId> {
+    return of(null);
   }
 
 

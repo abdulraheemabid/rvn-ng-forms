@@ -26,7 +26,7 @@ export class FormListScreenComponent implements OnInit {
 
   forms: IForm[] = [];
   filteredForms: IForm[] = [];
-  listParams = { list: [], lineOneKey: 'name', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: null, dense: true }
+  listParams = { list: [], lineOneKey: 'name', icon: 'assignment', actionTemplateRef: null, dense: true }
   newFormButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
   searchFormParams: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
   cardParams: RvnCardInput = {}

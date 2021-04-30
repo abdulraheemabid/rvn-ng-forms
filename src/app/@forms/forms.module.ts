@@ -11,6 +11,7 @@ import { RvnTypeDefinitionRenderersModule } from '../@shared/rvn-forms/type-defi
 import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-renderers.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
+import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
     FormDefinitionComponent,
     FieldDefinitionComponent,
     FormRendererComponent,
-    FormListScreenComponent
+    FormListScreenComponent,
+    RecordListScreenComponent
   ],
   imports: [
     CommonModule,

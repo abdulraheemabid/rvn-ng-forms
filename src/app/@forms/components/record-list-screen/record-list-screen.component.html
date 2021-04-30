@@ -1,0 +1,28 @@
+<div class="container">
+    <rvn-button class="button" (click)="createRecord()" [params]="newRecordButtonParams">Create new record</rvn-button>
+
+    <rvn-input class="search" [params]="searchRecordParams" [formControl]="searchFC"></rvn-input>
+
+    <rvn-card class="list" [params]="cardParams">
+        <rvn-list content [params]="listParams">
+            <ng-template #actions let-listItem="listItem">
+                <rvn-button (click)="editRecord(listItem)"
+                    [params]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
+                </rvn-button>
+                <rvn-button (click)="deleteRecord(listItem)"
+                    [params]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
+                </rvn-button>
+            </ng-template>
+        </rvn-list>
+
+        <div content class="list no-records color-warn" *ngIf="filteredRecords.length == 0">
+            <span>
+                No records found
+                <span *ngIf="searchFC.value !== ''"> matching the search criteria !</span>
+                <span *ngIf="searchFC.value === ''"> !</span>
+            </span>
+
+        </div>
+    </rvn-card>
+
+</div>
