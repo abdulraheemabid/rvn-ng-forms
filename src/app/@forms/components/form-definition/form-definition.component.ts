@@ -37,17 +37,6 @@ export class FormDefinitionComponent implements OnInit {
   deleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "warn" };
   undoDeleteFieldCompParam: RvnButtonInput = { type: 'secondary', color: "accent" };
 
-  get fieldFormGroupTemplate() {
-    return {
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      type: ['', Validators.required],
-      required: [false],
-      attributes: this.fb.group({
-        _expanded: [true],
-        position: [null]
-      })
-    };
-  };
 
   get fieldGroups(): FormArray {
     return this.formGrp.get('fields') as FormArray;
@@ -69,11 +58,7 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   initNewFormGroup() {
-    this.formGrp = this.fb.group({
-      attributes: [{}],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      fields: this.fb.array([])
-    });
+    this.formGrp = this.formService.getNewFormFG();
 
     this.addField();
 
@@ -111,7 +96,7 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   addField() {
-    let fg = this.fb.group(this.fieldFormGroupTemplate);
+    let fg = this.formService.getNewFieldFG();
     this.fieldGroups.push(fg);
     fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length - 1);
     this.scrollToBottomOfFieldsList();

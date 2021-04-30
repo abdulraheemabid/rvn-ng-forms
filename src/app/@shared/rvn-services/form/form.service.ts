@@ -48,7 +48,7 @@ export class FormService {
   generateRecordFormGroup(formDefinition: IForm, keyForFieldControlId: string = "id") {
     let recordFg = this.fb.group({});
     formDefinition.fields.forEach(f => {
-      if(f.markDeleted !== true){
+      if (f.markDeleted !== true) {
         const validators = f.required ? [Validators.required] : [];
         recordFg.addControl(f[keyForFieldControlId].toString(), this.fb.control(null, validators));
       }
@@ -88,6 +88,26 @@ export class FormService {
 
     return fg;
 
+  }
+
+  getNewFormFG() {
+    return this.fb.group({
+      attributes: [{}],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      fields: this.fb.array([])
+    })
+  }
+
+  getNewFieldFG() {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      type: ['', Validators.required],
+      required: [false],
+      attributes: this.fb.group({
+        _expanded: [true],
+        position: [null]
+      })
+    });
   }
 
 }
