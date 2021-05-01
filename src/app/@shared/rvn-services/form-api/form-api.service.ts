@@ -16,11 +16,13 @@ export class FormApiService {
 
   baseUrl: string = environment.restBaseUrl;
 
-  getForm(id: number) {
-    return this.httpClient.get<FormDTO>(`${this.baseUrl}/${id}`)
-      .pipe(
-        switchMap(form => of(this.transformFromDTO(form)))
-      );
+  getForm(id: number): Observable<IForm> {
+    // return this.httpClient.get<FormDTO>(`${this.baseUrl}/${id}`)
+    //   .pipe(
+    //     switchMap(form => of(this.transformFromDTO(form)))
+    //   );
+
+    return of({ "id": 17, "createdOn": "2021-04-30T22:39:38.633Z", "createdById": 1, "updatedOn": "2021-04-30T22:39:38.633Z", "updatedById": 1, "deletedOn": null, "attributes": {}, "name": "test", "fields": [{ "id": 36, "createdOn": "2021-04-30T22:39:38.627Z", "createdById": 1, "updatedOn": "2021-04-30T22:39:38.627Z", "updatedById": null, "deletedOn": null, "attributes": { "position": 0, "_expanded": true }, "name": "111", "type": { "key": "string", "value": "Text" }, "required": true, "validationRegex": null, "arrayValues": null }] });
   }
 
   getForms() {
@@ -46,7 +48,8 @@ export class FormApiService {
   }
 
   getRecords(formId: number): Observable<IRecord[]> {
-    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
+    //return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
+    return of([{ "id": 2, "createdOn": "2021-04-30T22:41:04.794Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:04.794Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "1" } }, { "id": 3, "createdOn": "2021-04-30T22:41:09.617Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:09.617Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "2" } }, { "id": 4, "createdOn": "2021-04-30T22:41:14.720Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:14.720Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "3" } }, { "id": 5, "createdOn": "2021-04-30T22:41:18.745Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:18.745Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "4" } }]);
   }
 
   createRecord(formId: number, record: IRecord): Observable<IId> {

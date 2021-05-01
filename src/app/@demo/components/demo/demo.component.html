@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" #mainContainer>
 
     <!-- FORMS -->
 
@@ -366,7 +366,15 @@
                 </ng-template>
             </div>
         </div>
+    </rvn-card>
 
+     <!-- TABLE -->
 
+     <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'TABLE'}">
+
+        <div content>
+            <rvn-table></rvn-table>
+          
+        </div>
     </rvn-card>
 </div>

@@ -19,6 +19,7 @@ import { RvnSpinnerComponent } from "./components/rvn-spinner/rvn-spinner.compon
 import { RvnToggleComponent } from "./components/rvn-toggle/rvn-toggle.component";
 import { RvnConfirmDialogComponent} from './components/rvn-confirm-dialog/rvn-confirm-dialog.component';
 import { MaterialModule } from "./material.module";
+import { RvnTableComponent } from "./components/rvn-table/rvn-table.component";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MaterialModule } from "./material.module";
         RvnListComponent,
         RvnMenuComponent,
         RvnSpinnerComponent,
-        RvnConfirmDialogComponent
+        RvnConfirmDialogComponent,
+        RvnTableComponent
     ],
     imports: [
         CommonModule,
@@ -64,7 +66,8 @@ import { MaterialModule } from "./material.module";
         RvnListComponent,
         RvnMenuComponent,
         RvnSpinnerComponent,
-        RvnConfirmDialogComponent
+        RvnConfirmDialogComponent,
+        RvnTableComponent
     ],
     providers: [
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { RvnCheckboxInput } from "src/app/@shared/rvn-core/components/rvn-checkbox/rvn-checkbox.input";
 import { RvnChipsAutocompleteInput } from "src/app/@shared/rvn-core/components/rvn-chips-autocomplete/rvn-chips-autocomplete.input";
@@ -20,8 +20,12 @@ export class DemoComponent implements OnInit {
 
   constructor(private appService: AppService, private snackBarService: RvnSnackBarService) { }
 
+  @ViewChild("mainContainer") mainContainer;
+
   ngOnInit() {
     this.appService.setToolBarHeading("Demo");
+    //temp
+    setTimeout(() => this.mainContainer.nativeElement.lastElementChild.scrollIntoView({ behavior: "smooth", block: "end" }));
   }
 
   fc = new FormControl(null, [Validators.required]);

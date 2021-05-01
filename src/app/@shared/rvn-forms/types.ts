@@ -16,13 +16,12 @@ export interface IFormField {
     arrayValues?: KeyValue<string, string>[];
     attributes?: {
         position: number;
-        displayAs: KeyValue<string, UIControlEnum>;
+        displayAs?: KeyValue<string, UIControlEnum>;
     };
     markDeleted?: boolean;
 }
 
 export interface IRecord {
-    formId: number;
     id?: number;
     entry: any;
     attributes?: any;
