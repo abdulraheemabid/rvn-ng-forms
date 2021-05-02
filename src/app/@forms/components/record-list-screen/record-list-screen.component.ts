@@ -27,6 +27,7 @@ export class RecordListScreenComponent implements OnInit {
 
   @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
   @ViewChild("createdOnTemplate", { static: true }) createdOnTemplate: TemplateRef<any>;
+  @ViewChild("expandedContent", { static: true }) expandedContent: TemplateRef<any>;
 
   records: IRecord[] = [];
   filteredRecords: IRecord[] = [];
@@ -38,8 +39,10 @@ export class RecordListScreenComponent implements OnInit {
   cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
   initDone: boolean = false;
+  numberOfColumnsToAddInTable: number = 5;
 
   ngOnInit(): void {
+    this.initDone = false;
     this.appService.setToolBarHeading("Records");
     const route = this.route.snapshot;
     this.formId = route.params["id"];
@@ -71,9 +74,12 @@ export class RecordListScreenComponent implements OnInit {
     this.filteredRecords = [...this.records];
     this.tableConfig.data = this.filteredRecords;
     this.tableConfig.columnsToDisplay = this.formDefinition.fields.map(f => { return { keyName: f.id.toString(), displayName: f.name } });
+    if (this.tableConfig.columnsToDisplay.length > this.numberOfColumnsToAddInTable)
+      this.tableConfig.columnsToDisplay = this.tableConfig.columnsToDisplay.slice(0, this.numberOfColumnsToAddInTable);
     this.tableConfig.columnsToDisplay.push({ keyName: "createdOn", displayName: 'created on', customTemplate: this.createdOnTemplate });
     this.tableConfig.columnsToDisplay.push({ keyName: "actions", displayName: "", customTemplate: this.actionsTemplate, textAlign: "right" });
     this.tableConfig.filterInputFC = this.searchFC;
+    this.tableConfig.templateToShowOnRowExpand = this.expandedContent;
     this.cardConfig.title = `Total: ${this.records.length}`;
     this.initDone = true;
   }

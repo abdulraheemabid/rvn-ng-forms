@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
+import { isKeyValue, isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
 import { IForm, IId, IRecord } from '../../rvn-forms/types';
 import { FormDTO } from './form-api.dto';
@@ -44,7 +44,10 @@ export class FormApiService {
   }
 
   getRecord(formId: number, recordId: number): Observable<IRecord> {
-    return this.httpClient.get<IRecord>(`${this.baseUrl}/${formId}/record/${recordId}`);
+    return this.httpClient.get<IRecord>(`${this.baseUrl}/${formId}/record/${recordId}`)
+      .pipe(
+        switchMap(record => of(this.transformRecordFromDTO(record)))
+      );
   }
 
   getRecords(formId: number): Observable<IRecord[]> {
@@ -104,10 +107,10 @@ export class FormApiService {
 
       if (Array.isArray(value)) {
         value = value.map(item => {
-          return this.isKeyValue(item) ? item.key : item;
+          return isKeyValue(item) ? item.key : item;
         });
       } else {
-        value = this.isKeyValue(value) ? value.key : value;
+        value = isKeyValue(value) ? value.key : value;
       }
 
       record.entry[key] = value;
@@ -116,17 +119,21 @@ export class FormApiService {
     return record;
   }
 
-  private transformRecordFromDTO(form: IForm, record: IRecord) {
+  private transformRecordFromDTO(record: IRecord) {
+    Object.keys(record.entry).forEach(key => {
+      let value = record.entry[key];
 
-  }
+      if (Array.isArray(value)) {
+        value = value.map(item => {
+          return { key: item, value: item };
+        });
+      } else if (typeof value === "boolean") {
+        value = { key: value, value: value.toString() };
+      }
 
-  private isKeyValue(val: any) {
-    return (
-      typeof val === "object" &&
-      !Array.isArray(val) &&
-      Object.keys(val).length === 2 &&
-      !isNullOrUndefined(val.key) &&
-      !isNullOrUndefined(val.value)
-    )
+      record.entry[key] = value;
+    })
+
+    return record;
   }
 }

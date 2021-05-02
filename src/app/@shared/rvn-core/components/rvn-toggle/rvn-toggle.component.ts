@@ -1,7 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CustomFormControlValueAccessor } from 'src/app/@shared/rvn-core/utils/custom-form-control-value-accessor';
-import { isNullOrUndefined } from '../../utils/funtions.util';
+import { isKeyValue, isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnToggleInput } from './rvn-toggle.input';
 
 @Component({
@@ -25,6 +25,10 @@ export class RvnToggleComponent extends CustomFormControlValueAccessor implement
     if (isNullOrUndefined(this.config?.required)) this.config.required = false;
     if (isNullOrUndefined(this.config?.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
     if (isNullOrUndefined(this.config?.styleVersion)) this.config.styleVersion = 'v1';
+
+    if (!isNullOrUndefined(this.formControl.value) && isKeyValue(this.formControl.value)) {
+      this.formControl.setValue(this.formControl.value.key);
+    }
   }
 
 }

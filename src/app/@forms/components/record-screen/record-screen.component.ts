@@ -78,9 +78,9 @@ export class RecordScreenComponent implements OnInit {
     if (this.recordFG.status === "VALID") {
       this.record.entry = this.recordFG.getRawValue();
       if (this.mode === "edit")
-        this.formApiService.updateRecord(this.formId, this.record).subscribe();
+        this.formApiService.updateRecord(this.formId, this.record).subscribe(_ => this.navigateToRecordsList());
       else
-        this.formApiService.createRecord(this.formId, this.record).subscribe();
+        this.formApiService.createRecord(this.formId, this.record).subscribe(_ => this.navigateToRecordsList());
     }
   }
 

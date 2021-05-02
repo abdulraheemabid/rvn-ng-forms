@@ -17,12 +17,20 @@ import { RvnRadioInput } from './rvn-radio.input';
   ]
 })
 export class RvnRadioComponent extends CustomFormControlValueAccessor implements OnInit {
-  
+
   @Input() config: RvnRadioInput = null;
 
   ngOnInit() {
     if (isNullOrUndefined(this.config.required)) this.config.required = false;
     if (isNullOrUndefined(this.config.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
     if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
+    this.initValueIfAlreadyExists();
+  }
+
+  initValueIfAlreadyExists() {
+    if (!isNullOrUndefined(this.formControl.value)) {
+      const selectedOption = this.config.radioOptions.find(o => o.key === this.formControl.value.key);
+      this.formControl.setValue(selectedOption, { emitEvent: false });
+    }
   }
 }

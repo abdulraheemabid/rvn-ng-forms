@@ -1,8 +1,5 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { RvnRadioInput } from 'src/app/@shared/rvn-core/components/rvn-radio/rvn-radio.input';
-import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
-import { RvnToggleInput } from 'src/app/@shared/rvn-core/components/rvn-toggle/rvn-toggle.input';
+import { Component, OnInit } from '@angular/core';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { UIControlEnum } from '../../types';
 import { BaseInputRendererComponent } from '../base-input-renderer/base-input-renderer.component';
 
@@ -26,14 +23,14 @@ export class BoolInputRendererComponent extends BaseInputRendererComponent imple
     switch (this.UIControl) {
       case UIControlEnum.RADIO:
         this.config.radioOptions = [
-          { key: true, value: "Yes" },
-          { key: false, value: "No" },
+          { key: true, value: "true" },
+          { key: false, value: "false" },
         ]
         break;
       case UIControlEnum.SELECT:
         this.config.selectOptions = [
-          { key: true, value: "Yes" },
-          { key: false, value: "No" },
+          { key: true, value: "true" },
+          { key: false, value: "false" },
         ]
         break;
     }

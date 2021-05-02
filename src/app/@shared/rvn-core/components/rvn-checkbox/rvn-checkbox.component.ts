@@ -29,26 +29,17 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
     this.checkBoxArray.valueChanges.subscribe(selectedValues => this.syncControls(selectedValues));
   }
 
-  // getFormArray(): FormArray {
-  //   let array = this.formGroup.get('checkboxArray') as FormArray;
-  //   if (!array) {
-  //     this.formGroup.addControl("checkboxArray", new FormArray([]));
-  //     array = this.formGroup.get('checkboxArray') as FormArray;
-  //   }
-  //   this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
-  //   return array;
-  // }
-
   initFormArray() {
     this.formGroup.addControl("checkboxArray", new FormArray([]));
     let array = this.formGroup.get('checkboxArray') as FormArray;
 
     if (isNullOrUndefined(this.formControl.value)) {
-      this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
+      this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)));
     } else {
       this.config?.checkboxOptions.forEach(option => {
-        const defaultValue = this.formControl.value.includes(v => v.key === option.key && v.value === option.value)
-        array.push(new FormControl(defaultValue))
+        const isValidOption = this.formControl.value.find(v => v.key === option.key && v.value === option.value);
+        if (!isNullOrUndefined(isValidOption)) array.push(new FormControl(true));
+        else array.push(new FormControl(false));
       })
     }
 

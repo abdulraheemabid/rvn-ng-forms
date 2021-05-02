@@ -12,9 +12,7 @@ export class StringInputRendererComponent extends BaseInputRendererComponent {
 
   config: RvnInputInput;
 
-  ngOnInit(): void {
-    super.ngOnInit();
-    
+  ngOnInit(): void {    
     this.config = {
       label: this.fieldDefinition.name,
       placeholder: "Enter text value",

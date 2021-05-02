@@ -18,7 +18,12 @@
                 [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
             </rvn-button>
         </ng-template>
-        
+
+        <ng-template #expandedContent let-row="row">
+            <form-renderer mode="preview" [record]="row" [formDefinition]="formDefinition">
+            </form-renderer>
+        </ng-template>
+
     </rvn-card>
 
 </div>

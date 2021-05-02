@@ -2,11 +2,11 @@
 
     <ng-container *ngIf="config?.styleVersion == 'v1'">
         <span class="label" *ngIf="config?.label">{{config?.label}}:</span>
-        <mat-slide-toggle [formControl]="formControl" [required]="config?.required"></mat-slide-toggle>
+        <mat-slide-toggle [formControl]="formControl"></mat-slide-toggle>
     </ng-container>
 
     <ng-container *ngIf="config?.styleVersion == 'v2'">
-        <mat-slide-toggle [formControl]="formControl" [required]="config?.required">{{config?.label}}</mat-slide-toggle>
+        <mat-slide-toggle [formControl]="formControl">{{config?.label}}</mat-slide-toggle>
     </ng-container>
 
 </span>

@@ -21,7 +21,7 @@ export class FormRendererComponent implements OnChanges {
     private utilityService: ReactiveFormUtilityService) { }
 
   @Input() formDefinition: IForm;
-  @Input() mode: CreateOrEdit | "preview" = "preview";
+  @Input() mode: CreateOrEdit | "preview" | "text-preview" = "preview";
   @Input() record: IRecord;
   @Input() markFGAsDirtySubject$: Subject<any>;
   @Output() recordUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();

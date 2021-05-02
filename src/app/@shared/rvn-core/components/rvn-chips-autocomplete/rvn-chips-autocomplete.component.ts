@@ -49,9 +49,22 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
     if (this.config.required) opts.push(Validators.required);
     this.inputFormControl = new FormControl('', opts);
 
+    this.initValueIfAlreadyExists();
+
     //On key enter, filter the autocomple list with given key
     this.filteredOptions = this.inputFormControl.valueChanges.pipe(
       map((enteredKey: string | null) => enteredKey ? this._filter(enteredKey) : this.allOptions.slice()));
+  }
+
+  initValueIfAlreadyExists() {
+    if (!isNullOrUndefined(this.formControl.value)) {
+      this.formControl.value.forEach(sv => {
+        const selectedOption = this.allOptions.find(o => o.key === sv.key);
+        if (selectedOption) this.selectedOptions.add(selectedOption);
+      })
+      this.inputFormControl.setValue(null);
+      this.syncFormControl();
+    }
   }
 
   remove(option: KeyValue<any, any>): void {
