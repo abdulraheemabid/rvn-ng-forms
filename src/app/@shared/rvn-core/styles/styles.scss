@@ -62,6 +62,16 @@ body {
     }
 }
 
+.ui-control {
+    height: $ui-control-height;
+    display: flex;
+    align-items: center;
+
+    .mat-form-field-wrapper {
+        padding-bottom: 0;
+    }
+}
+
 // Colors
 
 .color-primary {

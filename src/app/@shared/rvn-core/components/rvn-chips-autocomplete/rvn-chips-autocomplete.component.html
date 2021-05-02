@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="config?.styleVersion">
+<div class="container ui-control" [ngClass]="config?.styleVersion">
     <span *ngIf="config?.styleVersion == 'v1'">{{config?.label}}:</span>
 
     <mat-form-field class="form-field" [appearance]="formFieldAppearance | async">

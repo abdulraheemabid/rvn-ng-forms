@@ -12,7 +12,9 @@
         [config]="{type: 'primary', color: 'accent'}">Submit
     </rvn-button>
 
-    <div class="form" *ngFor="let field of formDefinition.fields">
-        <ng-template #fieldAnchorPoint></ng-template>
+    <div class="form">
+        <div class="control" *ngFor="let field of formDefinition.fields">
+            <ng-template #fieldAnchorPoint></ng-template>
+        </div>
     </div>
 </div>

@@ -29,7 +29,7 @@ export class DemoComponent implements OnInit {
   ngOnInit() {
     this.appService.setToolBarHeading("Demo");
     //temp
-    setTimeout(() => this.mainContainer.nativeElement.lastElementChild.scrollIntoView({ behavior: "smooth", block: "end" }));
+    //setTimeout(() => this.mainContainer.nativeElement.lastElementChild.scrollIntoView({ behavior: "smooth", block: "end" }));
 
 
     this.tableConfig = {

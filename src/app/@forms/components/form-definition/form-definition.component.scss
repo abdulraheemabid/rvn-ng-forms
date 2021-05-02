@@ -15,7 +15,6 @@
     }
 
     display: grid;
-    //gap: $space-xxl;
     grid-template:
         "att"
         "fields";
@@ -23,7 +22,6 @@
     .attributes {
         grid-area: att;
         display: grid;
-        gap: $space-l;
 
         .heading {
             h2 {
@@ -35,8 +33,6 @@
     .fields {
         grid-area: fields;
         display: grid;
-        //gap: $space-l;
-        
 
         .total {
             vertical-align: middle;
@@ -68,8 +64,6 @@
         }
 
         .accordion {
-            // for scroll
-            // height: 40vh;
             overflow-y: auto;
         }
 
