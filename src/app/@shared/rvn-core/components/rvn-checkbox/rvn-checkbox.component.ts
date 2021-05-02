@@ -1,5 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
+import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnCheckboxInput } from './rvn-checkbox.input';
 
 @Component({
@@ -14,26 +16,50 @@ import { RvnCheckboxInput } from './rvn-checkbox.input';
     }
   ]
 })
-export class RvnCheckboxComponent implements OnInit {
+export class RvnCheckboxComponent extends CustomFormControlValueAccessor implements OnInit {
 
   @Input() config: RvnCheckboxInput = null;
-  @Input() formGroup: FormGroup;
+  formGroup: FormGroup = new FormGroup({});
   checkBoxArray: FormArray;
 
 
   ngOnInit() {
     if (!this.config.styleVersion) this.config.styleVersion = 'v1';
-    this.checkBoxArray = this.getFormArray();
+    this.checkBoxArray = this.initFormArray();
+    this.checkBoxArray.valueChanges.subscribe(selectedValues => this.syncControls(selectedValues));
   }
 
-  getFormArray(): FormArray {
+  // getFormArray(): FormArray {
+  //   let array = this.formGroup.get('checkboxArray') as FormArray;
+  //   if (!array) {
+  //     this.formGroup.addControl("checkboxArray", new FormArray([]));
+  //     array = this.formGroup.get('checkboxArray') as FormArray;
+  //   }
+  //   this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
+  //   return array;
+  // }
+
+  initFormArray() {
+    this.formGroup.addControl("checkboxArray", new FormArray([]));
     let array = this.formGroup.get('checkboxArray') as FormArray;
-    if (!array) {
-      this.formGroup.addControl("checkboxArray", new FormArray([]));
-      array = this.formGroup.get('checkboxArray') as FormArray;
+
+    if (isNullOrUndefined(this.formControl.value)) {
+      this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
+    } else {
+      this.config?.checkboxOptions.forEach(option => {
+        const defaultValue = this.formControl.value.includes(v => v.key === option.key && v.value === option.value)
+        array.push(new FormControl(defaultValue))
+      })
     }
-    this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
+
     return array;
   }
 
+  syncControls(selectedValues: boolean[]) {
+    let valuesToSet = [];
+    selectedValues.forEach((sv, i) => {
+      if (sv) valuesToSet.push(this.config?.checkboxOptions[i])
+    });
+    this.formControl.setValue(valuesToSet);
+  }
 }

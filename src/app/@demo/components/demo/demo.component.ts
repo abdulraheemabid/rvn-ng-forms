@@ -133,7 +133,7 @@ export class DemoComponent implements OnInit {
 
   chipsFC = new FormControl(null, [Validators.required]);
 
-  checkboxFG = new FormGroup({});
+  checkboxFC = new FormControl();
 
   dateInput: RvnDatepickerInput = {
     label: 'Date',

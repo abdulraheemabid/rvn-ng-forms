@@ -2,7 +2,7 @@
     <ng-container [ngSwitch]="UIControl">
 
         <ng-container *ngSwitchCase="UIControlEnum.CHECKBOX">
-            <rvn-checkbox [config]="config" [formGroup]="fg"></rvn-checkbox>
+            <rvn-checkbox [config]="config" [formControl]="valueFC"></rvn-checkbox>
         </ng-container>
 
         <ng-container *ngSwitchCase="UIControlEnum.CHIPSINPUT">
