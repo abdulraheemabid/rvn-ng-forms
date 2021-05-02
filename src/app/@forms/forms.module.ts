@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormScreenComponent } from './components/form-screen/form-screen.component';
 import { FormsRoutingModule } from './forms-routing.module';
 import { FormDefinitionComponent } from './components/form-definition/form-definition.component';
-import { FieldDefinitionComponent } from './components/field-definition/field-definition.component';
+import { FieldDefinitionComponent } from './components/form-definition/field-definition/field-definition.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormRendererComponent } from './components/form-renderer/form-renderer.component';
 import { FormListScreenComponent } from './components/form-list-screen/form-list-screen.component';

@@ -26,7 +26,6 @@ export class RecordScreenComponent implements OnInit {
   recordFG: FormGroup;
   markRecordFGAsDirty$ = new Subject();
 
-
   mode: CreateOrEdit | "preview";
   initDone: boolean = false;
 
