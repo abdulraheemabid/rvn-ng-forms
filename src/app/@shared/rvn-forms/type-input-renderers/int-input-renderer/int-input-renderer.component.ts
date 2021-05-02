@@ -20,5 +20,12 @@ export class IntInputRendererComponent extends BaseInputRendererComponent implem
       required: this.fieldDefinition.required,
       type: 'number'
     }
+
+    // converting string value to number
+    this.valueFC.valueChanges.subscribe(v => {
+      try {
+        this.valueFC.setValue(Number(v), { emitEvent: false });
+      } catch (err) { }
+    })
   }
 }

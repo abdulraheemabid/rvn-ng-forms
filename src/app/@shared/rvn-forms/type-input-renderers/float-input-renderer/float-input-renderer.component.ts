@@ -20,6 +20,13 @@ export class FloatInputRendererComponent extends BaseInputRendererComponent impl
       required: this.fieldDefinition.required,
       type: 'number'
     }
+
+    // converting string value to number
+    this.valueFC.valueChanges.subscribe(v => {
+      try {
+        this.valueFC.setValue(Number(v), { emitEvent: false });
+      } catch (err) { }
+    })
   }
 
 }

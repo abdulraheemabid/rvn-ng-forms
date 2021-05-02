@@ -57,6 +57,8 @@ export class FormRendererComponent implements OnChanges {
     this.recordFG = (this.mode === "edit" && this.record) ?
       this.formService.getRecordFG(this.formDefinition, this.record) :
       this.formService.getNewRecordFG(this.formDefinition, this.keyToUseForFieldControl);
+
+    this.recordUpdate.emit(this.recordFG);
   }
 
   renderControlForEachField() {

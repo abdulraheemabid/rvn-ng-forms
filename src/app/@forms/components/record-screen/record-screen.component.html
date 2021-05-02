@@ -1,12 +1,12 @@
 <div class="container" *ngIf="initDone">
 
-    <rvn-card [config]="{'title': formDefinition.name}">
+    <rvn-card [config]="{'title': form.name}">
         <div headerAction class="submit">
             <rvn-button (click)="submit()" [config]="{ type: 'icon-text-primary', icon: 'save', color: 'primary' }">Sumit Record</rvn-button>
         </div>
 
         <form-renderer content class="form" [mode]="mode" *ngIf="initDone" [record]="record"
-            [formDefinition]="formDefinition" [markFGAsDirtySubject$]="markRecordFGAsDirty$" (recordUpdate)="onRecordUpdate($event)">
+            [formDefinition]="form" [markFGAsDirtySubject$]="markRecordFGAsDirty$" (recordUpdate)="onRecordUpdate($event)">
         </form-renderer>
 
     </rvn-card>

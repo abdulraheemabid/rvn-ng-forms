@@ -1,8 +1,10 @@
+import { KeyValue } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
 import { IForm, IId, IRecord } from '../../rvn-forms/types';
 import { FormDTO } from './form-api.dto';
@@ -19,10 +21,8 @@ export class FormApiService {
   getForm(id: number): Observable<IForm> {
     return this.httpClient.get<FormDTO>(`${this.baseUrl}/${id}`)
       .pipe(
-        switchMap(form => of(this.transformFromDTO(form)))
+        switchMap(form => of(this.transformFormFromDTO(form)))
       );
-
-    // return of({ "id": 17, "createdOn": "2021-04-30T22:39:38.633Z", "createdById": 1, "updatedOn": "2021-04-30T22:39:38.633Z", "updatedById": 1, "deletedOn": null, "attributes": {}, "name": "test", "fields": [{ "id": 36, "createdOn": "2021-04-30T22:39:38.627Z", "createdById": 1, "updatedOn": "2021-04-30T22:39:38.627Z", "updatedById": null, "deletedOn": null, "attributes": { "position": 0, "_expanded": true }, "name": "111", "type": { "key": "string", "value": "Text" }, "required": true, "validationRegex": null, "arrayValues": null }] });
   }
 
   getForms() {
@@ -30,12 +30,12 @@ export class FormApiService {
   }
 
   createForm(form: IForm) {
-    const dto = this.transformToDTO(form);
+    const dto = this.transformFormToDTO(form);
     return this.httpClient.post<IId>(this.baseUrl, dto);
   }
 
   updateForm(form: IForm) {
-    const dto = this.transformToDTO(form);
+    const dto = this.transformFormToDTO(form);
     return this.httpClient.patch<IId>(`${this.baseUrl}/${form.id}`, dto);
   }
 
@@ -49,15 +49,16 @@ export class FormApiService {
 
   getRecords(formId: number): Observable<IRecord[]> {
     return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
-    //return of([{ "id": 2, "createdOn": "2021-04-30T22:41:04.794Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:04.794Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "1" } }, { "id": 3, "createdOn": "2021-04-30T22:41:09.617Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:09.617Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "2" } }, { "id": 4, "createdOn": "2021-04-30T22:41:14.720Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:14.720Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "3" } }, { "id": 5, "createdOn": "2021-04-30T22:41:18.745Z", "createdById": 1, "updatedOn": "2021-04-30T22:41:18.745Z", "updatedById": null, "deletedOn": null, "attributes": null, "entry": { "36": "4" } }]);
   }
 
   createRecord(formId: number, record: IRecord): Observable<IId> {
-    return this.httpClient.post<IId>(`${this.baseUrl}/${formId}/record`, record);
+    const dto = this.transformRecordToDTO(record);
+    return this.httpClient.post<IId>(`${this.baseUrl}/${formId}/record`, dto);
   }
 
   updateRecord(formId: number, record: IRecord): Observable<IId> {
-    return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record`, record);
+    const dto = this.transformRecordToDTO(record);
+    return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record`, dto);
   }
 
   deleteRecord(formId: number, recordId: number): Observable<IId> {
@@ -65,7 +66,7 @@ export class FormApiService {
   }
 
 
-  private transformToDTO(form: IForm): FormDTO {
+  private transformFormToDTO(form: IForm): FormDTO {
     return {
       id: form.id,
       name: form.name,
@@ -80,7 +81,7 @@ export class FormApiService {
     };
   }
 
-  private transformFromDTO(form: FormDTO): IForm {
+  private transformFormFromDTO(form: FormDTO): IForm {
     return {
       id: form.id,
       name: form.name,
@@ -97,5 +98,35 @@ export class FormApiService {
     }
   }
 
+  private transformRecordToDTO(record: IRecord) {
+    Object.keys(record.entry).forEach(key => {
+      let value = record.entry[key];
 
+      if (Array.isArray(value)) {
+        value = value.map(item => {
+          return this.isKeyValue(item) ? item.key : item;
+        });
+      } else {
+        value = this.isKeyValue(value) ? value.key : value;
+      }
+
+      record.entry[key] = value;
+    })
+
+    return record;
+  }
+
+  private transformRecordFromDTO(form: IForm, record: IRecord) {
+
+  }
+
+  private isKeyValue(val: any) {
+    return (
+      typeof val === "object" &&
+      !Array.isArray(val) &&
+      Object.keys(val).length === 2 &&
+      !isNullOrUndefined(val.key) &&
+      !isNullOrUndefined(val.value)
+    )
+  }
 }

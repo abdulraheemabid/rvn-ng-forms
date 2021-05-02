@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
@@ -19,14 +20,14 @@ export class RecordScreenComponent implements OnInit {
     private formApiService: FormApiService,
     private appService: AppService) { }
 
-  formDefinition: IForm;
-  record: IRecord;
+  form: IForm;
+  record: IRecord = { entry: {} };
   formId: number
   recordId: number;
   recordFG: FormGroup;
   markRecordFGAsDirty$ = new Subject();
 
-  mode: CreateOrEdit | "preview";
+  mode: CreateOrEdit;
   initDone: boolean = false;
 
   ngOnInit(): void {
@@ -44,8 +45,8 @@ export class RecordScreenComponent implements OnInit {
 
     forkJoin(apisToCall).subscribe(
       results => {
-        this.formDefinition = results[0];
-        this.record = results[1];
+        this.form = results[0];
+        if (!isNullOrUndefined(results[1])) this.record = results[1];
         this.setHeading();
         this.initDone = true;
       },
@@ -55,10 +56,10 @@ export class RecordScreenComponent implements OnInit {
     );
   }
 
-  setHeading(){
+  setHeading() {
     if (this.mode === "edit") {
       this.appService.setToolBarHeading(`Edit Record`);
-    }else{
+    } else {
       this.appService.setToolBarHeading(`Create Record`);
     }
   }
@@ -75,8 +76,11 @@ export class RecordScreenComponent implements OnInit {
     this.markRecordFGAsDirty$.next();
 
     if (this.recordFG.status === "VALID") {
-      //SAVE REVCORD
-      console.log("sabedddddd")
+      this.record.entry = this.recordFG.getRawValue();
+      if (this.mode === "edit")
+        this.formApiService.updateRecord(this.formId, this.record).subscribe();
+      else
+        this.formApiService.createRecord(this.formId, this.record).subscribe();
     }
   }
 
