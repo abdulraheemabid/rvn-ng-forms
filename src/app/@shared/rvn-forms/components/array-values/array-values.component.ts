@@ -14,7 +14,7 @@ export class ArrayValuesComponent implements OnInit {
   @Input() selectedFieldType: string;
   @Input() uiFormControl: FormControl;
 
-  chipsCompParams: RvnChipsInputInput = { label: 'Options', placeholder: 'Type an option, press enter for next', required: true };
+  chipsCompConfig: RvnChipsInputInput = { label: 'Options', placeholder: 'Type an option, press enter for next', required: true };
 
   ngOnInit(): void {
   }

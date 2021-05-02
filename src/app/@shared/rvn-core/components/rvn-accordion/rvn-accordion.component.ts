@@ -11,10 +11,10 @@ export class RvnAccordionComponent implements OnInit {
 
   constructor() { }
 
-  @Input() params: RvnAccordionInput;
+  @Input() config: RvnAccordionInput;
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params?.multi)) this.params.multi = true;
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config?.multi)) this.config.multi = true;
   }
 }

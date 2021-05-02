@@ -4,12 +4,12 @@
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
     <div class="button">
-        <rvn-button (onClick)="saveForm()" [params]="submitButtonParams">
+        <rvn-button (onClick)="saveForm()" [config]="submitButtonConfig">
             Save Form
         </rvn-button>
     </div>
     <div class="preview">
-        <rvn-card [params]="{title: 'Form Preview'}">
+        <rvn-card [config]="{title: 'Form Preview'}">
             <form-renderer content *ngIf="formDefinition" [formDefinition]="formDefinition"></form-renderer>
         </rvn-card>
     </div>

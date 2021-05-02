@@ -30,10 +30,10 @@ export class RecordListScreenComponent implements OnInit {
   filteredRecords: IRecord[] = [];
   formId: number;
   formDefinition: IForm;
-  listParams = { list: [], lineOneKey: '__display', icon: 'assignment', actionTemplateRef: null, dense: true }
-  newRecordButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
-  searchRecordParams: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
-  cardParams: RvnCardInput = {}
+  listConfig = { list: [], lineOneKey: '__display', icon: 'assignment', actionTemplateRef: null, dense: true }
+  newRecordButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
+  searchRecordConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
+  cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
 
   ngOnInit(): void {
@@ -57,19 +57,19 @@ export class RecordListScreenComponent implements OnInit {
 
         this.records = records;
         this.filteredRecords = [...this.records];
-        this.listParams.list = this.filteredRecords;
-        this.listParams.actionTemplateRef = this.actionsTemplate;
-        this.cardParams.title = `Total: ${this.records.length}`;
+        this.listConfig.list = this.filteredRecords;
+        this.listConfig.actionTemplateRef = this.actionsTemplate;
+        this.cardConfig.title = `Total: ${this.records.length}`;
       })
     ).subscribe();
 
-    this.cardParams.title = `Total: ${this.records.length}`;
+    this.cardConfig.title = `Total: ${this.records.length}`;
     this.searchFC.valueChanges.subscribe(v => this.filterRecordsBySeach(v));
   }
 
   filterRecordsBySeach(searchTerm: string) {
     this.filteredRecords = [...this.records.filter(record => record)];
-    this.listParams.list = this.filteredRecords;
+    this.listConfig.list = this.filteredRecords;
   }
 
   createRecord() {
@@ -86,7 +86,7 @@ export class RecordListScreenComponent implements OnInit {
       message: `Record will be deleted permanently. Are you sure?`,
       noButtonMessage: "Cancel",
       yesButtonMessage: "Delete",
-      yesButtonParams: { type: 'tertiary', color: 'warn' }
+      yesButtonConfig: { type: 'tertiary', color: 'warn' }
     }).pipe(
       switchMap((confirmed: boolean) => {
         return confirmed ? this.formApiService.deleteRecord(this.formId, record.id) : of(null);

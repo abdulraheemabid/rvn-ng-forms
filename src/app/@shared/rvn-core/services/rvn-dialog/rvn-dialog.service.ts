@@ -11,8 +11,8 @@ export class RvnDialogService {
 
   constructor(public dialog: MatDialog) { }
 
-  openConfirmDialog(params: RvnConfirmDialogInput = {}): Observable<boolean> {
-    const dialogRef = this.dialog.open(RvnConfirmDialogComponent, { data: params });
+  openConfirmDialog(config: RvnConfirmDialogInput = {}): Observable<boolean> {
+    const dialogRef = this.dialog.open(RvnConfirmDialogComponent, { data: config });
     return dialogRef.afterClosed();
   }
 }

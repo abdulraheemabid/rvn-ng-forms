@@ -26,10 +26,10 @@ export class FormListScreenComponent implements OnInit {
 
   forms: IForm[] = [];
   filteredForms: IForm[] = [];
-  listParams = { list: [], lineOneKey: 'name', icon: 'assignment', actionTemplateRef: null, dense: true }
-  newFormButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
-  searchFormParams: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
-  cardParams: RvnCardInput = {}
+  listConfig = { list: [], lineOneKey: 'name', icon: 'assignment', actionTemplateRef: null, dense: true }
+  newFormButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
+  searchFormConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
+  cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
 
   ngOnInit(): void {
@@ -38,19 +38,19 @@ export class FormListScreenComponent implements OnInit {
     this.formApiService.getForms().subscribe(data => {
       this.forms = data;
       this.filteredForms = [...this.forms];
-      this.listParams.list = this.filteredForms;
-      this.listParams.actionTemplateRef = this.actionsTemplate;
-      this.cardParams.title = `Total: ${this.forms.length}`;
+      this.listConfig.list = this.filteredForms;
+      this.listConfig.actionTemplateRef = this.actionsTemplate;
+      this.cardConfig.title = `Total: ${this.forms.length}`;
     });
 
 
-    this.cardParams.title = `Total: ${this.forms.length}`;
+    this.cardConfig.title = `Total: ${this.forms.length}`;
     this.searchFC.valueChanges.subscribe(v => this.filterFormBySeach(v));
   }
 
   filterFormBySeach(searchTerm: string) {
     this.filteredForms = [...this.forms.filter(form => form.name.toLowerCase().includes(searchTerm.toLowerCase()))];
-    this.listParams.list = this.filteredForms;
+    this.listConfig.list = this.filteredForms;
   }
 
   createForm() {
@@ -71,7 +71,7 @@ export class FormListScreenComponent implements OnInit {
       message: `Form "${form.name}" will be deleted permanently. Are you sure?`,
       noButtonMessage: "Cancel",
       yesButtonMessage: "Delete",
-      yesButtonParams: { type: 'tertiary', color: 'warn' }
+      yesButtonConfig: { type: 'tertiary', color: 'warn' }
     }).pipe(
       switchMap((confirmed: boolean) => {
         return confirmed ? this.formApiService.deleteForm(form.id) : of(null);

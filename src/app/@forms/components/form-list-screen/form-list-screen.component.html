@@ -1,22 +1,22 @@
 <div class="container">
-    <rvn-button class="button" (click)="createForm()" [params]="newFormButtonParams">Create new form</rvn-button>
+    <rvn-button class="button" (click)="createForm()" [config]="newFormButtonConfig">Create new form</rvn-button>
 
-    <rvn-input class="search" [params]="searchFormParams" [formControl]="searchFC"></rvn-input>
+    <rvn-input class="search" [config]="searchFormConfig" [formControl]="searchFC"></rvn-input>
 
-    <rvn-card class="list" [params]="cardParams">
-        <rvn-list content [params]="listParams">
+    <rvn-card class="list" [config]="cardConfig">
+        <rvn-list content [config]="listConfig">
             <ng-template #actions let-listItem="listItem">
                 <rvn-button (click)="editForm(listItem)"
-                    [params]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit form'}">
+                    [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit form'}">
                 </rvn-button>
                 <rvn-button (click)="viewRecords(listItem)"
-                    [params]="{'icon': 'view_list', color: 'accent', type: 'icon', tooltipMessage: 'View Records'}">
+                    [config]="{'icon': 'view_list', color: 'accent', type: 'icon', tooltipMessage: 'View Records'}">
                 </rvn-button>
                 <rvn-button [disabled]="true"
-                    [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon', tooltipMessage: 'Analyze Records'}">
+                    [config]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon', tooltipMessage: 'Analyze Records'}">
                 </rvn-button>
                 <rvn-button (click)="deleteForm(listItem)"
-                    [params]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">
+                    [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">
                 </rvn-button>
             </ng-template>
         </rvn-list>

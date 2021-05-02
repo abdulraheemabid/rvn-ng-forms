@@ -26,7 +26,7 @@ export class RvnChipsInputComponent extends CustomFormControlValueAccessor imple
     super(_injector);
   }
 
-  @Input() params: RvnChipsInputInput;
+  @Input() config: RvnChipsInputInput;
   selectedOptions: Set<string> = new Set();
 
   formFieldAppearance: any;
@@ -34,12 +34,12 @@ export class RvnChipsInputComponent extends CustomFormControlValueAccessor imple
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = { label: null };
-    if (isNullOrUndefined(this.params.required)) this.params.required = false;
-    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.config)) this.config = { label: null };
+    if (isNullOrUndefined(this.config.required)) this.config.required = false;
+    if (isNullOrUndefined(this.config.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
+    if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
     if (!isNullOrUndefined(this.formControl.value)) this.selectedOptions = new Set(this.formControl.value.map(v => v.value));
-    this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
+    this.formFieldAppearance = isNullOrUndefined(this.config?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.config.appearance);
   }
 
   add(event: MatChipInputEvent): void {

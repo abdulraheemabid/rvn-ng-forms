@@ -1,4 +1,4 @@
-<rvn-spinner *ngIf="showLoader | async" [params]="{fullHeight: true}"></rvn-spinner>
+<rvn-spinner *ngIf="showLoader | async" [config]="{fullHeight: true}"></rvn-spinner>
 
 <mat-sidenav-container class="sidenav-container">
 
@@ -24,20 +24,20 @@
             <span class="top-bar-content">
                 <span class="page-heading">
                     <rvn-button class="toggle-btn" (onClick)="drawer.toggle()"
-                        [params]="{'icon': 'menu', type: 'icon'}">
+                        [config]="{'icon': 'menu', type: 'icon'}">
                     </rvn-button>
 
                     <h1>{{toolBarHeading}}</h1>
                 </span>
 
                 <rvn-menu>
-                    <rvn-button button [params]="{type: 'icon', icon:'settings'}"></rvn-button>
+                    <rvn-button button [config]="{type: 'icon', icon:'settings'}"></rvn-button>
                     <ng-container content>
                         <div class="menu-items color-foreground">
-                            <rvn-toggle (click)="$event.stopPropagation()" [params]="{label: 'Dark Mode'}"
+                            <rvn-toggle (click)="$event.stopPropagation()" [config]="{label: 'Dark Mode'}"
                                 [formControl]="isDarkModeFC" class="dark-toggle">
                             </rvn-toggle>
-                            <rvn-select (click)="$event.stopPropagation()" [params]="fieldAppearanceParams"
+                            <rvn-select (click)="$event.stopPropagation()" [config]="fieldAppearanceConfig"
                                 [formControl]="fieldAppearanceFC"></rvn-select>
                         </div>
                     </ng-container>

@@ -1,16 +1,16 @@
 <div class="container">
-    <h2 mat-dialog-title>{{params.title}}</h2>
+    <h2 mat-dialog-title>{{config.title}}</h2>
 
     <mat-dialog-content class="mat-typography">
-        <p>{{params.message}}</p>
+        <p>{{config.message}}</p>
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">
-        <rvn-button [params]="params.noButtonParams" [mat-dialog-close]="false" mat-dialog-close>
-            {{params.noButtonMessage}}
+        <rvn-button [config]="config.noButtonConfig" [mat-dialog-close]="false" mat-dialog-close>
+            {{config.noButtonMessage}}
         </rvn-button>
-        <rvn-button [params]="params.yesButtonParams" [mat-dialog-close]="true" cdkFocusInitial>
-            {{params.yesButtonMessage}}
+        <rvn-button [config]="config.yesButtonConfig" [mat-dialog-close]="true" cdkFocusInitial>
+            {{config.yesButtonMessage}}
         </rvn-button>
     </mat-dialog-actions>
 </div>

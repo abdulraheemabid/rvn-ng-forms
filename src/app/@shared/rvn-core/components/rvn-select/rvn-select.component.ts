@@ -25,14 +25,14 @@ export class RvnSelectComponent extends CustomFormControlValueAccessor implement
     super(_injector);
   }
 
-  @Input() params: RvnSelectInput = null;
+  @Input() config: RvnSelectInput = null;
   formFieldAppearance: any;
 
   ngOnInit() {
-    if (isNullOrUndefined(this.params)) this.params = { label: null, selectOptions: null };
-    if (isNullOrUndefined(this.params.required)) this.params.required = false;
-    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
-    this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
+    if (isNullOrUndefined(this.config)) this.config = { label: null, selectOptions: null };
+    if (isNullOrUndefined(this.config.required)) this.config.required = false;
+    if (isNullOrUndefined(this.config.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
+    if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
+    this.formFieldAppearance = isNullOrUndefined(this.config?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.config.appearance);
   }
 }

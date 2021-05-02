@@ -1,16 +1,16 @@
 <div class="container">
-    <rvn-button class="button" (click)="createRecord()" [params]="newRecordButtonParams">Create new record</rvn-button>
+    <rvn-button class="button" (click)="createRecord()" [config]="newRecordButtonConfig">Create new record</rvn-button>
 
-    <rvn-input class="search" [params]="searchRecordParams" [formControl]="searchFC"></rvn-input>
+    <rvn-input class="search" [config]="searchRecordConfig" [formControl]="searchFC"></rvn-input>
 
-    <rvn-card class="list" [params]="cardParams">
-        <rvn-list content [params]="listParams">
+    <rvn-card class="list" [config]="cardConfig">
+        <rvn-list content [config]="listConfig">
             <ng-template #actions let-listItem="listItem">
                 <rvn-button (click)="editRecord(listItem)"
-                    [params]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
+                    [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
                 </rvn-button>
                 <rvn-button (click)="deleteRecord(listItem)"
-                    [params]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
+                    [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
                 </rvn-button>
             </ng-template>
         </rvn-list>

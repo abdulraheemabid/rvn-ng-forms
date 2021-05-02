@@ -5,67 +5,67 @@ import { IntDefinitionRendererComponent } from "../type-definition-renderers/int
 import { MultiselectDefinitionRendererComponent } from "../type-definition-renderers/multiselect-definition-renderer/multiselect-definition-renderer.component";
 import { SingleselectDefinitionRendererComponent } from "../type-definition-renderers/singleselect-definition-renderer/singleselect-definition-renderer.component";
 import { StringDefinitionRendererComponent } from "../type-definition-renderers/string-definition-renderer/string-definition-renderer.component";
-import { BoolValueRendererComponent } from "../type-value-renderers/bool-value-renderer/bool-value-renderer.component";
-import { DateValueRendererComponent } from "../type-value-renderers/date-value-renderer/date-value-renderer.component";
-import { FloatValueRendererComponent } from "../type-value-renderers/float-value-renderer/float-value-renderer.component";
-import { IntValueRendererComponent } from "../type-value-renderers/int-value-renderer/int-value-renderer.component";
-import { MultiselectValueRendererComponent } from "../type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component";
-import { SingleselectValueRendererComponent } from "../type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component";
-import { StringValueRendererComponent } from "../type-value-renderers/string-value-renderer/string-value-renderer.component";
+import { BoolInputRendererComponent } from "../type-input-renderers/bool-input-renderer/bool-input-renderer.component";
+import { DateInputRendererComponent } from "../type-input-renderers/date-input-renderer/date-input-renderer.component";
+import { FloatInputRendererComponent } from "../type-input-renderers/float-input-renderer/float-input-renderer.component";
+import { IntInputRendererComponent } from "../type-input-renderers/int-input-renderer/int-input-renderer.component";
+import { MultiselectInputRendererComponent } from "../type-input-renderers/multiselect-input-renderer/multiselect-input-renderer.component";
+import { SingleselectInputRendererComponent } from "../type-input-renderers/singleselect-input-renderer/singleselect-input-renderer.component";
+import { StringInputRendererComponent } from "../type-input-renderers/string-input-renderer/string-input-renderer.component";
 import { FieldType, IFieldTypeMeta, UIControlEnum } from "../types";
 
 export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
     ["float", {
         typeDisplayName: "Floating number",
-        valueRenderers: [
-            { UIControl: UIControlEnum.INPUT, renderer: FloatValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.INPUT, renderer: FloatInputRendererComponent }
         ],
         definitionRenderer: FloatDefinitionRendererComponent
     }],
     ["int", {
         typeDisplayName: "Integer",
-        valueRenderers: [
-            { UIControl: UIControlEnum.INPUT, renderer: IntValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.INPUT, renderer: IntInputRendererComponent }
         ],
         definitionRenderer: IntDefinitionRendererComponent
     }],
     ["string", {
         typeDisplayName: "Text",
-        valueRenderers: [
-            { UIControl: UIControlEnum.INPUT, renderer: StringValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.INPUT, renderer: StringInputRendererComponent }
         ],
         definitionRenderer: StringDefinitionRendererComponent
     }],
     ["date", {
         typeDisplayName: "Date",
-        valueRenderers: [
-            { UIControl: UIControlEnum.INPUT, renderer: DateValueRendererComponent },
-            { UIControl: UIControlEnum.DATEPICKER, renderer: DateValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.INPUT, renderer: DateInputRendererComponent },
+            { UIControl: UIControlEnum.DATEPICKER, renderer: DateInputRendererComponent }
         ],
         definitionRenderer: DateDefinitionRendererComponent
     }],
     ["bool", {
         typeDisplayName: "Boolean",
-        valueRenderers: [
-            { UIControl: UIControlEnum.TOGGLE, renderer: BoolValueRendererComponent },
-            { UIControl: UIControlEnum.RADIO, renderer: BoolValueRendererComponent },
-            { UIControl: UIControlEnum.SELECT, renderer: BoolValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.TOGGLE, renderer: BoolInputRendererComponent },
+            { UIControl: UIControlEnum.RADIO, renderer: BoolInputRendererComponent },
+            { UIControl: UIControlEnum.SELECT, renderer: BoolInputRendererComponent }
         ],
         definitionRenderer: BoolDefinitionRendererComponent
     }],
     ["multiselect", {
         typeDisplayName: "Multi select",
-        valueRenderers: [
-            { UIControl: UIControlEnum.CHECKBOX, renderer: MultiselectValueRendererComponent },
-            { UIControl: UIControlEnum.CHIPSINPUT, renderer: MultiselectValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.CHECKBOX, renderer: MultiselectInputRendererComponent },
+            { UIControl: UIControlEnum.CHIPSINPUT, renderer: MultiselectInputRendererComponent }
         ],
         definitionRenderer: MultiselectDefinitionRendererComponent
     }],
     ["singleselect", {
         typeDisplayName: "Single select",
-        valueRenderers: [
-            { UIControl: UIControlEnum.SELECT, renderer: SingleselectValueRendererComponent },
-            { UIControl: UIControlEnum.RADIO, renderer: SingleselectValueRendererComponent }
+        inputRenderers: [
+            { UIControl: UIControlEnum.SELECT, renderer: SingleselectInputRendererComponent },
+            { UIControl: UIControlEnum.RADIO, renderer: SingleselectInputRendererComponent }
         ],
         definitionRenderer: SingleselectDefinitionRendererComponent
     }],

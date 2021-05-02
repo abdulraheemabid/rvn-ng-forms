@@ -1,8 +1,8 @@
 <div class="container" *ngIf="initDone">
 
     <!-- filter -->
-    <rvn-input class="filter" *ngIf="params.enableFilter && params.useComponentFilter"
-        [params]="{suffixIcon: 'search', label:'Filter', styleVersion: 'v2'}" [formControl]="params.filterInputFC">
+    <rvn-input class="filter" *ngIf="config.enableFilter && config.useComponentFilter"
+        [config]="{suffixIcon: 'search', label:'Filter', styleVersion: 'v2'}" [formControl]="config.filterInputFC">
     </rvn-input>
 
     <table mat-table fixedLayout="true" [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"
@@ -10,24 +10,24 @@
 
         <!-- colum def -->
         <ng-container *ngFor="let column of columnsToDisplayNames; let i = index" matColumnDef="{{column}}"
-            [sticky]="params.stickColumnsAtStartIndexes.includes(i)"
-            [stickyEnd]="params.stickColumnsAtEndIndexes.includes(i)">
+            [sticky]="config.stickColumnsAtStartIndexes.includes(i)"
+            [stickyEnd]="config.stickColumnsAtEndIndexes.includes(i)">
 
             <!-- header template -->
             <th mat-header-cell *matHeaderCellDef mat-sort-header [class]="getJustifyContentClassByTextAlign(i)">
                 {{column}} </th>
 
             <!-- custom column template -->
-            <ng-container *ngIf="params.columnsToDisplay[i].customTemplate">
-                <td mat-cell *matCellDef="let row" [style.text-align]="params.columnsToDisplay[i].textAlign">
-                    <ng-template *ngTemplateOutlet="params.columnsToDisplay[i].customTemplate; context: {row:row}">
+            <ng-container *ngIf="config.columnsToDisplay[i].customTemplate">
+                <td mat-cell *matCellDef="let row" [style.text-align]="config.columnsToDisplay[i].textAlign">
+                    <ng-template *ngTemplateOutlet="config.columnsToDisplay[i].customTemplate; context: {row:row}">
                     </ng-template>
                 </td>
             </ng-container>
 
             <!-- normal column text -->
-            <ng-container *ngIf="!params.columnsToDisplay[i].customTemplate">
-                <td mat-cell *matCellDef="let row" [style.text-align]="params.columnsToDisplay[i].textAlign">
+            <ng-container *ngIf="!config.columnsToDisplay[i].customTemplate">
+                <td mat-cell *matCellDef="let row" [style.text-align]="config.columnsToDisplay[i].textAlign">
                     {{row[column]}} </td>
             </ng-container>
 
@@ -40,7 +40,7 @@
             <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplayNames.length">
                 <div class="row-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
                     <div class="inner">
-                        <ng-container *ngTemplateOutlet="params.templateToShowOnRowExpand; context: {row: row}">
+                        <ng-container *ngTemplateOutlet="config.templateToShowOnRowExpand; context: {row: row}">
                         </ng-container>
                     </div>
                 </div>
@@ -65,16 +65,16 @@
 
         <!-- no data message on filter -->
         <ng-container
-            *ngIf="params.enableFilter && (params.filterInputFC.value !== null && params.filterInputFC.value.trim() !== '')">
+            *ngIf="config.enableFilter && (config.filterInputFC.value !== null && config.filterInputFC.value.trim() !== '')">
             <div class="no-data color-warn" *matNoDataRow>
-                {{params.noDataOnFilterMessage}}
+                {{config.noDataOnFilterMessage}}
             </div>
         </ng-container>
 
 
         <!-- no data message -->
         <div class="no-data color-warn" *matNoDataRow>
-            {{params.noDataMessage}}
+            {{config.noDataMessage}}
         </div>
 
 
@@ -82,6 +82,6 @@
 
 
     <!-- paginator -->
-    <mat-paginator *ngIf="params.enablePagination" [pageSizeOptions]="params.pageOptions" showFirstLastButtons>
+    <mat-paginator *ngIf="config.enablePagination" [pageSizeOptions]="config.pageOptions" showFirstLastButtons>
     </mat-paginator>
 </div>

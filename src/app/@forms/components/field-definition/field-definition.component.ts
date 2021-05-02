@@ -22,14 +22,14 @@ export class FieldDefinitionComponent implements OnInit {
   //fieldFG should contain type, name and required formControls already
   @Input() fieldFG: any;
   @ViewChild("rendererAnchorPoint", { read: ViewContainerRef }) rendererAnchorPoint: ViewContainerRef;
-  fieldNameCompParams: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
-  fieldTypeCompParams: RvnSelectInput = { label: 'Type', placeholder: 'Select', required: true, selectOptions: null };
-  fieldRequiredCompParams: RvnToggleInput = { label: "Required", required: false };
+  fieldNameCompConfig: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
+  fieldTypeCompConfig: RvnSelectInput = { label: 'Type', placeholder: 'Select', required: true, selectOptions: null };
+  fieldRequiredCompConfig: RvnToggleInput = { label: "Required", required: false };
   typeRenderer: any;
 
 
   ngOnInit(): void {
-    this.initUICompParams();
+    this.initUICompConfig();
 
     let fieldTypeFC = this.fieldFG.get('type') as FormControl;
     let fieldTypeValue = fieldTypeFC.value;
@@ -38,7 +38,7 @@ export class FieldDefinitionComponent implements OnInit {
 
     if (!isNullOrUndefined(fieldTypeValue) && fieldTypeValue !== "") {
       setTimeout(() => {
-        const fielTypKeyValue = this.fieldTypeCompParams.selectOptions.find(o => o.key === fieldTypeValue.key);
+        const fielTypKeyValue = this.fieldTypeCompConfig.selectOptions.find(o => o.key === fieldTypeValue.key);
         fieldTypeFC.setValue(fielTypKeyValue, { emitEvent: false });
         this.loadTypeRenderer(fielTypKeyValue);
       })
@@ -49,8 +49,8 @@ export class FieldDefinitionComponent implements OnInit {
     return this.fieldFG.get(name) as FormControl;
   }
 
-  initUICompParams() {
-    this.fieldTypeCompParams.selectOptions = this.typeMetaService.getFieldTypes();
+  initUICompConfig() {
+    this.fieldTypeCompConfig.selectOptions = this.typeMetaService.getFieldTypes();
   }
 
   onFieldTypeChange(fieldTypeCtrl: FormControl) {

@@ -11,12 +11,12 @@ export class RvnSpinnerComponent implements OnInit {
 
   constructor() { }
 
-  @Input() params: RvnSpinnerInput;
+  @Input() config: RvnSpinnerInput;
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params.fullHeight)) this.params.fullHeight = false;
-    if (isNullOrUndefined(this.params.color)) this.params.color = "primary";
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config.fullHeight)) this.config.fullHeight = false;
+    if (isNullOrUndefined(this.config.color)) this.config.color = "primary";
   }
 
 }

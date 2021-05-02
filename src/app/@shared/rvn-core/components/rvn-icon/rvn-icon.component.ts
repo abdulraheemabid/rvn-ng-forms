@@ -10,7 +10,7 @@ export class RvnIconComponent implements OnInit {
 
   constructor() { }
 
-  @Input() params: RvnIconInput;
+  @Input() config: RvnIconInput;
 
   ngOnInit(): void {
   }

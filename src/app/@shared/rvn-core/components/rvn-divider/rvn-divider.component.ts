@@ -9,15 +9,15 @@ import { RvnDividerInput } from './rvn-divider.input';
 })
 export class RvnDividerComponent implements OnInit {
 
-  @Input() params: RvnDividerInput;
+  @Input() config: RvnDividerInput;
   customWidthProvided: boolean = false;
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params?.inset)) this.params.inset = false;
-    if (isNullOrUndefined(this.params?.vertical)) this.params.vertical = false;
-    if (!isNullOrUndefined(this.params?.width)) this.customWidthProvided = true;
-    if (isNullOrUndefined(this.params?.width)) this.params.width = "100%";
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config?.inset)) this.config.inset = false;
+    if (isNullOrUndefined(this.config?.vertical)) this.config.vertical = false;
+    if (!isNullOrUndefined(this.config?.width)) this.customWidthProvided = true;
+    if (isNullOrUndefined(this.config?.width)) this.config.width = "100%";
 
 
   }

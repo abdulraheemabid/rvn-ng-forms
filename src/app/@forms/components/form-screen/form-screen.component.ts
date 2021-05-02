@@ -27,7 +27,7 @@ export class FormScreenComponent implements OnInit {
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;
   initDone: boolean = false;
-  submitButtonParams: RvnButtonInput = { type: 'icon-text-primary', icon: 'save', color: 'primary' };
+  submitButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'save', color: 'primary' };
   orignalFormName: string;
 
 

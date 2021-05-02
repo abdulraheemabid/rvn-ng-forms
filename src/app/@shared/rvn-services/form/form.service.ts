@@ -27,14 +27,14 @@ export class FormService {
 
   }
 
-  injectTypeValueRenderer(field: IFormField, viewContainerRef: ViewContainerRef, valueFC: FormControl): Observable<boolean> {
+  injectTypeInputRenderer(field: IFormField, viewContainerRef: ViewContainerRef, valueFC: FormControl): Observable<boolean> {
 
     let typeMeta = this.typeMetaService.getFieldTypeMetaData(field.type);
     let rendererConfig;
     let componentToRender;
 
-    if (typeMeta.valueRenderers.length === 1) rendererConfig = typeMeta.valueRenderers[0];
-    else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.valueRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
+    if (typeMeta.inputRenderers.length === 1) rendererConfig = typeMeta.inputRenderers[0];
+    else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.inputRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
     else return new Observable<boolean>(sub => sub.error("field.attributes?.displayAs?.key not set"));
 
     componentToRender = rendererConfig.renderer;

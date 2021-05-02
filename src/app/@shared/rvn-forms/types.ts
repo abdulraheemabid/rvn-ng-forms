@@ -30,7 +30,7 @@ export interface IRecord {
 export interface IFieldTypeMeta {
     typeDisplayName: string;
     definitionRenderer: any;
-    valueRenderers: {
+    inputRenderers: {
         UIControl: UIControlEnum,
         renderer: any
     }[];

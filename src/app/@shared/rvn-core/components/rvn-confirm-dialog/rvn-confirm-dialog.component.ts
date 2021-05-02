@@ -11,15 +11,15 @@ import { RvnConfirmDialogInput } from './rvn-confirm-dialog.input';
 export class RvnConfirmDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: RvnConfirmDialogInput) { }
-  params: RvnConfirmDialogInput;
+  config: RvnConfirmDialogInput;
   ngOnInit() {
-    this.params = this.data;
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params.title)) this.params.title = "";
-    if (isNullOrUndefined(this.params.message)) this.params.message = "Are you sure?";
-    if (isNullOrUndefined(this.params.yesButtonMessage)) this.params.yesButtonMessage = "Yes";
-    if (isNullOrUndefined(this.params.noButtonMessage)) this.params.noButtonMessage = "No";
-    if (isNullOrUndefined(this.params.yesButtonParams)) this.params.yesButtonParams = { type: 'tertiary' };
-    if (isNullOrUndefined(this.params.noButtonParams)) this.params.noButtonParams = { type: 'tertiary' };
+    this.config = this.data;
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config.title)) this.config.title = "";
+    if (isNullOrUndefined(this.config.message)) this.config.message = "Are you sure?";
+    if (isNullOrUndefined(this.config.yesButtonMessage)) this.config.yesButtonMessage = "Yes";
+    if (isNullOrUndefined(this.config.noButtonMessage)) this.config.noButtonMessage = "No";
+    if (isNullOrUndefined(this.config.yesButtonConfig)) this.config.yesButtonConfig = { type: 'tertiary' };
+    if (isNullOrUndefined(this.config.noButtonConfig)) this.config.noButtonConfig = { type: 'tertiary' };
   }
 }

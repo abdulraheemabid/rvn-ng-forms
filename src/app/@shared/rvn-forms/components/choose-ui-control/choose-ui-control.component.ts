@@ -18,11 +18,11 @@ export class ChooseUiControlComponent implements OnInit {
   @Input() selectedFieldType: FieldType;
   @Input() uiFormControl: FormControl;
 
-  selectCompParams: RvnSelectInput = { label: 'Display as', placeholder: 'Select', required: true, selectOptions: null };
+  selectCompConfig: RvnSelectInput = { label: 'Display as', placeholder: 'Select', required: true, selectOptions: null };
 
   ngOnInit(): void {
     if (this.selectedFieldType) {
-      const supportedControls: UIControlEnum[] = this.typeMetaService.getFieldTypeMetaData(this.selectedFieldType)?.valueRenderers.map(i => i.UIControl);
+      const supportedControls: UIControlEnum[] = this.typeMetaService.getFieldTypeMetaData(this.selectedFieldType)?.inputRenderers.map(i => i.UIControl);
 
       let selectOptions: KeyValue<string, string>[] = [];
       for (let key of supportedControls) {
@@ -32,7 +32,7 @@ export class ChooseUiControlComponent implements OnInit {
         });
       }
 
-      this.selectCompParams.selectOptions = selectOptions;
+      this.selectCompConfig.selectOptions = selectOptions;
 
       if (!isNullOrUndefined(this.uiFormControl.value) && this.uiFormControl.value !== "")
         this.uiFormControl.setValue(selectOptions.find(o => o.key === this.uiFormControl.value.key), {emitEvent: false});

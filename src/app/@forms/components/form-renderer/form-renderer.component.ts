@@ -60,7 +60,7 @@ export class FormRendererComponent implements OnChanges {
     if (!isNullOrUndefined(field?.type) && !isNullOrUndefined(field.attributes?.position)) {
       const ref = this.fieldAnchorPoints.get(field.attributes.position);
       const fcName = field[this.keyToUseForFieldControl.toString()].toString();
-      this.formService.injectTypeValueRenderer(field, ref, this.recordFG.get(fcName) as FormControl).subscribe(() => { }, err => { });
+      this.formService.injectTypeInputRenderer(field, ref, this.recordFG.get(fcName) as FormControl).subscribe(() => { }, err => { });
     }
   }
 

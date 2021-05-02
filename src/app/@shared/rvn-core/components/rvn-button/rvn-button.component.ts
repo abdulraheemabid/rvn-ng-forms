@@ -9,14 +9,14 @@ import { RvnButtonInput } from './rvn-button.input';
 })
 export class RvnButtonComponent implements OnInit {
 
-  @Input() params: RvnButtonInput;
+  @Input() config: RvnButtonInput;
   @Input() disabled: boolean;
   @Output() onClick = new EventEmitter();
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params?.type)) this.params.type = "primary";
-    if (isNullOrUndefined(this.params?.btnClass)) this.params.btnClass = "";
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config?.type)) this.config.type = "primary";
+    if (isNullOrUndefined(this.config?.btnClass)) this.config.btnClass = "";
     if (isNullOrUndefined(this.disabled)) this.disabled = false;
   }
 

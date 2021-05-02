@@ -18,13 +18,13 @@ import { RvnToggleInput } from './rvn-toggle.input';
 })
 export class RvnToggleComponent extends CustomFormControlValueAccessor implements OnInit {
 
-  @Input() params: RvnToggleInput = null;
+  @Input() config: RvnToggleInput = null;
 
   ngOnInit() {
-    if (isNullOrUndefined(this.params)) this.params = {} as RvnToggleInput;
-    if (isNullOrUndefined(this.params?.required)) this.params.required = false;
-    if (isNullOrUndefined(this.params?.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (isNullOrUndefined(this.params?.styleVersion)) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.config)) this.config = {} as RvnToggleInput;
+    if (isNullOrUndefined(this.config?.required)) this.config.required = false;
+    if (isNullOrUndefined(this.config?.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
+    if (isNullOrUndefined(this.config?.styleVersion)) this.config.styleVersion = 'v1';
   }
 
 }

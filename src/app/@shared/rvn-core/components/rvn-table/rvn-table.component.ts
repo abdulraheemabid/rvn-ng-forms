@@ -26,7 +26,7 @@ export class RvnTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @Input() params: RvnTableInput;
+  @Input() config: RvnTableInput;
 
   dataSource;
   expandedRow;
@@ -37,29 +37,29 @@ export class RvnTableComponent implements OnInit {
 
     this.handleDefaultInputValues();
 
-    if (this.params.enableFilter)
-      this.params.filterInputFC.valueChanges.subscribe(value => this.applyFilter(value));
+    if (this.config.enableFilter)
+      this.config.filterInputFC.valueChanges.subscribe(value => this.applyFilter(value));
 
-    this.dataSource = new MatTableDataSource(this.params.data);
+    this.dataSource = new MatTableDataSource(this.config.data);
     this.initDone = true;
 
   }
 
   handleDefaultInputValues() {
-    if (isNullOrUndefined(this.params)) this.params = { columnsToDisplay: [], data: [] }
-    if (isNullOrUndefined(this.params.data)) this.params.data = [];
-    if (isNullOrUndefined(this.params.columnsToDisplay)) this.params.columnsToDisplay = [];
-    if (isNullOrUndefined(this.params.enableFilter)) this.params.enableFilter = true;
-    if (isNullOrUndefined(this.params.useComponentFilter)) this.params.useComponentFilter = true;
-    if (isNullOrUndefined(this.params.filterInputFC)) this.params.filterInputFC = new FormControl(null);
-    if (isNullOrUndefined(this.params.stickColumnsAtStartIndexes)) this.params.stickColumnsAtStartIndexes = [];
-    if (isNullOrUndefined(this.params.stickColumnsAtEndIndexes)) this.params.stickColumnsAtEndIndexes = [];
-    if (isNullOrUndefined(this.params.noDataMessage)) this.params.noDataMessage = "No data !";
-    if (isNullOrUndefined(this.params.noDataOnFilterMessage)) this.params.noDataOnFilterMessage = "No data matching the filter!";
-    if (isNullOrUndefined(this.params.templateToShowOnRowExpand)) this.params.templateToShowOnRowExpand = null;
-    if (isNullOrUndefined(this.params.enablePagination)) this.params.enablePagination = false;
-    if (isNullOrUndefined(this.params.pageOptions)) this.params.pageOptions = [10, 25, 50];
-    this.columnsToDisplayNames = this.params.columnsToDisplay.map(c => c.keyName);
+    if (isNullOrUndefined(this.config)) this.config = { columnsToDisplay: [], data: [] }
+    if (isNullOrUndefined(this.config.data)) this.config.data = [];
+    if (isNullOrUndefined(this.config.columnsToDisplay)) this.config.columnsToDisplay = [];
+    if (isNullOrUndefined(this.config.enableFilter)) this.config.enableFilter = true;
+    if (isNullOrUndefined(this.config.useComponentFilter)) this.config.useComponentFilter = true;
+    if (isNullOrUndefined(this.config.filterInputFC)) this.config.filterInputFC = new FormControl(null);
+    if (isNullOrUndefined(this.config.stickColumnsAtStartIndexes)) this.config.stickColumnsAtStartIndexes = [];
+    if (isNullOrUndefined(this.config.stickColumnsAtEndIndexes)) this.config.stickColumnsAtEndIndexes = [];
+    if (isNullOrUndefined(this.config.noDataMessage)) this.config.noDataMessage = "No data !";
+    if (isNullOrUndefined(this.config.noDataOnFilterMessage)) this.config.noDataOnFilterMessage = "No data matching the filter!";
+    if (isNullOrUndefined(this.config.templateToShowOnRowExpand)) this.config.templateToShowOnRowExpand = null;
+    if (isNullOrUndefined(this.config.enablePagination)) this.config.enablePagination = false;
+    if (isNullOrUndefined(this.config.pageOptions)) this.config.pageOptions = [10, 25, 50];
+    this.columnsToDisplayNames = this.config.columnsToDisplay.map(c => c.keyName);
   }
 
   applyFilter(filterValue: string) {
@@ -72,7 +72,7 @@ export class RvnTableComponent implements OnInit {
   }
 
   getJustifyContentClassByTextAlign(indexOfColumnsToDisplay: number) {
-    switch (this.params.columnsToDisplay[indexOfColumnsToDisplay].textAlign) {
+    switch (this.config.columnsToDisplay[indexOfColumnsToDisplay].textAlign) {
       case "center":
         return "col-flex-center";
       case "left":

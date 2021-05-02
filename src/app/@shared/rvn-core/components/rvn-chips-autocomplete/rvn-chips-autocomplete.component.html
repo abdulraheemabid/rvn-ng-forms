@@ -1,8 +1,8 @@
-<div class="container" [ngClass]="params?.styleVersion">
-    <span *ngIf="params?.styleVersion == 'v1'">{{params?.label}}:</span>
+<div class="container" [ngClass]="config?.styleVersion">
+    <span *ngIf="config?.styleVersion == 'v1'">{{config?.label}}:</span>
 
     <mat-form-field class="form-field" [appearance]="formFieldAppearance | async">
-        <mat-label *ngIf="params?.styleVersion == 'v2' && params?.label" class="label">{{params?.label}}</mat-label>
+        <mat-label *ngIf="config?.styleVersion == 'v2' && config?.label" class="label">{{config?.label}}</mat-label>
 
         <mat-chip-list #chipList>
             <mat-chip *ngFor="let option of selectedOptions" [selectable]="false" [removable]="true"
@@ -10,11 +10,11 @@
                 {{option.value}}
                 <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
-            <input [placeholder]="params?.placeholder" #inputElement [formControl]="inputFormControl"
-                [matAutocomplete]="auto" [matChipInputFor]="chipList" [required]="params?.required">
+            <input [placeholder]="config?.placeholder" #inputElement [formControl]="inputFormControl"
+                [matAutocomplete]="auto" [matChipInputFor]="chipList" [required]="config?.required">
         </mat-chip-list>
-        <mat-hint *ngIf="params?.hint">{{params?.hint}}</mat-hint>
-        <mat-error *ngIf="formControl?.hasError('required')">{{params?.requiredErrorMessage}}</mat-error>
+        <mat-hint *ngIf="config?.hint">{{config?.hint}}</mat-hint>
+        <mat-error *ngIf="formControl?.hasError('required')">{{config?.requiredErrorMessage}}</mat-error>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option.value}}

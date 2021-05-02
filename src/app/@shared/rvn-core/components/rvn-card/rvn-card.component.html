@@ -2,16 +2,16 @@
     <mat-card class="card">
 
         <mat-card-header class="header">
-            <mat-icon mat-card-avatar class="header-icon" *ngIf="params?.headerIcon">
-                {{params?.headerIcon}}
+            <mat-icon mat-card-avatar class="header-icon" *ngIf="config?.headerIcon">
+                {{config?.headerIcon}}
             </mat-icon>
 
-            <mat-card-title *ngIf="params?.title" #title>
-                {{params?.title}}
+            <mat-card-title *ngIf="config?.title" #title>
+                {{config?.title}}
             </mat-card-title>
 
-            <mat-card-subtitle *ngIf="params?.subtitle">
-                {{params?.subtitle}}
+            <mat-card-subtitle *ngIf="config?.subtitle">
+                {{config?.subtitle}}
             </mat-card-subtitle>
 
             <div class="header-action">

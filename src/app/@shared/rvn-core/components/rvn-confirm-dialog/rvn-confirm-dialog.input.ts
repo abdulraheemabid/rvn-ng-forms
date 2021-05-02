@@ -4,7 +4,7 @@ export interface RvnConfirmDialogInput{
   title?: string;
   message?: string;
   yesButtonMessage?: string;
-  yesButtonParams?: RvnButtonInput;
+  yesButtonConfig?: RvnButtonInput;
   noButtonMessage?: string;
-  noButtonParams?: RvnButtonInput;
+  noButtonConfig?: RvnButtonInput;
 }

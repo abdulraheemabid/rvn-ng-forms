@@ -29,14 +29,14 @@ export class AppComponent implements OnInit {
 
   isDarkModeFC: FormControl = new FormControl(false);
   fieldAppearanceOption = [{ key: "legacy", value: "Field apperance: legacy" }, { key: "standard", value: "Field apperance: standard" }, { key: "fill", value: "Field apperance: fill" }, { key: "outline", value: "Field apperance: outline" }];
-  fieldAppearanceParams: RvnSelectInput;
+  fieldAppearanceConfig: RvnSelectInput;
   fieldAppearanceFC = new FormControl("");
 
   ngOnInit() {
 
     this.setDefaultTheme("dark");
 
-    this.fieldAppearanceParams = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
+    this.fieldAppearanceConfig = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
 
     this.styleService.getFormFieldStyle$.subscribe(val => {
       if (this.fieldAppearanceFC.value === "" || val !== this.fieldAppearanceFC?.value?.key)

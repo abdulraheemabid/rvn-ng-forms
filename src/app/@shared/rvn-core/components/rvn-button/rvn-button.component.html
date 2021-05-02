@@ -1,38 +1,38 @@
-<ng-container [ngSwitch]="params.type">
+<ng-container [ngSwitch]="config.type">
 
 
     <ng-container *ngSwitchCase="'primary'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)"
-            mat-raised-button class="btn text-btn" [color]="params.color" [disabled]="disabled">
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)"
+            mat-raised-button class="btn text-btn" [color]="config.color" [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'secondary'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)"
-            mat-stroked-button class="btn  text-btn" [color]="params.color" [disabled]="disabled">
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)"
+            mat-stroked-button class="btn  text-btn" [color]="config.color" [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'tertiary'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)" mat-button
-            class="btn  text-btn" [color]="params.color" [disabled]="disabled">
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)" mat-button
+            class="btn  text-btn" [color]="config.color" [disabled]="disabled">
             <ng-container *ngTemplateOutlet="content"></ng-container>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)"
-            mat-icon-button class="btn" [color]="params.color" [disabled]="disabled">
-            <mat-icon>{{params?.icon}}</mat-icon>
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)"
+            mat-icon-button class="btn" [color]="config.color" [disabled]="disabled">
+            <mat-icon>{{config?.icon}}</mat-icon>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon-text-primary'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)"
-            mat-raised-button class="btn icon-text text-btn" [color]="params.color" [disabled]="disabled">
-            <mat-icon>{{params?.icon}}</mat-icon>
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)"
+            mat-raised-button class="btn icon-text text-btn" [color]="config.color" [disabled]="disabled">
+            <mat-icon>{{config?.icon}}</mat-icon>
             <span>
                 <ng-container *ngTemplateOutlet="content"></ng-container>
             </span>
@@ -40,9 +40,9 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'icon-text-secondary'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)"
-            mat-stroked-button class="btn icon-text text-btn" [color]="params.color" [disabled]="disabled">
-            <mat-icon>{{params?.icon}}</mat-icon>
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)"
+            mat-stroked-button class="btn icon-text text-btn" [color]="config.color" [disabled]="disabled">
+            <mat-icon>{{config?.icon}}</mat-icon>
             <span>
                 <ng-container *ngTemplateOutlet="content"></ng-container>
             </span>
@@ -50,16 +50,16 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'fab'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)" mat-fab
-            class="btn fab" [color]="params.color" [disabled]="disabled">
-            <mat-icon>{{params?.icon}}</mat-icon>
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)" mat-fab
+            class="btn fab" [color]="config.color" [disabled]="disabled">
+            <mat-icon>{{config?.icon}}</mat-icon>
         </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'mini-fab'">
-        <button [matTooltip]="params?.tooltipMessage" [ngClass]="params.btnClass" (click)="click($event)" mat-mini-fab
-            class="btn fab" [color]="params.color" [disabled]="disabled">
-            <mat-icon>{{params?.icon}}</mat-icon>
+        <button [matTooltip]="config?.tooltipMessage" [ngClass]="config.btnClass" (click)="click($event)" mat-mini-fab
+            class="btn fab" [color]="config.color" [disabled]="disabled">
+            <mat-icon>{{config?.icon}}</mat-icon>
         </button>
     </ng-container>
 

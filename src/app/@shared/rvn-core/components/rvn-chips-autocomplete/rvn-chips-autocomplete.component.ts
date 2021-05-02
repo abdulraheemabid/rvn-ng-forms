@@ -22,7 +22,7 @@ import { RvnStyleService } from '../../services/style/style.service';
   ]
 })
 export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccessor implements OnInit {
-  @Input() params: RvnChipsAutocompleteInput;
+  @Input() config: RvnChipsAutocompleteInput;
   inputFormControl: FormControl;
   filteredOptions: Observable<KeyValue<any, any>[]>;
   selectedOptions: Set<KeyValue<any, any>> = new Set();
@@ -36,17 +36,17 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
   @ViewChild('inputElement') inputElement: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    if (isNullOrUndefined(this.params)) this.params = { label: null, autoCompleteOption: null };
-    if (isNullOrUndefined(this.params.required)) this.params.required = false;
-    if (isNullOrUndefined(this.params.requiredErrorMessage)) this.params.requiredErrorMessage = `${this.params.label} is required`;
-    if (isNullOrUndefined(this.params.styleVersion)) this.params.styleVersion = 'v1';
+    if (isNullOrUndefined(this.config)) this.config = { label: null, autoCompleteOption: null };
+    if (isNullOrUndefined(this.config.required)) this.config.required = false;
+    if (isNullOrUndefined(this.config.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
+    if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
 
-    this.formFieldAppearance = isNullOrUndefined(this.params?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.params.appearance);
+    this.formFieldAppearance = isNullOrUndefined(this.config?.appearance) ? this.styleService.getFormFieldStyle$ : of(this.config.appearance);
 
-    this.allOptions = [...this.params.autoCompleteOption];
+    this.allOptions = [...this.config.autoCompleteOption];
 
     let opts = [];
-    if (this.params.required) opts.push(Validators.required);
+    if (this.config.required) opts.push(Validators.required);
     this.inputFormControl = new FormControl('', opts);
 
     //On key enter, filter the autocomple list with given key

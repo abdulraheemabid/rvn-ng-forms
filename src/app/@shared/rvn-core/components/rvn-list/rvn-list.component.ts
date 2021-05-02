@@ -11,12 +11,12 @@ export class RvnListComponent implements OnInit {
 
   constructor() { }
 
-  @Input() params: RvnListInput;
+  @Input() config: RvnListInput;
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = { list: [], lineOneKey: "" };
-    if (isNullOrUndefined(this.params.list)) this.params.list = [];
-    if (isNullOrUndefined(this.params.lineOneKey)) this.params.lineOneKey = "";
-    if (isNullOrUndefined(this.params.dense)) this.params.dense = false;
+    if (isNullOrUndefined(this.config)) this.config = { list: [], lineOneKey: "" };
+    if (isNullOrUndefined(this.config.list)) this.config.list = [];
+    if (isNullOrUndefined(this.config.lineOneKey)) this.config.lineOneKey = "";
+    if (isNullOrUndefined(this.config.dense)) this.config.dense = false;
   }
 }

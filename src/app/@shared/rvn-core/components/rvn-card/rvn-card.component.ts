@@ -8,7 +8,7 @@ import { RvnCardInput } from './rvn-card.input';
 })
 export class RvnCardComponent implements AfterViewInit {
 
-  @Input() params: RvnCardInput;
+  @Input() config: RvnCardInput;
   @ViewChild("title") title;
   showHeaderDivider: boolean = false;
 

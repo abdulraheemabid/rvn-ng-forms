@@ -16,13 +16,13 @@ import { RvnCheckboxInput } from './rvn-checkbox.input';
 })
 export class RvnCheckboxComponent implements OnInit {
 
-  @Input() params: RvnCheckboxInput = null;
+  @Input() config: RvnCheckboxInput = null;
   @Input() formGroup: FormGroup;
   checkBoxArray: FormArray;
 
 
   ngOnInit() {
-    if (!this.params.styleVersion) this.params.styleVersion = 'v1';
+    if (!this.config.styleVersion) this.config.styleVersion = 'v1';
     this.checkBoxArray = this.getFormArray();
   }
 
@@ -32,7 +32,7 @@ export class RvnCheckboxComponent implements OnInit {
       this.formGroup.addControl("checkboxArray", new FormArray([]));
       array = this.formGroup.get('checkboxArray') as FormArray;
     }
-    this.params?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
+    this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)))
     return array;
   }
 

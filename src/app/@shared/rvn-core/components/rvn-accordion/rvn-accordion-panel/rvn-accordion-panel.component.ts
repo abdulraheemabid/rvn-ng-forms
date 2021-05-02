@@ -11,15 +11,15 @@ export class RvnAccordionPanelComponent implements OnInit {
 
   constructor() { }
 
-  @Input() params: RvnAccordionPanelInput;
+  @Input() config: RvnAccordionPanelInput;
 
   ngOnInit(): void {
-    if (isNullOrUndefined(this.params)) this.params = {};
-    if (isNullOrUndefined(this.params?.hideToggle)) this.params.hideToggle = false;
-    if (isNullOrUndefined(this.params?.hasActionContent)) this.params.hasActionContent = false;
-    if (isNullOrUndefined(this.params?.hasHeader)) this.params.hasHeader = true;
-    if (isNullOrUndefined(this.params?.disabled)) this.params.disabled = false;
-    if (isNullOrUndefined(this.params?.expanded)) this.params.expanded = true;
+    if (isNullOrUndefined(this.config)) this.config = {};
+    if (isNullOrUndefined(this.config?.hideToggle)) this.config.hideToggle = false;
+    if (isNullOrUndefined(this.config?.hasActionContent)) this.config.hasActionContent = false;
+    if (isNullOrUndefined(this.config?.hasHeader)) this.config.hasHeader = true;
+    if (isNullOrUndefined(this.config?.disabled)) this.config.disabled = false;
+    if (isNullOrUndefined(this.config?.expanded)) this.config.expanded = true;
   }
 
 }
