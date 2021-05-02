@@ -1,46 +1,87 @@
-<div class="container">
-    
-    <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-    </mat-form-field>
+<div class="container" *ngIf="initDone">
 
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8" matSort>
+    <!-- filter -->
+    <rvn-input class="filter" *ngIf="params.enableFilter && params.useComponentFilter"
+        [params]="{suffixIcon: 'search', label:'Filter', styleVersion: 'v2'}" [formControl]="params.filterInputFC">
+    </rvn-input>
 
-        <ng-container matColumnDef="{{column}}" [sticky]="first" [stickyEnd]="last"
-            *ngFor="let column of columnsToDisplay; let first = first; let last = last">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    <table mat-table fixedLayout="true" [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8"
+        matSort>
+
+        <!-- colum def -->
+        <ng-container *ngFor="let column of columnsToDisplayNames; let i = index" matColumnDef="{{column}}"
+            [sticky]="params.stickColumnsAtStartIndexes.includes(i)"
+            [stickyEnd]="params.stickColumnsAtEndIndexes.includes(i)">
+
+            <!-- header template -->
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [class]="getJustifyContentClassByTextAlign(i)">
+                {{column}} </th>
+
+            <!-- custom column template -->
+            <ng-container *ngIf="params.columnsToDisplay[i].customTemplate">
+                <td mat-cell *matCellDef="let row" [style.text-align]="params.columnsToDisplay[i].textAlign">
+                    <ng-template *ngTemplateOutlet="params.columnsToDisplay[i].customTemplate; context: {row:row}">
+                    </ng-template>
+                </td>
+            </ng-container>
+
+            <!-- normal column text -->
+            <ng-container *ngIf="!params.columnsToDisplay[i].customTemplate">
+                <td mat-cell *matCellDef="let row" [style.text-align]="params.columnsToDisplay[i].textAlign">
+                    {{row[column]}} </td>
+            </ng-container>
+
+
         </ng-container>
 
-        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+
+        <!-- expanded row template -->
         <ng-container matColumnDef="expandedDetail">
-            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="example-element-detail"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    <div class="example-element-diagram">
-                        <div class="example-element-position"> {{element.position}} </div>
-                        <div class="example-element-symbol"> {{element.symbol}} </div>
-                        <div class="example-element-name"> {{element.name}} </div>
-                        <div class="example-element-weight"> {{element.weight}} </div>
-                    </div>
-                    <div class="example-element-description">
-                        {{element.description}}
-                        <span class="example-element-description-attribution"> -- Wikipedia </span>
+            <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplayNames.length">
+                <div class="row-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
+                    <div class="inner">
+                        <ng-container *ngTemplateOutlet="params.templateToShowOnRowExpand; context: {row: row}">
+                        </ng-container>
                     </div>
                 </div>
             </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
-            [class.example-expanded-row]="expandedElement === element"
-            (click)="expandedElement = expandedElement === element ? null : element">
+
+        <!-- header row -->
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayNames; sticky: true"></tr>
+
+
+        <!-- data row -->
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplayNames;" class="row" (mouseover)="row.hover = true"
+            (mouseout)="row.hover = false" [class.accent-bg]="row.hover == true || expandedRow === row"
+            [class.expanded-row]="expandedRow === row" (click)="expandedRow = expandedRow === row ? null : row">
         </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+
+        <!-- expanded row -->
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+
+
+        <!-- no data message on filter -->
+        <ng-container
+            *ngIf="params.enableFilter && (params.filterInputFC.value !== null && params.filterInputFC.value.trim() !== '')">
+            <div class="no-data color-warn" *matNoDataRow>
+                {{params.noDataOnFilterMessage}}
+            </div>
+        </ng-container>
+
+
+        <!-- no data message -->
+        <div class="no-data color-warn" *matNoDataRow>
+            {{params.noDataMessage}}
+        </div>
 
 
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+
+    <!-- paginator -->
+    <mat-paginator *ngIf="params.enablePagination" [pageSizeOptions]="params.pageOptions" showFirstLastButtons>
+    </mat-paginator>
 </div>

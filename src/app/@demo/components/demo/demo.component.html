@@ -329,16 +329,16 @@
                 </rvn-list>
 
                 <ng-template #actions let-listItem="listItem">
-                    <div>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'pageview', type: 'icon'}">
+                        </rvn-button>
+                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit',  type: 'icon'}">
+                        </rvn-button>
                         <rvn-button (onClick)="onClick(listItem)"
-                            [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
-                        </rvn-button>
-                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                            [params]="{'icon': ' insert_chart_outlined', color: 'primary', type: 'icon'}">
                         </rvn-button>
                         <rvn-button (onClick)="onClick(listItem)"
-                            [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
-                        </rvn-button>
-                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                            [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
                         </rvn-button>
                     </div>
                 </ng-template>
@@ -355,12 +355,14 @@
                         <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': 'pageview', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': 'edit', color: 'accent', type: 'icon'}">
                         </rvn-button>
                         <rvn-button (onClick)="onClick(listItem)"
                             [params]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon'}">
                         </rvn-button>
-                        <rvn-button (onClick)="onClick(listItem)" [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
+                        <rvn-button (onClick)="onClick(listItem)"
+                            [params]="{'icon': 'delete', color: 'warn', type: 'icon'}">
                         </rvn-button>
                     </div>
                 </ng-template>
@@ -368,13 +370,26 @@
         </div>
     </rvn-card>
 
-     <!-- TABLE -->
+    <!-- TABLE -->
 
-     <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'TABLE'}">
+    <rvn-card style="margin-bottom: 100px;" [params]="{'title': 'TABLE'}">
 
         <div content>
-            <rvn-table></rvn-table>
-          
+            <rvn-table [params]="tableParams">
+                <ng-template #onRowExpand let-row="row">
+                    <div class="example-element-diagram">
+                        <div class="example-element-position"> {{row.position}} </div>
+                        <div class="example-element-symbol"> {{row.symbol}} </div>
+                        <div class="example-element-name"> {{row.name}} </div>
+                        <div class="example-element-weight"> {{row.weight}} </div>
+                    </div>
+                    <div class="example-element-description">
+                        {{row.description}}
+                        <span class="example-element-description-attribution"> -- Wikipedia </span>
+                    </div>
+                </ng-template>
+            </rvn-table>
+
         </div>
     </rvn-card>
 </div>
