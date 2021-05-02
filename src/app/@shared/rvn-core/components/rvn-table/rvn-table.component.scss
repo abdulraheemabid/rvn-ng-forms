@@ -1,6 +1,5 @@
 @import "../../styles/variables/spacing";
 
-
 .container {
     table {
         width: 100%;
@@ -12,7 +11,9 @@
 
     tr.row:not(.expanded-row):hover {
         //TODO: color set through mouse event in html
-        cursor: pointer;
+        &.pointer {
+            cursor: pointer;
+        }
     }
 
     .row td {
@@ -35,6 +36,11 @@
     .no-data {
         display: flex;
         padding: $space-l;
+        width: 100%;
+    }
+
+    .paginator {
+        margin-top: $space-l;
     }
 
     //.col-flex- get added by ts

@@ -2,7 +2,7 @@ import { KeyValue } from '@angular/common';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IFormField, IForm, FieldType } from '../../rvn-forms/types';
+import { IFormField, IForm, FieldType, IRecord } from '../../rvn-forms/types';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
 import { DynamicComponentService } from '../dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
@@ -45,7 +45,7 @@ export class FormService {
 
   }
 
-  generateRecordFormGroup(formDefinition: IForm, keyForFieldControlId: string = "id") {
+  getNewRecordFG(formDefinition: IForm, keyForFieldControlId: string = "id") {
     let recordFg = this.fb.group({});
     formDefinition.fields.forEach(f => {
       if (f.markDeleted !== true) {
@@ -56,7 +56,18 @@ export class FormService {
     return recordFg;
   }
 
-  generateDefinitionFormGroup(form: IForm) {
+  getRecordFG(formDefinition: IForm, record: IRecord) {
+    let recordFg = this.fb.group({});
+    formDefinition.fields.forEach(f => {
+      if (f.markDeleted !== true) {
+        const validators = f.required ? [Validators.required] : [];
+        recordFg.addControl(f.id.toString(), this.fb.control(record.entry[f.id], validators));
+      }
+    });
+    return recordFg;
+  }
+
+  getDefinitionFG(form: IForm) {
     let fg = this.fb.group({
       id: [form.id],
       attributes: [form.attributes],
@@ -90,7 +101,7 @@ export class FormService {
 
   }
 
-  getNewFormFG() {
+  getNewDefinitionFG() {
     return this.fb.group({
       attributes: [{}],
       name: ['', [Validators.required, Validators.minLength(3)]],

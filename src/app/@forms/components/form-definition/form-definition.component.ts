@@ -16,7 +16,7 @@ import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 })
 export class FormDefinitionComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private privateformUitilityService: ReactiveFormUtilityService, private formService: FormService) { }
+  constructor(private fb: FormBuilder, private formUitilityService: ReactiveFormUtilityService, private formService: FormService) { }
 
   @ViewChild("accordion", { read: ElementRef }) accordion;
 
@@ -58,7 +58,7 @@ export class FormDefinitionComponent implements OnInit {
   }
 
   initNewFormGroup() {
-    this.formGrp = this.formService.getNewFormFG();
+    this.formGrp = this.formService.getNewDefinitionFG();
 
     this.addField();
 
@@ -71,7 +71,7 @@ export class FormDefinitionComponent implements OnInit {
 
 
   initFormGroupFromDefinition() {
-    this.formGrp = this.formService.generateDefinitionFormGroup(this.form);
+    this.formGrp = this.formService.getDefinitionFG(this.form);
 
     this.formGrp.valueChanges.subscribe(val => {
       this.formDefinitionUpdate.emit(this.formGrp);
@@ -84,7 +84,7 @@ export class FormDefinitionComponent implements OnInit {
       this.markFGAsDirtySubject$.subscribe(_ => {
 
         // Mark all as dirty
-        this.privateformUitilityService.markNestedFormGroupDirty(this.formGrp);
+        this.formUitilityService.markNestedFormGroupDirty(this.formGrp);
 
         // expand all INVALID fields
         this.fieldGroups.controls

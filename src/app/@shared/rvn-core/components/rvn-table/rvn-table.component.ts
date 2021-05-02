@@ -71,6 +71,11 @@ export class RvnTableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  getColumDisplayName(keyName: string) {
+    const displayName = this.config.columnsToDisplay.find(c => c.keyName === keyName).displayName;
+    return !isNullOrUndefined(displayName) ? displayName : keyName;
+  }
+
   getJustifyContentClassByTextAlign(indexOfColumnsToDisplay: number) {
     switch (this.config.columnsToDisplay[indexOfColumnsToDisplay].textAlign) {
       case "center":

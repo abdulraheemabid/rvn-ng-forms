@@ -15,7 +15,7 @@
 
             <!-- header template -->
             <th mat-header-cell *matHeaderCellDef mat-sort-header [class]="getJustifyContentClassByTextAlign(i)">
-                {{column}} </th>
+                {{getColumDisplayName(column)}} </th>
 
             <!-- custom column template -->
             <ng-container *ngIf="config.columnsToDisplay[i].customTemplate">
@@ -54,13 +54,17 @@
 
         <!-- data row -->
         <tr mat-row *matRowDef="let row; columns: columnsToDisplayNames;" class="row" (mouseover)="row.hover = true"
-            (mouseout)="row.hover = false" [class.accent-bg]="row.hover == true || expandedRow === row"
-            [class.expanded-row]="expandedRow === row" (click)="expandedRow = expandedRow === row ? null : row">
+            (mouseout)="row.hover = false"
+            [class.accent-bg]="config.templateToShowOnRowExpand && (row.hover == true || expandedRow === row)"
+            [class.expanded-row]="expandedRow === row" [class.pointer]="config.templateToShowOnRowExpand"
+            (click)="config.templateToShowOnRowExpand && expandedRow = expandedRow === row ? null : row">
         </tr>
 
 
         <!-- expanded row -->
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        <ng-container *ngIf="config.templateToShowOnRowExpand">
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        </ng-container>
 
 
         <!-- no data message on filter -->
@@ -82,6 +86,7 @@
 
 
     <!-- paginator -->
-    <mat-paginator *ngIf="config.enablePagination" [pageSizeOptions]="config.pageOptions" showFirstLastButtons>
+    <mat-paginator class="paginator" *ngIf="config.enablePagination" [pageSizeOptions]="config.pageOptions"
+        showFirstLastButtons>
     </mat-paginator>
 </div>

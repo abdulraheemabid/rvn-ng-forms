@@ -5,6 +5,7 @@ export interface RvnTableInput {
   data: any[];
   columnsToDisplay: {
     keyName: string,
+    displayName?: string,
     textAlign?: "center" | "left" | "right",
     customTemplate?: TemplateRef<any>;
     backgroundClass?: string;

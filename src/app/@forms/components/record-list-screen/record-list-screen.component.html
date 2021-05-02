@@ -4,25 +4,21 @@
     <rvn-input class="search" [config]="searchRecordConfig" [formControl]="searchFC"></rvn-input>
 
     <rvn-card class="list" [config]="cardConfig">
-        <rvn-list content [config]="listConfig">
-            <ng-template #actions let-listItem="listItem">
-                <rvn-button (click)="editRecord(listItem)"
-                    [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
-                </rvn-button>
-                <rvn-button (click)="deleteRecord(listItem)"
-                    [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
-                </rvn-button>
-            </ng-template>
-        </rvn-list>
+        <rvn-table content [config]="tableConfig" *ngIf="initDone"> </rvn-table>
 
-        <div content class="list no-records color-warn" *ngIf="filteredRecords.length == 0">
-            <span>
-                No records found
-                <span *ngIf="searchFC.value !== ''"> matching the search criteria !</span>
-                <span *ngIf="searchFC.value === ''"> !</span>
-            </span>
+        <ng-template #createdOnTemplate let-row="row">
+            {{row.createdOn | date: 'medium'}}
+        </ng-template>
 
-        </div>
+        <ng-template #actions let-row="row">
+            <rvn-button (click)="editRecord(row)"
+                [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
+            </rvn-button>
+            <rvn-button (click)="deleteRecord(row)"
+                [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
+            </rvn-button>
+        </ng-template>
+        
     </rvn-card>
 
 </div>

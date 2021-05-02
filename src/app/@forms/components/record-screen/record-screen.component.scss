@@ -1,0 +1,15 @@
+@import "../../../@shared/rvn-core/styles/variables/spacing";
+
+@function getNegativeSpace($space) {
+    $result: $space * -1;
+    @return $result;
+}
+
+
+.container {
+    .submit {
+        //TODO: temp fix
+        margin-top: getNegativeSpace($space-s);
+    }
+}
+
