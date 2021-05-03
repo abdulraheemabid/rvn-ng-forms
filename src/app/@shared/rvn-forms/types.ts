@@ -5,6 +5,8 @@ export interface IForm {
     name: string;
     fields: IFormField[];
     attributes?: any;
+    createdOn?: string;
+    updatedOn?: string;
 }
 
 export interface IFormField {
@@ -19,12 +21,16 @@ export interface IFormField {
         displayAs?: KeyValue<string, UIControlEnum>;
     };
     markDeleted?: boolean;
+    createdOn?: string;
+    updatedOn?: string;
 }
 
 export interface IRecord {
     id?: number;
     entry: any;
     attributes?: any;
+    createdOn?: string;
+    updatedOn?: string;
 }
 
 export interface IFieldTypeMeta {
