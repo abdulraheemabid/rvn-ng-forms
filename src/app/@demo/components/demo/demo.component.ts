@@ -41,7 +41,7 @@ export class DemoComponent implements OnInit {
       stickColumnsAtEndIndexes: [],
       noDataMessage: "No data found. and this is a custom message",
       noDataOnFilterMessage: "No data found matching filter. and this is a custom message",
-      templateToShowOnRowExpand: this.onRowExpand,
+      expandedRowTemplate: this.onRowExpand,
       enablePagination: true,
       pageOptions: [5, 10, 100]
     }

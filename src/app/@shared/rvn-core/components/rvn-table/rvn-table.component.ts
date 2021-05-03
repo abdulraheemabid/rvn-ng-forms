@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -22,11 +22,14 @@ import { RvnTableInput } from './rvn-table.input';
 })
 export class RvnTableComponent implements OnInit {
 
-  constructor() { }
+  constructor(private inj: Injector) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild("columValueComponentAnchor", { read: ViewContainerRef }) columValueComponentAnchor: ViewContainerRef;
+  @ViewChild("expandedComponentAnchor", { read: ViewContainerRef }) expandedComponentAnchor: ViewContainerRef;
   @Input() config: RvnTableInput;
+  hasExpandedContent: boolean = false;
 
   dataSource;
   expandedRow;
@@ -35,7 +38,7 @@ export class RvnTableComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.handleDefaultInputValues();
+    this.handleConfigSetup();
 
     if (this.config.enableFilter)
       this.config.filterInputFC.valueChanges.subscribe(value => this.applyFilter(value));
@@ -45,7 +48,7 @@ export class RvnTableComponent implements OnInit {
 
   }
 
-  handleDefaultInputValues() {
+  handleConfigSetup() {
     if (isNullOrUndefined(this.config)) this.config = { columnsToDisplay: [], data: [] }
     if (isNullOrUndefined(this.config.data)) this.config.data = [];
     if (isNullOrUndefined(this.config.columnsToDisplay)) this.config.columnsToDisplay = [];
@@ -56,9 +59,9 @@ export class RvnTableComponent implements OnInit {
     if (isNullOrUndefined(this.config.stickColumnsAtEndIndexes)) this.config.stickColumnsAtEndIndexes = [];
     if (isNullOrUndefined(this.config.noDataMessage)) this.config.noDataMessage = "No data !";
     if (isNullOrUndefined(this.config.noDataOnFilterMessage)) this.config.noDataOnFilterMessage = "No data matching the filter!";
-    if (isNullOrUndefined(this.config.templateToShowOnRowExpand)) this.config.templateToShowOnRowExpand = null;
     if (isNullOrUndefined(this.config.enablePagination)) this.config.enablePagination = false;
     if (isNullOrUndefined(this.config.pageOptions)) this.config.pageOptions = [10, 25, 50];
+
     this.columnsToDisplayNames = this.config.columnsToDisplay.map(c => c.keyName);
   }
 
@@ -88,4 +91,27 @@ export class RvnTableComponent implements OnInit {
         return "";
     }
   }
+
+  // getColumInjector(row: any, column: string, value: any) {
+  //   const token = this.config.columnsToDisplay.find(c => c.keyName === column).componentIngectToken;
+  //   let injector = Injector.create({
+  //     providers: [
+  //       { provide: token || "value", useValue: value }
+  //     ],
+  //     parent: this.inj
+  //   });
+  //   row.__initialized = true;
+  //   return injector;
+  // }
+
+  // getExpandedComponentInjector(value: any) {
+  //   const token = this.config.expandedComponentIngectToken;
+  //   let injector = Injector.create({
+  //     providers: [
+  //       { provide: token || "value", useValue: value }
+  //     ],
+  //     parent: this.inj
+  //   });
+  //   return injector;
+  // }
 }

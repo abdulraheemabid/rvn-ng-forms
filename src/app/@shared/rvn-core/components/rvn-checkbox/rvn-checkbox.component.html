@@ -1,4 +1,5 @@
-<span class="container ui-control" [ngClass]="config?.styleVersion" [formGroup]="formGroup">
+<span class="container ui-control" [ngClass]="config?.styleVersion" [formGroup]="formGroup"
+    *ngIf="config.mode === 'standard'">
 
     <span class="label">{{config?.label}}:</span>
     <span class="checkbox-group" formArrayName="checkboxArray">
@@ -8,4 +9,8 @@
         </mat-checkbox>
     </span>
 
+</span>
+
+<span *ngIf="config.mode === 'boolean-display'">
+    <mat-checkbox class="checkbox" [checked]="checked"></mat-checkbox>
 </span>

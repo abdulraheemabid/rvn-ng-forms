@@ -21,12 +21,22 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
   @Input() config: RvnCheckboxInput = null;
   formGroup: FormGroup = new FormGroup({});
   checkBoxArray: FormArray;
+  // used only for display mode
+  checked: boolean = false;
 
 
   ngOnInit() {
-    if (!this.config.styleVersion) this.config.styleVersion = 'v1';
-    this.checkBoxArray = this.initFormArray();
-    this.checkBoxArray.valueChanges.subscribe(selectedValues => this.syncControls(selectedValues));
+    if (isNullOrUndefined(this.config)) this.config = { 'label': null, checkboxOptions: [] };
+    if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
+    if (isNullOrUndefined(this.config.mode)) this.config.mode = 'standard';
+
+    if (this.config.mode === "standard") {
+      this.checkBoxArray = this.initFormArray();
+      this.checkBoxArray.valueChanges.subscribe(selectedValues => this.syncControls(selectedValues));
+    } else {
+      this.checked = isNullOrUndefined(this.formControl) && isNullOrUndefined(this.formControl.value) ? false : this.formControl.value;
+      this.formControl.disable();
+    }
   }
 
   initFormArray() {
@@ -34,9 +44,9 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
     let array = this.formGroup.get('checkboxArray') as FormArray;
 
     if (isNullOrUndefined(this.formControl.value)) {
-      this.config?.checkboxOptions.forEach(option => array.push(new FormControl(false)));
+      this.config.checkboxOptions.forEach(option => array.push(new FormControl(false)));
     } else {
-      this.config?.checkboxOptions.forEach(option => {
+      this.config.checkboxOptions.forEach(option => {
         const isValidOption = this.formControl.value.find(v => v.key === option.key && v.value === option.value);
         if (!isNullOrUndefined(isValidOption)) array.push(new FormControl(true));
         else array.push(new FormControl(false));
@@ -49,7 +59,7 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
   syncControls(selectedValues: boolean[]) {
     let valuesToSet = [];
     selectedValues.forEach((sv, i) => {
-      if (sv) valuesToSet.push(this.config?.checkboxOptions[i])
+      if (sv) valuesToSet.push(this.config.checkboxOptions[i])
     });
     this.formControl.setValue(valuesToSet);
   }

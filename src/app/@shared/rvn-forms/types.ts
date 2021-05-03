@@ -40,6 +40,9 @@ export interface IFieldTypeMeta {
         UIControl: UIControlEnum,
         renderer: any
     }[];
+    valueRenderers: {
+        renderer: any
+    }[];
 }
 
 export interface IId {

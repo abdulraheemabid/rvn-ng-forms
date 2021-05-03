@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { RvnCheckboxInput } from 'src/app/@shared/rvn-core/components/rvn-checkbox/rvn-checkbox.input';
 import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
 
 @Component({
@@ -8,7 +10,10 @@ import { BaseValueRendererComponent } from '../base-value-renderer/base-value-re
 })
 export class BoolValueRendererComponent extends BaseValueRendererComponent implements OnInit {
 
-  ngOnInit(): void {
-  }
+  fc: FormControl;
+  checkboxConfig: RvnCheckboxInput = { label: null, checkboxOptions: null, mode: 'boolean-display' };
 
+  ngOnInit(): void {
+    this.fc = this.value ? new FormControl(this.value) : new FormControl();
+  }
 }

@@ -17,20 +17,27 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header [class]="getJustifyContentClassByTextAlign(i)">
                 {{getColumDisplayName(column)}} </th>
 
-            <!-- custom column template -->
-            <ng-container *ngIf="config.columnsToDisplay[i].customTemplate">
-                <td mat-cell *matCellDef="let row" [style.text-align]="config.columnsToDisplay[i].textAlign">
+
+            <td mat-cell *matCellDef="let row" [style.text-align]="config.columnsToDisplay[i].textAlign">
+                <!-- custom column template -->
+                <ng-container *ngIf="config.columnsToDisplay[i].customTemplate">
                     <ng-template *ngTemplateOutlet="config.columnsToDisplay[i].customTemplate; context: {row:row}">
                     </ng-template>
-                </td>
-            </ng-container>
+                </ng-container>
 
-            <!-- normal column text -->
-            <ng-container *ngIf="!config.columnsToDisplay[i].customTemplate">
-                <td mat-cell *matCellDef="let row" [style.text-align]="config.columnsToDisplay[i].textAlign">
-                    {{row[column]}} </td>
-            </ng-container>
+                <!-- custom column component -->
+                <!-- <ng-container *ngIf="config.columnsToDisplay[i].customComponent">
+                    <ng-template
+                        *ngComponentOutlet="config.columnsToDisplay[i].customComponent; injector: !row.__initialized && getColumInjector(row, column, row[column])">
+                    </ng-template>
+                </ng-container> -->
 
+                <!-- normal column text -->
+                <ng-container *ngIf="!config.columnsToDisplay[i].customTemplate">
+                    {{row[column]}}
+                </ng-container>
+
+            </td>
 
         </ng-container>
 
@@ -40,8 +47,19 @@
             <td mat-cell *matCellDef="let row" [attr.colspan]="columnsToDisplayNames.length">
                 <div class="row-detail" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
                     <div class="inner">
-                        <ng-container *ngTemplateOutlet="config.templateToShowOnRowExpand; context: {row: row}">
+
+                        <ng-container *ngIf="config.expandedRowTemplate">
+                            <ng-container *ngTemplateOutlet="config.expandedRowTemplate; context: {row: row}">
+                            </ng-container>
                         </ng-container>
+
+
+                        <!-- <ng-container *ngIf="!config.expandedRowComponent">
+                            <ng-container
+                                *ngComponentOutlet="config.expandedRowComponent; injector:getExpandedComponentInjector(row)">
+                            </ng-container>
+                        </ng-container> -->
+
                     </div>
                 </div>
             </td>
@@ -55,14 +73,14 @@
         <!-- data row -->
         <tr mat-row *matRowDef="let row; columns: columnsToDisplayNames;" class="row" (mouseover)="row.hover = true"
             (mouseout)="row.hover = false"
-            [class.accent-bg]="config.templateToShowOnRowExpand && (row.hover == true || expandedRow === row)"
-            [class.expanded-row]="expandedRow === row" [class.pointer]="config.templateToShowOnRowExpand"
-            (click)="config.templateToShowOnRowExpand && expandedRow = expandedRow === row ? null : row">
+            [class.accent-bg]="config.expandedRowTemplate  && (row.hover == true || expandedRow === row)"
+            [class.expanded-row]="expandedRow === row" [class.pointer]="config.expandedRowTemplate"
+            (click)="config.expandedRowTemplate && expandedRow = expandedRow === row ? null : row">
         </tr>
 
 
         <!-- expanded row -->
-        <ng-container *ngIf="config.templateToShowOnRowExpand">
+        <ng-container *ngIf="config.expandedRowTemplate">
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
         </ng-container>
 

@@ -8,6 +8,8 @@ import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-c
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
+import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
+import { StringValueRendererComponent } from 'src/app/@shared/rvn-forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
 import { AppService } from 'src/app/app.service';
@@ -23,7 +25,8 @@ export class RecordListScreenComponent implements OnInit {
     private appService: AppService,
     private formApiService: FormApiService,
     private dialogService: RvnDialogService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private typeService: TypeMetaService) { }
 
   @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
   @ViewChild("createdOnTemplate", { static: true }) createdOnTemplate: TemplateRef<any>;
@@ -39,7 +42,7 @@ export class RecordListScreenComponent implements OnInit {
   cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
   initDone: boolean = false;
-  numberOfColumnsToAddInTable: number = 5;
+  numberOfColumnsToAddInTable: number = 20;
 
   ngOnInit(): void {
     this.initDone = false;
@@ -72,15 +75,29 @@ export class RecordListScreenComponent implements OnInit {
 
     this.records = records;
     this.filteredRecords = [...this.records];
+    this.cardConfig.title = `Total: ${this.records.length}`;
+    this.setTableConfig();
+  }
+
+  setTableConfig() {
     this.tableConfig.data = this.filteredRecords;
-    this.tableConfig.columnsToDisplay = this.formDefinition.fields.map(f => { return { keyName: f.id.toString(), displayName: f.name } });
+    this.tableConfig.columnsToDisplay = this.formDefinition.fields.map(f => {
+      return {
+        keyName: f.id.toString(),
+        displayName: f.name,
+        // customComponent:
+        //   this.typeService.getValueRendererByType(f.type.key)
+      }
+    });
+
     if (this.tableConfig.columnsToDisplay.length > this.numberOfColumnsToAddInTable)
       this.tableConfig.columnsToDisplay = this.tableConfig.columnsToDisplay.slice(0, this.numberOfColumnsToAddInTable);
+
     this.tableConfig.columnsToDisplay.push({ keyName: "createdOn", displayName: 'created on', customTemplate: this.createdOnTemplate });
     this.tableConfig.columnsToDisplay.push({ keyName: "actions", displayName: "", customTemplate: this.actionsTemplate, textAlign: "right" });
+
     this.tableConfig.filterInputFC = this.searchFC;
-    this.tableConfig.templateToShowOnRowExpand = this.expandedContent;
-    this.cardConfig.title = `Total: ${this.records.length}`;
+    this.tableConfig.expandedRowTemplate = this.expandedContent;
     this.initDone = true;
   }
 

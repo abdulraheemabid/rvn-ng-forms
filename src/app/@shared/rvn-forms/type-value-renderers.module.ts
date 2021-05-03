@@ -1,5 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RvnComponentsModule } from "../rvn-core/components.module";
 import { BaseValueRendererComponent } from "./type-value-renderers/base-value-renderer/base-value-renderer.component";
 import { BoolValueRendererComponent } from "./type-value-renderers/bool-value-renderer/bool-value-renderer.component";
 import { DateValueRendererComponent } from "./type-value-renderers/date-value-renderer/date-value-renderer.component";
@@ -22,7 +24,9 @@ import { StringValueRendererComponent } from "./type-value-renderers/string-valu
         BaseValueRendererComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RvnComponentsModule,
+        ReactiveFormsModule
     ],
     exports: [
         FloatValueRendererComponent,

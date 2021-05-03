@@ -1,4 +1,4 @@
-import { TemplateRef } from "@angular/core";
+import { ComponentRef, TemplateRef } from "@angular/core";
 import { FormControl } from "@angular/forms";
 
 export interface RvnTableInput {
@@ -8,6 +8,8 @@ export interface RvnTableInput {
     displayName?: string,
     textAlign?: "center" | "left" | "right",
     customTemplate?: TemplateRef<any>;
+    // customComponent?: any;
+    // componentIngectToken?: string;
     backgroundClass?: string;
   }[];
   enableFilter?: boolean;
@@ -17,7 +19,9 @@ export interface RvnTableInput {
   stickColumnsAtEndIndexes?: number[];
   noDataMessage?: string;
   noDataOnFilterMessage?: string;
-  templateToShowOnRowExpand?: TemplateRef<any>;
+  expandedRowTemplate?: TemplateRef<any>
+  // expandedRowComponent?: any;
+  // expandedComponentIngectToken?: string;
   enablePagination?: boolean;
   pageOptions?: number[];
 }

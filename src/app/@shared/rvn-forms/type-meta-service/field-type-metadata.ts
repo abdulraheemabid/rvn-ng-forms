@@ -12,6 +12,13 @@ import { IntInputRendererComponent } from "../type-input-renderers/int-input-ren
 import { MultiselectInputRendererComponent } from "../type-input-renderers/multiselect-input-renderer/multiselect-input-renderer.component";
 import { SingleselectInputRendererComponent } from "../type-input-renderers/singleselect-input-renderer/singleselect-input-renderer.component";
 import { StringInputRendererComponent } from "../type-input-renderers/string-input-renderer/string-input-renderer.component";
+import { BoolValueRendererComponent } from "../type-value-renderers/bool-value-renderer/bool-value-renderer.component";
+import { DateValueRendererComponent } from "../type-value-renderers/date-value-renderer/date-value-renderer.component";
+import { FloatValueRendererComponent } from "../type-value-renderers/float-value-renderer/float-value-renderer.component";
+import { IntValueRendererComponent } from "../type-value-renderers/int-value-renderer/int-value-renderer.component";
+import { MultiselectValueRendererComponent } from "../type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component";
+import { SingleselectValueRendererComponent } from "../type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component";
+import { StringValueRendererComponent } from "../type-value-renderers/string-value-renderer/string-value-renderer.component";
 import { FieldType, IFieldTypeMeta, UIControlEnum } from "../types";
 
 export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
@@ -20,6 +27,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
         inputRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: FloatInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: FloatValueRendererComponent }],
         definitionRenderer: FloatDefinitionRendererComponent
     }],
     ["int", {
@@ -27,6 +35,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
         inputRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: IntInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: IntValueRendererComponent }],
         definitionRenderer: IntDefinitionRendererComponent
     }],
     ["string", {
@@ -34,6 +43,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
         inputRenderers: [
             { UIControl: UIControlEnum.INPUT, renderer: StringInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: StringValueRendererComponent }],
         definitionRenderer: StringDefinitionRendererComponent
     }],
     ["date", {
@@ -42,6 +52,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
             { UIControl: UIControlEnum.INPUT, renderer: DateInputRendererComponent },
             { UIControl: UIControlEnum.DATEPICKER, renderer: DateInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: DateValueRendererComponent }],
         definitionRenderer: DateDefinitionRendererComponent
     }],
     ["bool", {
@@ -51,6 +62,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
             { UIControl: UIControlEnum.RADIO, renderer: BoolInputRendererComponent },
             { UIControl: UIControlEnum.SELECT, renderer: BoolInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: BoolValueRendererComponent }],
         definitionRenderer: BoolDefinitionRendererComponent
     }],
     ["multiselect", {
@@ -59,6 +71,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
             { UIControl: UIControlEnum.CHECKBOX, renderer: MultiselectInputRendererComponent },
             { UIControl: UIControlEnum.CHIPSINPUT, renderer: MultiselectInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: MultiselectValueRendererComponent }],
         definitionRenderer: MultiselectDefinitionRendererComponent
     }],
     ["singleselect", {
@@ -67,6 +80,7 @@ export const fieldTypeMetaDataMap = new Map<FieldType, IFieldTypeMeta>([
             { UIControl: UIControlEnum.SELECT, renderer: SingleselectInputRendererComponent },
             { UIControl: UIControlEnum.RADIO, renderer: SingleselectInputRendererComponent }
         ],
+        valueRenderers: [{ renderer: SingleselectValueRendererComponent }],
         definitionRenderer: SingleselectDefinitionRendererComponent
     }],
 ]);

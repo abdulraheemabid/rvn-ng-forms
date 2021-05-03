@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
 import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
 import { RecordScreenComponent } from './components/record-screen/record-screen.component';
+import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-renderers.module';
+import { RecordViewComponent } from './components/record-view/record-view.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { RecordScreenComponent } from './components/record-screen/record-screen.
     FormRendererComponent,
     FormListScreenComponent,
     RecordListScreenComponent,
-    RecordScreenComponent
+    RecordScreenComponent,
+    RecordViewComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { RecordScreenComponent } from './components/record-screen/record-screen.
     DragDropModule,
     ReactiveFormsModule,
     RvnTypeDefinitionRenderersModule,
-    RvnTypeInputRenderersModule
+    RvnTypeInputRenderersModule,
+    RvnTypeValueRenderersModule
   ]
 })
 export class FormsModule { }

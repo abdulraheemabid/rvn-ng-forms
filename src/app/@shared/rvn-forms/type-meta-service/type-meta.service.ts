@@ -30,4 +30,8 @@ export class TypeMetaService {
     if (typeof fieldType !== "string") fieldType = fieldType.key;
     return this.fieldTypeMeta.get(fieldType);
   }
+
+  getValueRendererByType(fieldType: FieldType) {
+    return this.fieldTypeMeta.get(fieldType).valueRenderers[0].renderer;
+  }
 }
