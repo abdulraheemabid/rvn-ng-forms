@@ -24,7 +24,7 @@ export class RecordScreenComponent implements OnInit {
   record: IRecord = { entry: {} };
   formId: number
   recordId: number;
-  recordFG: FormGroup;
+  recordFG: FormGroup = new FormGroup({});
   markRecordFGAsDirty$ = new Subject();
 
   mode: CreateOrEdit;

@@ -123,7 +123,7 @@ export class FormService {
   getNewFieldFG() {
     return this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      type: ['', Validators.required],
+      type: [undefined, Validators.required],
       required: [false],
       attributes: this.fb.group({
         _expanded: [true],

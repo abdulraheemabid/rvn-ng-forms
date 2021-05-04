@@ -64,7 +64,7 @@ export class FormApiService {
 
   updateRecord(formId: number, record: IRecord): Observable<IId> {
     const dto = this.transformRecordToDTO(record);
-    return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record`, dto);
+    return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record/${dto.id}`, dto);
   }
 
   deleteRecord(formId: number, recordId: number): Observable<IId> {

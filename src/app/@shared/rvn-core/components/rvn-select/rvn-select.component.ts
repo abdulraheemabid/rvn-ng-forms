@@ -3,7 +3,7 @@ import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { CustomFormControlValueAccessor } from 'src/app/@shared/rvn-core/utils/custom-form-control-value-accessor';
 import { RvnStyleService } from '../../services/style/style.service';
-import { isNullOrUndefined } from '../../utils/funtions.util';
+import { isKeyValue, isNullOrUndefined } from '../../utils/funtions.util';
 
 import { RvnSelectInput } from './rvn-select.input';
 
@@ -39,6 +39,7 @@ export class RvnSelectComponent extends CustomFormControlValueAccessor implement
 
   initValueIfAlreadyExists() {
     if (!isNullOrUndefined(this.formControl.value)) {
+      if (!isKeyValue(this.formControl.value)) this.formControl.setValue({ key: this.formControl.value, value: this.formControl.value }, { emitEvent: false });
       const selectedOption = this.config.selectOptions.find(o => o.key === this.formControl.value.key);
       this.formControl.setValue(selectedOption, { emitEvent: false });
     }
