@@ -69,6 +69,11 @@ body {
 
     .mat-form-field-wrapper {
         padding-bottom: 0;
+
+        .mat-error {
+            //TODO: remove hardcoding, got this value from material class
+            padding-top: 1.34375em;
+        }
     }
 }
 

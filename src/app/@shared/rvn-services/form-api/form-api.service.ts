@@ -51,7 +51,10 @@ export class FormApiService {
   }
 
   getRecords(formId: number): Observable<IRecord[]> {
-    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`);
+    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`)
+      .pipe(
+        switchMap(records => of(records.map(r => this.transformRecordFromDTO(r))))
+      );
   }
 
   createRecord(formId: number, record: IRecord): Observable<IId> {

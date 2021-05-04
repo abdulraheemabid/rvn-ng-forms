@@ -11,8 +11,7 @@ export class BaseValueRendererComponent {
   @Input() type: FieldType;
   @Input() value: any;
 
-  constructor(@Inject("value") private injected) {
-    this.value = this.injected;
+  constructor() {
   }
 
 }

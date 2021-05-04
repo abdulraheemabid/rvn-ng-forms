@@ -45,6 +45,17 @@ export class FormService {
 
   }
 
+  injectTypeValueRenderer(fieldType: FieldType, viewContainerRef: ViewContainerRef, value: any): Observable<boolean> {
+
+    let typeMeta = this.typeMetaService.getFieldTypeMetaData(fieldType);
+    const rendererConfig = typeMeta.valueRenderers[0];
+    const componentToRender = rendererConfig.renderer;
+    const input = [{ key: "value", value }];
+
+    return this.dynamicComponentService.injectComponent(viewContainerRef, componentToRender, input);
+
+  }
+
   getNewRecordFG(formDefinition: IForm, keyForFieldControlId: string = "id") {
     let recordFg = this.fb.group({});
     formDefinition.fields.forEach(f => {

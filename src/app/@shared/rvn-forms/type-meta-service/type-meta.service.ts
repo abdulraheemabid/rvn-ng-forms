@@ -12,10 +12,10 @@ export class TypeMetaService {
 
   fieldTypeMeta = fieldTypeMetaDataMap;
 
-  getFieldTypes(): KeyValue<string, string>[] {
+  getFieldTypes(): KeyValue<FieldType, string>[] {
     let result = [];
 
-    this.fieldTypeMeta.forEach((value: IFieldTypeMeta, key: string) => {
+    this.fieldTypeMeta.forEach((value: IFieldTypeMeta, key: FieldType) => {
       result.push(
         {
           key,

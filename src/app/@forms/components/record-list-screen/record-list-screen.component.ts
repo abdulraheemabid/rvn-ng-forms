@@ -1,17 +1,18 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { KeyValue } from '@angular/common';
+import { Component, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
-import { StringValueRendererComponent } from 'src/app/@shared/rvn-forms/type-value-renderers/string-value-renderer/string-value-renderer.component';
-import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
+import { FieldType, IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
+import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -25,12 +26,12 @@ export class RecordListScreenComponent implements OnInit {
     private appService: AppService,
     private formApiService: FormApiService,
     private dialogService: RvnDialogService,
-    private route: ActivatedRoute,
-    private typeService: TypeMetaService) { }
+    private route: ActivatedRoute) { }
 
   @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
   @ViewChild("createdOnTemplate", { static: true }) createdOnTemplate: TemplateRef<any>;
-  @ViewChild("expandedContent", { static: true }) expandedContent: TemplateRef<any>;
+  @ViewChild("expandedContent", { static: true }) expandedContentTemplate: TemplateRef<any>;
+  @ViewChild("cell", { static: true }) cellTemplate: TemplateRef<any>;
 
   records: IRecord[] = [];
   filteredRecords: IRecord[] = [];
@@ -85,8 +86,7 @@ export class RecordListScreenComponent implements OnInit {
       return {
         keyName: f.id.toString(),
         displayName: f.name,
-        // customComponent:
-        //   this.typeService.getValueRendererByType(f.type.key)
+        customTemplate: this.cellTemplate
       }
     });
 
@@ -97,7 +97,7 @@ export class RecordListScreenComponent implements OnInit {
     this.tableConfig.columnsToDisplay.push({ keyName: "actions", displayName: "", customTemplate: this.actionsTemplate, textAlign: "right" });
 
     this.tableConfig.filterInputFC = this.searchFC;
-    this.tableConfig.expandedRowTemplate = this.expandedContent;
+    this.tableConfig.expandedRowTemplate = this.expandedContentTemplate;
     this.initDone = true;
   }
 
