@@ -12,7 +12,7 @@
 
         <ng-template #actions let-row="row">
             <rvn-button (click)="editRecord(row)"
-                [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit record'}">
+                [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit record'}">
             </rvn-button>
             <rvn-button (click)="deleteRecord(row)"
                 [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">

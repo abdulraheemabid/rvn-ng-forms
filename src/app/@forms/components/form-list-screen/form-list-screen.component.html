@@ -6,14 +6,14 @@
     <rvn-card class="list" [config]="cardConfig">
         <rvn-list content [config]="listConfig">
             <ng-template #actions let-listItem="listItem">
-                <rvn-button (click)="editForm(listItem)"
-                    [config]="{'icon': 'edit', color: 'accent', type: 'icon', tooltipMessage: 'Edit form'}">
-                </rvn-button>
                 <rvn-button (click)="viewRecords(listItem)"
-                    [config]="{'icon': 'view_list', color: 'accent', type: 'icon', tooltipMessage: 'View Records'}">
+                    [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View Records'}">
                 </rvn-button>
                 <rvn-button [disabled]="true"
-                    [config]="{'icon': ' insert_chart_outlined', color: 'accent', type: 'icon', tooltipMessage: 'Analyze Records'}">
+                    [config]="{'icon': ' insert_chart_outlined', type: 'icon', tooltipMessage: 'Analyze Records'}">
+                </rvn-button>
+                <rvn-button (click)="editForm(listItem)"
+                    [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit form'}">
                 </rvn-button>
                 <rvn-button (click)="deleteForm(listItem)"
                     [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">

@@ -62,7 +62,7 @@ body {
     }
 }
 
-.ui-control {
+.rvn-ui-control {
     height: $ui-control-height;
     display: flex;
     align-items: center;
@@ -74,6 +74,18 @@ body {
             //TODO: remove hardcoding, got this value from material class
             padding-top: 1.34375em;
         }
+    }
+}
+
+.rvn-card{
+    .header{
+        @extend .primary-bg;
+    }
+}
+
+.rvn-table{
+    .header-row{
+        @extend .primary-bg;
     }
 }
 
@@ -127,6 +139,10 @@ body {
     background-color: $light-background !important;
 }
 
+.grey-border {
+    border-color: $light-grey !important;
+}
+
 // Dark theme specific
 
 .app-dark-theme {
@@ -176,5 +192,9 @@ body {
 
     .background-bg {
         background-color: $dark-background !important;
+    }
+
+    .grey-border {
+        border-color: $dark-grey !important;
     }
 }

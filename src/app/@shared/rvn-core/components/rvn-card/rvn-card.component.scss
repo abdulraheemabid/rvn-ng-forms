@@ -8,13 +8,19 @@
     }
 
     .card {
-        padding: $space-l;
+        padding: 0;
 
         .header {
-            padding-bottom: $space-s;
+            padding: $space-l;
             ::ng-deep {
-                .mat-card-header-text {
+                .mat-card-header-text,
+                .mat-card-title {
                     margin: 0;
+                }
+
+                .mat-card-subtitle {
+                    margin-top: $space-xs;
+                    margin-bottom: 0;
                 }
             }
 
@@ -24,8 +30,7 @@
         }
 
         .content {
-            margin-top: $space-l;
-
+            padding: $space-l;
             .footer {
                 margin-top: $space-xl;
             }

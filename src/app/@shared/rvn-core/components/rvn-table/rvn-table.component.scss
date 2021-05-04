@@ -29,6 +29,11 @@
         }
     }
 
+    .expandedRowContainer {
+        border: 1px solid;
+        border-top: none;
+    }
+
     .filter {
         display: flex;
     }

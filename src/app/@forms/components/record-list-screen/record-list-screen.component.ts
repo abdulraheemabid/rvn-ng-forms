@@ -43,7 +43,7 @@ export class RecordListScreenComponent implements OnInit {
   cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
   initDone: boolean = false;
-  numberOfColumnsToAddInTable: number = 20;
+  numberOfColumnsToAddInTable: number = 5;
 
   ngOnInit(): void {
     this.initDone = false;

@@ -1,6 +1,6 @@
-<div class="container ui-control" [ngClass]="config?.styleVersion">
+<div class="container rvn-ui-control" [ngClass]="config?.styleVersion">
 
-    <span *ngIf="config?.styleVersion == 'v1'">{{config?.label}}:</span>
+    <span *ngIf="config?.styleVersion == 'v1'" class="label">{{config?.label}}:</span>
 
     <mat-form-field class="form-field" [appearance]="formFieldAppearance | async">
         <mat-label *ngIf="config?.styleVersion == 'v2' && config?.label" class="label">{{config?.label}}</mat-label>

@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
     this.setDefaultTheme("dark");
 
-    this.fieldAppearanceConfig = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
+    this.fieldAppearanceConfig = { label: '', styleVersion: 'v2', appearance: 'outline', selectOptions: this.fieldAppearanceOption };
 
     this.styleService.getFormFieldStyle$.subscribe(val => {
       if (this.fieldAppearanceFC.value === "" || val !== this.fieldAppearanceFC?.value?.key)

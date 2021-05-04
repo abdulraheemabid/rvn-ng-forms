@@ -1,15 +1,18 @@
-@import "../../../@shared/rvn-core/styles/variables/spacing";
-
-@function getNegativeSpace($space) {
-    $result: $space * -1;
-    @return $result;
-}
-
-
 .container {
-    .submit {
-        //TODO: temp fix
-        margin-top: getNegativeSpace($space-s);
+    display: grid;
+    gap: 40px;
+    align-items: center;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+        ". button"
+        "card card";
+
+    .button {
+        grid-area: button;
+        margin-left: auto;
+    }
+
+    .card {
+        grid-area: card;
     }
 }
-
