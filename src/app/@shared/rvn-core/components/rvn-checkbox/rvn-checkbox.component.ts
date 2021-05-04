@@ -29,6 +29,7 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
     if (isNullOrUndefined(this.config)) this.config = { 'label': null, checkboxOptions: [] };
     if (isNullOrUndefined(this.config.styleVersion)) this.config.styleVersion = 'v1';
     if (isNullOrUndefined(this.config.mode)) this.config.mode = 'standard';
+    if (isNullOrUndefined(this.config.requiredErrorMessage)) this.config.requiredErrorMessage = `${this.config.label} is required`;
 
     if (this.config.mode === "standard") {
       this.checkBoxArray = this.initFormArray();

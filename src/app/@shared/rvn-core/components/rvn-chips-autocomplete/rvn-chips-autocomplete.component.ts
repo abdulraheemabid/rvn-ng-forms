@@ -1,7 +1,7 @@
 import { Component, ElementRef, forwardRef, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CustomFormControlValueAccessor } from '../../utils/custom-form-control-value-accessor';
 import { RvnChipsAutocompleteInput } from './rvn-chips-autocomplete.input';
@@ -34,6 +34,7 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
   }
 
   @ViewChild('inputElement') inputElement: ElementRef<HTMLInputElement>;
+  @ViewChild('chipList') chipList;
 
   ngOnInit() {
     if (isNullOrUndefined(this.config)) this.config = { label: null, autoCompleteOption: null };
@@ -53,7 +54,23 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
 
     //On key enter, filter the autocomple list with given key
     this.filteredOptions = this.inputFormControl.valueChanges.pipe(
-      map((enteredKey: string | null) => enteredKey ? this._filter(enteredKey) : this.allOptions.slice()));
+      map((enteredKey: string | null) => enteredKey ? this._filter(enteredKey) : this.allOptions.slice())
+    );
+
+  }
+
+  showError() {
+    if (this.config.required && this.formControl.dirty) {
+      if (this.selectedOptions.size === 0) {
+        this.chipList.errorState = true;
+        return true;
+      }
+      else {
+        this.chipList.errorState = false;
+        return false;
+      }
+    }
+    return false;
   }
 
   initValueIfAlreadyExists() {
@@ -70,6 +87,8 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
   remove(option: KeyValue<any, any>): void {
     this.selectedOptions.delete(option);
     this.syncFormControl();
+
+    //if (this.config.required && this.selectedOptions.size === 0) this.chipList.errorState = true;
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -77,6 +96,7 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
     this.inputElement.nativeElement.value = '';
     this.inputFormControl.setValue(null);
     this.syncFormControl();
+    //this.chipList.errorState = false;
   }
 
   private _filter(value: string | KeyValue<any, any>): KeyValue<any, any>[] {

@@ -67,6 +67,11 @@ body {
     display: flex;
     align-items: center;
 
+    .error-msg{
+        //copied from mat design
+        font-size: 75%;
+    }
+
     .mat-form-field-wrapper {
         padding-bottom: 0;
 

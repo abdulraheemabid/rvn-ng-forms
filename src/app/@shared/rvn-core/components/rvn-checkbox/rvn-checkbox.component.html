@@ -7,6 +7,9 @@
             [formControlName]="i" [value]="option.key">
             {{option.value}}
         </mat-checkbox>
+        <mat-error class="error-msg" *ngIf="formControl.hasError('required') && formControl.dirty">
+            {{config?.requiredErrorMessage}}
+        </mat-error>
     </span>
 
 </span>

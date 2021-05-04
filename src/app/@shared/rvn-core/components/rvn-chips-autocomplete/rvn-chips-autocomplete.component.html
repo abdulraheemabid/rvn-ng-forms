@@ -13,12 +13,15 @@
             <input [placeholder]="config?.placeholder" #inputElement [formControl]="inputFormControl"
                 [matAutocomplete]="auto" [matChipInputFor]="chipList" [required]="config?.required">
         </mat-chip-list>
+        
+        <mat-error *ngIf="showError()">{{config.requiredErrorMessage}}</mat-error>
         <mat-hint *ngIf="config?.hint">{{config?.hint}}</mat-hint>
-        <mat-error *ngIf="formControl?.hasError('required')">{{config?.requiredErrorMessage}}</mat-error>
+       
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option.value}}
             </mat-option>
         </mat-autocomplete>
+        
     </mat-form-field>
 </div>
