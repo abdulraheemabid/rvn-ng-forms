@@ -1,7 +1,7 @@
 <div class="container">
     <mat-expansion-panel [hideToggle]="config?.hideToggle" [expanded]="config?.expanded" [disabled]="config?.disabled">
-        <mat-expansion-panel-header class="header">
-            <mat-panel-title>
+        <mat-expansion-panel-header class="accordion-header">
+            <mat-panel-title class="accordion-header-title">
                 <ng-content select="[title]"></ng-content>
             </mat-panel-title>
 

@@ -88,8 +88,20 @@ body {
 }
 
 .rvn-card {
-    .header {
+    .card-header {
         @extend .primary-bg;
+        // on dark theme its white by default, needed for light theme
+        @extend .color-white;
+    }
+}
+
+.rvn-accordion {
+    .accordion-header {
+        @extend .primary-bg;
+        .accordion-header-title {
+            // on dark theme its white by default, needed for light theme
+            @extend .color-white;
+        }
     }
 }
 

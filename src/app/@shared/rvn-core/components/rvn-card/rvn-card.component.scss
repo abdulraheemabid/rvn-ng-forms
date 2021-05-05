@@ -10,7 +10,7 @@
     .card {
         padding: 0;
 
-        .header {
+        .card-header {
             padding: $space-l;
             ::ng-deep {
                 .mat-card-header-text,
