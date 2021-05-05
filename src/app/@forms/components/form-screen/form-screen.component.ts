@@ -22,7 +22,7 @@ export class FormScreenComponent implements OnInit {
     private snackBarService: RvnSnackBarService,
     private route: ActivatedRoute) { }
 
-  formDefinitionFG: FormGroup;
+  formDefinitionFG: FormGroup = new FormGroup({});
   formDefinition: IForm;
   markFormDefinitionFGAsDirty$ = new Subject();
   mode: CreateOrEdit;

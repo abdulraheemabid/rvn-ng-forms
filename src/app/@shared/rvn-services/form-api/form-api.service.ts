@@ -92,7 +92,7 @@ export class FormApiService {
       id: form.id,
       name: form.name,
       attributes: form.attributes,
-      fields: form.fields.map(f => {
+      fields: form.fields.sort((a, b) => a?.attributes["position"] - b?.attributes["position"]).map(f => {
         const typeDisplayValue = this.typeService.getFieldTypes().find(ft => ft.key === f.type).value;
         return {
           ...f,

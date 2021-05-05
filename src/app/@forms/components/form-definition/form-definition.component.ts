@@ -119,6 +119,7 @@ export class FormDefinitionComponent implements OnInit {
   changePositionOfField(event) {
     let control = this.fieldGroups.controls.splice(event.previousIndex, 1)[0];
     this.fieldGroups.controls.splice(event.currentIndex, 0, control);
+    this.fieldGroups.markAsDirty();
     this.updatePositionAttributeOfAllFields();
   }
 

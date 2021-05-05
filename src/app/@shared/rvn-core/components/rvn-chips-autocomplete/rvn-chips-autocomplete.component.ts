@@ -80,7 +80,7 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
         if (selectedOption) this.selectedOptions.add(selectedOption);
       })
       this.inputFormControl.setValue(null);
-      this.syncFormControl();
+      this.syncFormControl(false);
     }
   }
 
@@ -104,8 +104,9 @@ export class RvnChipsAutocompleteComponent extends CustomFormControlValueAccesso
     return this.allOptions.filter(option => option.value.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  syncFormControl() {
+  syncFormControl(markAsDirty: boolean = true) {
     this.formControl.setValue([...this.selectedOptions]);
+    if (markAsDirty) this.formControl.markAsDirty();
   }
 
 }

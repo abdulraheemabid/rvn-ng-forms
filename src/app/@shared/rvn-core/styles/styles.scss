@@ -63,33 +63,38 @@ body {
 }
 
 .rvn-ui-control {
-    height: $ui-control-height;
+    min-height: $ui-control-height;
     display: flex;
     align-items: center;
+    margin: $space-s 0px;
 
-    .error-msg{
+    .error-msg {
         //copied from mat design
         font-size: 75%;
     }
 
     .mat-form-field-wrapper {
-        padding-bottom: 0;
-
         .mat-error {
             //TODO: remove hardcoding, got this value from material class
             padding-top: 1.34375em;
         }
     }
+
+    .mat-form-field-appearance-outline {
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+    }
 }
 
-.rvn-card{
-    .header{
+.rvn-card {
+    .header {
         @extend .primary-bg;
     }
 }
 
-.rvn-table{
-    .header-row{
+.rvn-table {
+    .header-row {
         //@extend .primary-bg;
     }
 }

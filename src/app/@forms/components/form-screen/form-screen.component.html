@@ -4,7 +4,7 @@
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
     <div class="button">
-        <rvn-button (onClick)="saveForm()" [config]="submitButtonConfig">
+        <rvn-button (onClick)="saveForm()" [config]="submitButtonConfig" [disabled]="formDefinitionFG.pristine">
             Save Form
         </rvn-button>
     </div>
