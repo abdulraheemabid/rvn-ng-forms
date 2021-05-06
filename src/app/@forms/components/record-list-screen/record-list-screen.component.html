@@ -1,0 +1,32 @@
+<div class="container">
+    <rvn-button class="button" (click)="createRecord()" [config]="newRecordButtonConfig">Create new record</rvn-button>
+
+    <rvn-input class="search" [config]="searchRecordConfig" [formControl]="searchFC"></rvn-input>
+
+    <rvn-card class="list" [config]="cardConfig">
+        <rvn-table content [config]="tableConfig" *ngIf="initDone"> </rvn-table>
+
+        <ng-template #createdOnTemplate let-row="row">
+            {{row.createdOn | date: 'medium'}}
+        </ng-template>
+
+        <ng-template #actions let-row="row">
+            <rvn-button (click)="editRecord(row)"
+                [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit record'}">
+            </rvn-button>
+            <rvn-button (click)="deleteRecord(row)"
+                [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
+            </rvn-button>
+        </ng-template>
+
+        <ng-template #cell let-column="column" let-value="value">
+            <record-cell-view [fieldId]="column" [value]="value" [form]="formDefinition"></record-cell-view>
+        </ng-template>
+
+        <ng-template #expandedContent let-row="row">
+            <record-view [form]="formDefinition" [record]="row"></record-view>
+        </ng-template>
+
+    </rvn-card>
+
+</div>

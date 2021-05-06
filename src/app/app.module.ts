@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { SharedModule } from './@shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './interceptors/error/error.interceptor';
+import { NotificationInterceptor } from './interceptors/notification/notification.interceptor';
+import { SpinnerInterceptor } from './interceptors/spinner/spinner.interceptor';
+import { DataExtractionInterceptor } from './interceptors/data-extraction/data-extraction.interceptor';
+import { RvnServicesModule } from './@shared/rvn-services/services.module';
+import { environment } from 'src/environments/environment';
+import { RvnComponentsModule } from './@shared/rvn-core/components.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -19,14 +25,21 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
     MatListModule,
-    SharedModule,
-    ReactiveFormsModule
+    MatSidenavModule,
+    RvnComponentsModule,
+    RvnServicesModule.forRoot({
+      restBaseUrl: environment.restBaseUrl
+    }),
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: DataExtractionInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

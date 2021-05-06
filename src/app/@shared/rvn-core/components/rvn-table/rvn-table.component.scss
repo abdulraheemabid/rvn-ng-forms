@@ -1,0 +1,71 @@
+@import "../../styles/variables/spacing";
+
+.container {
+    table {
+        width: 100%;
+    }
+
+    tr.detail-row {
+        height: 0;
+    }
+
+    tr.row:not(.expanded-row):hover {
+        //TODO: color set through mouse event in html
+        &.pointer {
+            cursor: pointer;
+        }
+    }
+
+    .row td {
+        border-bottom-width: 0;
+    }
+
+    .row-detail {
+        overflow: hidden;
+        .inner {
+            padding-top: $space-l;
+            padding-bottom: $space-l;
+            border-top: 1px groove;
+        }
+    }
+
+    .expandedRowContainer {
+        border: 1px solid;
+        border-top: none;
+    }
+
+    .filter {
+        display: flex;
+    }
+
+    .no-data {
+        display: flex;
+        padding: $space-l;
+        width: 100%;
+    }
+
+    .paginator {
+        margin-top: $space-l;
+    }
+
+    //.col-flex- get added by ts
+    ::ng-deep {
+        .col-flex-start {
+            .mat-sort-header-container {
+                justify-content: flex-start;
+            }
+        }
+
+        .col-flex-end {
+            .mat-sort-header-container {
+                justify-content: flex-end;
+            }
+        }
+
+        .col-flex-center {
+            .mat-sort-header-container {
+                justify-content: center;
+            }
+        }
+    }
+}

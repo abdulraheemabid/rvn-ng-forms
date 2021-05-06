@@ -1,4 +1,4 @@
-@import "./@shared/styles/variables/spacing";
+@import "./@shared/rvn-core/styles/variables/spacing";
 
 .sidenav-container {
     height: 100%;
@@ -47,7 +47,6 @@
 }
 
 .app-container {
-    // height: 90vh;
     padding: 5vh;
     max-width: 1600px;
     margin: auto;

@@ -1,5 +1,5 @@
 <div class="container" [ngClass]="mode">
-    <h1 class="heading">
+    <h1 class="heading" *ngIf="mode === 'preview'">
         <ng-container *ngIf="formDefinition.name !== null || formDefinition.name !== ''">
             {{formDefinition.name}}
         </ng-container>
@@ -8,11 +8,13 @@
         </span>
     </h1>
 
-    <rvn-button class="submit" (onClick)="submit()" [params]="{type: submitBtnType, color: submitBtnColor}">Submit</rvn-button>
+    <rvn-button *ngIf="mode === 'preview'" class="submit" (onClick)="submit()"
+        [config]="{type: 'primary', color: 'accent'}">Submit
+    </rvn-button>
 
-    <div class="form" *ngFor="let field of formDefinition.fields">
-        <ng-template #fieldAnchorPoint></ng-template>
+    <div class="form">
+        <div class="control" *ngFor="let field of formDefinition.fields">
+            <ng-template #fieldAnchorPoint></ng-template>
+        </div>
     </div>
-
-
 </div>

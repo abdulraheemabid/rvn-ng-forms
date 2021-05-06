@@ -1,12 +1,12 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppService } from './app.service';
-import { RvnStyleService } from './@shared/services/style/style.service';
-import { RvnSelectInput } from './@shared/base-components/rvn-select/rvn-select.input';
+import { RvnStyleService } from './@shared/rvn-core/services/style/style.service';
+import { RvnSelectInput } from './@shared/rvn-core/components/rvn-select/rvn-select.input';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   @HostBinding('class') className = '';
   darkClassName = 'app-dark-theme';
   toolBarHeading: string = "";
+  showLoader: BehaviorSubject<boolean>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,14 +29,14 @@ export class AppComponent implements OnInit {
 
   isDarkModeFC: FormControl = new FormControl(false);
   fieldAppearanceOption = [{ key: "legacy", value: "Field apperance: legacy" }, { key: "standard", value: "Field apperance: standard" }, { key: "fill", value: "Field apperance: fill" }, { key: "outline", value: "Field apperance: outline" }];
-  fieldAppearanceParams: RvnSelectInput;
+  fieldAppearanceConfig: RvnSelectInput;
   fieldAppearanceFC = new FormControl("");
 
   ngOnInit() {
 
     this.setDefaultTheme("dark");
 
-    this.fieldAppearanceParams = { label: '', styleVersion: 'v2', appearance: 'legacy', selectOptions: this.fieldAppearanceOption };
+    this.fieldAppearanceConfig = { label: '', styleVersion: 'v2', appearance: 'outline', selectOptions: this.fieldAppearanceOption };
 
     this.styleService.getFormFieldStyle$.subscribe(val => {
       if (this.fieldAppearanceFC.value === "" || val !== this.fieldAppearanceFC?.value?.key)
@@ -53,6 +54,8 @@ export class AppComponent implements OnInit {
     });
 
     this.appService.toolBarHeading.subscribe(value => this.toolBarHeading = value);
+
+    this.showLoader = this.appService.showLoader;
 
   }
 
