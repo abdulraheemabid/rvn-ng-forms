@@ -1,8 +1,10 @@
-<div class="container">
+<div class="container rvn-confirm-dialog">
     <h2 mat-dialog-title>{{config.title}}</h2>
 
     <mat-dialog-content class="mat-typography">
-        <p>{{config.message}}</p>
+        <p *ngFor="let message of config.messages">
+            {{message}}
+        </p>
     </mat-dialog-content>
 
     <mat-dialog-actions align="end">

@@ -113,7 +113,7 @@ export class RecordListScreenComponent implements OnInit {
   deleteRecord(record: IRecord) {
     this.dialogService.openConfirmDialog({
       title: 'Confirm',
-      message: `Record will be deleted permanently. Are you sure?`,
+      messages: [`Record will be deleted permanently.`, `Are you sure?`],
       noButtonMessage: "Cancel",
       yesButtonMessage: "Delete",
       yesButtonConfig: { type: 'tertiary', color: 'warn' }

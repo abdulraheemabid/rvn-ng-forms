@@ -16,7 +16,7 @@ export class RvnConfirmDialogComponent implements OnInit {
     this.config = this.data;
     if (isNullOrUndefined(this.config)) this.config = {};
     if (isNullOrUndefined(this.config.title)) this.config.title = "";
-    if (isNullOrUndefined(this.config.message)) this.config.message = "Are you sure?";
+    if (isNullOrUndefined(this.config.messages)) this.config.messages = ["Are you sure?"];
     if (isNullOrUndefined(this.config.yesButtonMessage)) this.config.yesButtonMessage = "Yes";
     if (isNullOrUndefined(this.config.noButtonMessage)) this.config.noButtonMessage = "No";
     if (isNullOrUndefined(this.config.yesButtonConfig)) this.config.yesButtonConfig = { type: 'tertiary' };
