@@ -17,8 +17,14 @@
                         </span>
                     </span>
                 </span>
-                <rvn-input content class="form-name" [config]="formNameCompParam" [formControl]="formNameCtrl">
-                </rvn-input>
+
+                <div content class="controls">
+                    <rvn-input class="form-name" [config]="formNameCompParam" [formControl]="formNameCtrl"></rvn-input>
+                    <rvn-select class="form-name" [config]="parentFormCompParam" [formControl]="formParentFormCtrl"
+                        [disabled]="mode === 'edit'">
+                    </rvn-select>
+                </div>
+
             </rvn-accordion-panel>
         </rvn-accordion>
     </div>
@@ -87,8 +93,8 @@
                     (click)="deleteField(i, field)" [config]="deleteFieldCompParam" [disabled]="first && last">
                     Delete</rvn-button>
 
-                <rvn-button actionContent *ngIf="field.get('markDeleted')?.value == true"
-                    (click)="undoDelete(field)" [config]="undoDeleteFieldCompParam">
+                <rvn-button actionContent *ngIf="field.get('markDeleted')?.value == true" (click)="undoDelete(field)"
+                    [config]="undoDeleteFieldCompParam">
                     Undo Delete</rvn-button>
 
             </rvn-accordion-panel>

@@ -4,9 +4,19 @@ export interface IForm {
     id?: number;
     name: string;
     fields: IFormField[];
-    attributes?: any;
+    attributes?: IFormAttributes;
     createdOn?: string;
     updatedOn?: string;
+}
+
+export interface IFormAttributes {
+    parentForm?: IFormParent;
+    [key: string]: any;
+}
+
+export interface IFormParent {
+    formId: number;
+    relationType: ChildRelationType;
 }
 
 export interface IFormField {
@@ -50,6 +60,7 @@ export interface IId {
 }
 
 export type FieldType = "float" | "int" | "string" | "date" | "bool" | "multiselect" | "singleselect";
+export type ChildRelationType = "one-to-one" | "many-to-one";
 
 export enum UIControlEnum {
     SELECT = "SELECT",

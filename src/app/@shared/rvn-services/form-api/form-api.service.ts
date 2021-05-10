@@ -6,8 +6,8 @@ import { switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { isKeyValue, isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
-import { IForm, IId, IRecord } from '../../rvn-forms/types';
-import { FormDTO } from './form-api.dto';
+import { ChildRelationType, IForm, IId, IRecord } from '../../rvn-forms/types';
+import { FormDTO, FormParentDTO } from './form-api.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -73,10 +73,15 @@ export class FormApiService {
 
 
   private transformFormToDTO(form: IForm): FormDTO {
+    const parentForm = !isNullOrUndefined(form?.attributes?.parentForm?.formId) ?
+      // FUTURE: TODO: this hardcoded many-to-one would be removed
+      { formId: form.attributes.parentForm.formId["key"], relationType: "many-to-one" as ChildRelationType } :
+      null;
+
     return {
       id: form.id,
       name: form.name,
-      attributes: form.attributes,
+      attributes: { ...form.attributes, parentForm },
       fields: form.fields.map(f => {
         return {
           ...f,

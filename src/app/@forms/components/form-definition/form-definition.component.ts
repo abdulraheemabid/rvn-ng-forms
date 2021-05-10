@@ -8,6 +8,7 @@ import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { ReactiveFormUtilityService } from 'src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
+import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
 
 @Component({
   selector: 'form-definition',
@@ -23,6 +24,7 @@ export class FormDefinitionComponent implements OnInit {
   @Input() form: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
   @Input() mode: CreateOrEdit;
+  @Input() formsList: IForm[];
   @Output() formDefinitionUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   initDone: boolean = false;
@@ -31,6 +33,7 @@ export class FormDefinitionComponent implements OnInit {
 
   //UI control params
   formNameCompParam: RvnInputInput = { label: 'Name', placeholder: 'Minimum 3 characters', required: true };
+  parentFormCompParam: RvnSelectInput = { label: 'Parent Form', placeholder: 'Select parent form if required', required: false, selectOptions: [] };
   fieldAddCompParam: RvnButtonInput = { type: 'mini-fab', icon: 'add', color: "accent" };
   collapseCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_less', color: "accent" };
   expandCompParam: RvnButtonInput = { type: 'icon', icon: 'unfold_more', color: "accent" };
@@ -46,6 +49,10 @@ export class FormDefinitionComponent implements OnInit {
     return this.formGrp.get('name') as FormControl;
   }
 
+  get formParentFormCtrl(): FormControl {
+    return this.formGrp.get('attributes').get("parentForm").get("formId") as FormControl;
+  }
+
   ngOnInit(): void {
 
     if (isNullOrUndefined(this.form))
@@ -54,6 +61,7 @@ export class FormDefinitionComponent implements OnInit {
       this.initFormGroupFromDefinition();
 
     this.handleMarkingAsDirty();
+    this.handleParentSelectOptions();
     this.initDone = true;
   }
 
@@ -76,6 +84,11 @@ export class FormDefinitionComponent implements OnInit {
     this.formGrp.valueChanges.subscribe(val => {
       this.formDefinitionUpdate.emit(this.formGrp);
     });
+  }
+
+  handleParentSelectOptions() {
+    this.parentFormCompParam.selectOptions = this.formsList.map(f => { return { key: f.id, value: f.name } });
+    if (this.mode === "edit") this.parentFormCompParam.placeholder = "";
   }
 
 

@@ -5,7 +5,16 @@ export interface FormDTO {
     id?: number;
     name: string;
     fields: FormFieldDTO[];
-    attributes?: string[];
+    attributes?: FormAttributesDTO;
+}
+
+export interface FormParentDTO {
+    formId: number;
+    relationType: ChildRelationType;
+}
+export interface FormAttributesDTO {
+    parentForm?: FormParentDTO;
+    [key: string]: any;
 }
 
 export interface FormUpdateDTO {
@@ -48,3 +57,5 @@ export interface RecordIdDTO {
     formId: number;
     recordId: number;
 }
+
+export type ChildRelationType = "one-to-one" | "many-to-one";

@@ -2,7 +2,7 @@
 
 .container {
     display: grid;
-    gap: $space-xl;
+    column-gap: $space-xl;
     grid-template: auto 1fr / 1fr 1fr;
     grid-template-areas:
         "definition button"
@@ -19,7 +19,7 @@
 
         position: sticky;
         //TODO: fix hardcoding.
-        top: 111px;
+        top: 120px;
     }
 
     .preview {
@@ -29,7 +29,7 @@
                 .card {
                     position: sticky;
                     //TODO: fix hardcoding.
-                    top: 195px;
+                    top: 175px;
                 }
             }
         }

@@ -81,7 +81,13 @@ export class FormService {
   getDefinitionFG(form: IForm) {
     let fg = this.fb.group({
       id: [form.id],
-      attributes: [form.attributes],
+      attributes: this.fb.group({
+        parentForm: this.fb.group({
+          formId: [form?.attributes?.parentForm?.formId || null],
+          // FUTURE: TODO: will have one-to-one too. this will need to be updated
+          relationType: ["many-to-one"]
+        })
+      }),
       name: [form.name, [Validators.required, Validators.minLength(3)]],
       fields: this.fb.array([])
     });
@@ -114,7 +120,13 @@ export class FormService {
 
   getNewDefinitionFG() {
     return this.fb.group({
-      attributes: [{}],
+      attributes: this.fb.group({
+        parentForm: this.fb.group({
+          formId: [null],
+          // FUTURE: TODO: will have one-to-one too. this will need to be updated
+          relationType: ["many-to-one"]
+        })
+      }),
       name: ['', [Validators.required, Validators.minLength(3)]],
       fields: this.fb.array([])
     })

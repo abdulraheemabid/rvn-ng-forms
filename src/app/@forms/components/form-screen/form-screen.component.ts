@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
+import { forkJoin, of, Subject } from 'rxjs';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
 import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { defaultIfEmpty, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'form-screen',
@@ -29,6 +31,8 @@ export class FormScreenComponent implements OnInit {
   initDone: boolean = false;
   submitButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'save', color: 'primary' };
   orignalFormName: string;
+  // used in create mode to populate parent selector
+  formsList: IForm[];
 
 
   ngOnInit(): void {
@@ -38,23 +42,31 @@ export class FormScreenComponent implements OnInit {
 
     if (this.mode === "create") {
       this.appService.setToolBarHeading("Create New Form");
-      this.initDone = true;
+
+      this.formApiService.getForms().subscribe(forms => {
+        this.formsList = forms;
+        this.initDone = true;
+      });
+
     } else {
       this.appService.setToolBarHeading("Edit Form");
       const formId = route.params["id"];
 
-      this.formApiService.getForm(formId).subscribe(
-        value => {
-          this.orignalFormName = value.name;
-          this.formDefinition = value;
+      this.formApiService.getForm(formId).pipe(
+        switchMap(form => {
+          this.orignalFormName = form.name;
+          this.formDefinition = form;
+          return !isNullOrUndefined(form?.attributes?.parentForm?.formId) ?
+            this.formApiService.getForm(form.attributes.parentForm.formId) :
+            of(null);
+        })
+      ).subscribe(
+        parent => {
+          this.formsList = !isNullOrUndefined(parent) ? [parent] : [];
           this.initDone = true;
         },
-        err => {
-          this.navigateToFormsList();
-        }
-      );
+        err => this.navigateToFormsList());
     }
-
   }
 
   onFormDeifitionUpdate(form: FormGroup) {
