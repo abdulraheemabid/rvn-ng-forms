@@ -29,6 +29,7 @@ export class FormRendererComponent implements OnChanges {
   recordFG: FormGroup;
   // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
   keyToUseForFieldControl: "name" | "id" = "id";
+  isChildForm: boolean;
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -36,6 +37,7 @@ export class FormRendererComponent implements OnChanges {
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
     this.handleMarkingAsDirty();
+    this.checkIfChildForm();
 
     this.recordFG.valueChanges.subscribe(value => this.recordUpdate.emit(this.recordFG));
 
@@ -61,6 +63,10 @@ export class FormRendererComponent implements OnChanges {
     this.recordUpdate.emit(this.recordFG);
   }
 
+  checkIfChildForm() {
+    this.isChildForm = !isNullOrUndefined(this.formDefinition?.attributes?.parentForm?.formId);
+  }
+
   renderControlForEachField() {
     this.formDefinition.fields.forEach(f => {
       if (f.markDeleted !== true) this.renderUIControl(f)
@@ -71,7 +77,7 @@ export class FormRendererComponent implements OnChanges {
     if (!isNullOrUndefined(field?.type) && !isNullOrUndefined(field.attributes?.position)) {
       const ref = this.fieldAnchorPoints.get(field.attributes.position);
       const fcName = field[this.keyToUseForFieldControl.toString()].toString();
-      this.formService.injectTypeInputRenderer(field, ref, this.recordFG.get(fcName) as FormControl).subscribe(() => { }, err => { });
+      this.formService.injectTypeInputRenderer(field, ref, this.recordFG.get("entry").get(fcName) as FormControl).subscribe(() => { }, err => { });
     }
   }
 

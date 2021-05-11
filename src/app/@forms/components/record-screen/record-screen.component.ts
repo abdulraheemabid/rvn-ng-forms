@@ -76,11 +76,11 @@ export class RecordScreenComponent implements OnInit {
     this.markRecordFGAsDirty$.next();
 
     if (this.recordFG.status === "VALID") {
-      this.record.entry = this.recordFG.getRawValue();
+      const record = { ...this.record, ...this.recordFG.getRawValue() };
       if (this.mode === "edit")
-        this.formApiService.updateRecord(this.formId, this.record).subscribe(_ => this.navigateToRecordsList());
+        this.formApiService.updateRecord(this.formId, record).subscribe(_ => this.navigateToRecordsList());
       else
-        this.formApiService.createRecord(this.formId, this.record).subscribe(_ => this.navigateToRecordsList());
+        this.formApiService.createRecord(this.formId, record).subscribe(_ => this.navigateToRecordsList());
     }
   }
 

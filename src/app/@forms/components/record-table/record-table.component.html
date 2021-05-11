@@ -1,0 +1,15 @@
+<div class="container">
+    <rvn-table content [config]="tableConfig" (rowClicked)="onRowClicked($event)" *ngIf="initDone"> </rvn-table>
+
+    <ng-template #createdOnTemplate let-row="row">
+        {{row.createdOn | date: 'medium'}}
+    </ng-template>
+
+    <ng-template #cell let-column="column" let-value="value">
+        <record-cell-view [fieldId]="column" [value]="value" [form]="formDefinition"></record-cell-view>
+    </ng-template>
+
+    <ng-template #expandedContent let-row="row">
+        <record-view [form]="formDefinition" [record]="row"></record-view>
+    </ng-template>
+</div>

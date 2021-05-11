@@ -38,9 +38,18 @@ export interface IFormField {
 export interface IRecord {
     id?: number;
     entry: any;
-    attributes?: any;
+    attributes?: IRecordAttributes;
     createdOn?: string;
     updatedOn?: string;
+}
+
+export interface IRecordAttributes{
+    parent?: IRecordParent;
+    [key: string]: any;
+}
+
+export interface IRecordParent{
+    recordId: number
 }
 
 export interface IFieldTypeMeta {

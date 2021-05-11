@@ -110,6 +110,10 @@ export class FormApiService {
   }
 
   private transformRecordToDTO(record: IRecord) {
+
+    if (isNullOrUndefined(record.attributes.parent.recordId))
+      record.attributes.parent = null;
+
     Object.keys(record.entry).forEach(key => {
       let value = record.entry[key];
 

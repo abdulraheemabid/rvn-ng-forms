@@ -61,7 +61,7 @@
             (mouseout)="row.hover = false"
             [class.grey-bg]="config.expandedRowTemplate  && (row.hover == true || expandedRow === row)"
             [class.expanded-row]="expandedRow === row" [class.pointer]="config.expandedRowTemplate"
-            (click)="config.expandedRowTemplate && expandedRow = expandedRow === row ? null : row">
+            (click)="rowClick(row)">
         </tr>
 
 

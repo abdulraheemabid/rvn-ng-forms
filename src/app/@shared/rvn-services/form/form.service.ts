@@ -57,22 +57,42 @@ export class FormService {
   }
 
   getNewRecordFG(formDefinition: IForm, keyForFieldControlId: string = "id") {
-    let recordFg = this.fb.group({});
+    const parentValidator = isNullOrUndefined(formDefinition?.attributes?.parentForm?.formId) ? [] : [Validators.required];
+    let recordFg = this.fb.group({
+      attributes: this.fb.group({
+        parent: this.fb.group({
+          recordId: [null, parentValidator]
+        })
+      }),
+      entry: this.fb.group({})
+    });
     formDefinition.fields.forEach(f => {
       if (f.markDeleted !== true) {
         const validators = f.required ? [Validators.required] : [];
-        recordFg.addControl(f[keyForFieldControlId].toString(), this.fb.control(null, validators));
+        (recordFg.get("entry") as FormGroup).addControl(f[keyForFieldControlId].toString(), this.fb.control(null, validators));
       }
     });
     return recordFg;
   }
 
   getRecordFG(formDefinition: IForm, record: IRecord) {
-    let recordFg = this.fb.group({});
+    const parentValidator = isNullOrUndefined(formDefinition?.attributes?.parentForm?.formId) ? [] : [Validators.required];
+    let recordFg = this.fb.group({
+      attributes: this.fb.group({
+        parent: this.fb.group({
+          recordId: [null, parentValidator]
+        })
+      }),
+      entry: this.fb.group({})
+    });
+
     formDefinition.fields.forEach(f => {
+      const parent = isNullOrUndefined(record?.attributes?.parent?.recordId) ? null : record.attributes.parent.recordId;
+      recordFg.get("attributes").get("parent").get("recordId").setValue(parent, { emitEvent: false });
+
       if (f.markDeleted !== true) {
         const validators = f.required ? [Validators.required] : [];
-        recordFg.addControl(f.id.toString(), this.fb.control(record.entry[f.id], validators));
+        (recordFg.get("entry") as FormGroup).addControl(f.id.toString(), this.fb.control(record.entry[f.id], validators));
       }
     });
     return recordFg;

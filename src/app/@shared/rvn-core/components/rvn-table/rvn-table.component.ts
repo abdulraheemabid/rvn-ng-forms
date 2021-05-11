@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Injector, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -29,6 +29,7 @@ export class RvnTableComponent implements OnInit {
   @ViewChild("columValueComponentAnchor", { read: ViewContainerRef }) columValueComponentAnchor: ViewContainerRef;
   @ViewChild("expandedComponentAnchor", { read: ViewContainerRef }) expandedComponentAnchor: ViewContainerRef;
   @Input() config: RvnTableInput;
+  @Output() rowClicked: EventEmitter<any> = new EventEmitter<any>();
   hasExpandedContent: boolean = false;
 
   dataSource;
@@ -92,26 +93,10 @@ export class RvnTableComponent implements OnInit {
     }
   }
 
-  // getColumInjector(row: any, column: string, value: any) {
-  //   const token = this.config.columnsToDisplay.find(c => c.keyName === column).componentIngectToken;
-  //   let injector = Injector.create({
-  //     providers: [
-  //       { provide: token || "value", useValue: value }
-  //     ],
-  //     parent: this.inj
-  //   });
-  //   row.__initialized = true;
-  //   return injector;
-  // }
-
-  // getExpandedComponentInjector(value: any) {
-  //   const token = this.config.expandedComponentIngectToken;
-  //   let injector = Injector.create({
-  //     providers: [
-  //       { provide: token || "value", useValue: value }
-  //     ],
-  //     parent: this.inj
-  //   });
-  //   return injector;
-  // }
+  rowClick(row) {
+    if (this.config.expandedRowTemplate) {
+      this.expandedRow = this.expandedRow === row ? null : row;
+      if (this.expandedRow) this.rowClicked.emit(this.expandedRow);
+    }
+  }
 }

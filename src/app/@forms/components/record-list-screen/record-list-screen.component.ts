@@ -28,11 +28,6 @@ export class RecordListScreenComponent implements OnInit {
     private dialogService: RvnDialogService,
     private route: ActivatedRoute) { }
 
-  @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
-  @ViewChild("createdOnTemplate", { static: true }) createdOnTemplate: TemplateRef<any>;
-  @ViewChild("expandedContent", { static: true }) expandedContentTemplate: TemplateRef<any>;
-  @ViewChild("cell", { static: true }) cellTemplate: TemplateRef<any>;
-
   records: IRecord[] = [];
   filteredRecords: IRecord[] = [];
   formId: number;
@@ -86,18 +81,13 @@ export class RecordListScreenComponent implements OnInit {
       return {
         keyName: f.id.toString(),
         displayName: f.name,
-        customTemplate: this.cellTemplate
       }
     });
 
     if (this.tableConfig.columnsToDisplay.length > this.numberOfColumnsToAddInTable)
       this.tableConfig.columnsToDisplay = this.tableConfig.columnsToDisplay.slice(0, this.numberOfColumnsToAddInTable);
 
-    this.tableConfig.columnsToDisplay.push({ keyName: "createdOn", displayName: 'created on', customTemplate: this.createdOnTemplate });
-    this.tableConfig.columnsToDisplay.push({ keyName: "actions", displayName: "", customTemplate: this.actionsTemplate, textAlign: "right" });
-
     this.tableConfig.filterInputFC = this.searchFC;
-    this.tableConfig.expandedRowTemplate = this.expandedContentTemplate;
     this.initDone = true;
   }
 
@@ -124,6 +114,10 @@ export class RecordListScreenComponent implements OnInit {
       .subscribe(val => {
         if (val) this.ngOnInit()
       })
+  }
+
+  test(row){
+    console.log(row);
   }
 
 }

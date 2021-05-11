@@ -16,6 +16,7 @@ import { RecordScreenComponent } from './components/record-screen/record-screen.
 import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-renderers.module';
 import { RecordViewComponent } from './components/record-view/record-view.component';
 import { RecordCellViewComponent } from './components/record-cell-view/record-cell-view.component';
+import { RecordTableComponent } from './components/record-table/record-table.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { RecordCellViewComponent } from './components/record-cell-view/record-ce
     RecordListScreenComponent,
     RecordScreenComponent,
     RecordViewComponent,
-    RecordCellViewComponent
+    RecordCellViewComponent,
+    RecordTableComponent
   ],
   imports: [
     CommonModule,
