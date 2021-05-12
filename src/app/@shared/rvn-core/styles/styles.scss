@@ -119,6 +119,15 @@ body {
     }
 }
 
+.rvn-icon-button-small {
+    button {
+        height: max-content;
+    }
+    .mat-icon {
+        font-size: 20px;
+    }
+}
+
 // Colors
 
 .color-primary {

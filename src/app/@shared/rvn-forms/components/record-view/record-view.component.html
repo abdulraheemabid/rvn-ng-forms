@@ -5,6 +5,7 @@
         <p><span class="title text-bold">ID:</span> {{record.id}}</p>
         <p><span class="title text-bold">Created On:</span> {{record.createdOn | date:'medium'}}</p>
         <p><span class="title text-bold">Last Updated:</span> {{record.updatedOn | date:'medium'}}</p>
+        <record-parent-value-renderer [value]="record?.attributes.parent.recordId"></record-parent-value-renderer>
     </div>
 
     <div class="fields">

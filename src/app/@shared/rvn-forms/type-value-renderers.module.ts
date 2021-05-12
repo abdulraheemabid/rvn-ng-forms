@@ -8,6 +8,7 @@ import { DateValueRendererComponent } from "./type-value-renderers/date-value-re
 import { FloatValueRendererComponent } from "./type-value-renderers/float-value-renderer/float-value-renderer.component";
 import { IntValueRendererComponent } from "./type-value-renderers/int-value-renderer/int-value-renderer.component";
 import { MultiselectValueRendererComponent } from "./type-value-renderers/multiselect-value-renderer/multiselect-value-renderer.component";
+import { RecordParentValueRendererComponent } from "./type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.component";
 import { SingleselectValueRendererComponent } from "./type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component";
 import { StringValueRendererComponent } from "./type-value-renderers/string-value-renderer/string-value-renderer.component";
 
@@ -22,6 +23,7 @@ import { StringValueRendererComponent } from "./type-value-renderers/string-valu
         MultiselectValueRendererComponent,
         SingleselectValueRendererComponent,
         BaseValueRendererComponent,
+        RecordParentValueRendererComponent
     ],
     imports: [
         CommonModule,
@@ -37,6 +39,7 @@ import { StringValueRendererComponent } from "./type-value-renderers/string-valu
         MultiselectValueRendererComponent,
         SingleselectValueRendererComponent,
         BaseValueRendererComponent,
+        RecordParentValueRendererComponent
     ],
     providers: [
 

@@ -64,11 +64,6 @@ export class RecordListScreenComponent implements OnInit {
   }
 
   setRecords(records: IRecord[]) {
-    records = records.map(record => {
-      record = { ...record.entry, ...record, };
-      return record;
-    })
-
     this.records = records;
     this.filteredRecords = [...this.records];
     this.cardConfig.title = `Total: ${this.records.length}`;

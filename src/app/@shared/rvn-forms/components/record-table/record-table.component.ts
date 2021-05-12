@@ -13,7 +13,7 @@ export class RecordTableComponent implements OnInit {
   constructor() { }
 
   @ViewChild("cell", { static: true }) cellTemplate: TemplateRef<any>;
-  @ViewChild("createdOnTemplate", { static: true }) createdOnTemplate: TemplateRef<any>;
+  @ViewChild("updatedOnTemplate", { static: true }) updatedOnTemplate: TemplateRef<any>;
   @ViewChild("expandedContent", { static: true }) expandedContentTemplate: TemplateRef<any>;
 
   @Input() tableConfig: RvnTableInput;
@@ -24,9 +24,15 @@ export class RecordTableComponent implements OnInit {
   initDone: boolean = false;
 
   ngOnInit(): void {
+    this.tableConfig.data = this.tableConfig.data.map(record => {
+      record = { ...record.entry, ...record, };
+      return record;
+    });
+    
     this.tableConfig.columnsToDisplay.forEach(c => c.customTemplate = this.cellTemplate);
 
-    this.tableConfig.columnsToDisplay.push({ keyName: "createdOn", displayName: 'created on', customTemplate: this.createdOnTemplate });
+    this.tableConfig.columnsToDisplay.push({ keyName: "updatedOn", displayName: 'last updated', customTemplate: this.updatedOnTemplate });
+    this.tableConfig.columnsToDisplay.unshift({ keyName: "id", displayName: 'Id' });
 
     this.tableConfig.expandedRowTemplate = this.expandedContentTemplate;
 
@@ -36,7 +42,7 @@ export class RecordTableComponent implements OnInit {
     this.initDone = true;
   }
 
-  onRowClicked(row){
+  onRowClicked(row) {
     this.rowClicked.emit(row);
   }
 

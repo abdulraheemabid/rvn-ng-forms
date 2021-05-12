@@ -21,6 +21,7 @@ import { RvnConfirmDialogComponent} from './components/rvn-confirm-dialog/rvn-co
 import { MaterialModule } from "./material.module";
 import { RvnTableComponent } from "./components/rvn-table/rvn-table.component";
 import { RvnChipsComponent } from "./components/rvn-chips/rvn-chips.component";
+import { RvnComponentDialogComponent } from "./components/rvn-component-dialog/rvn-component-dialog.component";
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { RvnChipsComponent } from "./components/rvn-chips/rvn-chips.component";
         RvnMenuComponent,
         RvnSpinnerComponent,
         RvnConfirmDialogComponent,
+        RvnComponentDialogComponent,
         RvnTableComponent,
         RvnChipsComponent
     ],
@@ -69,6 +71,7 @@ import { RvnChipsComponent } from "./components/rvn-chips/rvn-chips.component";
         RvnMenuComponent,
         RvnSpinnerComponent,
         RvnConfirmDialogComponent,
+        RvnComponentDialogComponent,
         RvnTableComponent,
         RvnChipsComponent
     ],

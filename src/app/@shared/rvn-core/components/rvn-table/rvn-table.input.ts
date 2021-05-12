@@ -8,8 +8,6 @@ export interface RvnTableInput {
     displayName?: string,
     textAlign?: "center" | "left" | "right",
     customTemplate?: TemplateRef<any>;
-    // customComponent?: any;
-    // componentIngectToken?: string;
     backgroundClass?: string;
   }[];
   enableFilter?: boolean;
@@ -20,8 +18,6 @@ export interface RvnTableInput {
   noDataMessage?: string;
   noDataOnFilterMessage?: string;
   expandedRowTemplate?: TemplateRef<any>
-  // expandedRowComponent?: any;
-  // expandedComponentIngectToken?: string;
   enablePagination?: boolean;
   pageOptions?: number[];
 }

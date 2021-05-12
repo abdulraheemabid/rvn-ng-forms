@@ -1,8 +1,8 @@
 <div class="container">
     <rvn-table content [config]="tableConfig" (rowClicked)="onRowClicked($event)" *ngIf="initDone"> </rvn-table>
 
-    <ng-template #createdOnTemplate let-row="row">
-        {{row.createdOn | date: 'medium'}}
+    <ng-template #updatedOnTemplate let-row="row">
+        {{row.updatedOn | date: 'medium'}}
     </ng-template>
 
     <ng-template #cell let-column="column" let-value="value">

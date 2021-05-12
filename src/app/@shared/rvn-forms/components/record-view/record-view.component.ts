@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { IForm, IFormField, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 
@@ -15,10 +16,12 @@ export class RecordViewComponent implements OnInit {
   @Input() record: IRecord;
   @ViewChildren("valueRendererAnchor", { read: ViewContainerRef }) valueRendererAnchor: QueryList<ViewContainerRef>;
   initDone: boolean = false;
+  isChildForm: boolean;
 
 
   ngOnInit(): void {
     this.form.fields.sort((a, b) => a.attributes.position - b.attributes.position);
+    this.isChildForm = !isNullOrUndefined(this.form?.attributes?.parentForm?.formId);
 
     setTimeout(() => {
       this.form.fields.forEach(field => {

@@ -26,6 +26,8 @@ export class RecordScreenComponent implements OnInit {
   recordId: number;
   recordFG: FormGroup = new FormGroup({});
   markRecordFGAsDirty$ = new Subject();
+  parentRecords: IRecord[];
+  parentForm: IForm;
 
   mode: CreateOrEdit;
   initDone: boolean = false;
@@ -35,6 +37,7 @@ export class RecordScreenComponent implements OnInit {
     const route = this.route.snapshot;
     this.mode = route.url[route.url.length - 1].path === "edit" ? "edit" : "create";
     this.formId = route.params["id"];
+    this.setHeading();
 
     let apisToCall: Observable<any>[] = [this.formApiService.getForm(this.formId)];
 
@@ -46,12 +49,31 @@ export class RecordScreenComponent implements OnInit {
     forkJoin(apisToCall).subscribe(
       results => {
         this.form = results[0];
+
         if (!isNullOrUndefined(results[1])) this.record = results[1];
-        this.setHeading();
-        this.initDone = true;
+
+        if (!isNullOrUndefined(this.form?.attributes?.parentForm?.formId))
+          this.getParentData();
+        else
+          this.initDone = true;
       },
       err => {
         this.navigateToRecordsList();
+      }
+    );
+  }
+
+  getParentData() {
+    forkJoin(
+      [
+        this.formApiService.getRecords(this.form.attributes.parentForm.formId),
+        this.formApiService.getForm(this.form.attributes.parentForm.formId),
+      ]
+    ).subscribe(
+      results => {
+        this.parentRecords = results[0];
+        this.parentForm = results[1];
+        this.initDone = true;
       }
     );
   }
