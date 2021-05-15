@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, Observable, of, Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { forkJoin, Observable, Subject } from 'rxjs';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';

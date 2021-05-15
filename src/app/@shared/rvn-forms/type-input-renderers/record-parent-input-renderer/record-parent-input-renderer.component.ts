@@ -5,6 +5,7 @@ import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
 import { IForm, IRecord } from '../../types';
+import { RecordParentInputRendererInput } from './record-parent-input-renderer.input';
 
 @Component({
   selector: 'record-parent-input-renderer',
@@ -13,11 +14,12 @@ import { IForm, IRecord } from '../../types';
 })
 export class RecordParentInputRendererComponent implements OnInit {
 
-  @Input() valueFC: FormControl;
-  @Input() parentForm: IForm;
-  @Input() parentRecords: IRecord[];
-  @Input() showDummy: boolean = false;
-  @Input() disableButton: boolean = false;
+  // @Input() valueFC: FormControl;
+  // @Input() parentForm: IForm;
+  // @Input() parentRecords: IRecord[];
+  // @Input() showDummy: boolean = false;
+  // @Input() disableButton: boolean = false;
+  @Input() config: RecordParentInputRendererInput;
   @Output() parentSelected: EventEmitter<number> = new EventEmitter<number>();
 
   mode: "view" | "select" = "view";
@@ -31,13 +33,13 @@ export class RecordParentInputRendererComponent implements OnInit {
   constructor(private dialogService: RvnDialogService, private formService: FormService) { }
 
   ngOnInit(): void {
-    if (this.showDummy) {
+    if (this.config?.showDummy) {
       const dummyData = this.formService.getDummyFormAndRecords();
-      this.parentForm = dummyData.form;
-      this.parentRecords = dummyData.records;
+      this.config.parentForm = dummyData.form;
+      this.config.parentRecords = dummyData.records;
     }
 
-    this.parentFieldName = this.formService.getSingularFormName(this.parentForm);
+    this.parentFieldName = this.formService.getSingularFormName(this.config.parentForm);
 
     if (this.mode === "select")
       this.setTableConfig();
@@ -45,8 +47,8 @@ export class RecordParentInputRendererComponent implements OnInit {
   }
 
   setTableConfig() {
-    this.tableConfig.data = this.parentRecords;
-    this.tableConfig.columnsToDisplay = this.parentForm.fields.map(f => {
+    this.tableConfig.data = this.config.parentRecords;
+    this.tableConfig.columnsToDisplay = this.config.parentForm.fields.map(f => {
       return {
         keyName: f.id.toString(),
         displayName: f.name,
@@ -63,17 +65,22 @@ export class RecordParentInputRendererComponent implements OnInit {
   }
 
   openSelectParentDialog() {
+
     let dialogRefOutput = this.dialogService.openComponentDialog({
-      title: `Select parent record from ${this.parentForm.name}`,
+      title: `Select parent record from ${this.config.parentForm.name}`,
       component: RecordParentInputRendererComponent,
       showActionBtns: true,
       primaryButtonMessage: "Choose",
       secondaryButtonMessage: "Cancel",
       componentInputs: [
-        { key: "mode", value: "select" },
-        { key: "parentForm", value: this.parentForm },
-        { key: "parentRecords", value: this.parentRecords },
-        { key: "valueFC", value: this.valueFC },
+        {key: 'mode', value: 'select'},
+        {
+          key: "config", value: {
+            parentForm: this.config.parentForm,
+            parentRecords: this.config.parentRecords,
+            valueFC: this.config.valueFC
+          }
+        }
       ]
     });
 
@@ -84,7 +91,7 @@ export class RecordParentInputRendererComponent implements OnInit {
     })
 
     dialogRefOutput.dialogRef.afterClosed().subscribe(confirm => {
-      if (confirm) this.valueFC.setValue(this.selectedParent.id);
+      if (confirm) this.config.valueFC.setValue(this.selectedParent.id);
     });
   }
 

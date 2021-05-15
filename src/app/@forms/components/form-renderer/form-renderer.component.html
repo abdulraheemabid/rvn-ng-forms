@@ -13,8 +13,7 @@
     </rvn-button>
 
     <div class="form">
-        <record-parent-input-renderer class="control" *ngIf="isChildForm" [showDummy]="mode === 'preview'" [parentRecords]="parentRecords" [parentForm]="parentForm"
-            [valueFC]="parentFC">
+        <record-parent-input-renderer class="control" *ngIf="isChildForm" [config]="parentRendererConfig">
         </record-parent-input-renderer>
 
         <div class="control" *ngFor="let field of formDefinition.fields">

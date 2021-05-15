@@ -4,7 +4,7 @@
     .heading {
         border-bottom: 1px solid;
 
-        .heading-entry {
+        &.heading-entry {
             margin-top: $space-l;
         }
     }

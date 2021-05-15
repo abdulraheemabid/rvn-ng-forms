@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, of, Subject } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';

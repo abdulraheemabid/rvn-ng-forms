@@ -15,6 +15,7 @@ import { RecordListScreenComponent } from './components/record-list-screen/recor
 import { RecordScreenComponent } from './components/record-screen/record-screen.component';
 import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-renderers.module';
 import { RvnFormComponentsModule } from '../@shared/rvn-forms/form-components.module';
+import { RecordDeleteConfirmComponent } from './components/record-delete-confirm/record-delete-confirm.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { RvnFormComponentsModule } from '../@shared/rvn-forms/form-components.mo
     FormListScreenComponent,
     RecordListScreenComponent,
     RecordScreenComponent,
+    RecordDeleteConfirmComponent,
   ],
   imports: [
     CommonModule,

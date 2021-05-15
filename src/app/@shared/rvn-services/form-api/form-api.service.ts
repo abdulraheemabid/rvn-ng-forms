@@ -70,7 +70,9 @@ export class FormApiService {
     return this.httpClient.patch<IId>(`${this.baseUrl}/${formId}/record/${dto.id}`, dto);
   }
 
-  deleteRecord(formId: number, recordId: number): Observable<IId> {
+  deleteRecord(formId: number, recordId: number, newParentRecordId?: number): Observable<IId> {
+    if (!isNullOrUndefined(newParentRecordId))
+      return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}?newParentIdForChildren=${newParentRecordId}`);
     return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}`);
   }
 

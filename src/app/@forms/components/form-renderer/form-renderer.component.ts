@@ -5,6 +5,8 @@ import { RvnDialogService } from "src/app/@shared/rvn-core/services/rvn-dialog/r
 import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
 import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
 import { CreateOrEdit } from "src/app/@shared/rvn-core/utils/types";
+import { RecordParentInputRendererInput } from "src/app/@shared/rvn-forms/type-input-renderers/record-parent-input-renderer/record-parent-input-renderer.input";
+import { RecordParentValueRendererInput } from "src/app/@shared/rvn-forms/type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.input";
 import { IForm, IFormField, IRecord } from "src/app/@shared/rvn-forms/types";
 import { FormService } from "src/app/@shared/rvn-services/form/form.service";
 import { ReactiveFormUtilityService } from "src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service";
@@ -35,6 +37,7 @@ export class FormRendererComponent implements OnChanges {
   // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
   keyToUseForFieldControl: "name" | "id" = "id";
   isChildForm: boolean;
+  parentRendererConfig: RecordParentInputRendererInput;
 
   get parentFC(): FormControl {
     return this.recordFG.get('attributes').get('parent').get('recordId') as FormControl;
@@ -46,6 +49,7 @@ export class FormRendererComponent implements OnChanges {
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
     this.handleMarkingAsDirty();
+    this.parentRendererConfig = { showDummy: this.mode === 'preview', parentRecords: this.parentRecords, parentForm: this.parentForm, valueFC: this.parentFC };
     this.checkIfChildForm();
 
     this.recordFG.valueChanges.subscribe(value => this.recordUpdate.emit(this.recordFG));
