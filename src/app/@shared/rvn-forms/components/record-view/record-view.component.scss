@@ -1,13 +1,19 @@
 @import "../../../rvn-core/styles/variables/spacing";
 
 .container {
-    .heading-entry{
-        margin-top: $space-l;
+    .heading {
+        border-bottom: 1px solid;
+
+        .heading-entry {
+            margin-top: $space-l;
+        }
     }
+
     .records,
     .fields {
         display: flex;
         flex-wrap: wrap;
+
         .record,
         .field {
             display: flex;

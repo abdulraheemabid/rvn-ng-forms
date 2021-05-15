@@ -1,10 +1,7 @@
 <div class="container">
-    <h1>
-        Record Details
-        <rvn-divider [config]="{inset: true}"></rvn-divider>
-    </h1>
+    <h1 class="heading grey-border">Record Details</h1>
 
-    <div class="records" *ngIf="initDone">
+    <div class="records color-grey" *ngIf="initDone">
         <p class="record"><span class="title text-bold">ID:</span> {{config?.record?.id}}</p>
         <p class="record"><span class="title text-bold">Created On:</span> {{config?.record?.createdOn | date:'medium'}}
         </p>
@@ -12,13 +9,10 @@
             date:'medium'}}</p>
     </div>
 
-    <record-parent-value-renderer class="parent" *ngIf="isChildForm" [config]="parentValueRendererConfig">
+    <record-parent-value-renderer class="parent color-grey" *ngIf="isChildForm" [config]="parentValueRendererConfig">
     </record-parent-value-renderer>
 
-    <h1 class="heading-entry">
-        Entry
-        <rvn-divider [config]="{inset: true}"></rvn-divider>
-    </h1>
+    <h1 class="heading heading-entry grey-border">Entry</h1>
 
     <div class="fields">
 

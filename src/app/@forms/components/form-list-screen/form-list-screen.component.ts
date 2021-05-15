@@ -5,6 +5,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
+import { RvnListInput } from 'src/app/@shared/rvn-core/components/rvn-list/rvn-list.input';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
@@ -26,7 +27,7 @@ export class FormListScreenComponent implements OnInit {
 
   forms: IForm[] = [];
   filteredForms: IForm[] = [];
-  listConfig = { list: [], lineOneKey: 'name', icon: 'assignment', actionTemplateRef: null, dense: true }
+  listConfig: RvnListInput = { list: [], lineOneKey: 'name', lineTwoKey: '__dateMerged', icon: 'assignment', actionTemplateRef: null, dense: true }
   newFormButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
   searchFormConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
   cardConfig: RvnCardInput = {}
@@ -36,6 +37,7 @@ export class FormListScreenComponent implements OnInit {
     this.appService.setToolBarHeading("Forms");
 
     this.formApiService.getForms().subscribe(data => {
+      data.forEach(form => form["__dateMerged"] = `Created On: ${new Date(form.createdOn).toLocaleString()}. Last Updated On: ${new Date(form.updatedOn).toLocaleString()}`);
       this.forms = data;
       this.filteredForms = [...this.forms];
       this.listConfig.list = this.filteredForms;

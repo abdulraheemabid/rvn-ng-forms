@@ -2,7 +2,7 @@ import { KeyValue } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { isKeyValue, isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
@@ -26,7 +26,9 @@ export class FormApiService {
   }
 
   getForms() {
-    return this.httpClient.get<IForm[]>(this.baseUrl);
+    return this.httpClient.get<IForm[]>(this.baseUrl).pipe(
+      map(forms => forms.sort((a, b) => a.id - b.id))
+    );
   }
 
   createForm(form: IForm) {
@@ -53,6 +55,7 @@ export class FormApiService {
   getRecords(formId: number): Observable<IRecord[]> {
     return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`)
       .pipe(
+        map(records => records.sort((a, b) => a.id - b.id)),
         switchMap(records => of(records.map(r => this.transformRecordFromDTO(r))))
       );
   }

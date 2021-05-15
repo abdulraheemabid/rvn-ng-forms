@@ -22,7 +22,7 @@ export class RecordParentValueRendererComponent implements OnInit {
   constructor(private dialogService: RvnDialogService, private formService: FormService, private formApiService: FormApiService) { }
 
   ngOnInit(): void {
-    this.parentFieldName = this.formService.getSingularFormName(this.config.form);
+    
   }
 
   openSelectParentDialog() {
@@ -35,6 +35,7 @@ export class RecordParentValueRendererComponent implements OnInit {
         this.formApiService.getRecord(this.config?.form?.attributes?.parentForm?.formId, this.config?.record?.attributes?.parent?.recordId),
       ]).subscribe(
         results => {
+          this.parentFieldName = this.formService.getSingularFormName(results[0]);
           let dialogRefOutput = this.dialogService.openComponentDialog({
             title: `${this.parentFieldName}`,
             component: RecordViewComponent,

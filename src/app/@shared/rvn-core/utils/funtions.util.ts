@@ -4,6 +4,7 @@ export function isNullOrUndefined(val: any) {
 
 export function isKeyValue(val: any) {
     return (
+        !isNullOrUndefined(val) &&
         typeof val === "object" &&
         !Array.isArray(val) &&
         Object.keys(val).length === 2 &&

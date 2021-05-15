@@ -68,7 +68,7 @@ export class FormDefinitionComponent implements OnInit {
   initNewFormGroup() {
     this.formGrp = this.formService.getNewDefinitionFG();
 
-    this.addField();
+    this.addField(false);
 
     this.formDefinitionUpdate.emit(this.formGrp);
 
@@ -108,11 +108,11 @@ export class FormDefinitionComponent implements OnInit {
       });
   }
 
-  addField() {
+  addField(scroll: boolean = true) {
     let fg = this.formService.getNewFieldFG();
     this.fieldGroups.push(fg);
     fg.get("attributes").get("position").setValue(this.fieldGroups.controls.length - 1);
-    this.scrollToBottomOfFieldsList();
+    if (scroll) this.scrollToBottomOfFieldsList();
   }
 
   deleteField(index: number, fieldGroup: AbstractControl) {
