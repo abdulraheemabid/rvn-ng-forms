@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { ComponentFactoryResolver, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 
@@ -12,7 +12,7 @@ export class DynamicComponentService {
 
   public injectComponent(viewContainerRef: ViewContainerRef, component: any, inputs: KeyValue<string, any>[], clearContainer: boolean = true) {
 
-    return new Observable<boolean>(
+    return new Observable<ComponentRef<any>>(
       sub => {
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
         if (!isNullOrUndefined(componentFactory)) {
@@ -23,7 +23,7 @@ export class DynamicComponentService {
             componentRef.instance[i.key] = i.value;
           });
 
-          sub.next(true);
+          sub.next(componentRef);
           sub.complete();
 
         } else {

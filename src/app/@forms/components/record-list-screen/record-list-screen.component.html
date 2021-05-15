@@ -5,7 +5,8 @@
 
     <rvn-card class="list" [config]="cardConfig">
 
-        <record-table content [formDefinition]="formDefinition" [actionsTemplate]="actions" [tableConfig]="tableConfig"
+        <record-table content
+            [config]="{formDefinition: formDefinition, actionsTemplate: actions, tableConfig: tableConfig}"
             (rowClicked)="test($event)" *ngIf="initDone">
         </record-table>
 

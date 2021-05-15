@@ -1,12 +1,14 @@
 import { Component, OnChanges, Input, ViewChildren, ViewContainerRef, QueryList, SimpleChanges, EventEmitter, Output } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Subject } from "rxjs";
+import { RvnDialogService } from "src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service";
 import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
 import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
 import { CreateOrEdit } from "src/app/@shared/rvn-core/utils/types";
 import { IForm, IFormField, IRecord } from "src/app/@shared/rvn-forms/types";
 import { FormService } from "src/app/@shared/rvn-services/form/form.service";
 import { ReactiveFormUtilityService } from "src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service";
+import { RecordListScreenComponent } from "../record-list-screen/record-list-screen.component";
 
 
 @Component({
@@ -18,11 +20,14 @@ export class FormRendererComponent implements OnChanges {
 
   constructor(private formService: FormService,
     private snackBarService: RvnSnackBarService,
-    private utilityService: ReactiveFormUtilityService) { }
+    private utilityService: ReactiveFormUtilityService,
+    private dialogService: RvnDialogService) { }
 
   @Input() formDefinition: IForm;
-  @Input() mode: CreateOrEdit | "preview" | "text-preview" = "preview";
+  @Input() mode: CreateOrEdit | "preview" = "preview";
   @Input() record: IRecord;
+  @Input() parentRecords: IRecord[];
+  @Input() parentForm: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
   @Output() recordUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @ViewChildren("fieldAnchorPoint", { read: ViewContainerRef }) fieldAnchorPoints: QueryList<ViewContainerRef>;
@@ -30,6 +35,10 @@ export class FormRendererComponent implements OnChanges {
   // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
   keyToUseForFieldControl: "name" | "id" = "id";
   isChildForm: boolean;
+
+  get parentFC(): FormControl {
+    return this.recordFG.get('attributes').get('parent').get('recordId') as FormControl;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -40,6 +49,8 @@ export class FormRendererComponent implements OnChanges {
     this.checkIfChildForm();
 
     this.recordFG.valueChanges.subscribe(value => this.recordUpdate.emit(this.recordFG));
+
+    if (isNullOrUndefined(this.parentRecords)) this.parentRecords = [];
 
     // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
     setTimeout(() => { this.renderControlForEachField() });

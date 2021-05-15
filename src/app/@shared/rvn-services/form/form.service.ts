@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IFormField, IForm, FieldType, IRecord } from '../../rvn-forms/types';
@@ -15,11 +15,11 @@ export class FormService {
 
   constructor(private typeMetaService: TypeMetaService, private dynamicComponentService: DynamicComponentService, private fb: FormBuilder) { }
 
-  injectTypeDefinitionRenderer(type: KeyValue<FieldType, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<boolean> {
+  injectTypeDefinitionRenderer(type: KeyValue<FieldType, string>, viewContainerRef: ViewContainerRef, fieldFormGroup: FormGroup): Observable<ComponentRef<any>> {
 
     const componentToRender = this.typeMetaService.getFieldTypeMetaData(type)?.definitionRenderer;
 
-    if (!componentToRender) return new Observable<boolean>(sub => sub.error("cant find componentToRender"));
+    if (!componentToRender) return new Observable<ComponentRef<any>>(sub => sub.error("cant find componentToRender"));
 
     const inputs: KeyValue<string, any>[] = [{ key: "fieldFG", value: fieldFormGroup }, { key: "selectedType", value: type.key }]
 
@@ -27,7 +27,7 @@ export class FormService {
 
   }
 
-  injectTypeInputRenderer(field: IFormField, viewContainerRef: ViewContainerRef, valueFC: FormControl): Observable<boolean> {
+  injectTypeInputRenderer(field: IFormField, viewContainerRef: ViewContainerRef, valueFC: FormControl): Observable<ComponentRef<any>> {
 
     let typeMeta = this.typeMetaService.getFieldTypeMetaData(field.type);
     let rendererConfig;
@@ -35,7 +35,7 @@ export class FormService {
 
     if (typeMeta.inputRenderers.length === 1) rendererConfig = typeMeta.inputRenderers[0];
     else if (!isNullOrUndefined(field.attributes?.displayAs?.key)) rendererConfig = typeMeta.inputRenderers.filter(r => r.UIControl === field.attributes.displayAs.key)[0];
-    else return new Observable<boolean>(sub => sub.error("field.attributes?.displayAs?.key not set"));
+    else return new Observable<ComponentRef<any>>(sub => sub.error("field.attributes?.displayAs?.key not set"));
 
     componentToRender = rendererConfig.renderer;
 
@@ -45,7 +45,7 @@ export class FormService {
 
   }
 
-  injectTypeValueRenderer(fieldType: FieldType, viewContainerRef: ViewContainerRef, value: any): Observable<boolean> {
+  injectTypeValueRenderer(fieldType: FieldType, viewContainerRef: ViewContainerRef, value: any): Observable<ComponentRef<any>> {
 
     let typeMeta = this.typeMetaService.getFieldTypeMetaData(fieldType);
     const rendererConfig = typeMeta.valueRenderers[0];
@@ -162,6 +162,37 @@ export class FormService {
         position: [null]
       })
     });
+  }
+
+  getSingularFormName(form: IForm | string) {
+    let name = typeof form === 'string' ? form : form.name;
+    if (name.toLocaleLowerCase().endsWith('s')) name = name.slice(0, -1);
+    return name;
+  }
+
+  getDummyFormAndRecords() {
+    return {
+      form: {
+        id: -1,
+        name: "Dummy Form",
+        fields: [
+          { id: -1, name: "Dummy Field 1", type: { key: "string", value: "Text" }, attributes: { position: 0 } },
+          { id: -2, name: "Dummy Field 2", type: { key: "string", value: "Text" }, attributes: { position: 1 } }
+        ]
+      } as IForm,
+      records: [
+        {
+          id: -1,
+          updatedOn: Date.now().toString(),
+          entry: { "-1": "Dummy Value 1", "-2": "Dummy Value 2" }
+        },
+        {
+          id: -2,
+          updatedOn: Date.now().toString(),
+          entry: { "-1": "Dummy Value 3", "-2": "Dummy Value 4" }
+        },
+      ] as IRecord[]
+    }
   }
 
 }

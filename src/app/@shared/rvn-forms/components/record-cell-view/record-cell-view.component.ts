@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { RecordCellViewInput } from './record-cell-view.input';
 
 @Component({
   selector: 'record-cell-view',
@@ -11,15 +12,13 @@ export class RecordCellViewComponent implements OnInit {
 
   constructor(private formService: FormService) { }
 
-  @Input() fieldId: string;
-  @Input() value: any;
-  @Input() form: IForm;
+  @Input() config: RecordCellViewInput;
   @ViewChild("anchor", { read: ViewContainerRef }) anchor: ViewContainerRef;
 
   ngOnInit(): void {
     setTimeout(() => {
-      const fieldType = this.form.fields.find(f => f.id.toString() === this.fieldId).type.key;
-      this.formService.injectTypeValueRenderer(fieldType, this.anchor, this.value).subscribe();
+      const fieldType = this.config?.form.fields.find(f => f.id.toString() === this.config?.fieldId).type.key;
+      this.formService.injectTypeValueRenderer(fieldType, this.anchor, this.config?.value).subscribe();
     })
   }
 

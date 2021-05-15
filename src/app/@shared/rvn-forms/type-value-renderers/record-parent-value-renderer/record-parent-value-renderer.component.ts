@@ -1,0 +1,53 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
+import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { RecordViewComponent } from '../../components/record-view/record-view.component';
+import { RecordParentValueRendererInput } from './record-parent-value-renderer.input';
+
+@Component({
+  selector: 'record-parent-value-renderer',
+  templateUrl: './record-parent-value-renderer.component.html',
+  styleUrls: ['./record-parent-value-renderer.component.scss']
+})
+export class RecordParentValueRendererComponent implements OnInit {
+
+  @Input() config: RecordParentValueRendererInput;
+  parentFieldName: string;
+  containsParent: boolean = false;
+
+  //TODO: Refactor: Remove dependency on formApiService. only screens are allowed to make API calls.
+  constructor(private dialogService: RvnDialogService, private formService: FormService, private formApiService: FormApiService) { }
+
+  ngOnInit(): void {
+    this.parentFieldName = this.formService.getSingularFormName(this.config.form);
+  }
+
+  openSelectParentDialog() {
+
+    this.containsParent = !isNullOrUndefined(this.config?.form?.attributes?.parentForm?.formId);
+
+    if (this.containsParent) {
+      forkJoin([
+        this.formApiService.getForm(this.config?.form?.attributes?.parentForm?.formId),
+        this.formApiService.getRecord(this.config?.form?.attributes?.parentForm?.formId, this.config?.record?.attributes?.parent?.recordId),
+      ]).subscribe(
+        results => {
+          let dialogRefOutput = this.dialogService.openComponentDialog({
+            title: `${this.parentFieldName}`,
+            component: RecordViewComponent,
+            showActionBtns: true,
+            showOnlyPrimaryButton: true,
+            primaryButtonMessage: "Back",
+            componentInputs: [
+              { key: "config", value: { form: results[0], record: results[1] } },
+            ]
+          });
+        }
+      )
+    }
+  }
+
+}

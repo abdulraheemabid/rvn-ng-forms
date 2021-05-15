@@ -1,0 +1,19 @@
+@import "../../../rvn-core/styles/variables/spacing";
+
+.container {
+    .records,
+    .fields {
+        display: flex;
+        flex-wrap: wrap;
+        .record,
+        .field {
+            display: flex;
+            align-items: center;
+            margin-right: $space-xxl;
+        }
+
+        .title {
+            padding-right: $space-m;
+        }
+    }
+}

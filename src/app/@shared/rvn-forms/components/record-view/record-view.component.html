@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 class="heading">Record Details</h1>
+
+    <div class="records" *ngIf="initDone">
+        <p class="record"><span class="title text-bold">ID:</span> {{config?.record?.id}}</p>
+        <p class="record"><span class="title text-bold">Created On:</span> {{config?.record?.createdOn | date:'medium'}}</p>
+        <p class="record"><span class="title text-bold">Last Updated:</span> {{config?.record?.updatedOn | date:'medium'}}</p>
+    </div>
+
+    <record-parent-value-renderer class="parent" *ngIf="isChildForm" [config]="parentValueRendererConfig">
+    </record-parent-value-renderer>
+
+    <h1 class="heading">Entry </h1>
+
+    <div class="fields">
+
+        <p class="field" *ngFor="let field of config?.form.fields">
+            <span class="title text-bold">{{field.name}}:</span>
+            <ng-template #valueRendererAnchor></ng-template>
+        </p>
+    </div>
+
+</div>

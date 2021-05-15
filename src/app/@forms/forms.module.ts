@@ -14,9 +14,7 @@ import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
 import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
 import { RecordScreenComponent } from './components/record-screen/record-screen.component';
 import { RvnTypeValueRenderersModule } from '../@shared/rvn-forms/type-value-renderers.module';
-import { RecordViewComponent } from './components/record-view/record-view.component';
-import { RecordCellViewComponent } from './components/record-cell-view/record-cell-view.component';
-import { RecordTableComponent } from './components/record-table/record-table.component';
+import { RvnFormComponentsModule } from '../@shared/rvn-forms/form-components.module';
 
 
 @NgModule({
@@ -28,12 +26,10 @@ import { RecordTableComponent } from './components/record-table/record-table.com
     FormListScreenComponent,
     RecordListScreenComponent,
     RecordScreenComponent,
-    RecordViewComponent,
-    RecordCellViewComponent,
-    RecordTableComponent
   ],
   imports: [
     CommonModule,
+    RvnFormComponentsModule,
     RvnComponentsModule,
     FormsRoutingModule,
     DragDropModule,

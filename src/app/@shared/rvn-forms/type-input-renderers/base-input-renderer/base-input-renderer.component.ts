@@ -14,7 +14,6 @@ export class BaseInputRendererComponent {
     public dynamicComponentService: DynamicComponentService,
     public fb: FormBuilder) { }
 
-  @ViewChild('ctrlAnchorPoint', { read: ViewContainerRef, static: true }) ctrlAnchorPoint: ViewContainerRef;
   @Input() valueFC: FormControl;
   @Input() UIControl: UIControlEnum;
   @Input() fieldDefinition: IFormField;
