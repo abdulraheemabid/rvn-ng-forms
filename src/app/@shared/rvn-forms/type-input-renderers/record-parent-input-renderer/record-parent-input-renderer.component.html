@@ -6,12 +6,13 @@
             <span class="value" *ngIf="valueFC.value"> Id: {{valueFC.value}}</span>
             <rvn-button class="rvn-icon-button-small" [config]="{type: 'icon', icon: 'launch', color: 'accent'}"
                 (onClick)="openSelectParentDialog()"></rvn-button>
-            <span class="err-msg color-warn" *ngIf="valueFC.hasError('required') && valueFC.dirty">Parent {{parentFieldName}} is required</span>
+            <span class="err-msg color-warn" *ngIf="valueFC.hasError('required') && valueFC.dirty">Parent
+                {{parentFieldName}} is required</span>
         </div>
     </div>
 
 
-    <record-table *ngIf="mode !== 'view' && initDone" [formDefinition]="parentForm" [tableConfig]="tableConfig"
+    <record-table *ngIf="mode !== 'view' && initDone" [config]="{formDefinition: parentForm, tableConfig: tableConfig}"
         (rowClicked)="onRowSelect($event)">
     </record-table>
 

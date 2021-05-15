@@ -2,6 +2,8 @@ import { Component, Input, OnInit, QueryList, ViewChildren, ViewContainerRef } f
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { IForm, IFormField, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { RecordParentValueRendererInput } from '../../type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.input';
+import { RecordViewInput } from './record-view.input';
 
 @Component({
   selector: 'record-view',
@@ -12,20 +14,21 @@ export class RecordViewComponent implements OnInit {
 
   constructor(private formService: FormService) { }
 
-  @Input() form: IForm;
-  @Input() record: IRecord;
+  @Input() config: RecordViewInput;
   @ViewChildren("valueRendererAnchor", { read: ViewContainerRef }) valueRendererAnchor: QueryList<ViewContainerRef>;
+  
   initDone: boolean = false;
   isChildForm: boolean;
+  parentValueRendererConfig: RecordParentValueRendererInput;
 
 
   ngOnInit(): void {
-    this.form.fields.sort((a, b) => a.attributes.position - b.attributes.position);
-    this.isChildForm = !isNullOrUndefined(this.form?.attributes?.parentForm?.formId);
-
+    this.config?.form.fields.sort((a, b) => a.attributes.position - b.attributes.position);
+    this.isChildForm = !isNullOrUndefined(this.config?.form?.attributes?.parentForm?.formId);
+    this.parentValueRendererConfig = { form: this.config?.form, record: this.config?.record }
     setTimeout(() => {
-      this.form.fields.forEach(field => {
-        this.ingectValueRenderers(field, this.record.entry[field.id]);
+      this.config?.form.fields.forEach(field => {
+        this.ingectValueRenderers(field, this.config?.record.entry[field.id]);
       })
       this.initDone = true;
     });

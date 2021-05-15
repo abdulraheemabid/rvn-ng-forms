@@ -1,29 +1,19 @@
 @import "../../../rvn-core/styles/variables/spacing";
 
 .container {
-    display: grid;
-    gap: $space-xl;
-    
-    .record,
+    .records,
     .fields {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(max-content, 25%));
-        grid-template-areas:
-            "h h h h "
-            "c c c c ";
-
-        .heading {
-            grid-area: h;
-        }
-
+        display: flex;
+        flex-wrap: wrap;
+        .record,
         .field {
             display: flex;
             align-items: center;
-            margin-right: $space-s;
+            margin-right: $space-xxl;
         }
 
         .title {
-            padding-right: $space-s;
+            padding-right: $space-m;
         }
     }
 }

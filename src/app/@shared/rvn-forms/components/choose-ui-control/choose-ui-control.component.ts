@@ -5,6 +5,7 @@ import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/r
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { UIControlNameEnum, UIControlEnum, FieldType } from '../../types';
+import { ChooseUiControlInput } from './choose-ui-control.input';
 
 @Component({
   selector: 'choose-ui-control',
@@ -15,14 +16,13 @@ export class ChooseUiControlComponent implements OnInit {
 
   constructor(private typeMetaService: TypeMetaService) { }
 
-  @Input() selectedFieldType: FieldType;
-  @Input() uiFormControl: FormControl;
+  @Input() config: ChooseUiControlInput;
 
   selectCompConfig: RvnSelectInput = { label: 'Display as', placeholder: 'Select', required: true, selectOptions: null };
 
   ngOnInit(): void {
-    if (this.selectedFieldType) {
-      const supportedControls: UIControlEnum[] = this.typeMetaService.getFieldTypeMetaData(this.selectedFieldType)?.inputRenderers.map(i => i.UIControl);
+    if (this.config.selectedFieldType) {
+      const supportedControls: UIControlEnum[] = this.typeMetaService.getFieldTypeMetaData(this.config.selectedFieldType)?.inputRenderers.map(i => i.UIControl);
 
       let selectOptions: KeyValue<string, string>[] = [];
       for (let key of supportedControls) {
@@ -34,8 +34,8 @@ export class ChooseUiControlComponent implements OnInit {
 
       this.selectCompConfig.selectOptions = selectOptions;
 
-      if (!isNullOrUndefined(this.uiFormControl.value) && this.uiFormControl.value !== "")
-        this.uiFormControl.setValue(selectOptions.find(o => o.key === this.uiFormControl.value.key), {emitEvent: false});
+      if (!isNullOrUndefined(this.config.uiFormControl.value) && this.config.uiFormControl.value !== "")
+        this.config.uiFormControl.setValue(selectOptions.find(o => o.key === this.config.uiFormControl.value.key), {emitEvent: false});
 
     }
   }

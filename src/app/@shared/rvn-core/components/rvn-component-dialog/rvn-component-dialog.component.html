@@ -6,7 +6,7 @@
     </mat-dialog-content>
 
     <mat-dialog-actions align="end" *ngIf="config.showActionBtns">
-        <rvn-button [config]="config.secondaryButtonConfig" [mat-dialog-close]="false" mat-dialog-close>
+        <rvn-button *ngIf="!config.showOnlyPrimaryButton" [config]="config.secondaryButtonConfig" [mat-dialog-close]="false" mat-dialog-close>
             {{config.secondaryButtonMessage}}
         </rvn-button>
         <rvn-button [config]="config.primaryButtonConfig" [mat-dialog-close]="true" cdkFocusInitial>

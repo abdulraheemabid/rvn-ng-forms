@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
 import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
-import { IForm, IRecord } from '../../types';
+import { RecordViewComponent } from '../../components/record-view/record-view.component';
+import { RecordParentValueRendererInput } from './record-parent-value-renderer.input';
 
 @Component({
   selector: 'record-parent-value-renderer',
@@ -10,38 +14,40 @@ import { IForm, IRecord } from '../../types';
 })
 export class RecordParentValueRendererComponent implements OnInit {
 
-  // think about inputs
-  // @Input() form: IForm;
-  // @Input() records: IRecord;
-  @Input() value;
+  @Input() config: RecordParentValueRendererInput;
   parentFieldName: string;
+  containsParent: boolean = false;
 
-  constructor(private dialogService: RvnDialogService, private formService: FormService) { }
+  //TODO: Refactor: Remove dependency on formApiService. only screens are allowed to make API calls.
+  constructor(private dialogService: RvnDialogService, private formService: FormService, private formApiService: FormApiService) { }
 
   ngOnInit(): void {
-    //this.parentFieldName = this.formService.getSingularFormName(this.form);
-
+    this.parentFieldName = this.formService.getSingularFormName(this.config.form);
   }
 
   openSelectParentDialog() {
-    // let dialogRefOutput = this.dialogService.openComponentDialog({
-    //   title: `${this.parentFieldName}`,
-    //   component: RecordParentValueRendererComponent,
-    //   showActionBtns: true,
-    //   showOnlyPrimaryButton: true,
-    //   primaryButtonMessage: "Back",
-    //   componentInputs: [
-    //     { key: "form", value: "select" },
-    //     { key: "records", value: this.parentForm },
-    //   ]
-    // });
 
-    // TODO: now now now 
-    // open record-view component in dialog and pass in recrod parent form and parent record objects
-    // for that need api call
-    // update backend to include parent
+    this.containsParent = !isNullOrUndefined(this.config?.form?.attributes?.parentForm?.formId);
 
-
+    if (this.containsParent) {
+      forkJoin([
+        this.formApiService.getForm(this.config?.form?.attributes?.parentForm?.formId),
+        this.formApiService.getRecord(this.config?.form?.attributes?.parentForm?.formId, this.config?.record?.attributes?.parent?.recordId),
+      ]).subscribe(
+        results => {
+          let dialogRefOutput = this.dialogService.openComponentDialog({
+            title: `${this.parentFieldName}`,
+            component: RecordViewComponent,
+            showActionBtns: true,
+            showOnlyPrimaryButton: true,
+            primaryButtonMessage: "Back",
+            componentInputs: [
+              { key: "config", value: { form: results[0], record: results[1] } },
+            ]
+          });
+        }
+      )
+    }
   }
 
 }
