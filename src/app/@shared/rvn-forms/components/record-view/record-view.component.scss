@@ -1,6 +1,9 @@
 @import "../../../rvn-core/styles/variables/spacing";
 
 .container {
+    .heading-entry{
+        margin-top: $space-l;
+    }
     .records,
     .fields {
         display: flex;
