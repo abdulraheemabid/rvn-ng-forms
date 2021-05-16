@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
@@ -31,6 +31,8 @@ export class RecordListScreenComponent implements OnInit {
   filteredRecords: IRecord[] = [];
   formId: number;
   formDefinition: IForm;
+  formDirectChildrenIds: number[] = [];
+  parentRecordId: number;
   tableConfig: RvnTableInput = { data: [], columnsToDisplay: [], useComponentFilter: false, noDataMessage: "No records found !", noDataOnFilterMessage: "No records founds matching the search criteria" }
   newRecordButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
   searchRecordConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
@@ -42,26 +44,34 @@ export class RecordListScreenComponent implements OnInit {
   newParentIdFC: FormControl = new FormControl("", [Validators.required]);
 
   ngOnInit(): void {
-    this.initDone = false;
     this.appService.setToolBarHeading("Records");
-    const route = this.route.snapshot;
-    this.formId = route.params["id"];
+
+    const route = this.route.params.subscribe(params => {
+      this.initDone = false;
+      this.formId = params["id"];
+      this.parentRecordId = params["parentRecordId"];
 
 
-    forkJoin([
-      this.formApiService.getForm(this.formId),
-      this.formApiService.getRecords(this.formId)]
-    ).subscribe(results => {
-      this.setFormDefinition(results[0]);
-      this.setRecords(results[1]);
-    })
+      forkJoin([
+        this.formApiService.getForm(this.formId),
+        this.formApiService.getRecords(this.formId, this.parentRecordId),
+        this.formApiService.getFormDirectChildren(this.formId)
+      ]
+      ).subscribe(results => {
+        this.setFormDefinition(results[0]);
+        this.setRecords(results[1]);
+        this.formDirectChildrenIds = results[2];
+      })
 
-    this.cardConfig.title = `Total: ${this.records.length}`;
+      this.cardConfig.title = `Total: ${this.records.length}`;
+    });
+
   }
 
   setFormDefinition(form: IForm) {
     this.formDefinition = form;
-    this.appService.setToolBarHeading(`${this.formDefinition.name} records`);
+    if (isNullOrUndefined(this.parentRecordId)) this.appService.setToolBarHeading(`${this.formDefinition.name} records`);
+    else this.appService.setToolBarHeading(`${this.formDefinition.name} records / Parent Id: ${this.parentRecordId}`)
   }
 
   setRecords(records: IRecord[]) {
@@ -89,7 +99,10 @@ export class RecordListScreenComponent implements OnInit {
 
 
   createRecord() {
-    this.appService.navigate(`forms/${this.formId}/records/create`);
+    const path = isNullOrUndefined(this.parentRecordId) ?
+      `forms/${this.formId}/records/create` :
+      `forms/${this.formId}/records/create?parentRecordId=${this.parentRecordId}`
+    this.appService.navigate(path);
   }
 
   editRecord(record: IRecord) {
@@ -154,6 +167,10 @@ export class RecordListScreenComponent implements OnInit {
       .subscribe(val => {
         if (val) this.ngOnInit()
       })
+  }
+
+  viewChildRecords(record: IRecord, formId: number) {
+    this.appService.navigate(`forms/${formId}/records/${record.id}`);
   }
 
 }

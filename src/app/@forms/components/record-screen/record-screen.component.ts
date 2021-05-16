@@ -27,6 +27,7 @@ export class RecordScreenComponent implements OnInit {
   markRecordFGAsDirty$ = new Subject();
   parentRecords: IRecord[];
   parentForm: IForm;
+  preSelectedParentRecordId: number;
 
   mode: CreateOrEdit;
   initDone: boolean = false;
@@ -45,9 +46,14 @@ export class RecordScreenComponent implements OnInit {
       apisToCall.push(this.formApiService.getRecord(this.formId, this.recordId));
     }
 
+    if (this.mode === "create" && !isNullOrUndefined(route.queryParams["parentRecordId"])) {
+      this.preSelectedParentRecordId = route.queryParams["parentRecordId"];
+    }
+
     forkJoin(apisToCall).subscribe(
       results => {
         this.form = results[0];
+        this.setHeading(this.form.name);
 
         if (!isNullOrUndefined(results[1])) this.record = results[1];
 
@@ -77,11 +83,12 @@ export class RecordScreenComponent implements OnInit {
     );
   }
 
-  setHeading() {
+  setHeading(formName: string = "  ") {
+    formName = ` ${formName} `;
     if (this.mode === "edit") {
-      this.appService.setToolBarHeading(`Edit Record`);
+      this.appService.setToolBarHeading(`Edit${formName}Record`);
     } else {
-      this.appService.setToolBarHeading(`Create Record`);
+      this.appService.setToolBarHeading(`Create${formName}Record`);
     }
   }
 

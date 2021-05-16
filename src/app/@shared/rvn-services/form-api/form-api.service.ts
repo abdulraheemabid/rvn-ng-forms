@@ -25,6 +25,10 @@ export class FormApiService {
       );
   }
 
+  getFormDirectChildren(id: number): Observable<number[]> {
+    return this.httpClient.get<number[]>(`${this.baseUrl}/${id}/direct-children`);
+  }
+
   getForms() {
     return this.httpClient.get<IForm[]>(this.baseUrl).pipe(
       map(forms => forms.sort((a, b) => a.id - b.id))
@@ -52,8 +56,9 @@ export class FormApiService {
       );
   }
 
-  getRecords(formId: number): Observable<IRecord[]> {
-    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record`)
+  getRecords(formId: number, parentRecordId?: number): Observable<IRecord[]> {
+    if (isNullOrUndefined(parentRecordId)) parentRecordId = -1;
+    return this.httpClient.get<IRecord[]>(`${this.baseUrl}/${formId}/record?parentId=${parentRecordId}`)
       .pipe(
         map(records => records.sort((a, b) => a.id - b.id)),
         switchMap(records => of(records.map(r => this.transformRecordFromDTO(r))))
@@ -72,7 +77,7 @@ export class FormApiService {
 
   deleteRecord(formId: number, recordId: number, newParentRecordId?: number): Observable<IId> {
     if (!isNullOrUndefined(newParentRecordId))
-      return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}?newParentIdForChildren=${newParentRecordId}`);
+      return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}?parentId=${newParentRecordId}`);
     return this.httpClient.delete<IId>(`${this.baseUrl}/${formId}/record/${recordId}`);
   }
 

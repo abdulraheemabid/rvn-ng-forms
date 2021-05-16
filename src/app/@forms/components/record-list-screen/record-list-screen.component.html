@@ -10,11 +10,16 @@
         </record-table>
 
         <ng-template #actions let-row="row">
+            <rvn-button *ngFor="let childFormId of formDirectChildrenIds" (click)="viewChildRecords(row, childFormId)"
+                [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View Records (Form: ' + childFormId + ')'}"
+                class="rvn-icon-button-small">
+            </rvn-button>
             <rvn-button (click)="editRecord(row)"
-                [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit record'}">
+                [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit record'}" class="rvn-icon-button-small">
             </rvn-button>
             <rvn-button (click)="deleteRecord(row)"
-                [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}">
+                [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Record'}"
+                class="rvn-icon-button-small">
             </rvn-button>
         </ng-template>
 

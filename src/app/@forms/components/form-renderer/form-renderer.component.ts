@@ -1,16 +1,13 @@
 import { Component, OnChanges, Input, ViewChildren, ViewContainerRef, QueryList, SimpleChanges, EventEmitter, Output } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Subject } from "rxjs";
-import { RvnDialogService } from "src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service";
 import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
 import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
 import { CreateOrEdit } from "src/app/@shared/rvn-core/utils/types";
 import { RecordParentInputRendererInput } from "src/app/@shared/rvn-forms/type-input-renderers/record-parent-input-renderer/record-parent-input-renderer.input";
-import { RecordParentValueRendererInput } from "src/app/@shared/rvn-forms/type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.input";
 import { IForm, IFormField, IRecord } from "src/app/@shared/rvn-forms/types";
 import { FormService } from "src/app/@shared/rvn-services/form/form.service";
 import { ReactiveFormUtilityService } from "src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service";
-import { RecordListScreenComponent } from "../record-list-screen/record-list-screen.component";
 
 
 @Component({
@@ -22,8 +19,7 @@ export class FormRendererComponent implements OnChanges {
 
   constructor(private formService: FormService,
     private snackBarService: RvnSnackBarService,
-    private utilityService: ReactiveFormUtilityService,
-    private dialogService: RvnDialogService) { }
+    private utilityService: ReactiveFormUtilityService) { }
 
   @Input() formDefinition: IForm;
   @Input() mode: CreateOrEdit | "preview" = "preview";
@@ -31,6 +27,8 @@ export class FormRendererComponent implements OnChanges {
   @Input() parentRecords: IRecord[];
   @Input() parentForm: IForm;
   @Input() markFGAsDirtySubject$: Subject<any>;
+  @Input() preSelectedParentRecordId: number;
+
   @Output() recordUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @ViewChildren("fieldAnchorPoint", { read: ViewContainerRef }) fieldAnchorPoints: QueryList<ViewContainerRef>;
   recordFG: FormGroup;
@@ -49,6 +47,7 @@ export class FormRendererComponent implements OnChanges {
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
     this.handleMarkingAsDirty();
+    if (!isNullOrUndefined(this.preSelectedParentRecordId)) this.parentFC.setValue(this.preSelectedParentRecordId, { emitEvent: false })
     this.parentRendererConfig = { showDummy: this.mode === 'preview', parentRecords: this.parentRecords, parentForm: this.parentForm, valueFC: this.parentFC };
     this.checkIfChildForm();
 

@@ -18,6 +18,10 @@ const routes: Routes = [
     component: RecordScreenComponent
   },
   {
+    path: ':id/records/:parentRecordId',
+    component: RecordListScreenComponent
+  },
+  {
     path: ':id/records',
     component: RecordListScreenComponent
   },
