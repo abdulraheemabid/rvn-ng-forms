@@ -43,7 +43,7 @@ export class FormListScreenComponent implements OnInit {
         this.formApiService.getFormTrees(),
       ]
     ).subscribe(results => {
-      results[0].forEach(form => form["__dateMerged"] = `Created On: ${new Date(form.createdOn).toLocaleString()}. Last Updated On: ${new Date(form.updatedOn).toLocaleString()}`);
+      results[0].forEach(form => form["__dateMerged"] = `Id: ${form.id}. Created On: ${new Date(form.createdOn).toLocaleString()}. Last Updated On: ${new Date(form.updatedOn).toLocaleString()}`);
       this.forms = results[0];
       this.filteredForms = [...this.forms];
       this.listConfig.list = this.filteredForms;

@@ -298,7 +298,7 @@
 
     <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'SNACKBARS'}">
 
-        <div class="sub-container snacks"  content>
+        <div class="sub-container snacks" content>
             <rvn-button (click)="openSnackBar({message: 'hello'})" [config]="{color: 'primary'}">Message</rvn-button>
             <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})"
                 [config]="{color: 'primary'}">Message & action</rvn-button>
@@ -389,6 +389,17 @@
                     </div>
                 </ng-template>
             </rvn-table>
+
+        </div>
+    </rvn-card>
+
+    <!-- ORG chart -->
+
+
+    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'ORG Chart'}">
+
+        <div content>
+            <rvn-org-chart></rvn-org-chart>
 
         </div>
     </rvn-card>

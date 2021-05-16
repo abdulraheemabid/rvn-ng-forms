@@ -2,6 +2,10 @@
 @import "./variables/width";
 @import "./variables/theme";
 
+//TODO: Optimize: primeng will make it very bulky, try to remove or replace it
+@import "../../../../../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "../../../../../node_modules/primeicons/primeicons.css";
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -111,8 +115,8 @@ body {
     }
 }
 
-.rvn-menu-items{
-    .rvn-ui-control{
+.rvn-menu-items {
+    .rvn-ui-control {
         min-height: auto;
     }
 }
@@ -131,6 +135,21 @@ body {
     }
     .mat-icon {
         font-size: 20px;
+    }
+}
+
+.rvn-org-chart-node {
+    width: $btn-min-width;
+
+    i{
+        font-size: 0.7rem;
+    }
+
+    &.rvn-org-chart-root-node {
+        width: calc(#{$btn-min-width} + #{$space-xxl});
+    }
+
+    &.rvn-org-chart-leaf-node {
     }
 }
 
@@ -182,6 +201,10 @@ body {
 
 .background-bg {
     background-color: $light-background !important;
+}
+
+.foreground-bg {
+    background-color: $light-foreground !important;
 }
 
 .grey-border {
@@ -241,5 +264,9 @@ body {
 
     .grey-border {
         border-color: $dark-grey !important;
+    }
+
+    .foreground-bg {
+        background-color: $dark-foreground !important;
     }
 }

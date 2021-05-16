@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {OrganizationChartModule} from 'primeng/organizationchart';
 
 @NgModule({
     declarations: [],
@@ -53,7 +54,9 @@ import { MatSortModule } from '@angular/material/sort';
         MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        //primeng
+        OrganizationChartModule
     ],
     exports: [
         MatInputModule,
@@ -80,7 +83,9 @@ import { MatSortModule } from '@angular/material/sort';
         MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        //primeng
+        OrganizationChartModule
     ],
     providers: [
         { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
