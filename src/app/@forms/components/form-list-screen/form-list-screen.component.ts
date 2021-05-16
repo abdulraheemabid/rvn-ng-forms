@@ -1,13 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { of } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { RvnListInput } from 'src/app/@shared/rvn-core/components/rvn-list/rvn-list.input';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { IForm } from 'src/app/@shared/rvn-forms/types';
+import { IForm, IFormRelation } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
 import { AppService } from 'src/app/app.service';
 
@@ -26,6 +26,7 @@ export class FormListScreenComponent implements OnInit {
   @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
 
   forms: IForm[] = [];
+  formTrees: IFormRelation[] = [];
   filteredForms: IForm[] = [];
   listConfig: RvnListInput = { list: [], lineOneKey: 'name', lineTwoKey: '__dateMerged', icon: 'assignment', actionTemplateRef: null, dense: true }
   newFormButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
@@ -36,13 +37,21 @@ export class FormListScreenComponent implements OnInit {
   ngOnInit(): void {
     this.appService.setToolBarHeading("Forms");
 
-    this.formApiService.getForms().subscribe(data => {
-      data.forEach(form => form["__dateMerged"] = `Created On: ${new Date(form.createdOn).toLocaleString()}. Last Updated On: ${new Date(form.updatedOn).toLocaleString()}`);
-      this.forms = data;
+    forkJoin(
+      [
+        this.formApiService.getForms(),
+        this.formApiService.getFormTrees(),
+      ]
+    ).subscribe(results => {
+      results[0].forEach(form => form["__dateMerged"] = `Created On: ${new Date(form.createdOn).toLocaleString()}. Last Updated On: ${new Date(form.updatedOn).toLocaleString()}`);
+      this.forms = results[0];
       this.filteredForms = [...this.forms];
       this.listConfig.list = this.filteredForms;
       this.listConfig.actionTemplateRef = this.actionsTemplate;
       this.cardConfig.title = `Total: ${this.forms.length}`;
+
+      this.formTrees = results[1];
+      console.log(this.formTrees);
     });
 
 

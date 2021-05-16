@@ -64,6 +64,16 @@ export interface IFieldTypeMeta {
     }[];
 }
 
+export interface IFormRelation {
+    id: number;
+    formId: number;
+    relationType: "one-to-one" | "many-to-one";
+    children: IFormRelation[];
+    parent?: IFormRelation;
+    createdOn?: string;
+    updatedOn?: string;
+}
+
 export interface IId {
     id: number
 }

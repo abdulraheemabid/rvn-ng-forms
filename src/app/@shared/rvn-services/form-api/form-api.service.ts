@@ -6,7 +6,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { isKeyValue, isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
 import { TypeMetaService } from '../../rvn-forms/type-meta-service/type-meta.service';
-import { ChildRelationType, IForm, IId, IRecord } from '../../rvn-forms/types';
+import { ChildRelationType, IForm, IFormRelation, IId, IRecord } from '../../rvn-forms/types';
 import { FormDTO, FormParentDTO } from './form-api.dto';
 
 @Injectable({
@@ -33,6 +33,10 @@ export class FormApiService {
     return this.httpClient.get<IForm[]>(this.baseUrl).pipe(
       map(forms => forms.sort((a, b) => a.id - b.id))
     );
+  }
+
+  getFormTrees() {
+    return this.httpClient.get<IFormRelation[]>(`${this.baseUrl}/trees/all`);
   }
 
   createForm(form: IForm) {
