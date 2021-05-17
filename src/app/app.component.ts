@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { AppService } from './app.service';
+import { AppService, FormSideBarLink } from './app.service';
 import { RvnStyleService } from './@shared/rvn-core/services/style/style.service';
 import { RvnSelectInput } from './@shared/rvn-core/components/rvn-select/rvn-select.input';
 
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   darkClassName = 'app-dark-theme';
   toolBarHeading: string = "";
   showLoader: BehaviorSubject<boolean>;
+  formLinks$: BehaviorSubject<FormSideBarLink[]>;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -33,6 +34,8 @@ export class AppComponent implements OnInit {
   fieldAppearanceFC = new FormControl("");
 
   ngOnInit() {
+
+    this.formLinks$ = this.appService.formLinks$;
 
     this.setDefaultTheme("dark");
 

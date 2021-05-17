@@ -2,18 +2,45 @@
 
 .sidenav-container {
     height: 100%;
+
+    .links-divider {
+        margin: $space-l;
+    }
+
+    .main-divider {
+        margin-bottom: $space-l;
+        display: block;
+    }
+
+    .sidenav {
+        width: 200px;
+    }
+
+    .sidenav .mat-toolbar,
+    .sidenav {
+        background: inherit;
+    }
+
+    .sidenav-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .spacer {
+        flex: 1 1 0;
+    }
+
+    .settings{
+        display: flex;
+        padding: 0 $space-m;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 
-.sidenav {
-    width: 200px;
-}
-
-.sidenav .mat-toolbar,
-.sidenav {
-    background: inherit;
-}
-
-.menu-items{
+.menu-items {
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -25,8 +52,6 @@
     // 3 worked, but mat table header is 100
     z-index: 101;
     padding: 0 5vh;
-
-   
 
     .top-bar-content {
         display: flex;
