@@ -47,7 +47,7 @@ export class FormRendererComponent implements OnChanges {
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
     this.handleMarkingAsDirty();
-    if (!isNullOrUndefined(this.preSelectedParentRecordId)) this.parentFC.setValue(this.preSelectedParentRecordId, { emitEvent: false })
+    if (!isNullOrUndefined(this.preSelectedParentRecordId)) this.parentFC.setValue( parseInt(this.preSelectedParentRecordId.toString()), { emitEvent: false })
     this.parentRendererConfig = { showDummy: this.mode === 'preview', parentRecords: this.parentRecords, parentForm: this.parentForm, valueFC: this.parentFC };
     this.checkIfChildForm();
 

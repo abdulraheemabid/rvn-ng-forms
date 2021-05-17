@@ -93,7 +93,7 @@ export class RecordScreenComponent implements OnInit {
   }
 
   navigateToRecordsList() {
-    this.appService.navigate(`forms/${this.formId}/records`);
+    this.appService.navigateBack();
   }
 
   onRecordUpdate(value) {

@@ -5,11 +5,12 @@ export interface RvnOrgChartInput {
   expandAll?: boolean;
   rootStyleClass?: string;
   leafStyleClass?: string;
-
+  lookUpData?: any[];
+  useLookUpWithId?: boolean;
 }
 
 export interface OrgChartNode {
-  label: string;
+  label?: string;
   id?: number;
   styleClass?: string
   expanded?: boolean,

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Location } from '@angular/common'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private location: Location) { }
 
   showLoader: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -19,5 +20,9 @@ export class AppService {
 
   navigate(path: string, params?: any) {
     this.router.navigateByUrl(path, params);
+  }
+
+  navigateBack(){
+    this.location.back();
   }
 }

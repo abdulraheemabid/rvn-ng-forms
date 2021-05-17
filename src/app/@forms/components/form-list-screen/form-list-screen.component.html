@@ -1,34 +1,57 @@
-<div class="container">
+<div class="container" [ngClass]="{'no-tree': forms.length < 1}">
     <rvn-button class="button" (click)="createForm()" [config]="newFormButtonConfig">Create new form</rvn-button>
 
     <rvn-input class="search" [config]="searchFormConfig" [formControl]="searchFC"></rvn-input>
 
-    <rvn-card class="list" [config]="cardConfig">
-        <rvn-list content [config]="listConfig">
-            <ng-template #actions let-listItem="listItem">
-                <rvn-button (click)="viewRecords(listItem)"
-                    [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View Records'}">
-                </rvn-button>
-                <rvn-button [disabled]="true"
-                    [config]="{'icon': ' insert_chart_outlined', type: 'icon', tooltipMessage: 'Analyze Records'}">
-                </rvn-button>
-                <rvn-button (click)="editForm(listItem)"
-                    [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit form'}">
-                </rvn-button>
-                <rvn-button (click)="deleteForm(listItem)"
-                    [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">
-                </rvn-button>
-            </ng-template>
-        </rvn-list>
+    <div class="list">
+        <rvn-card [config]="cardConfig">
+            <rvn-list content [config]="listConfig">
+                <ng-template #actions let-listItem="listItem">
+                    <rvn-button (click)="viewRecords(listItem)"
+                        [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View Records'}">
+                    </rvn-button>
+                    <rvn-button [disabled]="true"
+                        [config]="{'icon': ' insert_chart_outlined', type: 'icon', tooltipMessage: 'Analyze Records'}">
+                    </rvn-button>
+                    <rvn-button (click)="editForm(listItem)"
+                        [config]="{'icon': 'edit', type: 'icon', tooltipMessage: 'Edit form'}">
+                    </rvn-button>
+                    <rvn-button (click)="deleteForm(listItem)"
+                        [config]="{'icon': 'delete', color: 'warn', type: 'icon', tooltipMessage: 'Delete Form'}">
+                    </rvn-button>
+                </ng-template>
+            </rvn-list>
 
-        <div content class="list no-records color-warn" *ngIf="filteredForms.length == 0">
-            <span>
-                No forms found
-                <span *ngIf="searchFC.value !== ''"> matching the search criteria !</span>
-                <span *ngIf="searchFC.value === ''"> !</span>
-            </span>
+            <div content class="list no-records color-warn" *ngIf="filteredForms.length == 0">
+                <span>
+                    No forms found
+                    <span *ngIf="searchFC.value !== ''"> matching the search criteria !</span>
+                    <span *ngIf="searchFC.value === ''"> !</span>
+                </span>
 
-        </div>
-    </rvn-card>
+            </div>
+        </rvn-card>
+    </div>
+
+    <div class="tree" *ngIf="forms.length > 0">
+        <rvn-card [config]="{title: 'Forms Relations'}" *ngIf="initDone">
+
+            <div content class="legends">
+                <div class="legend">
+                    <span class="legend-box primary-bg"></span>
+                    <span>Root Forms</span>
+                </div>
+                <div class="legend">
+                    <span class="legend-box accent-bg"></span>
+                    <span>Leaf Forms</span>
+                </div>
+            </div>
+
+            <div content class="tree-content">
+                <rvn-org-chart class="chart" *ngFor="let tree of formTrees; let i=index" [config]="treeConfigs[i]">
+                </rvn-org-chart>
+            </div>
+        </rvn-card>
+    </div>
 
 </div>

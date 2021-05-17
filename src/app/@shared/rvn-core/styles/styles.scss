@@ -146,7 +146,7 @@ body {
     }
 
     &.rvn-org-chart-root-node {
-        width: calc(#{$btn-min-width} + #{$space-xxl});
+        width: $root-node-min-width;
     }
 
     &.rvn-org-chart-leaf-node {

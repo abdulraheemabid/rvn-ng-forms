@@ -1,18 +1,26 @@
 @import "../../../@shared/rvn-core/styles/variables/spacing";
+@import "../../../@shared/rvn-core/styles/variables/width";
 
 .container {
     display: grid;
     gap: $space-xl;
-    align-items: center;
-    grid-template-columns: 1fr 3fr;
+    align-items: start;
+    grid-template-columns: 1fr 3fr 2fr;
     grid-template-areas:
-        "search button"
-        "list list";
+        "search button button"
+        "list list tree";
+
+    &.no-tree{
+        grid-template-areas:
+        "search button button"
+        "list list list";
+    }
 
     .search {
         grid-area: search;
-        ::ng-deep{
-            .mat-form-field-wrapper{
+        align-self: center;
+        ::ng-deep {
+            .mat-form-field-wrapper {
                 padding-bottom: 0;
             }
         }
@@ -21,6 +29,7 @@
     .button {
         grid-area: button;
         margin-left: auto;
+        align-self: center;
     }
 
     .list {
@@ -35,6 +44,30 @@
             .mat-list-item-content {
                 padding-left: 0;
                 padding-right: 0;
+            }
+        }
+    }
+
+    .tree {
+        grid-area: tree;
+        overflow: auto;
+
+        .tree-content {
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+        }
+
+        .legends {
+            position: absolute;
+            .legend {
+                margin-bottom: $space-s;
+                .legend-box {
+                    display: inline-block;
+                    height: $space-m;
+                    width: $space-m;
+                    margin-right: $space-s;
+                }
             }
         }
     }
