@@ -10,7 +10,7 @@ import { RvnOrgChartInput } from 'src/app/@shared/rvn-core/components/rvn-org-ch
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { IForm, IFormRelation } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
-import { AppService } from 'src/app/app.service';
+import { AppService, FormSideBarLink } from 'src/app/app.service';
 
 @Component({
   selector: 'form-list',
@@ -54,11 +54,16 @@ export class FormListScreenComponent implements OnInit {
       this.listConfig.actionTemplateRef = this.actionsTemplate;
       this.cardConfig.title = `Total: ${this.forms.length}`;
       this.setTreeConfigs(results[1]);
+      this.updateAppSideBarLinks();
     });
 
 
     this.cardConfig.title = `Total: ${this.forms.length}`;
     this.searchFC.valueChanges.subscribe(v => this.filterFormBySeach(v));
+  }
+
+  updateAppSideBarLinks() {
+    this.appService.formLinks$.next(this.forms.map(form => { return { form, displayName: form.name, navigateToRoute: `forms/${form.id}/records` } }));
   }
 
   setTreeConfigs(formRelation: IFormRelation[]) {
