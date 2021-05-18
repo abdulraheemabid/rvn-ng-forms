@@ -12,7 +12,7 @@ import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util'
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { AppService } from 'src/app/app.service';
-import { RecordDeleteConfirmComponent } from '../record-delete-confirm/record-delete-confirm.component';
+import { RecordDeleteConfirmComponent } from '../../../@shared/rvn-forms/components/record-delete-confirm/record-delete-confirm.component';
 
 @Component({
   selector: 'record-list-screen',

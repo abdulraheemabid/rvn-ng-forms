@@ -34,6 +34,9 @@ import { MultiselectValueRendererComponent } from './type-value-renderers/multis
 import { RecordParentValueRendererComponent } from './type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.component';
 import { SingleselectValueRendererComponent } from './type-value-renderers/singleselect-value-renderer/singleselect-value-renderer.component';
 import { StringValueRendererComponent } from './type-value-renderers/string-value-renderer/string-value-renderer.component';
+import { FieldDefinitionComponent } from './components/form-definition/field-definition/field-definition.component';
+import { FormDefinitionComponent } from './components/form-definition/form-definition.component';
+import { RecordDeleteConfirmComponent } from './components/record-delete-confirm/record-delete-confirm.component';
 
 
 
@@ -45,6 +48,9 @@ import { StringValueRendererComponent } from './type-value-renderers/string-valu
     RecordCellViewComponent,
     RecordTableComponent,
     FormRendererComponent,
+    FormDefinitionComponent,
+    FieldDefinitionComponent,
+    RecordDeleteConfirmComponent,
 
     FloatDefinitionRendererComponent,
     IntDefinitionRendererComponent,
@@ -87,6 +93,9 @@ import { StringValueRendererComponent } from './type-value-renderers/string-valu
     RecordCellViewComponent,
     RecordTableComponent,
     FormRendererComponent,
+    FormDefinitionComponent,
+    FieldDefinitionComponent,
+    RecordDeleteConfirmComponent,
 
     FloatDefinitionRendererComponent,
     IntDefinitionRendererComponent,

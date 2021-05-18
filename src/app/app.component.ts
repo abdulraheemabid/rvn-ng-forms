@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { RvnStyleService } from './@shared/rvn-core/services/style/style.service';
 import { RvnSelectInput } from './@shared/rvn-core/components/rvn-select/rvn-select.input';
 import { RvnNavItem } from './@shared/rvn-core/components/rvn-nav-list/rvn-nav-list.input';
+import { FormApiService } from './@shared/rvn-forms/services/form-api/form-api.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,11 @@ import { RvnNavItem } from './@shared/rvn-core/components/rvn-nav-list/rvn-nav-l
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private overlayContainer: OverlayContainer, private appService: AppService, private styleService: RvnStyleService) { }
+  constructor(
+    private overlayContainer: OverlayContainer, 
+    private appService: AppService, 
+    private styleService: RvnStyleService,
+    private formApiService: FormApiService) { }
 
   @HostBinding('class') className = '';
 
@@ -63,8 +68,10 @@ export class AppComponent implements OnInit {
   handleSideBarLinks() {
     const fixedLinks = [{ displayName: "Demo", routeURL: '/demo' }, { displayName: "All Forms", routeURL: '/forms', showDividerBelow: true }];
     this.sideBarLinks = [...fixedLinks];
-    // this.sideBarLinks.push({ displayName: "Demo", routeURL: '/demo' });
-    // this.sideBarLinks.push({ displayName: "All Forms", routeURL: '/forms', showDividerBelow: true });
+
+    this.formApiService.getForms().subscribe(forms =>{
+      this.appService.formLinks$.next(forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records` } }));
+    })
 
     this.appService.formLinks$.subscribe(links => {
       this.sideBarLinks = [...fixedLinks, ...links];
