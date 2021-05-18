@@ -4,6 +4,7 @@ import { RvnCheckboxInput } from "src/app/@shared/rvn-core/components/rvn-checkb
 import { RvnChipsAutocompleteInput } from "src/app/@shared/rvn-core/components/rvn-chips-autocomplete/rvn-chips-autocomplete.input";
 import { RvnDatepickerInput } from "src/app/@shared/rvn-core/components/rvn-datepicker/rvn-datepicker.input";
 import { RvnInputInput } from "src/app/@shared/rvn-core/components/rvn-input/rvn-input.input";
+import { RvnOrgChartInput } from "src/app/@shared/rvn-core/components/rvn-org-chart/rvn-org-chart.input";
 import { RvnRadioInput } from "src/app/@shared/rvn-core/components/rvn-radio/rvn-radio.input";
 import { RvnSelectInput } from "src/app/@shared/rvn-core/components/rvn-select/rvn-select.input";
 import { RvnTableInput } from "src/app/@shared/rvn-core/components/rvn-table/rvn-table.input";
@@ -50,6 +51,8 @@ export class DemoComponent implements OnInit {
   fc = new FormControl(null, [Validators.required]);
 
   tableConfig: RvnTableInput;
+
+  orChartConfig: RvnOrgChartInput = { "rootStyleClass": "primary-bg color-white", "leafStyleClass": "accent-bg color-black", "useLookUpWithId": true, "keyForLabel": "name", "data": { "id": 1, "children": [{ "id": 2, "children": [{ "id": 3, "children": [{ "id": 4, "children": [] }] }] }] }, "lookUpData": [{ "id": 1, "name": "Buildings" }, { "id": 2, "name": "Floors" }, { "id": 3, "name": "Sections" }, { "id": 4, "name": "Products" }] };
 
   textFieldInput: RvnInputInput = {
     label: 'name',

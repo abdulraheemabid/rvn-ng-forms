@@ -4,10 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { NotificationInterceptor } from './interceptors/notification/notification.interceptor';
 import { SpinnerInterceptor } from './interceptors/spinner/spinner.interceptor';
 import { DataExtractionInterceptor } from './interceptors/data-extraction/data-extraction.interceptor';
@@ -15,7 +12,6 @@ import { RvnServicesModule } from './@shared/rvn-services/services.module';
 import { environment } from 'src/environments/environment';
 import { RvnComponentsModule } from './@shared/rvn-core/components.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -26,9 +22,6 @@ import { MatListModule } from '@angular/material/list';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatListModule,
-    MatSidenavModule,
     RvnComponentsModule,
     RvnServicesModule.forRoot({
       restBaseUrl: environment.restBaseUrl

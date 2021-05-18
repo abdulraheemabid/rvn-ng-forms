@@ -23,6 +23,10 @@ import { RvnTableComponent } from "./components/rvn-table/rvn-table.component";
 import { RvnChipsComponent } from "./components/rvn-chips/rvn-chips.component";
 import { RvnComponentDialogComponent } from "./components/rvn-component-dialog/rvn-component-dialog.component";
 import { RvnOrgChartComponent } from "./components/rvn-org-chart/rvn-org-chart.component";
+import { RvnToolbarComponent } from "./components/rvn-toolbar/rvn-toolbar.component";
+import { RvnSidenavComponent } from "./components/rvn-sidenav/rvn-sidenav.component";
+import { RvnNavListComponent } from "./components/rvn-nav-list/rvn-nav-list.component";
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
@@ -48,11 +52,15 @@ import { RvnOrgChartComponent } from "./components/rvn-org-chart/rvn-org-chart.c
         RvnComponentDialogComponent,
         RvnTableComponent,
         RvnChipsComponent,
-        RvnOrgChartComponent
+        RvnOrgChartComponent,
+        RvnToolbarComponent,
+        RvnSidenavComponent,
+        RvnNavListComponent
     ],
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        RouterModule
     ],
     exports: [
         RvnInputComponent,
@@ -76,7 +84,10 @@ import { RvnOrgChartComponent } from "./components/rvn-org-chart/rvn-org-chart.c
         RvnComponentDialogComponent,
         RvnTableComponent,
         RvnChipsComponent,
-        RvnOrgChartComponent
+        RvnOrgChartComponent,
+        RvnToolbarComponent,
+        RvnSidenavComponent,
+        RvnNavListComponent
     ],
     providers: [
 

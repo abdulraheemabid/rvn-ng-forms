@@ -1,85 +1,43 @@
 @import "./@shared/rvn-core/styles/variables/spacing";
 
-.sidenav-container {
+.sidenav-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-
-    .links-divider {
-        margin: $space-l;
-    }
 
     .main-divider {
         margin-bottom: $space-l;
         display: block;
     }
-
-    .sidenav {
-        width: 200px;
-    }
-
-    .sidenav .mat-toolbar,
-    .sidenav {
-        background: inherit;
-    }
-
-    .sidenav-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-
-    .mat-nav-list{
-        padding-top: 0;
+    .form-links {
+        overflow: auto;
+        height: 100px;
     }
 
     .spacer {
         flex: 1 1 0;
     }
 
-    .settings{
+    .settings {
         display: flex;
         padding: 0 $space-m;
         align-items: center;
         justify-content: space-between;
-    }
-}
-
-.menu-items {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-
-.top-bar {
-    position: sticky;
-    top: 0;
-    // 3 worked, but mat table header is 100
-    z-index: 101;
-    padding: 0 5vh;
-
-    .top-bar-content {
-        display: flex;
-        max-width: 1600px;
         width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        margin: auto;
-
-        .toggle-btn {
-            margin-left: -8px;
-        }
-
-        .page-heading {
-            display: flex;
-            align-items: center;
-        }
+    }
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
     }
 }
 
-.app-container {
+.route-container {
     padding: 5vh;
     max-width: 1600px;
     margin: auto;
+
     .outlet {
         display: grid;
         grid-template-columns: 100%;

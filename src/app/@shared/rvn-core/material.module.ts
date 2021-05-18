@@ -24,7 +24,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {OrganizationChartModule} from 'primeng/organizationchart';
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
     declarations: [],
@@ -55,8 +57,10 @@ import {OrganizationChartModule} from 'primeng/organizationchart';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
+        MatToolbarModule,
+        MatSidenavModule,
         //primeng
-        OrganizationChartModule
+        OrganizationChartModule,
     ],
     exports: [
         MatInputModule,
@@ -84,6 +88,8 @@ import {OrganizationChartModule} from 'primeng/organizationchart';
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
+        MatToolbarModule,
+        MatSidenavModule,
         //primeng
         OrganizationChartModule
     ],

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Location } from '@angular/common'
 import { IForm } from './@shared/rvn-forms/types';
+import { RvnNavItem } from './@shared/rvn-core/components/rvn-nav-list/rvn-nav-list.input';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AppService {
   constructor(private router: Router, private location: Location) { }
 
   showLoader: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  formLinks$: BehaviorSubject<FormSideBarLink[]> = new BehaviorSubject([]);
+  formLinks$: BehaviorSubject<RvnNavItem[]> = new BehaviorSubject([]);
 
   toolBarHeading = new BehaviorSubject<string>("");
 
@@ -27,11 +28,4 @@ export class AppService {
   navigateBack() {
     this.location.back();
   }
-}
-
-export interface FormSideBarLink {
-  form?: IForm;
-  displayName: string;
-  navigateToRoute: string;
-  showDivider?: boolean;
 }

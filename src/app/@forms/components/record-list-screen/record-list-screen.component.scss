@@ -11,11 +11,6 @@
 
     .search {
         grid-area: search;
-        ::ng-deep{
-            .mat-form-field-wrapper{
-                padding-bottom: 0;
-            }
-        }
     }
 
     .button {
@@ -29,13 +24,6 @@
         &.no-records {
             display: flex;
             justify-content: center;
-        }
-
-        ::ng-deep {
-            .mat-list-item-content {
-                padding-left: 0;
-                padding-right: 0;
-            }
         }
     }
 }
