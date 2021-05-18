@@ -1,14 +1,12 @@
 import { Component, OnChanges, Input, ViewChildren, ViewContainerRef, QueryList, SimpleChanges, EventEmitter, Output } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { Subject } from "rxjs";
 import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
 import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
-import { CreateOrEdit } from "src/app/@shared/rvn-core/utils/types";
 import { RecordParentInputRendererInput } from "src/app/@shared/rvn-forms/type-input-renderers/record-parent-input-renderer/record-parent-input-renderer.input";
-import { IForm, IFormField, IRecord } from "src/app/@shared/rvn-forms/types";
-import { FormService } from "src/app/@shared/rvn-services/form/form.service";
-import { ReactiveFormUtilityService } from "src/app/@shared/rvn-services/reactive-form-utility/reactive-form-utility.service";
-
+import { IFormField } from "src/app/@shared/rvn-forms/types";
+import { FormService } from "src/app/@shared/rvn-forms/services/form/form.service";
+import { FormRendererInput } from "./form-renderer.input";
+import { ReactiveFormUtilityService } from "../../services/reactive-form-utility/reactive-form-utility.service";
 
 @Component({
   selector: 'form-renderer',
@@ -21,16 +19,10 @@ export class FormRendererComponent implements OnChanges {
     private snackBarService: RvnSnackBarService,
     private utilityService: ReactiveFormUtilityService) { }
 
-  @Input() formDefinition: IForm;
-  @Input() mode: CreateOrEdit | "preview" = "preview";
-  @Input() record: IRecord;
-  @Input() parentRecords: IRecord[];
-  @Input() parentForm: IForm;
-  @Input() markFGAsDirtySubject$: Subject<any>;
-  @Input() preSelectedParentRecordId: number;
-
+  @Input() config: FormRendererInput;
   @Output() recordUpdate: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   @ViewChildren("fieldAnchorPoint", { read: ViewContainerRef }) fieldAnchorPoints: QueryList<ViewContainerRef>;
+
   recordFG: FormGroup;
   // for preview mode, the id for each fc will be the name of each field as we dont have the id yet.
   keyToUseForFieldControl: "name" | "id" = "id";
@@ -43,46 +35,48 @@ export class FormRendererComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
+    if(isNullOrUndefined(this.config.mode)) this.config.mode = "preview";
+
     this.setPramsAccordingToMode();
     this.sortFieldsByPosition();
     this.generateRecordFormGroup();
     this.handleMarkingAsDirty();
-    if (!isNullOrUndefined(this.preSelectedParentRecordId)) this.parentFC.setValue( parseInt(this.preSelectedParentRecordId.toString()), { emitEvent: false })
-    this.parentRendererConfig = { showDummy: this.mode === 'preview', parentRecords: this.parentRecords, parentForm: this.parentForm, valueFC: this.parentFC };
+    if (!isNullOrUndefined(this.config.preSelectedParentRecordId)) this.parentFC.setValue(parseInt(this.config.preSelectedParentRecordId.toString()), { emitEvent: false })
+    this.parentRendererConfig = { showDummy: this.config.mode === "preview", parentRecords: this.config.parentRecords, parentForm: this.config.parentForm, valueFC: this.parentFC };
     this.checkIfChildForm();
 
     this.recordFG.valueChanges.subscribe(value => this.recordUpdate.emit(this.recordFG));
 
-    if (isNullOrUndefined(this.parentRecords)) this.parentRecords = [];
+    if (isNullOrUndefined(this.config.parentRecords)) this.config.parentRecords = [];
 
     // TODO: need settimeout so that ngFor is done initializing. Cant find appropriate hook
     setTimeout(() => { this.renderControlForEachField() });
   }
 
   setPramsAccordingToMode() {
-    if (this.mode === "preview") {
+    if (this.config.mode === "preview") {
       this.keyToUseForFieldControl = "name";
     };
   }
 
   sortFieldsByPosition() {
-    this.formDefinition.fields = this.formDefinition.fields.sort((a, b) => a.attributes.position - b.attributes.position);
+    this.config.formDefinition.fields = this.config.formDefinition.fields.sort((a, b) => a.attributes.position - b.attributes.position);
   }
 
   generateRecordFormGroup() {
-    this.recordFG = (this.mode === "edit" && this.record) ?
-      this.formService.getRecordFG(this.formDefinition, this.record) :
-      this.formService.getNewRecordFG(this.formDefinition, this.keyToUseForFieldControl);
+    this.recordFG = (this.config.mode === "edit" && this.config.record) ?
+      this.formService.getRecordFG(this.config.formDefinition, this.config.record) :
+      this.formService.getNewRecordFG(this.config.formDefinition, this.keyToUseForFieldControl);
 
     this.recordUpdate.emit(this.recordFG);
   }
 
   checkIfChildForm() {
-    this.isChildForm = !isNullOrUndefined(this.formDefinition?.attributes?.parentForm?.formId);
+    this.isChildForm = !isNullOrUndefined(this.config.formDefinition?.attributes?.parentForm?.formId);
   }
 
   renderControlForEachField() {
-    this.formDefinition.fields.forEach(f => {
+    this.config.formDefinition.fields.forEach(f => {
       if (f.markDeleted !== true) this.renderUIControl(f)
     })
   }
@@ -96,14 +90,14 @@ export class FormRendererComponent implements OnChanges {
   }
 
   handleMarkingAsDirty() {
-    if (this.markFGAsDirtySubject$)
-      this.markFGAsDirtySubject$.subscribe(_ => {
+    if (this.config.markFGAsDirtySubject$)
+      this.config.markFGAsDirtySubject$.subscribe(_ => {
         this.utilityService.markNestedFormGroupDirty(this.recordFG);
       });
   }
 
   submit() {
-    if (this.mode === "preview") {
+    if (this.config.mode === "preview") {
       this.utilityService.markNestedFormGroupDirty(this.recordFG);
 
       if (this.recordFG.status !== "VALID")

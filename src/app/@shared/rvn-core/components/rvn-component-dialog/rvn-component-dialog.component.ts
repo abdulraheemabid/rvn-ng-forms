@@ -1,6 +1,6 @@
 import { Component, ComponentRef, EventEmitter, Inject, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DynamicComponentService } from 'src/app/@shared/rvn-services/dynamic-component/dynamic-component.service';
+import { DynamicComponentService } from 'src/app/@shared/rvn-forms/services/dynamic-component/dynamic-component.service';
 import { isNullOrUndefined } from '../../utils/funtions.util';
 import { RvnComponentDialogInput } from './rvn-confirm-dialog.input';
 

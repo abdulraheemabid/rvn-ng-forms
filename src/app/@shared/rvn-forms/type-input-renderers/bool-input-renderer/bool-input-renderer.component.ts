@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { UIControlEnum } from '../../types';
 import { BaseInputRendererComponent } from '../base-input-renderer/base-input-renderer.component';
 

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
-import { IForm, IRecord } from '../../types';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
+import { IRecord } from '../../types';
 import { RecordParentInputRendererInput } from './record-parent-input-renderer.input';
 
 @Component({
@@ -14,11 +14,6 @@ import { RecordParentInputRendererInput } from './record-parent-input-renderer.i
 })
 export class RecordParentInputRendererComponent implements OnInit {
 
-  // @Input() valueFC: FormControl;
-  // @Input() parentForm: IForm;
-  // @Input() parentRecords: IRecord[];
-  // @Input() showDummy: boolean = false;
-  // @Input() disableButton: boolean = false;
   @Input() config: RecordParentInputRendererInput;
   @Output() parentSelected: EventEmitter<number> = new EventEmitter<number>();
 
@@ -66,6 +61,9 @@ export class RecordParentInputRendererComponent implements OnInit {
 
   openSelectParentDialog() {
 
+    if (isNullOrUndefined(this.config.parentForm) || isNullOrUndefined(this.config.parentRecords))
+      this.ngOnInit();
+
     let dialogRefOutput = this.dialogService.openComponentDialog({
       title: `Select parent record from ${this.config.parentForm.name}`,
       component: RecordParentInputRendererComponent,
@@ -73,7 +71,7 @@ export class RecordParentInputRendererComponent implements OnInit {
       primaryButtonMessage: "Choose",
       secondaryButtonMessage: "Cancel",
       componentInputs: [
-        {key: 'mode', value: 'select'},
+        { key: 'mode', value: 'select' },
         {
           key: "config", value: {
             parentForm: this.config.parentForm,

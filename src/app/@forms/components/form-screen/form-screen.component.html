@@ -1,6 +1,7 @@
 <div class="container" *ngIf="mode && initDone">
     <div class="definition">
-        <form-definition content [mode]="mode" [form]="formDefinition" [formsList]="formsList" [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
+        <form-definition content [mode]="mode" [form]="formDefinition" [formsList]="formsList"
+            [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
     <div class="button">
@@ -10,7 +11,7 @@
     </div>
     <div class="preview">
         <rvn-card [config]="{title: 'Form Preview'}">
-            <form-renderer content *ngIf="formDefinition" [formDefinition]="formDefinition"></form-renderer>
+            <form-renderer content *ngIf="formDefinition" [config]="{formDefinition: formDefinition}"></form-renderer>
         </rvn-card>
     </div>
 </div>

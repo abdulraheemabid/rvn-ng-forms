@@ -26,11 +26,12 @@
         justify-content: space-between;
         width: 100%;
     }
-    .menu-items {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-    }
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .route-container {
