@@ -1,6 +1,6 @@
+import { DynamicComponentService } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { DynamicComponentService } from '../../services/dynamic-component/dynamic-component.service';
 import { IFormField, UIControlEnum } from '../../types';
 
 @Component({

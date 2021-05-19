@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
-import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
-import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
-import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { switchMap } from 'rxjs/operators';
+import { isNullOrUndefined, RvnButtonInput, RvnCardInput, RvnDialogService, RvnInputInput, RvnTableInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { AppService } from 'src/app/app.service';

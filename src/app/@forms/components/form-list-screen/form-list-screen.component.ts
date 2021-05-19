@@ -1,13 +1,8 @@
+import { RvnDialogService, RvnListInput, RvnButtonInput, RvnInputInput, RvnOrgChartInput, RvnCardInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
-import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
-import { RvnListInput } from 'src/app/@shared/rvn-core/components/rvn-list/rvn-list.input';
-import { RvnOrgChartInput } from 'src/app/@shared/rvn-core/components/rvn-org-chart/rvn-org-chart.input';
-import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { IForm, IFormRelation } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';

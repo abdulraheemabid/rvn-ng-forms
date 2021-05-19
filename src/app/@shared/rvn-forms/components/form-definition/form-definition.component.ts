@@ -1,14 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
 import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
 import { IForm } from 'src/app/@shared/rvn-forms/types';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
-import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
-import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
 import { ReactiveFormUtilityService } from 'src/app/@shared/rvn-forms/services/reactive-form-utility/reactive-form-utility.service';
+import { CreateOrEdit, RvnInputInput, RvnSelectInput, RvnButtonInput, isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 
 @Component({
   selector: 'form-definition',

@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
+import { RvnInputInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { BaseInputRendererComponent } from '../base-input-renderer/base-input-renderer.component';
 
 @Component({

@@ -3,10 +3,9 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppService } from './app.service';
-import { RvnStyleService } from './@shared/rvn-core/services/style/style.service';
-import { RvnSelectInput } from './@shared/rvn-core/components/rvn-select/rvn-select.input';
-import { RvnNavItem } from './@shared/rvn-core/components/rvn-nav-list/rvn-nav-list.input';
 import { FormApiService } from './@shared/rvn-forms/services/form-api/form-api.service';
+import { RvnStyleService, RvnNavItem, RvnSelectInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+
 
 @Component({
   selector: 'app-root',

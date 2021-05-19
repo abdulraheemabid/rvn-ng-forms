@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
-import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { isNullOrUndefined, RvnButtonInput, RvnDialogService, RvnTableInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
 import { IRecord } from '../../types';
 import { RecordParentInputRendererInput } from './record-parent-input-renderer.input';

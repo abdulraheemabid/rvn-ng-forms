@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, QueryList, ViewChildren, ViewContainerRef } from '@angular/core';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm, IFormField, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
 import { RecordParentValueRendererInput } from '../../type-value-renderers/record-parent-value-renderer/record-parent-value-renderer.input';

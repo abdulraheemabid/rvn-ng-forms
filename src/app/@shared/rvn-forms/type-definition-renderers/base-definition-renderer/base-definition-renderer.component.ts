@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { FieldType } from '../../types';
 
 @Component({

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RvnComponentsModule } from '../rvn-core/components.module';
 import { ArrayValuesComponent } from './components/array-values/array-values.component';
 import { ChooseUiControlComponent } from './components/choose-ui-control/choose-ui-control.component';
 import { FormRendererComponent } from './components/form-renderer/form-renderer.component';
@@ -37,6 +36,7 @@ import { StringValueRendererComponent } from './type-value-renderers/string-valu
 import { FieldDefinitionComponent } from './components/form-definition/field-definition/field-definition.component';
 import { FormDefinitionComponent } from './components/form-definition/form-definition.component';
 import { RecordDeleteConfirmComponent } from './components/record-delete-confirm/record-delete-confirm.component';
+import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
 
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RvnCheckboxInput } from 'src/app/@shared/rvn-core/components/rvn-checkbox/rvn-checkbox.input';
+import { RvnCheckboxInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
 
 @Component({

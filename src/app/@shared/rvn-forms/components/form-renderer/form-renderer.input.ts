@@ -1,5 +1,5 @@
 import { Subject } from "rxjs";
-import { CreateOrEdit } from "src/app/@shared/rvn-core/utils/types";
+import { CreateOrEdit } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm, IRecord } from "src/app/@shared/rvn-forms/types";
 
 export interface FormRendererInput {

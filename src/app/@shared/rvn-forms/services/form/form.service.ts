@@ -2,10 +2,9 @@ import { KeyValue } from '@angular/common';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { DynamicComponentService, isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { TypeMetaService } from '../../type-meta-service/type-meta.service';
 import { FieldType, IFormField, IForm, IRecord } from '../../types';
-import { DynamicComponentService } from '../dynamic-component/dynamic-component.service';
 
 
 @Injectable({

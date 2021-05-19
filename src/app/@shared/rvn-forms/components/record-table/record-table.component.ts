@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn-table.input';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
-import { IForm } from 'src/app/@shared/rvn-forms/types';
+import { isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { RecordTableInput } from './record-table.input';
 
 @Component({
@@ -27,7 +25,7 @@ export class RecordTableComponent implements OnInit {
       record = { ...record.entry, ...record, };
       return record;
     });
-    
+
     this.config?.tableConfig.columnsToDisplay.forEach(c => c.customTemplate = this.cellTemplate);
 
     this.config?.tableConfig.columnsToDisplay.push({ keyName: "updatedOn", displayName: 'last updated', customTemplate: this.updatedOnTemplate });

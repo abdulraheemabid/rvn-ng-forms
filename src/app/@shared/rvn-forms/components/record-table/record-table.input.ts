@@ -1,5 +1,5 @@
 import { TemplateRef } from "@angular/core";
-import { RvnTableInput } from "src/app/@shared/rvn-core/components/rvn-table/rvn-table.input";
+import { RvnTableInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm } from "../../types";
 
 export interface RecordTableInput {

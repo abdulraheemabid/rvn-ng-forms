@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RvnChipsInput } from 'src/app/@shared/rvn-core/components/rvn-chips/rvn-chips.input';
+import { RvnChipsInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { BaseValueRendererComponent } from '../base-value-renderer/base-value-renderer.component';
 
 @Component({

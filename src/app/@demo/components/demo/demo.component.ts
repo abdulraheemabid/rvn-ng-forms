@@ -1,15 +1,6 @@
+import { RvnSnackBarService, RvnTableInput, RvnOrgChartInput, RvnInputInput, RvnSelectInput, RvnRadioInput, RvnToggleInput, RvnCheckboxInput, RvnChipsAutocompleteInput, RvnDatepickerInput, SnackBarInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { RvnCheckboxInput } from "src/app/@shared/rvn-core/components/rvn-checkbox/rvn-checkbox.input";
-import { RvnChipsAutocompleteInput } from "src/app/@shared/rvn-core/components/rvn-chips-autocomplete/rvn-chips-autocomplete.input";
-import { RvnDatepickerInput } from "src/app/@shared/rvn-core/components/rvn-datepicker/rvn-datepicker.input";
-import { RvnInputInput } from "src/app/@shared/rvn-core/components/rvn-input/rvn-input.input";
-import { RvnOrgChartInput } from "src/app/@shared/rvn-core/components/rvn-org-chart/rvn-org-chart.input";
-import { RvnRadioInput } from "src/app/@shared/rvn-core/components/rvn-radio/rvn-radio.input";
-import { RvnSelectInput } from "src/app/@shared/rvn-core/components/rvn-select/rvn-select.input";
-import { RvnTableInput } from "src/app/@shared/rvn-core/components/rvn-table/rvn-table.input";
-import { RvnToggleInput } from "src/app/@shared/rvn-core/components/rvn-toggle/rvn-toggle.input";
-import { RvnSnackBarService, SnackBarInput } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
 import { AppService } from "src/app/app.service";
 
 

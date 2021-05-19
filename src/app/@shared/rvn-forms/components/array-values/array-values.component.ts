@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { RvnChipsInputInput } from 'src/app/@shared/rvn-core/components/rvn-chips-input/rvn-chips-input.input';
+import { RvnChipsInputInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { ArrayValuesInput } from './array-values.input';
 
 @Component({

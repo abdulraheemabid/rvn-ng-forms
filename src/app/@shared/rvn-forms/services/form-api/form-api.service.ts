@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { switchMap, map } from "rxjs/operators";
-import { isKeyValue, isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
+import { isKeyValue, isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { environment } from "src/environments/environment";
 import { TypeMetaService } from "../../type-meta-service/type-meta.service";
 import { IForm, IFormRelation, IId, IRecord } from "../../types";

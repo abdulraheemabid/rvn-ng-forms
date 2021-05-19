@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { isNullOrUndefined, RvnDialogService } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
 import { RecordViewComponent } from '../../components/record-view/record-view.component';
@@ -22,7 +21,7 @@ export class RecordParentValueRendererComponent implements OnInit {
   constructor(private dialogService: RvnDialogService, private formService: FormService, private formApiService: FormApiService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   openSelectParentDialog() {

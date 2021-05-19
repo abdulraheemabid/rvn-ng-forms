@@ -9,9 +9,10 @@ import { NotificationInterceptor } from './interceptors/notification/notificatio
 import { SpinnerInterceptor } from './interceptors/spinner/spinner.interceptor';
 import { DataExtractionInterceptor } from './interceptors/data-extraction/data-extraction.interceptor';
 import { environment } from 'src/environments/environment';
-import { RvnComponentsModule } from './@shared/rvn-core/components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RvnServicesModule } from './@shared/rvn-forms/forms-service.module';
+import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
+
 
 @NgModule({
   declarations: [

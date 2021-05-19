@@ -1,7 +1,6 @@
 import { Component, OnChanges, Input, ViewChildren, ViewContainerRef, QueryList, SimpleChanges, EventEmitter, Output } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { RvnSnackBarService } from "src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service";
-import { isNullOrUndefined } from "src/app/@shared/rvn-core/utils/funtions.util";
+import { isNullOrUndefined, RvnSnackBarService } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { RecordParentInputRendererInput } from "src/app/@shared/rvn-forms/type-input-renderers/record-parent-input-renderer/record-parent-input-renderer.input";
 import { IFormField } from "src/app/@shared/rvn-forms/types";
 import { FormService } from "src/app/@shared/rvn-forms/services/form/form.service";

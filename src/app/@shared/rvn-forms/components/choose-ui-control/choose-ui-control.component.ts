@@ -1,10 +1,8 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { RvnSelectInput } from 'src/app/@shared/rvn-core/components/rvn-select/rvn-select.input';
 import { TypeMetaService } from 'src/app/@shared/rvn-forms/type-meta-service/type-meta.service';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
-import { UIControlNameEnum, UIControlEnum, FieldType } from '../../types';
+import { isNullOrUndefined, RvnSelectInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { UIControlNameEnum, UIControlEnum } from '../../types';
 import { ChooseUiControlInput } from './choose-ui-control.input';
 
 @Component({
@@ -35,7 +33,7 @@ export class ChooseUiControlComponent implements OnInit {
       this.selectCompConfig.selectOptions = selectOptions;
 
       if (!isNullOrUndefined(this.config.uiFormControl.value) && this.config.uiFormControl.value !== "")
-        this.config.uiFormControl.setValue(selectOptions.find(o => o.key === this.config.uiFormControl.value.key), {emitEvent: false});
+        this.config.uiFormControl.setValue(selectOptions.find(o => o.key === this.config.uiFormControl.value.key), { emitEvent: false });
 
     }
   }
