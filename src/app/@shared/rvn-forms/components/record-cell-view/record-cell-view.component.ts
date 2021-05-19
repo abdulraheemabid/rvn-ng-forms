@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { IForm } from 'src/app/@shared/rvn-forms/types';
-import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { FormService } from '../../services/form/form.service';
 import { RecordCellViewInput } from './record-cell-view.input';
 
 @Component({

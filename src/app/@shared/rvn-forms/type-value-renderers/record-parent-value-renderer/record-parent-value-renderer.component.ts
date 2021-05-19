@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
-import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
-import { FormService } from 'src/app/@shared/rvn-services/form/form.service';
+import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
+import { FormService } from 'src/app/@shared/rvn-forms/services/form/form.service';
 import { RecordViewComponent } from '../../components/record-view/record-view.component';
 import { RecordParentValueRendererInput } from './record-parent-value-renderer.input';
 

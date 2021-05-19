@@ -1,4 +1,5 @@
-import { FieldType } from "../../rvn-forms/types";
+import { FieldType } from "../../types";
+
 
 //DTOs
 export interface FormDTO {

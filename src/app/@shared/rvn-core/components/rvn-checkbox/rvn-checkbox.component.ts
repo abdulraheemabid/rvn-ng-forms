@@ -35,7 +35,7 @@ export class RvnCheckboxComponent extends CustomFormControlValueAccessor impleme
       this.checkBoxArray = this.initFormArray();
       this.checkBoxArray.valueChanges.subscribe(selectedValues => this.syncControls(selectedValues));
     } else {
-      this.checked = isNullOrUndefined(this.formControl) && isNullOrUndefined(this.formControl.value) ? false : this.formControl.value.key;
+      this.checked = !isNullOrUndefined(this.formControl) && !isNullOrUndefined(this.formControl.value) ? this.formControl.value.key : false;
       this.formControl.disable();
     }
   }

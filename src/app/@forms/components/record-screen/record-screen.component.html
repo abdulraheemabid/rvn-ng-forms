@@ -5,9 +5,14 @@
 
     <rvn-card class="card" [config]="{'title': form.name}">
 
-        <form-renderer content class="form" [parentForm]="parentForm" [parentRecords]="parentRecords" [mode]="mode" [record]="record"
-            [formDefinition]="form" [markFGAsDirtySubject$]="markRecordFGAsDirty$" [preSelectedParentRecordId]="preSelectedParentRecordId"
-            (recordUpdate)="onRecordUpdate($event)">
+        <form-renderer content class="form" [config]="{
+                parentForm: parentForm, 
+                parentRecords: parentRecords, 
+                mode: mode, 
+                record:record, 
+                formDefinition: form, 
+                markFGAsDirtySubject$: markRecordFGAsDirty$, 
+                preSelectedParentRecordId: preSelectedParentRecordId}" (recordUpdate)="onRecordUpdate($event)">
         </form-renderer>
 
     </rvn-card>

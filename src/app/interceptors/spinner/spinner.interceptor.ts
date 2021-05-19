@@ -21,8 +21,9 @@ export class SpinnerInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request instanceof HttpRequest && this.loadingCounter <= 0) {
       setTimeout(() => this.appService.showLoader.next(true));
-      this.loadingCounter++;
     }
+
+    this.loadingCounter++;
 
     return next.handle(request).pipe(
       tap(response => {

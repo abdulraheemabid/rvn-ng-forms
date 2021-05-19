@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
 import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
 import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
@@ -10,9 +10,9 @@ import { RvnTableInput } from 'src/app/@shared/rvn-core/components/rvn-table/rvn
 import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
 import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
-import { FormApiService } from 'src/app/@shared/rvn-services/form-api/form-api.service';
+import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { AppService } from 'src/app/app.service';
-import { RecordDeleteConfirmComponent } from '../record-delete-confirm/record-delete-confirm.component';
+import { RecordDeleteConfirmComponent } from '../../../@shared/rvn-forms/components/record-delete-confirm/record-delete-confirm.component';
 
 @Component({
   selector: 'record-list-screen',
@@ -50,22 +50,23 @@ export class RecordListScreenComponent implements OnInit {
       this.initDone = false;
       this.formId = params["id"];
       this.parentRecordId = params["parentRecordId"];
-
-
-      forkJoin([
-        this.formApiService.getForm(this.formId),
-        this.formApiService.getRecords(this.formId, this.parentRecordId),
-        this.formApiService.getFormDirectChildren(this.formId)
-      ]
-      ).subscribe(results => {
-        this.setFormDefinition(results[0]);
-        this.setRecords(results[1]);
-        this.formDirectChildrenIds = results[2];
-      })
-
-      this.cardConfig.title = `Total: ${this.records.length}`;
+      this.getData();
     });
 
+  }
+
+  getData() {
+    forkJoin([
+      this.formApiService.getForm(this.formId),
+      this.formApiService.getRecords(this.formId, this.parentRecordId),
+      this.formApiService.getFormDirectChildren(this.formId)
+    ]
+    ).subscribe(results => {
+      this.setFormDefinition(results[0]);
+      this.setRecords(results[1]);
+      this.formDirectChildrenIds = results[2];
+      this.cardConfig.title = `Total: ${this.records.length}`;
+    })
   }
 
   setFormDefinition(form: IForm) {
@@ -110,7 +111,7 @@ export class RecordListScreenComponent implements OnInit {
   }
 
   deleteRecord(record: IRecord) {
-    if (isNullOrUndefined(this.formDefinition.attributes.parentForm.formId)) {
+    if (this.formDirectChildrenIds.length === 0) {
       this.openDeleteConfirmDialog(record);
     } else {
       this.openDeleteConfirmDialogWithParent(record)
@@ -148,9 +149,7 @@ export class RecordListScreenComponent implements OnInit {
         }
         return of(null);
       }))
-      .subscribe(val => {
-        if (val) this.ngOnInit()
-      })
+      .subscribe(val => this.onDelete(val))
   }
 
   openDeleteConfirmDialog(record: IRecord) {
@@ -164,9 +163,14 @@ export class RecordListScreenComponent implements OnInit {
       switchMap((confirmed: boolean) => {
         return confirmed ? this.formApiService.deleteRecord(this.formId, record.id) : of(null);
       }))
-      .subscribe(val => {
-        if (val) this.ngOnInit()
-      })
+      .subscribe(val => this.onDelete(val))
+  }
+
+  onDelete(value) {
+    if (value) {
+      this.initDone = false;
+      setTimeout(() => this.getData());
+    }
   }
 
   viewChildRecords(record: IRecord, formId: number) {

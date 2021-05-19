@@ -1,7 +1,7 @@
 import { KeyValue } from '@angular/common';
 import { ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { isNullOrUndefined } from '../../rvn-core/utils/funtions.util';
+import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 
 @Injectable({
   providedIn: 'root'
