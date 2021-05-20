@@ -1,7 +1,7 @@
 <div class="container" *ngIf="mode && initDone">
     <div class="definition">
-        <form-definition content [mode]="mode" [form]="formDefinition" [formsList]="formsList"
-            [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
+        <form-definition content
+            [config]="{mode: mode, formsList: formsList, form: formDefinition, markFGAsDirtySubject$: markFormDefinitionFGAsDirty$}"
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
     <div class="button">
