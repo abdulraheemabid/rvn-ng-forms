@@ -1,10 +1,10 @@
 import { RvnDialogService, RvnListInput, RvnButtonInput, RvnInputInput, RvnOrgChartInput, RvnCardInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IForm, IFormRelation } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
-import { IForm, IFormRelation } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';
 
 @Component({

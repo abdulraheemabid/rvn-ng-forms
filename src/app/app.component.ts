@@ -3,8 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { AppService } from './app.service';
-import { FormApiService } from './@shared/rvn-forms/services/form-api/form-api.service';
 import { RvnStyleService, RvnNavItem, RvnSelectInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
 
 
 @Component({

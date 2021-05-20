@@ -3,9 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, Observable, Subject } from 'rxjs';
 import { isNullOrUndefined, CreateOrEdit } from '@abdulraheemabid/rvn-pkg-ng-core';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
-import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IForm, IRecord } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 
 @Component({
   selector: 'record-screen',

@@ -4,10 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { isNullOrUndefined, RvnButtonInput, RvnCardInput, RvnDialogService, RvnInputInput, RvnTableInput } from '@abdulraheemabid/rvn-pkg-ng-core';
-import { IForm, IRecord } from 'src/app/@shared/rvn-forms/types';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
+import { FormApiService, RecordDeleteConfirmComponent } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IRecord, IForm } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { AppService } from 'src/app/app.service';
-import { RecordDeleteConfirmComponent } from '../../../@shared/rvn-forms/components/record-delete-confirm/record-delete-confirm.component';
 
 @Component({
   selector: 'record-list-screen',

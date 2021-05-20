@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject } from 'rxjs';
-import { IForm } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
 import { switchMap } from 'rxjs/operators';
 import { RvnSnackBarService, CreateOrEdit, RvnButtonInput, isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IForm } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 
 @Component({
   selector: 'form-screen',
