@@ -33,3 +33,11 @@
     flex-direction: column;
     padding: 20px;
 }
+
+.rvn-menu-items {
+    ::ng-deep {
+        .rvn-ui-control {
+            min-height: auto;
+        }
+    }
+}

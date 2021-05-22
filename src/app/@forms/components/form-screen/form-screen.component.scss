@@ -6,9 +6,11 @@
     column-gap: $space-xl;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "definition preview";
+    margin-top:  calc(#{$space-xl} * -1);
 
     .definition {
         grid-area: definition;
+        margin: $space-xl 0;
 
         ::ng-deep {
             .container {
@@ -34,9 +36,8 @@
         .button {
             grid-area: button;
             padding-bottom: $space-xs;
-            margin-left: auto;
             width: max-content;
-            padding: $space-xl 0;
+            margin: $space-xl 0 $space-xl auto;
         }
 
         .renderer {
