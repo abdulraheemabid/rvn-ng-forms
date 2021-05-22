@@ -11,8 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@abdulraheemabid/rvn-pkg-ng-core": "0.2.0",
-    "@abdulraheemabid/rvn-pkg-ng-forms": "0.2.0",
+    "@abdulraheemabid/rvn-pkg-ng-core": "file:dist/rvn-core",
+    "@abdulraheemabid/rvn-pkg-ng-forms": "file:dist/rvn-forms",
     "@angular/animations": "~11.2.10",
     "@angular/cdk": "^11.2.9",
     "@angular/common": "~11.2.10",

@@ -33,17 +33,3 @@
     flex-direction: column;
     padding: 20px;
 }
-
-.route-container {
-    padding: 5vh;
-    max-width: 1600px;
-    margin: auto;
-
-    .outlet {
-        display: grid;
-        grid-template-columns: 100%;
-        justify-content: center;
-        height: 100%;
-        grid-template-rows: 0fr 1fr;
-    }
-}
