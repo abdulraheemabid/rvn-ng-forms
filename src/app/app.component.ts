@@ -69,7 +69,8 @@ export class AppComponent implements OnInit {
     this.sideBarLinks = [...fixedLinks];
 
     this.formApiService.getForms().subscribe(forms =>{
-      this.appService.formLinks$.next(forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records` } }));
+       //TODO: hardcoded showDividerBelow: form.name === "Products"
+      this.appService.formLinks$.next(forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records`, showDividerBelow: form.name === "Products" } }));
     })
 
     this.appService.formLinks$.subscribe(links => {
