@@ -34,23 +34,11 @@
     </div>
 
     <div class="tree" *ngIf="forms.length > 0">
-        <rvn-card [config]="{title: 'Forms Relations'}" *ngIf="initDone">
-
-            <div content class="legends">
-                <div class="legend">
-                    <span class="legend-box primary-bg"></span>
-                    <span>Root Forms</span>
-                </div>
-                <div class="legend">
-                    <span class="legend-box accent-bg"></span>
-                    <span>Leaf Forms</span>
-                </div>
-            </div>
-
-            <div content class="tree-content">
-                <rvn-org-chart class="chart" *ngFor="let tree of formTrees; let i=index" [config]="treeConfigs[i]">
-                </rvn-org-chart>
-            </div>
+        <rvn-card [config]="{title: 'Forms Relations'}" *ngIf="initDone">s
+            <rvn-button headerAction (click)="openDeleteFormTreeDialog()"
+                [config]="{'icon': 'open_in_new', type: 'icon', tooltipMessage: 'Open in dialog'}" class="rvn-icon-button-small">
+            </rvn-button>
+            <form-tree-list content [forms]="forms" [formTrees]="formTrees"></form-tree-list>
         </rvn-card>
     </div>
 

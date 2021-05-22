@@ -9,6 +9,7 @@ import { RecordListScreenComponent } from './components/record-list-screen/recor
 import { RecordScreenComponent } from './components/record-screen/record-screen.component';
 import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { RvnFormsModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { FormTreeListComponent } from './components/form-tree-list/form-tree-list.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RvnFormsModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
     FormListScreenComponent,
     RecordListScreenComponent,
     RecordScreenComponent,
+    FormTreeListComponent,
   ],
   imports: [
     CommonModule,

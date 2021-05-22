@@ -1,11 +1,10 @@
 @import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
-@import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/width";
 
 .container {
     display: grid;
     gap: $space-xl;
     align-items: start;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 2fr 2fr;
     grid-template-areas:
         "search button button"
         "list list tree";
@@ -39,26 +38,5 @@
     .tree {
         grid-area: tree;
         overflow: auto;
-
-        .tree-content {
-            display: flex;
-            flex-direction: column;
-            overflow: auto;
-        }
-
-        .legends {
-            display: flex;
-            justify-content: space-evenly;
-            margin-bottom: $space-m;
-            .legend {
-                margin-bottom: $space-s;
-                .legend-box {
-                    display: inline-block;
-                    height: $space-m;
-                    width: $space-m;
-                    margin-right: $space-s;
-                }
-            }
-        }
     }
 }
