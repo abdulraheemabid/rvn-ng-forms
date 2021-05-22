@@ -1,25 +1,97 @@
+@import "./../../../.././../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
+
 .container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-m;
+
+    ::ng-deep {
+        mat-card {
+            height: 100%;
+        }
+    }
 
     .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        column-gap: 40px;
+        column-gap: $space-xxl;
     }
 
     .sub-container {
-        padding: 40px;
-        max-width: 800px;
+        padding: $space-l;
         margin: auto;
     }
 
-    .snacks {
-        display: flex;
-        flex-wrap: wrap;
-        rvn-button {
-            margin-right: 10px;
-            margin-bottom: 10px;
+    .ssnackbar {
+        grid-column: 1;
+        grid-row: 2 / 3;
+        .snacks {
+            display: flex;
+            flex-wrap: wrap;
+            rvn-button {
+                margin-right: $space-s;
+                margin-bottom: $space-s;
+            }
         }
     }
+
+    .forms {
+        grid-column: 1;
+        grid-row: 1 / 2;
+    }
+
+    .buttons {
+        grid-column: 2;
+        grid-row: 1 / 4;
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .list {
+        .list-item {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .dense {
+            margin-top: $space-xxl;
+        }
+    }
+
+    .menu {
+        grid-column: 1;
+        grid-row: 3 / 4;
+
+        .sub-container {
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .menu-btn {
+            height: $space-xxl;
+            width: $space-xxl;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: flex;
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .card {
+        .card-btn {
+            margin-right: $space-s;
+        }
+    }
+}
+
+.menu-btn-content {
+    display: flex;
+    flex-direction: column;
 }

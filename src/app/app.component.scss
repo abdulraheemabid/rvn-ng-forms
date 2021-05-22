@@ -10,10 +10,6 @@
         margin-bottom: $space-l;
         display: block;
     }
-    .form-links {
-        overflow: auto;
-        height: 100px;
-    }
 
     .spacer {
         flex: 1 1 0;
@@ -31,7 +27,7 @@
 .menu-items {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: $space-l;
 }
 
 .rvn-menu-items {
