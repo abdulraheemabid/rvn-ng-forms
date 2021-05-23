@@ -14,8 +14,8 @@ import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private overlayContainer: OverlayContainer, 
-    private appService: AppService, 
+    private overlayContainer: OverlayContainer,
+    private appService: AppService,
     private styleService: RvnStyleService,
     private formApiService: FormApiService) { }
 
@@ -68,12 +68,15 @@ export class AppComponent implements OnInit {
     const fixedLinks = [{ displayName: "Demo", routeURL: '/demo' }, { displayName: "All Forms", routeURL: '/forms', showDividerBelow: true }];
     this.sideBarLinks = [...fixedLinks];
 
-    this.formApiService.getForms().subscribe(forms =>{
-       //TODO: hardcoded showDividerBelow: form.name === "Products"
-      this.appService.formLinks$.next(forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records`, showDividerBelow: form.name === "Products" } }));
+    this.formApiService.getForms().subscribe(forms => {
+      this.appService.formLinks$.next(forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records`, showDividerBelow: false } }));
     })
 
     this.appService.formLinks$.subscribe(links => {
+      //TODO: hardcoded showDividerBelow: form.name === "Products"
+      let index = links.findIndex(l => l.displayName === "Products")
+      if (index != -1) links[index].showDividerBelow = true;
+
       this.sideBarLinks = [...fixedLinks, ...links];
     });
   }
