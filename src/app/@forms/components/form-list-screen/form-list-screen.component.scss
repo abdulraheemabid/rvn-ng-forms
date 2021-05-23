@@ -40,3 +40,12 @@
         overflow: auto;
     }
 }
+
+@media (max-width: 1366px) {
+    .container {
+        grid-template-areas:
+            "search button button"
+            "list list list"
+            "tree tree tree";
+    }
+}
