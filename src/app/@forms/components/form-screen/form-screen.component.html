@@ -1,17 +1,20 @@
 <div class="container" *ngIf="mode && initDone">
     <div class="definition">
-        <form-definition content [mode]="mode" [form]="formDefinition" [formsList]="formsList"
-            [markFGAsDirtySubject$]="markFormDefinitionFGAsDirty$"
+        <form-definition content
+            [config]="{mode: mode, formsList: formsList, form: formDefinition, markFGAsDirtySubject$: markFormDefinitionFGAsDirty$}"
             (formDefinitionUpdate)="onFormDeifitionUpdate($event)"></form-definition>
     </div>
-    <div class="button">
-        <rvn-button (onClick)="saveForm()" [config]="submitButtonConfig" [disabled]="formDefinitionFG.pristine">
-            Save Form
-        </rvn-button>
-    </div>
     <div class="preview">
-        <rvn-card [config]="{title: 'Form Preview'}">
-            <form-renderer content *ngIf="formDefinition" [config]="{formDefinition: formDefinition}"></form-renderer>
-        </rvn-card>
+        <div class="button">
+            <rvn-button (onClick)="saveForm()" [config]="submitButtonConfig" [disabled]="formDefinitionFG.pristine">
+                Save Form
+            </rvn-button>
+        </div>
+        <div class="renderer">
+            <rvn-card [config]="{title: 'Form Preview'}">
+                <form-renderer content *ngIf="formDefinition" [config]="{formDefinition: formDefinition}">
+                </form-renderer>
+            </rvn-card>
+        </div>
     </div>
 </div>

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Location } from '@angular/common'
-import { IForm } from './@shared/rvn-forms/types';
-import { RvnNavItem } from './@shared/rvn-core/components/rvn-nav-list/rvn-nav-list.input';
+import { RvnNavItem } from '@abdulraheemabid/rvn-pkg-ng-core';
 
 @Injectable({
   providedIn: 'root'

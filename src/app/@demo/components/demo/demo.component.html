@@ -2,7 +2,7 @@
 
     <!-- FORMS -->
 
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'FORMS'}">
+    <rvn-card class="forms" [config]="{'title': 'FORMS'}">
 
         <div class="sub-container grid" content>
             <div class="form-field-container">
@@ -48,11 +48,11 @@
 
     <!-- BUTTONS -->
 
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'BUTTONS'}">
+    <rvn-card class="buttons" [config]="{'title': 'BUTTONS'}">
         <div content>
             <div class="sub-container">
                 <h2>Primary</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{color: 'primary'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{color: 'accent'}">Button</rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{color: 'warn'}">Button</rvn-button>
@@ -64,7 +64,7 @@
 
             <div class="sub-container">
                 <h2>Secondary</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{color: 'primary', type: 'secondary'}">Button
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{color: 'accent', type: 'secondary'}">
@@ -83,7 +83,7 @@
 
             <div class="sub-container">
                 <h2>Tertiary</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{color: 'primary',type: 'tertiary'}">
                         Button
                     </rvn-button>
@@ -103,7 +103,7 @@
 
             <div class="sub-container">
                 <h2>Icon</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'primary', type: 'icon'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'accent', type: 'icon'}">
@@ -120,7 +120,7 @@
 
             <div class="sub-container">
                 <h2>Icon-Text-Parimary</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()"
                         [config]="{'icon': 'home', color: 'primary', type: 'icon-text-primary'}">
                         Button
@@ -144,7 +144,7 @@
 
             <div class="sub-container">
                 <h2>Icon-Text-Secondary</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()"
                         [config]="{'icon': 'home', color: 'primary', type: 'icon-text-secondary'}">
                         Button
@@ -168,7 +168,7 @@
 
             <div class="sub-container">
                 <h2>FAB</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'primary', type: 'fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'accent', type: 'fab'}">
@@ -185,7 +185,7 @@
 
             <div class="sub-container">
                 <h2>Mini-FAB</h2>
-                <div style="display: flex; justify-content: space-between;">
+                <div class="button-row">
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'primary', type: 'mini-fab'}">
                     </rvn-button>
                     <rvn-button (onClick)="onClick()" [config]="{'icon': 'home', color: 'accent', type: 'mini-fab'}">
@@ -201,125 +201,9 @@
         </div>
     </rvn-card>
 
-
-    <!-- CARD -->
-
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'CARD'}">
-
-        <div class="sub-container" content>
-            <rvn-card
-                [config]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
-
-                <rvn-button headerAction (onClick)="onClick()"
-                    [config]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
-                </rvn-button>
-
-                <div content>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
-                        hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
-                        printertook agalleyof type and scrambled it to make a type specimen book. It has
-                        survived not only fivecenturies,but also the leap into electronic typesetting,
-                        remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
-                        Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
-                        publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
-                </div>
-                <div footer>
-                    <rvn-button style="margin-right: 10px;" [config]="{color: 'primary'}">Button</rvn-button>
-                    <rvn-button [config]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
-                </div>
-            </rvn-card>
-        </div>
-
-    </rvn-card>
-
-    <!-- MENU -->
-
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'MENU'}">
-
-        <div class="sub-container" style="display: flex; justify-content: space-evenly;" content>
-            <rvn-menu style="margin-bottom: 100px;">
-                <rvn-button button>Button</rvn-button>
-                <div content>
-                    <ol>
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                    </ol>
-                </div>
-            </rvn-menu>
-
-            <rvn-menu style="margin-bottom: 100px;">
-                <rvn-button button [config]="{type: 'icon', icon: 'more_vert'}">Button</rvn-button>
-                <div content>
-                    ANY CUSTOM CONTENT
-                    <br />
-                    YOU LIKE
-                </div>
-            </rvn-menu>
-
-            <rvn-menu style="margin-bottom: 100px;">
-                <div button
-                    style="height:50px;width:50px;background-color:#bbb;border-radius:50%;display:flex;cursor:pointer;justify-content:center;align-items:center;">
-                    M
-                </div>
-                <div content style="display: flex; flex-direction: column;">
-                    <rvn-button [config]="{'type': 'tertiary'}">Menu 1</rvn-button>
-                    <rvn-button [config]="{'type': 'tertiary'}">Menu 2</rvn-button>
-                    <rvn-button [config]="{'type': 'tertiary'}">Menu 3</rvn-button>
-                </div>
-            </rvn-menu>
-        </div>
-
-    </rvn-card>
-
-    <!-- ACCORDION -->
-
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'ACCORDION'}">
-
-        <div class="sub-container" content>
-            <rvn-accordion>
-                <rvn-accordion-panel [config]="{hasActionContent: true, expanded: true}">
-                    <span title>My Title</span>
-                    <div content>
-                        <p>Content line</p>
-                        <p>Content line</p>
-                        <p>Content line</p>
-                        <p>Content line</p>
-                        <p>Content line</p>
-                        <p>Content line</p>
-                    </div>
-                    <rvn-button actionContent [config]="{type: 'tertiary', color: 'primary'}">Action Button</rvn-button>
-                </rvn-accordion-panel>
-            </rvn-accordion>
-        </div>
-
-    </rvn-card>
-
-    <!-- SNACKBAR -->
-
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'SNACKBARS'}">
-
-        <div class="sub-container snacks" content>
-            <rvn-button (click)="openSnackBar({message: 'hello'})" [config]="{color: 'primary'}">Message</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})"
-                [config]="{color: 'primary'}">Message & action</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [config]="{color: 'primary'}">1 sec
-                duration</rvn-button>
-            <rvn-button
-                (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})"
-                [config]="{color: 'primary'}">Left Bottom</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})"
-                [config]="{color: 'primary'}">Manual Dismiss</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})"
-                [config]="{color: 'primary'}">Custom BG</rvn-button>
-            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'color-white', 'text-bold']})"
-                [config]="{color: 'primary'}">Error</rvn-button>
-        </div>
-
-    </rvn-card>
-
     <!-- LIST -->
 
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'LIST'}">
+    <rvn-card class="list" [config]="{'title': 'LIST'}">
 
         <div content>
 
@@ -329,9 +213,7 @@
                 </rvn-list>
 
                 <ng-template #actions let-listItem="listItem">
-                    <div style="display: flex; justify-content: flex-end;">
-                        <rvn-button (onClick)="onClick(listItem)" [config]="{'icon': 'pageview', type: 'icon'}">
-                        </rvn-button>
+                    <div class="list-item">
                         <rvn-button (onClick)="onClick(listItem)" [config]="{'icon': 'edit',  type: 'icon'}">
                         </rvn-button>
                         <rvn-button (onClick)="onClick(listItem)"
@@ -344,7 +226,7 @@
                 </ng-template>
             </div>
 
-            <div style="margin-top: 50px;">
+            <div class="dense">
                 <h3>Dense</h3>
                 <rvn-list
                     [config]="{list: [{a: 'item 1', b: 'des item 1'},{a: 'item 2', b: 'des item 2'}], lineOneKey: 'a', lineTwoKey: 'b', icon: 'assignment', actionTemplateRef: actions, dense: true}">
@@ -370,9 +252,133 @@
         </div>
     </rvn-card>
 
+
+    <!-- CARD -->
+
+    <rvn-card class="card" [config]="{'title': 'CARD'}">
+
+        <div class="sub-container" content>
+            <rvn-card
+                [config]="{'headerIcon': 'border_all', 'title': 'My Title', 'subtitle': 'Something long subtitle'}">
+
+                <rvn-button headerAction (onClick)="onClick()"
+                    [config]="{'icon': 'home', type: 'mini-fab', color: 'accent'}">
+                </rvn-button>
+
+                <div content>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum
+                        hasbeenthe industry's standard dummy text ever since the 1500s, when an unknown
+                        printertook agalleyof type and scrambled it to make a type specimen book. It has
+                        survived not only fivecenturies,but also the leap into electronic typesetting,
+                        remaining essentially unchanged. Itwaspopularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsumpassages,and more recently with desktop
+                        publishing software like Aldus PageMaker includingversionsofLorem Ipsum.</p>
+                </div>
+                <div footer>
+                    <rvn-button class="card-btn" [config]="{color: 'primary'}">Button</rvn-button>
+                    <rvn-button [config]="{ type: 'secondary', color: 'primary'}">Button</rvn-button>
+                </div>
+            </rvn-card>
+        </div>
+
+    </rvn-card>
+
+    <!-- MENU -->
+
+    <rvn-card class="menu" [config]="{'title': 'MENU'}">
+
+        <div class="sub-container" content>
+            <rvn-menu>
+                <rvn-button button>Button</rvn-button>
+                <div content>
+                    <ol>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ol>
+                </div>
+            </rvn-menu>
+
+            <rvn-menu>
+                <rvn-button button [config]="{type: 'icon', icon: 'more_vert'}">Button</rvn-button>
+                <div content>
+                    ANY CUSTOM CONTENT
+                    <br />
+                    YOU LIKE
+                </div>
+            </rvn-menu>
+
+            <rvn-menu>
+                <div button class="menu-btn">M</div>
+                <div content  class="menu-btn-content">
+                    <rvn-button [config]="{'type': 'tertiary'}">Menu 1</rvn-button>
+                    <rvn-button [config]="{'type': 'tertiary'}">Menu 2</rvn-button>
+                    <rvn-button [config]="{'type': 'tertiary'}">Menu 3</rvn-button>
+                </div>
+            </rvn-menu>
+        </div>
+
+    </rvn-card>
+
+    <!-- ACCORDION -->
+
+    <rvn-card [config]="{'title': 'ACCORDION'}">
+
+        <div class="sub-container" content>
+            <rvn-accordion>
+                <rvn-accordion-panel [config]="{hasActionContent: true, expanded: true}">
+                    <span title>My Title</span>
+                    <div content>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                    </div>
+                    <rvn-button actionContent [config]="{type: 'tertiary', color: 'accent'}">Action Button</rvn-button>
+                </rvn-accordion-panel>
+                <rvn-accordion-panel [config]="{hasActionContent: true, expanded: false}">
+                    <span title>My Title</span>
+                    <div content>
+                        <p>Content line</p>
+                        <p>Content line</p>
+                      
+                    </div>
+                    <rvn-button actionContent [config]="{type: 'tertiary', color: 'accent'}">Action Button</rvn-button>
+                </rvn-accordion-panel>
+            </rvn-accordion>
+        </div>
+
+    </rvn-card>
+
+    <!-- SNACKBAR -->
+
+    <rvn-card class="ssnackbar" [config]="{'title': 'SNACKBARS'}">
+
+        <div class="sub-container snacks" content>
+            <rvn-button (click)="openSnackBar({message: 'hello'})" [config]="{color: 'primary'}">Message</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'action'})"
+                [config]="{color: 'primary'}">Message & action</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', duration: 1000})" [config]="{color: 'primary'}">1 sec
+                duration</rvn-button>
+            <rvn-button
+                (click)="openSnackBar({message: 'hello', horizontalPosition: 'left', verticalPosition: 'bottom'})"
+                [config]="{color: 'primary'}">Left Bottom</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', actionMessage: 'Dismiss', duration: null})"
+                [config]="{color: 'primary'}">Manual Dismiss</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['accent-bg']})"
+                [config]="{color: 'primary'}">Custom BG</rvn-button>
+            <rvn-button (click)="openSnackBar({message: 'hello', panelClass: ['warn-bg', 'color-white', 'text-bold']})"
+                [config]="{color: 'primary'}">Error</rvn-button>
+        </div>
+
+    </rvn-card>
+
+
+
     <!-- TABLE -->
 
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'TABLE'}">
+    <rvn-card [config]="{'title': 'TABLE'}">
 
         <div content>
             <rvn-table [config]="tableConfig">
@@ -396,7 +402,7 @@
     <!-- ORG chart -->
 
 
-    <rvn-card style="margin-bottom: 100px;" [config]="{'title': 'ORG Chart'}">
+    <rvn-card [config]="{'title': 'ORG Chart'}">
 
         <div content>
             <rvn-org-chart [config]="orChartConfig"></rvn-org-chart>

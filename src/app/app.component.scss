@@ -1,4 +1,4 @@
-@import "./@shared/rvn-core/styles/variables/spacing";
+@import "../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
 
 .sidenav-content {
     display: flex;
@@ -9,10 +9,6 @@
     .main-divider {
         margin-bottom: $space-l;
         display: block;
-    }
-    .form-links {
-        overflow: auto;
-        height: 100px;
     }
 
     .spacer {
@@ -31,19 +27,13 @@
 .menu-items {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: $space-l;
 }
 
-.route-container {
-    padding: 5vh;
-    max-width: 1600px;
-    margin: auto;
-
-    .outlet {
-        display: grid;
-        grid-template-columns: 100%;
-        justify-content: center;
-        height: 100%;
-        grid-template-rows: 0fr 1fr;
+.rvn-menu-items {
+    ::ng-deep {
+        .rvn-ui-control {
+            min-height: auto;
+        }
     }
 }

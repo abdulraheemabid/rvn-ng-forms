@@ -1,16 +1,12 @@
+import { RvnDialogService, RvnListInput, RvnButtonInput, RvnInputInput, RvnCardInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IForm, IFormRelation } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { forkJoin, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { RvnCardInput } from 'src/app/@shared/rvn-core/components/rvn-card/rvn-card.input';
-import { RvnInputInput } from 'src/app/@shared/rvn-core/components/rvn-input/rvn-input.input';
-import { RvnListInput } from 'src/app/@shared/rvn-core/components/rvn-list/rvn-list.input';
-import { RvnOrgChartInput } from 'src/app/@shared/rvn-core/components/rvn-org-chart/rvn-org-chart.input';
-import { RvnDialogService } from 'src/app/@shared/rvn-core/services/rvn-dialog/rvn-dialog.service';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
-import { IForm, IFormRelation } from 'src/app/@shared/rvn-forms/types';
 import { AppService } from 'src/app/app.service';
+import { FormTreeListComponent } from '../form-tree-list/form-tree-list.component';
 
 @Component({
   selector: 'form-list',
@@ -32,8 +28,6 @@ export class FormListScreenComponent implements OnInit {
   listConfig: RvnListInput = { list: [], lineOneKey: 'name', lineTwoKey: '__dateMerged', icon: 'assignment', actionTemplateRef: null, dense: true }
   newFormButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
   searchFormConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
-  treeConfigTemplate: RvnOrgChartInput = { rootStyleClass: "primary-bg color-white", leafStyleClass: "accent-bg color-black", useLookUpWithId: true, keyForLabel: "name" } as any;
-  treeConfigs: RvnOrgChartInput[] = [];
   cardConfig: RvnCardInput = {}
   searchFC = new FormControl("");
   initDone: boolean = false;
@@ -53,8 +47,9 @@ export class FormListScreenComponent implements OnInit {
       this.listConfig.list = this.filteredForms;
       this.listConfig.actionTemplateRef = this.actionsTemplate;
       this.cardConfig.title = `Total: ${this.forms.length}`;
-      this.setTreeConfigs(results[1]);
+      this.formTrees = results[1];
       this.updateAppSideBarLinks();
+      this.initDone = true;
     });
 
 
@@ -66,20 +61,6 @@ export class FormListScreenComponent implements OnInit {
     this.appService.formLinks$.next(this.forms.map(form => { return { form, displayName: form.name, routeURL: `forms/${form.id}/records` } }));
   }
 
-  setTreeConfigs(formRelation: IFormRelation[]) {
-    this.treeConfigs = [];
-    this.formTrees = formRelation;
-    this.formTrees.forEach(tree => {
-      this.treeConfigs.push(
-        {
-          ...this.treeConfigTemplate,
-          data: tree,
-          lookUpData: this.forms
-        }
-      )
-    });
-    this.initDone = true;
-  }
 
   filterFormBySeach(searchTerm: string) {
     this.filteredForms = [...this.forms.filter(form => form.name.toLowerCase().includes(searchTerm.toLowerCase()))];
@@ -112,6 +93,18 @@ export class FormListScreenComponent implements OnInit {
       .subscribe(val => {
         if (val) this.ngOnInit();
       })
+  }
+
+  openDeleteFormTreeDialog() {
+    let dialog = this.dialogService.openComponentDialog({
+      component: FormTreeListComponent,
+      title: `Forms Relations`,
+      showActionBtns: false,
+      componentInputs: [
+        { key: 'forms', value: this.forms },
+        { key: 'formTrees', value: this.formTrees },
+      ]
+    });
   }
 
 }

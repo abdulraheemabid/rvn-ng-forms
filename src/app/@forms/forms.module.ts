@@ -5,10 +5,11 @@ import { FormsRoutingModule } from './forms-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormListScreenComponent } from './components/form-list-screen/form-list-screen.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RvnComponentsModule } from '../@shared/rvn-core/components.module';
 import { RecordListScreenComponent } from './components/record-list-screen/record-list-screen.component';
 import { RecordScreenComponent } from './components/record-screen/record-screen.component';
-import { RvnFormsModule } from '../@shared/rvn-forms/forms.module';
+import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { RvnFormsModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { FormTreeListComponent } from './components/form-tree-list/form-tree-list.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RvnFormsModule } from '../@shared/rvn-forms/forms.module';
     FormListScreenComponent,
     RecordListScreenComponent,
     RecordScreenComponent,
+    FormTreeListComponent,
   ],
   imports: [
     CommonModule,

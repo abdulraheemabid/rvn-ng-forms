@@ -9,9 +9,10 @@ import { NotificationInterceptor } from './interceptors/notification/notificatio
 import { SpinnerInterceptor } from './interceptors/spinner/spinner.interceptor';
 import { DataExtractionInterceptor } from './interceptors/data-extraction/data-extraction.interceptor';
 import { environment } from 'src/environments/environment';
-import { RvnComponentsModule } from './@shared/rvn-core/components.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RvnServicesModule } from './@shared/rvn-forms/forms-service.module';
+import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { BoolDefinitionRendererComponent, BoolInputRendererComponent, BoolValueRendererComponent, RvnServicesModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +24,20 @@ import { RvnServicesModule } from './@shared/rvn-forms/forms-service.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RvnComponentsModule,
-    RvnServicesModule.forRoot({
-      restBaseUrl: environment.restBaseUrl
-    }),
+    RvnServicesModule.forRoot(
+      { restBaseUrl: environment.restBaseUrl },
+      //Example: override typemeta config for any type
+      // {
+      //   bool: {
+      //     typeDisplayName: "Boolean",
+      //     inputRenderers: [
+      //       { UIControl: "TOGGLE", renderer: BoolInputRendererComponent },
+      //     ],
+      //     valueRenderers: [{ renderer: BoolValueRendererComponent }],
+      //     definitionRenderer: BoolDefinitionRendererComponent
+      //   }
+      // } as any
+    ),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },

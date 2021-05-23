@@ -1,0 +1,33 @@
+@import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
+
+.container {
+    overflow: auto;
+
+    .tree-content {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+    }
+
+    .legends {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $space-m;
+
+        .legend {
+            margin-bottom: $space-s;
+            display: flex;
+            align-items: center;
+
+            .legend-box {
+                display: inline-block;
+                height: $space-m;
+                width: $space-m;
+                margin-right: $space-s;
+            }
+        }
+    }
+    .divider {
+        margin: $space-xl;
+    }
+}

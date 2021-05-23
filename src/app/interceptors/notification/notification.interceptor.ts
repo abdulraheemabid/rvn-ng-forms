@@ -7,11 +7,9 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
-import { I } from '@angular/cdk/keycodes';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
+import { isNullOrUndefined, RvnSnackBarService } from '@abdulraheemabid/rvn-pkg-ng-core';
 
 @Injectable()
 export class NotificationInterceptor implements HttpInterceptor {

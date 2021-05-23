@@ -1,35 +1,55 @@
-@import "../../../@shared/rvn-core/styles/variables/spacing";
+@import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
+@import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/width";
 
 .container {
     display: grid;
     column-gap: $space-xl;
-    grid-template: auto 1fr / 1fr 1fr;
-    grid-template-areas:
-        "definition button"
-        "definition preview";
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "definition preview";
+    margin-top:  calc(#{$space-xl} * -1);
 
     .definition {
         grid-area: definition;
-    }
+        margin: $space-xl 0;
 
-    .button {
-        grid-area: button;
-        padding-bottom: $space-xs;
-        margin-left: auto;
-
-        position: sticky;
-        //TODO: fix hardcoding.
-        top: 120px;
+        ::ng-deep {
+            .container {
+                .fields {
+                    .heading {
+                        position: sticky;
+                        top: calc(#{$app-content-padding} * -1);
+                        z-index: 2;
+                        padding: 0;
+                        padding: $space-xl 0;
+                    }
+                }
+            }
+        }
     }
 
     .preview {
         grid-area: preview;
-        ::ng-deep {
-            .container {
-                .card {
-                    position: sticky;
-                    //TODO: fix hardcoding.
-                    top: 175px;
+        position: sticky;
+        top: calc(#{$app-content-padding} * -1);
+        height: max-content;
+
+        .button {
+            grid-area: button;
+            padding-bottom: $space-xs;
+            width: max-content;
+            margin: $space-xl 0 $space-m auto;
+        }
+
+        .renderer {
+            ::ng-deep {
+                .content {
+                    overflow-y: auto;
+                }
+
+                form-renderer {
+                    .container {
+                        max-height: 65vh;
+                    }
                 }
             }
         }

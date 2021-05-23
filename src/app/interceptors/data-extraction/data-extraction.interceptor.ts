@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { IApiResponseWrapper } from 'src/app/@shared/rvn-core/utils/types';
+import { IApiResponseWrapper } from '@abdulraheemabid/rvn-pkg-ng-core';
 
 @Injectable()
 export class DataExtractionInterceptor implements HttpInterceptor {

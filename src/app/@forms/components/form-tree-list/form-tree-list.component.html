@@ -1,0 +1,20 @@
+<div class="container" *ngIf="initDone">
+    <div class="legends">
+        <div class="legend">
+            <span class="legend-box primary-bg"></span>
+            <span>Root Forms</span>
+        </div>
+        <div class="legend">
+            <span class="legend-box accent-bg"></span>
+            <span>Leaf Forms</span>
+        </div>
+    </div>
+
+    <div class="tree-content">
+        <ng-container *ngFor="let tree of formTrees; let i=index; let last=last">
+            <rvn-org-chart class="chart" [config]="treeConfigs[i]"></rvn-org-chart>
+            <rvn-divider class="divider" *ngIf="!last"></rvn-divider>
+        </ng-container>
+    </div>
+
+</div>

@@ -2,14 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of, Subject } from 'rxjs';
-import { IForm } from 'src/app/@shared/rvn-forms/types';
-import { CreateOrEdit } from 'src/app/@shared/rvn-core/utils/types';
 import { AppService } from 'src/app/app.service';
-import { RvnSnackBarService } from 'src/app/@shared/rvn-core/services/rvn-snack-bar/rvn-snack-bar.service';
-import { FormApiService } from 'src/app/@shared/rvn-forms/services/form-api/form-api.service';
-import { RvnButtonInput } from 'src/app/@shared/rvn-core/components/rvn-button/rvn-button.input';
-import { isNullOrUndefined } from 'src/app/@shared/rvn-core/utils/funtions.util';
 import { switchMap } from 'rxjs/operators';
+import { RvnSnackBarService, CreateOrEdit, RvnButtonInput, isNullOrUndefined } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { IForm } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 
 @Component({
   selector: 'form-screen',
