@@ -1,12 +1,9 @@
 @import "../../../../../node_modules/@abdulraheemabid/rvn-pkg-ng-core/styles/variables/spacing";
 
 .container {
-    overflow: auto;
-
     .tree-content {
         display: flex;
         flex-direction: column;
-        overflow: auto;
     }
 
     .legends {

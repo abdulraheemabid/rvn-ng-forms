@@ -10,8 +10,8 @@
         </record-table>
 
         <ng-template #actions let-row="row">
-            <rvn-button *ngFor="let childFormId of formDirectChildrenIds" (click)="viewChildRecords(row, childFormId)"
-                [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View Records (Form: ' + childFormId + ')'}"
+            <rvn-button *ngFor="let childFormId of formDirectChildren" (click)="viewChildRecords(row, childFormId)"
+                [config]="{'icon': 'view_list', type: 'icon', tooltipMessage: 'View ' + childFormId.name}"
                 class="rvn-icon-button-small">
             </rvn-button>
             <rvn-button (click)="editRecord(row)"

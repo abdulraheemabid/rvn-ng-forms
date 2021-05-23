@@ -23,9 +23,10 @@ export class RecordListScreenComponent implements OnInit {
 
   records: IRecord[] = [];
   filteredRecords: IRecord[] = [];
+  forms: IForm[];
   formId: number;
   formDefinition: IForm;
-  formDirectChildrenIds: number[] = [];
+  formDirectChildren: IForm[] = [];
   parentRecordId: number;
   tableConfig: RvnTableInput = { data: [], columnsToDisplay: [], useComponentFilter: false, noDataMessage: "No records found !", noDataOnFilterMessage: "No records founds matching the search criteria" }
   newRecordButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
@@ -51,16 +52,22 @@ export class RecordListScreenComponent implements OnInit {
 
   getData() {
     forkJoin([
+      this.formApiService.getForms(),
       this.formApiService.getForm(this.formId),
       this.formApiService.getRecords(this.formId, this.parentRecordId),
-      this.formApiService.getFormDirectChildren(this.formId)
+      this.formApiService.getFormDirectChildren(this.formId),
     ]
     ).subscribe(results => {
-      this.setFormDefinition(results[0]);
-      this.setRecords(results[1]);
-      this.formDirectChildrenIds = results[2];
+      this.forms = results[0];
+      this.setFormDefinition(results[1]);
+      this.setRecords(results[2]);
+      this.setFormChildrens(results[3], this.forms);
       this.cardConfig.title = `Total: ${this.records.length}`;
     })
+  }
+
+  setFormChildrens(childrenIds: number[], forms: IForm[]) {
+    this.formDirectChildren = childrenIds.map(id => forms.find(f => f.id === id));
   }
 
   setFormDefinition(form: IForm) {
@@ -105,7 +112,7 @@ export class RecordListScreenComponent implements OnInit {
   }
 
   deleteRecord(record: IRecord) {
-    if (this.formDirectChildrenIds.length === 0) {
+    if (this.formDirectChildren.length === 0) {
       this.openDeleteConfirmDialog(record);
     } else {
       this.openDeleteConfirmDialogWithParent(record)
@@ -167,8 +174,8 @@ export class RecordListScreenComponent implements OnInit {
     }
   }
 
-  viewChildRecords(record: IRecord, formId: number) {
-    this.appService.navigate(`forms/${formId}/records/${record.id}`);
+  viewChildRecords(record: IRecord, form: IForm) {
+    this.appService.navigate(`forms/${form.id}/records/${record.id}`);
   }
 
 }
