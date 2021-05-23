@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { BoolDefinitionRendererComponent, BoolInputRendererComponent, BoolValueRendererComponent, RvnServicesModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { CacheInterceptor } from './interceptors/cache/cache.interceptor';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { BoolDefinitionRendererComponent, BoolInputRendererComponent, BoolValueR
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: DataExtractionInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
