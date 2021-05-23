@@ -116,6 +116,5 @@ enum APIRequestName {
   GET_FORM,
   CREATE_FORM,
   UPDATE_FORM,
-  DELETE_FORM,
-
+  DELETE_FORM
 }
