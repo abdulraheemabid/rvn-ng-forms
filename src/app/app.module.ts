@@ -11,7 +11,7 @@ import { DataExtractionInterceptor } from './interceptors/data-extraction/data-e
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RvnComponentsModule } from '@abdulraheemabid/rvn-pkg-ng-core';
-import { RvnServicesModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
+import { BoolDefinitionRendererComponent, BoolInputRendererComponent, BoolValueRendererComponent, RvnServicesModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
 
 
 @NgModule({
@@ -24,9 +24,20 @@ import { RvnServicesModule } from '@abdulraheemabid/rvn-pkg-ng-forms';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RvnComponentsModule,
-    RvnServicesModule.forRoot({
-      restBaseUrl: environment.restBaseUrl
-    }),
+    RvnServicesModule.forRoot(
+      { restBaseUrl: environment.restBaseUrl },
+      //Example: override typemeta config for any type
+      // {
+      //   bool: {
+      //     typeDisplayName: "Boolean",
+      //     inputRenderers: [
+      //       { UIControl: "TOGGLE", renderer: BoolInputRendererComponent },
+      //     ],
+      //     valueRenderers: [{ renderer: BoolValueRendererComponent }],
+      //     definitionRenderer: BoolDefinitionRendererComponent
+      //   }
+      // } as any
+    ),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: NotificationInterceptor, multi: true },
