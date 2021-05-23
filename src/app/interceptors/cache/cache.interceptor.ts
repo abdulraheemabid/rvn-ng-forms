@@ -40,29 +40,28 @@ export class CacheInterceptor implements HttpInterceptor {
     return request.method === "GET" && !request.url.includes("record");
   }
 
-  getAPIType(request: HttpRequest<any>): APIRequestName {
+  getAPIType(request: HttpRequest<any>) {
     const url = request.url;
     const singleFormRegex = /\/forms\/\d+$/;
 
-    if (url.endsWith("/forms") && request.method === "GET") return APIRequestName.GET_FORMS;
+    if (url.endsWith("/forms") && request.method === "GET") return API_REQUEST_NAMES.GET_FORMS;
 
-    if (singleFormRegex.test(url) && request.method === "GET") return APIRequestName.GET_FORM;
-    if (url.endsWith("/forms") && request.method === "POST") return APIRequestName.CREATE_FORM;
-    if (singleFormRegex.test(url) && request.method === "PATCH") return APIRequestName.UPDATE_FORM;
-    if (singleFormRegex.test(url) && request.method === "DELETE") return APIRequestName.DELETE_FORM;
+    if (singleFormRegex.test(url) && request.method === "GET") return API_REQUEST_NAMES.GET_FORM;
+    if (url.endsWith("/forms") && request.method === "POST") return API_REQUEST_NAMES.CREATE_FORM;
+    if (singleFormRegex.test(url) && request.method === "PATCH") return API_REQUEST_NAMES.UPDATE_FORM;
+    if (singleFormRegex.test(url) && request.method === "DELETE") return API_REQUEST_NAMES.DELETE_FORM;
 
-    if (url.endsWith("/forms/trees/all")) return APIRequestName.GET_FORMS_TREE;
-    if (url.endsWith("/direct-children")) return APIRequestName.GET_FORM_DIRECT_CHILDREN;
+    if (url.endsWith("/forms/trees/all")) return API_REQUEST_NAMES.GET_FORMS_TREE;
+    if (url.endsWith("/direct-children")) return API_REQUEST_NAMES.GET_FORM_DIRECT_CHILDREN;
 
     return null;
   }
 
-  getCacheKeyName(type: APIRequestName, url: string = null): string {
+  getCacheKeyName(type: string, url: string = null): string {
     // not appending url for static paths
     switch (type) {
-      case APIRequestName.GET_FORMS: return APIRequestName.GET_FORMS.toString()
-      case APIRequestName.GET_FORMS_TREE: return APIRequestName.GET_FORMS_TREE.toString()
-      case APIRequestName.GET_FORM_DIRECT_CHILDREN: return APIRequestName.GET_FORM_DIRECT_CHILDREN.toString()
+      case API_REQUEST_NAMES.GET_FORMS: return API_REQUEST_NAMES.GET_FORMS.toString()
+      case API_REQUEST_NAMES.GET_FORMS_TREE: return API_REQUEST_NAMES.GET_FORMS_TREE.toString()
       default: return `${type} | ${url}`;
     }
   }
@@ -72,49 +71,58 @@ export class CacheInterceptor implements HttpInterceptor {
 
     const cachableType = this.getAPIType(request);
     let keysToInvalidate = [];
+    let partialKeysToInvalidate = [];
 
     switch (cachableType) {
-      case APIRequestName.CREATE_FORM:
+      case API_REQUEST_NAMES.CREATE_FORM:
         keysToInvalidate.push(
-          this.getCacheKeyName(APIRequestName.GET_FORMS),
-          this.getCacheKeyName(APIRequestName.GET_FORMS_TREE),
-          this.getCacheKeyName(APIRequestName.GET_FORM_DIRECT_CHILDREN)
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORMS),
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORMS_TREE),
+        );
+        partialKeysToInvalidate.push(API_REQUEST_NAMES.GET_FORM_DIRECT_CHILDREN);
+        break;
+      case API_REQUEST_NAMES.UPDATE_FORM:
+        keysToInvalidate.push(
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORM, request.url),
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORMS),
         );
         break;
-      case APIRequestName.UPDATE_FORM:
+      case API_REQUEST_NAMES.DELETE_FORM:
         keysToInvalidate.push(
-          this.getCacheKeyName(APIRequestName.GET_FORM, request.url),
-          this.getCacheKeyName(APIRequestName.GET_FORMS),
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORM, request.url),
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORMS),
+          this.getCacheKeyName(API_REQUEST_NAMES.GET_FORMS_TREE),
         );
-        break;
-      case APIRequestName.DELETE_FORM:
-        keysToInvalidate.push(
-          this.getCacheKeyName(APIRequestName.GET_FORM, request.url),
-          this.getCacheKeyName(APIRequestName.GET_FORMS),
-          this.getCacheKeyName(APIRequestName.GET_FORMS_TREE),
-          this.getCacheKeyName(APIRequestName.GET_FORM_DIRECT_CHILDREN)
-        );
+        partialKeysToInvalidate.push(API_REQUEST_NAMES.GET_FORM_DIRECT_CHILDREN);
         break;
     }
 
-    this.invalidateCache(keysToInvalidate);
+    this.invalidateCache(keysToInvalidate, partialKeysToInvalidate);
   }
 
-  invalidateCache(keys: string[]) {
-    keys.forEach(key => {
-      this.cache.delete(key);
-    });
+  invalidateCache(specificKeys: string[], partialKey: string[] = []) {
+
+    partialKey.forEach(partialKey => {
+      this.cache.forEach((value, key) => {
+        if (key.includes(partialKey))
+          specificKeys.push(key);
+      });
+    })
+
+    specificKeys.forEach(key => this.cache.delete(key));
+
+    console.log("cleard", this.cache);
   }
 
 }
 
-enum APIRequestName {
-  GET_FORMS,
-  GET_FORMS_TREE,
-  GET_FORM_DIRECT_CHILDREN,
+const API_REQUEST_NAMES = {
+  GET_FORMS: "GET_FORMS",
+  GET_FORMS_TREE: "GET_FORMS_TREE",
 
-  GET_FORM,
-  CREATE_FORM,
-  UPDATE_FORM,
-  DELETE_FORM
+  GET_FORM_DIRECT_CHILDREN: "GET_FORM_DIRECT_CHILDREN",
+  GET_FORM: "GET_FORM",
+  CREATE_FORM: "CREATE_FORM",
+  UPDATE_FORM: "UPDATE_FORM",
+  DELETE_FORM: "DELETE_FORM"
 }
