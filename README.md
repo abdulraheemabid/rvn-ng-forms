@@ -1,4 +1,19 @@
 # RvnNgForms
+This application is designed to create dynamic forms and to manage user entries. Following are its key features:
+1. Lets user create a form with any ammount of fields. Currently supported field types are:
+   1. Float
+   2. Integer
+   3. String
+   4. Date
+   5. Boolean
+   6. Multi-select
+   7. Single-select
+2. Creating a dynamic heirachy of forms by defining "parent form" of any form.
+3. Edit / delete any form.
+4. Creating records of any form by filling in the values.
+5. View nested records based on the hierarchy defined when creating forms.
+6. View / edit / delete records.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 

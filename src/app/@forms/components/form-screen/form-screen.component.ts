@@ -8,6 +8,16 @@ import { RvnSnackBarService, CreateOrEdit, RvnButtonInput, isNullOrUndefined } f
 import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
 import { IForm } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 
+/**
+ * This screen is used when creating or editing a form.
+ * 
+ * It brings in the form definition in case of editing.
+ * 
+ * It displayes two main components. `FormDefinitionComponent` & `FormRendererComponent`. 
+ * As user is creating or editing the form (attributes or fields), they will see live preview of how
+ * the end user will see the form when they are filling it.
+ * 
+ */
 @Component({
   selector: 'form-screen',
   templateUrl: './form-screen.component.html',

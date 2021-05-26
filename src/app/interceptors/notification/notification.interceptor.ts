@@ -11,6 +11,16 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { isNullOrUndefined, RvnSnackBarService } from '@abdulraheemabid/rvn-pkg-ng-core';
 
+/**
+ * This interceptor handles showing notifications for all API calls with are not GET calls.
+ * 
+ * It uses `RvnSnackBarService` from `rvn-pkg-ng-core` to show snack bar notifications.
+ * 
+ * If the call was successfull, depending on the api call, it will show relavant success message.
+ * 
+ * If the call was unsuccessfull, it will extract the error message from the response and show it in the message.
+ * Currently errors from API are shown directly and the app havnt used generic error messages, just like for admin tools.
+ */
 @Injectable()
 export class NotificationInterceptor implements HttpInterceptor {
 

@@ -2,6 +2,11 @@ import { RvnOrgChartInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm, IFormRelation } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { Component, Input, OnInit } from '@angular/core';
 
+/**
+ * This component shows the form parent/child heirarchy with a tree by using the
+ * organization chart from `rvn-core`
+ * 
+ */
 @Component({
   selector: 'form-tree-list',
   templateUrl: './form-tree-list.component.html',

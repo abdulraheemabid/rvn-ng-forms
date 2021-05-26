@@ -10,6 +10,11 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { IApiResponseWrapper } from '@abdulraheemabid/rvn-pkg-ng-core';
 
+/**
+ * Responses from all APIs follow `IApiResponseWrapper` interface. 
+ * Components are only interested in the `data` property, so we intercept the call
+ * and forward the `data` property only. 
+ */
 @Injectable()
 export class DataExtractionInterceptor implements HttpInterceptor {
 

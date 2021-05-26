@@ -9,6 +9,24 @@ import {
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+/**
+ * Cache interceptor manages its own cache repository for all `forms` related API calls.
+ * 
+ * Reason of creating a cache interceptor here and not handling it in service is that
+ * the API service resides in artifact `rvn-pkg-ng-forms` which potentially will be used in multiple apps.
+ * Now apps should decide what cache strategy they need to implement for their specific use case. If
+ * cache was handled in the service, apps with different cache strategy needs would have to use different versions
+ * of the package and that would lead to a lot of problems.
+ * 
+ * There is no specific requirement for cache in this app at the moment. 
+ * But some API calls are getting redundant, related to bring in list of forms, definitions and relations.
+ * And since these APIs responses are very less likely to change as compared to records, only these APIs are cached and not records responses.
+ * Because usually in a app like this, Creating/Editing/Deleting forms is a one time activity or are very less frequent, 
+ * but records are created rapidly.
+ * 
+ * APIs mentioned in the const below `API_REQUEST_NAMES` are cached only which are related to forms. And upon form create, delete or update,
+ * the cache gets invalidated and the next time these APIs are called, they are cached again.
+ */
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
 

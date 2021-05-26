@@ -7,6 +7,13 @@ import { AppService } from 'src/app/app.service';
 import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
 import { IForm, IRecord } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 
+/**
+ * This screen is displayed when user wants to create or edit a record for any form.
+ * The main component used in this screen is the `FormRendererComponent` from `rvn-core`.
+ * 
+ * This screen brings in data as per mode (create or edit) and gives that to 
+ * the child component which does the heavy lifting.
+ */
 @Component({
   selector: 'record-screen',
   templateUrl: './record-screen.component.html',

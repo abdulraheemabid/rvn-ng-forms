@@ -8,6 +8,19 @@ import { FormApiService, RecordDeleteConfirmComponent } from '@abdulraheemabid/r
 import { IRecord, IForm } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { AppService } from 'src/app/app.service';
 
+/**
+ * This screen displays all the records of a given form in a expandable grid. With each record, user gets the option to
+ * edit/delete it or view its children. Along with the option to create a new record for this form.
+ * 
+ * This component calls multiple APIs to bring in:
+ * 1. List of forms.
+ * 2. Form details for which we need to see the records of.
+ * 3. Children of the forms.
+ * 4. Records of the forms.
+ * 
+ * Some of the API calls are redundant and needs improvements from the Backend. 
+ * But this problem is currently solved by caching all the form related (1, 2 & 3 in this case) API calls by the interceptor.
+ */
 @Component({
   selector: 'record-list-screen',
   templateUrl: './record-list-screen.component.html',

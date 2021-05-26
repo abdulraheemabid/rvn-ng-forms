@@ -7,6 +7,13 @@ import { RvnStyleService, RvnNavItem, RvnSelectInput } from '@abdulraheemabid/rv
 import { FormApiService } from '@abdulraheemabid/rvn-pkg-ng-forms';
 
 
+/**
+ * AppComponent handles all the following global settings and layout of the app
+ * 1. showing loader
+ * 2. sidebar links
+ * 3. light/dark theme mode
+ * 4. form fields appearance accross the app
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

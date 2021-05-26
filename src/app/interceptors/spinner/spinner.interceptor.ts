@@ -11,6 +11,13 @@ import { Observable, throwError } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { catchError, tap } from 'rxjs/operators';
 
+/**
+ * This interceptor manages the counter for all in progress API calls and set
+ * the showLoader property in `AppService` accordingly.
+ * 
+ * It sets the `showLoader` to `true` on the first call that is sent, all requests which are sent increments the counter.
+ * On getting responses, the counter gets decremented and when the counter gets to 0, `showLoader` is set to false. 
+ */
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
 

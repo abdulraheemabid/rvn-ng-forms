@@ -8,6 +8,14 @@ import { switchMap } from 'rxjs/operators';
 import { AppService } from 'src/app/app.service';
 import { FormTreeListComponent } from '../form-tree-list/form-tree-list.component';
 
+/**
+ * It brings in all the forms from API and displays them in a list.
+ * Along with the forms heirarchy.
+ * 
+ * With each form user gets a option to edit/delete it or view its records.
+ * 
+ * Create new form button is also on this page.
+ */
 @Component({
   selector: 'form-list',
   templateUrl: './form-list-screen.component.html',

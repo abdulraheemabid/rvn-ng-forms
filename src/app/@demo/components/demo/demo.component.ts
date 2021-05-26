@@ -4,6 +4,10 @@ import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { AppService } from "src/app/app.service";
 
 
+/**
+ * Demos all base components defined in `rvn-core`. 
+ * This is a good place to visit when you are figuring out how to consume a base component from there.
+ */
 @Component({
   selector: 'demo',
   templateUrl: './demo.component.html',
