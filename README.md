@@ -14,7 +14,7 @@ This application is designed to create dynamic forms and to manage user entries.
 5. View nested records based on the hierarchy defined when creating forms.
 6. View / edit / delete records.
 
-
+------------------
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
 ## Development server
