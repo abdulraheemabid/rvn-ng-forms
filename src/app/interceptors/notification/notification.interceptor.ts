@@ -42,7 +42,7 @@ export class NotificationInterceptor implements HttpInterceptor {
     );
   }
 
-  getSuccessMessage(request: HttpRequest<any>) {
+  getSuccessMessage(request: HttpRequest<unknown>) {
     switch (request.method) {
       case "POST":
         return `${this.getFormOrRecord(request, true, false)} created`;
@@ -54,7 +54,7 @@ export class NotificationInterceptor implements HttpInterceptor {
     return "";
   }
 
-  getFailureMessage(request: HttpRequest<any>, error: any) {
+  getFailureMessage(request: HttpRequest<unknown>, error: HttpErrorResponse) {
     if (!isNullOrUndefined(error)) return this.getMessageFromErrorResponse(request, error);
 
     switch (request.method) {
@@ -70,7 +70,7 @@ export class NotificationInterceptor implements HttpInterceptor {
     return "";
   }
 
-  getMessageFromErrorResponse(request: HttpRequest<any>, error: any) {
+  getMessageFromErrorResponse(request: HttpRequest<unknown>, error: HttpErrorResponse) {
     if (!isNullOrUndefined(error?.error?.message)) {
       if (typeof error.error.message === "string") {
         return error.error.message;
@@ -84,7 +84,7 @@ export class NotificationInterceptor implements HttpInterceptor {
     return this.getFailureMessage(request, null);
   }
 
-  getFormOrRecord(request: HttpRequest<any>, firstCapped: boolean, plural: boolean) {
+  getFormOrRecord(request: HttpRequest<unknown>, firstCapped: boolean, plural: boolean) {
     let returnValue = "";
     returnValue = request.url.includes("record") ? "record" : "form";
     if (firstCapped) returnValue = returnValue.charAt(0).toUpperCase() + returnValue.slice(1);
@@ -92,7 +92,7 @@ export class NotificationInterceptor implements HttpInterceptor {
     return returnValue;
   }
 
-  showNotification(request: HttpRequest<any>) {
+  showNotification(request: HttpRequest<unknown>) {
     return request.method !== "GET"
   }
 }

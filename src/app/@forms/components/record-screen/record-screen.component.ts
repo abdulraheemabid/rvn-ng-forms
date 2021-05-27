@@ -45,7 +45,7 @@ export class RecordScreenComponent implements OnInit {
     this.formId = route.params["id"];
     this.setHeading();
 
-    let apisToCall: Observable<any>[] = [this.formApiService.getForm(this.formId)];
+    let apisToCall: Observable<unknown>[] = [this.formApiService.getForm(this.formId)];
 
     if (this.mode === "edit") {
       this.recordId = route.params["recordId"];
@@ -58,10 +58,10 @@ export class RecordScreenComponent implements OnInit {
 
     forkJoin(apisToCall).subscribe(
       results => {
-        this.form = results[0];
+        this.form = results[0] as IForm;
         this.setHeading(this.form.name);
 
-        if (!isNullOrUndefined(results[1])) this.record = results[1];
+        if (!isNullOrUndefined(results[1])) this.record = results[1] as IRecord;
 
         if (!isNullOrUndefined(this.form?.attributes?.parentForm?.formId))
           this.getParentData();

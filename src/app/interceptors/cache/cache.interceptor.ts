@@ -31,9 +31,9 @@ import { tap } from 'rxjs/operators';
 export class CacheInterceptor implements HttpInterceptor {
 
   constructor() { }
-  private cache: Map<string, HttpResponse<any>> = new Map();
+  private cache: Map<string, HttpResponse<unknown>> = new Map();
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     if (!this.isCachable(request)) {
       this.handleInvalidatingCache(request);
@@ -41,7 +41,7 @@ export class CacheInterceptor implements HttpInterceptor {
     }
 
     const cachableType = this.getAPIType(request);
-    const cachedResponse: HttpResponse<any> = this.cache.get(this.getCacheKeyName(cachableType, request.url));
+    const cachedResponse: HttpResponse<unknown> = this.cache.get(this.getCacheKeyName(cachableType, request.url));
     if (cachedResponse) return of(cachedResponse.clone());
 
     return next.handle(request).pipe(
@@ -54,11 +54,11 @@ export class CacheInterceptor implements HttpInterceptor {
     );
   }
 
-  isCachable(request: HttpRequest<any>) {
+  isCachable(request: HttpRequest<unknown>) {
     return request.method === "GET" && !request.url.includes("record");
   }
 
-  getAPIType(request: HttpRequest<any>) {
+  getAPIType(request: HttpRequest<unknown>) {
     const url = request.url;
     const singleFormRegex = /\/forms\/\d+$/;
 
@@ -84,7 +84,7 @@ export class CacheInterceptor implements HttpInterceptor {
     }
   }
 
-  handleInvalidatingCache(request: HttpRequest<any>) {
+  handleInvalidatingCache(request: HttpRequest<unknown>) {
     if (request.url.includes("record")) return;
 
     const cachableType = this.getAPIType(request);

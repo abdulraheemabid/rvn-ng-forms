@@ -1,4 +1,4 @@
-import { RvnOrgChartInput } from '@abdulraheemabid/rvn-pkg-ng-core';
+import { GenericObjectWithId, RvnOrgChartInput } from '@abdulraheemabid/rvn-pkg-ng-core';
 import { IForm, IFormRelation } from '@abdulraheemabid/rvn-pkg-ng-forms/lib/types';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -33,7 +33,7 @@ export class FormTreeListComponent implements OnInit {
         {
           ...this.treeConfigTemplate,
           data: tree,
-          lookUpData: this.forms
+          lookUpData: this.forms as unknown as GenericObjectWithId[]
         }
       )
     });

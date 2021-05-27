@@ -28,7 +28,7 @@ export class FormListScreenComponent implements OnInit {
     private formApiService: FormApiService,
     private dialogService: RvnDialogService) { }
 
-  @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<any>;
+  @ViewChild("actions", { static: true }) actionsTemplate: TemplateRef<unknown>;
 
   forms: IForm[] = [];
   formTrees: IFormRelation[] = [];

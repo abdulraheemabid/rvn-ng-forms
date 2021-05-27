@@ -34,7 +34,7 @@ export class AppService {
   /**
    * All screens should only use this method to navigate and not use router directly.
    */
-  navigate(path: string, params?: any) {
+  navigate(path: string, params?: unknown) {
     this.router.navigateByUrl(path, params);
   }
 

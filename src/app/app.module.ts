@@ -37,7 +37,7 @@ import { CacheInterceptor } from './interceptors/cache/cache.interceptor';
       //     valueRenderers: [{ renderer: BoolValueRendererComponent }],
       //     definitionRenderer: BoolDefinitionRendererComponent
       //   }
-      // } as any
+      // }
     ),
   ],
   providers: [
