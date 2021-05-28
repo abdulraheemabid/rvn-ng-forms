@@ -41,6 +41,7 @@ export class FormListScreenComponent implements OnInit {
   initDone: boolean = false;
 
   ngOnInit(): void {
+    this.initDone = false;
     this.appService.setToolBarHeading("Forms");
 
     forkJoin(
