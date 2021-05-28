@@ -35,26 +35,29 @@ export class RecordListScreenComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   records: IRecord[] = [];
+  parentRecordId: number;
   filteredRecords: IRecord[] = [];
-  forms: IForm[];
+
   formId: number;
+  forms: IForm[];
   formDefinition: IForm;
   formDirectChildren: IForm[] = [];
-  parentRecordId: number;
+
   tableConfig: RvnTableInput = { data: [], columnsToDisplay: [], useComponentFilter: false, noDataMessage: "No records found !", noDataOnFilterMessage: "No records founds matching the search criteria" }
   newRecordButtonConfig: RvnButtonInput = { type: 'icon-text-primary', icon: 'add', color: 'primary' };
   searchRecordConfig: RvnInputInput = { label: 'Search', type: 'text', styleVersion: 'v2', suffixIcon: 'search' };
   cardConfig: RvnCardInput = {}
-  searchFC = new FormControl("");
-  initDone: boolean = false;
   numberOfColumnsToAddInTable: number = 5;
+
   // in case of delete, we ask for new parent
   newParentIdFC: FormControl = new FormControl("", [Validators.required]);
+  searchFC = new FormControl("");
+  initDone: boolean = false;
 
   ngOnInit(): void {
     this.appService.setToolBarHeading("Records");
 
-    const route = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.initDone = false;
       this.formId = params["id"];
       this.parentRecordId = params["parentRecordId"];

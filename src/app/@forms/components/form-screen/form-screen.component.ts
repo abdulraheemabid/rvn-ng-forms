@@ -47,39 +47,44 @@ export class FormScreenComponent implements OnInit {
     const route = this.route.snapshot;
     this.mode = route.url[route.url.length - 1].path === "edit" ? "edit" : "create";
 
-    if (this.mode === "create") {
-      this.appService.setToolBarHeading("Create New Form");
+    if (this.mode === "create") this.handleInitForCreateMode();
+    else this.handleInitForEditMode(route);
+    
+  }
 
-      this.formApiService.getForms().subscribe(forms => {
-        this.formsList = forms;
+  handleInitForCreateMode() {
+    this.appService.setToolBarHeading("Create New Form");
+
+    this.formApiService.getForms().subscribe(forms => {
+      this.formsList = forms;
+      this.initDone = true;
+    });
+  }
+
+  handleInitForEditMode(route) {
+    this.appService.setToolBarHeading("Edit Form");
+    const formId = route.params["id"];
+
+    this.formApiService.getForm(formId).pipe(
+      switchMap(form => {
+        this.orignalFormName = form.name;
+        this.formDefinition = form;
+        return !isNullOrUndefined(form?.attributes?.parentForm?.formId) ?
+          this.formApiService.getForm(form.attributes.parentForm.formId) :
+          of(null);
+      })
+    ).subscribe(
+      parent => {
+        this.formsList = !isNullOrUndefined(parent) ? [parent] : [];
         this.initDone = true;
-      });
-
-    } else {
-      this.appService.setToolBarHeading("Edit Form");
-      const formId = route.params["id"];
-
-      this.formApiService.getForm(formId).pipe(
-        switchMap(form => {
-          this.orignalFormName = form.name;
-          this.formDefinition = form;
-          return !isNullOrUndefined(form?.attributes?.parentForm?.formId) ?
-            this.formApiService.getForm(form.attributes.parentForm.formId) :
-            of(null);
-        })
-      ).subscribe(
-        parent => {
-          this.formsList = !isNullOrUndefined(parent) ? [parent] : [];
-          this.initDone = true;
-        },
-        err => this.navigateToFormsList());
-    }
+      },
+      err => this.navigateToFormsList()
+    );
   }
 
   onFormDeifitionUpdate(form: FormGroup) {
     this.formDefinitionFG = form;
-    if (this.formDefinitionFG.status === "VALID")
-      this.formDefinition = this.getTransformedValueFromFG(form)
+    if (this.formDefinitionFG.status === "VALID") this.formDefinition = this.getTransformedValueFromFG(form)
   }
 
   getTransformedValueFromFG(formGroup: FormGroup) {
@@ -89,28 +94,26 @@ export class FormScreenComponent implements OnInit {
   saveForm() {
     this.markFormDefinitionFGAsDirty$.next();
 
-    if (this.formDefinitionFG.status === "VALID") {
-
-      if (this.mode === "create")
-        this.formApiService.createForm(this.formDefinition).subscribe(
-          _ => this.navigateToFormsList()
-        );
-
-      else {
-
-        //name field should only be added if its changed
-        if (this.formDefinition.name === this.orignalFormName)
-          delete this.formDefinition.name;
-
-        this.formApiService.updateForm(this.formDefinition).subscribe(
-          _ => this.navigateToFormsList()
-        );
-      }
-
-
-    } else {
+    if (this.formDefinitionFG.status !== "VALID") {
       this.snackBarService.showErrorAlert("Form is not valid. Please recheck");
+      return;
     }
+
+    if (this.mode === "create") this.createForm();
+    else this.updateForm();
+  }
+
+  createForm() {
+    this.formApiService.createForm(this.formDefinition)
+      .subscribe(_ => this.navigateToFormsList());
+  }
+
+  updateForm() {
+    //name field should only be added if its changed
+    if (this.formDefinition.name === this.orignalFormName) delete this.formDefinition.name;
+
+    this.formApiService.updateForm(this.formDefinition)
+      .subscribe(_ => this.navigateToFormsList());
   }
 
   navigateToFormsList() {

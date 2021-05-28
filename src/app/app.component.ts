@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
     })
 
     this.appService.formLinks$.subscribe(links => {
-      //TODO: hardcoded showDividerBelow: form.name === "Products"
+      //TODO: hardcoded showDividerBelow: form.name === "Products" for demo
       let index = links.findIndex(l => l.displayName === "Products")
       if (index != -1) links[index].showDividerBelow = true;
 

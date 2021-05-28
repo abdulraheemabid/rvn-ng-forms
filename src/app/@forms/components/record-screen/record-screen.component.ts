@@ -26,14 +26,16 @@ export class RecordScreenComponent implements OnInit {
     private appService: AppService) { }
 
   form: IForm;
+  formId: number;
+  parentForm: IForm;
+
   record: IRecord = { entry: {} };
-  formId: number
   recordId: number;
+  parentRecords: IRecord[];
+  preSelectedParentRecordId: number;
+
   recordFG: FormGroup = new FormGroup({});
   markRecordFGAsDirty$ = new Subject();
-  parentRecords: IRecord[];
-  parentForm: IForm;
-  preSelectedParentRecordId: number;
 
   mode: CreateOrEdit;
   initDone: boolean = false;
@@ -56,6 +58,10 @@ export class RecordScreenComponent implements OnInit {
       this.preSelectedParentRecordId = route.queryParams["parentRecordId"];
     }
 
+    this.getData(apisToCall);
+  }
+
+  getData(apisToCall: Observable<unknown>[]) {
     forkJoin(apisToCall).subscribe(
       results => {
         this.form = results[0] as IForm;
@@ -63,10 +69,8 @@ export class RecordScreenComponent implements OnInit {
 
         if (!isNullOrUndefined(results[1])) this.record = results[1] as IRecord;
 
-        if (!isNullOrUndefined(this.form?.attributes?.parentForm?.formId))
-          this.getParentData();
-        else
-          this.initDone = true;
+        if (!isNullOrUndefined(this.form?.attributes?.parentForm?.formId)) this.getParentData();
+        else this.initDone = true;
       },
       err => {
         this.navigateToRecordsList();

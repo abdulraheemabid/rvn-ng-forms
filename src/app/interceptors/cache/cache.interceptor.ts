@@ -36,6 +36,9 @@ export class CacheInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     if (!this.isCachable(request)) {
+      // If its not a cachable request, means not a GET request 
+      // or its a records request. In both cases, see which cache has to be cleared.
+      // and return normally.
       this.handleInvalidatingCache(request);
       return next.handle(request);
     }
